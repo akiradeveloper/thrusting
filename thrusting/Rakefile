@@ -1,0 +1,24 @@
+require "rake/clean"
+names = [
+  "make_real_n",
+  "make_tuple_n",
+  "parallel_operator_a_a",
+  "parallel_operator_a_a_a",
+  "parallel_operator_a_b_a",
+  "real_n_typedef",
+  "tuple_n_operator",
+  "tuple_operator",
+  "tuple_n_typedef",
+]
+
+CLOBBER.include(names.map { |x| x + ".rb"  }.join(", "))
+
+for name in names
+  file "#{name}.h" => "#{name}.rb" do |t|
+    ruby = t.prerequisites[0]
+    header = t.name
+    sh "ruby #{ruby} > #{header}"
+  end
+end 
+
+task :gen_header => names.map { |x| x + ".h" }

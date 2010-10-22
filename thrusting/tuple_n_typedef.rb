@@ -15,8 +15,15 @@ struct tuple#{n} {
 """
 end
 
+def all()
+"""
+#pragma once
+namespace thrusting {
+#{(2..9).map { |i| tupleN(i) }.join}
+}
+"""
+end
+
 if __FILE__ == $0
-  for i in 2..9
-    $stdout << tupleN(i)
-  end
+  print all()
 end

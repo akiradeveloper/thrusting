@@ -14,10 +14,20 @@ real#{n} make_real#{n}(#{arg.join(", ")}){
 """
 end  
   
+def all()
+"""
+#pragma once
+
+#include \"make_tuple_n.h\"
+#include \"real_n_typedef.h\"
+
+using namespace thrusting {
+#{(2..9).map { |i| make_realN(i) }.join("") }
+}
+"""
+end
 
 if __FILE__ == $0
-  for i in 2..9
-    $stdout << make_realN(i)
-  end
+  print all()
 end
   

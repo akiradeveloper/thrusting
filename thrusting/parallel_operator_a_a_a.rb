@@ -10,22 +10,31 @@ void operator(op)=(parallel<A> xs, A ys){
 """
 
 
-def _parallel_operator(op, functor_name)
+def _parallel_operator(op, functor)
 """
 void operator#{op}=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
-  thrust::transform(head, head+n, ys, head, thrust::#{functor_name}<VALUE_TYPE>());
+  thrust::transform(head, head+n, ys, head, thrust::#{functor}<VALUE_TYPE>());
+}
+"""
+end
+
+
+def all()
+op = ['+', '-', '*', '/', '%', '&', '|', '^'] 
+functors = ["plus", "minus", "multiplies", "divides", "modulus", "bit_and", "bit_or", "bit_xor"]
+s = op.zip(functors).map do |op, functor|
+  _parallel_operator(op, functor)
+end.join("")
+"""
+#pragma once
+namespace thrusting {
+#{s}
 }
 """
 end
 
 if __FILE__ ==$0
-  print _parallel_operator('+', "plus")
-  op = ['+', '-', '*', '/', '%', '&', '|', '^'] 
-  functor = ["plus", "minus", "multiplies", "divides", "modulus", "bit_and", "bit_or", "bit_xor"]
-  p op.zip(functor)
-  op.zip(functor).each do |op, functor|
-    $stdout << _parallel_operator(op, functor)
-  end
+  print all()
 end  

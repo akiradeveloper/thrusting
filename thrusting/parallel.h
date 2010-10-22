@@ -1,15 +1,16 @@
 #pragma once
 
 #include "functional.h"
+#include "parallel_operator_a_a_a.h"
+#include "parallel_operator_a_b_a.h"
+#include "parallel_operator_a_a.h"
 
 #include <thrust/transform.h>
 #include <thrust/functional.h>
 #include <thrust/iterator/iterator_traits.h>
 #include <thrust/copy.h>
 
-#include "parallel_operator_a_a_a.h"
-#include "parallel_operator_a_b_a.h"
-#include "parallel_operator_a_a.h"
+#include <string>
 
 namespace thrusting {
 
@@ -37,7 +38,7 @@ struct parallel {
 };
 
 template<typename A>
-std::ostream &operator<<(const std::ostream &os, const parallel<A> &a){
+std::ostream &operator<<(std::ostream &os, const parallel<A> &a){
   std::string s;
   s += "[";
   for(size_t i=0; i<size()-1; i++){

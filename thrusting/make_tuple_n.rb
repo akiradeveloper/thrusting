@@ -16,6 +16,16 @@ typename tuple#{n}<T>::type make_tuple#{n}(#{arg.join(", ")}){
 """
 end
 
+def all()
+"""
+#pragma once
+
+namespace thrusting {
+#{(2..9).map { |i| tupleN(i) }.join("")}
+}
+"""
+end
+
 if __FILE__ == $0
-  print tupleN(3)
+  print all()
 end

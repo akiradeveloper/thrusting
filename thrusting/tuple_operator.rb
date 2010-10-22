@@ -30,10 +30,10 @@ std::stream &operator<<(const ostream &os, thrust::tuple<T0, T1, ...> x){
 def ostream(n)
 arg = (0...n).map { |i| "typename T#{i}" }
 arg2 = (0...n).map { |i| "T#{i}" }
-s = (0...n).map { |i| "x.get<#{i}>()" }.join("+ ',' +")
+s = (0...n).map { |i| "x.get<#{i}>()" }.join(" + ',' + ")
 """
 template<#{arg.join(", ")}>
-std::stream &operator<<(const ostream &os, const thrust::tuple<#{arg2.join(", ")}> &x){
+std::stream &operator<<(ostream &os, const thrust::tuple<#{arg2.join(", ")}> &x){
   std::string s;
   s = '(' + #{s} + ')';
   os << s;
@@ -58,19 +58,33 @@ arg2 = (0...n).map { |i| "T#{i}" }
 bool = (0...n).map { |i| "(x.get<#{i}>() == y.get<#{i}>())" }.join(" && ")
 """
 template<#{arg.join(", ")}>
-bool operator==(const thrust::tuple<#{arg2.join(", ")}> x, const thrust::tuple<#{arg2.join(", ")}> y){
+bool operator==(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg2.join(", ")}> &y){
   return #{bool};
 }
 template<#{arg.join(", ")}>
-bool operator!=(const thrust::tuple<#{arg2.join(", ")}> x, const thrust::tuple<#{arg2.join(", ")}> y){
+bool operator!=(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg2.join(", ")}> &y){
   return ! (x==y);
 }
 """
 end
 
+def all()
+from = 2
+to = 9
+ops = ['+', '-', '*', '/'] 
+operator = (from..to).map { |i| ops.map { |op| operator(i, op) } }.join
+ostream = (from..to).map { |i| ostream(i) }.join
+equality = (from..to).map { |i| equality(i) }.join
+"""
+#pragma once
+namespace thrusting {
+#{operator}
+#{ostream}
+#{equality}
+}
+"""
+end
 
 if __FILE__ == $0
-  print operator(3, "+")
-  print ostream(3)
-  print equality(3)
+  print all()
 end

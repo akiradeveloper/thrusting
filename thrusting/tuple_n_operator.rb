@@ -15,7 +15,7 @@ def _operator(n, op)
 input = (0...n).map { |i| "x.get<#{i}>()#{op}y" }
 """
 template<typename T>
-tuple#{n}<T>::type operator*(tuple#{n}<T>::type x, T y){
+tuple#{n}<T>::type operator#{op}(tuple#{n}<T>::type x, T y){
   return make_tuple#{n}<T>(#{input.join(", ")});
 }
 """
@@ -24,13 +24,23 @@ end
 def operator(n)
 """
 #{_operator(n, "*")}
+template<typename T>
 tupleN<T>::type operator*(T n, tupleN<T>::type x){
   return x * n;
 }
 #{_operator(n, "/")}
 """
 end
-  
+
+def all()
+"""
+#pragma once
+namespace thrusting {
+#{(2..9).map { |i| operator(i) }.join} 
+}
+"""
+end
+
 if __FILE__ == $0
-  print operator(3)
+  print all()
 end
