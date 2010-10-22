@@ -15,7 +15,7 @@ arg4 = (n*2...n*3).map { |i| "T#{i}" }
 input = (0...n).map { |i| "x.get<#{i}>()#{op}y.get<#{i}>()" }
 """
 template<#{arg.join(", ")}>
-thrust::tuple<#{arg4.join(", ")}> operator op (const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg3.join(", ")}> &y){
+thrust::tuple<#{arg4.join(", ")}> operator#{op}(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg3.join(", ")}> &y){
   return thrust::make_tuple(#{input.join(", ")});
 }
 """
@@ -53,10 +53,24 @@ bool operator!=
 """
 
 def equality(n)
+arg = (0...n).map { |i| "typename T#{i}" }
+arg2 = (0...n).map { |i| "T#{i}" }
+bool = (0...n).map { |i| "(x.get<#{i}>() == y.get<#{i}>())" }.join(" && ")
+"""
+template<#{arg.join(", ")}>
+bool operator==(const thrust::tuple<#{arg2.join(", ")}> x, const thrust::tuple<#{arg2.join(", ")}> y){
+  return #{bool};
+}
+template<#{arg.join(", ")}>
+bool operator!=(const thrust::tuple<#{arg2.join(", ")}> x, const thrust::tuple<#{arg2.join(", ")}> y){
+  return ! (x==y);
+}
+"""
 end
 
 
 if __FILE__ == $0
   print operator(3, "+")
   print ostream(3)
+  print equality(3)
 end

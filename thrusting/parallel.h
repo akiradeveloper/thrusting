@@ -15,11 +15,11 @@ namespace thrusting {
 
 template<typename A>
 struct parallel {
-  Int n;
+  size_t n;
   A head;
-  parallel(Int n_, A &head_)
+  parallel(size_t n_, A &head_)
   :n(n_), head(head_){}
-  int size(){
+  size_t size(){
     return n;
   }
   const A &head(){
@@ -28,13 +28,19 @@ struct parallel {
   void operator<<(A from){
     thrust::copy(from, from+size(), head);
   }
+  bool operator==(A with){
+    return thrust::equal(head(), head()+size(), with);
+  }
+  bool operator==(const parallel<A> &with){
+    return this==with.head();
+  }
 };
 
 template<typename A>
-std::ostream &operator<<(const std::ostream &os, const _parallel<A> &a){
+std::ostream &operator<<(const std::ostream &os, const parallel<A> &a){
   std::string s;
   s += "[";
-  for(int i=0; i<size()-1; i++){
+  for(size_t i=0; i<size()-1; i++){
     s += *(head()+i);
     s += ", ";
   }
@@ -45,8 +51,8 @@ std::ostream &operator<<(const std::ostream &os, const _parallel<A> &a){
 }
 
 template<typename A>
-parallel<A> make_parallel(Int n, A head){
-  return _parallel<A>(n, head);
+parallel<A> make_parallel(size_t n, A head){
+  return parallel<A>(n, head);
 }
 
 } // end thrusting

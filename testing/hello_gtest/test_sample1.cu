@@ -1,6 +1,7 @@
 #include <limits.h>
 #include "sample1.h"
 #include "gtest/gtest.h"
+#include <thrust/device_vector.h>
 
 // Step 2. Use the TEST macro to define your tests.
 //
@@ -56,6 +57,19 @@ TEST(FactorialTest, Negative) {
 // Tests factorial of 0.
 TEST(FactorialTest, Zero) {
   EXPECT_EQ(1, Factorial(0));
+}
+
+// I have written this test
+// compile failed because of d_xs not having os << operator
+// objects to those assertions must be implementing os << operator.
+// and == of course.
+TEST(FactorialTest, VECTOR){
+  int xs[] = {1,2,3};
+  thrust::device_vector<int> d_xs(xs, xs+3);
+  int ys[] = {1,2,3};
+  thrust::device_vector<int> d_ys(ys, ys+3);
+  EXPECT_EQ("a", "a");
+  EXPECT_EQ(d_xs, d_ys);
 }
 
 // Tests factorial of positive numbers.
