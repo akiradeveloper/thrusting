@@ -8,16 +8,18 @@ names = [
   "real_n_typedef",
   "tuple_n_operator",
   "tuple_operator",
-  "tuple_n_typedef",
+  "tuple_n_typedef"
 ]
 
-CLOBBER.include(names.map { |x| x + ".rb"  }.join(", "))
+names.map { |x| x + ".h"  }.each do |h|
+  CLOBBER.include(h)
+end
 
 for name in names
   file "#{name}.h" => "#{name}.rb" do |t|
-    ruby = t.prerequisites[0]
-    header = t.name
-    sh "ruby #{ruby} > #{header}"
+    rb = t.prerequisites[0]
+    h = t.name
+    sh "ruby #{rb} > #{h}"
   end
 end 
 
