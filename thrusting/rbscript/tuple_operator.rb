@@ -11,15 +11,13 @@ thrust::tuple<T0, T1, ...> operator op (thrust::tuple<T0, T1, ...> x, thrust::tu
 """
   
 def operator(n, op)
-arg = (0...n*3).map { |i| "typename T#{i}" }
+arg = (0...n).map { |i| "typename T#{i}" }
 arg2 = (0...n).map { |i| "T#{i}" }
-arg3 = (n...n*2).map { |i| "T#{i}" }
-arg4 = (n*2...n*3).map { |i| "T#{i}" }
 input = (0...n).map { |i| "#{get_tuple(i, "x")}#{op}#{get_tuple(i, "y")}" }
 """
 template<#{arg.join(", ")}>
 __host__ __device__
-typename thrust::tuple<#{arg4.join(", ")}> operator#{op}(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg3.join(", ")}> &y){
+thrust::tuple<#{arg2.join(", ")}> operator#{op}(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg2.join(", ")}> &y){
   return thrust::make_tuple(#{input.join(", ")});
 }
 """
