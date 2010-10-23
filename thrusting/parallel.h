@@ -41,11 +41,11 @@ template<typename A>
 std::ostream &operator<<(std::ostream &os, const parallel<A> &a){
   std::string s;
   s += "[";
-  for(size_t i=0; i<size()-1; i++){
-    s += *(head()+i);
+  for(size_t i=0; i<a.size()-1; i++){
+    s += *(a.head()+i);
     s += ", ";
   }
-  s += *(head()+size()-1);
+  s += *(a.head()+a.size()-1);
   s += "]";
   os << s;
   return os;
