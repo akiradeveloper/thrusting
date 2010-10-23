@@ -11,6 +11,7 @@
 #include <thrust/copy.h>
 
 #include <string>
+#include <iostream>
 
 namespace thrusting {
 

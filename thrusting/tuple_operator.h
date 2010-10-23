@@ -1,4 +1,5 @@
 
+#include <iostream>
 #pragma once
 namespace thrusting {
 
@@ -196,7 +197,7 @@ thrust::tuple<T18, T19, T20, T21, T22, T23, T24, T25, T26> operator/(const thrus
 
 
 template<typename T0, typename T1>
-std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1> &x){
+std::ostream &operator<<(std::ostream &os, const thrust::tuple<T0, T1> &x){
   std::string s;
   s = '(' + x.get<0>() + ',' + x.get<1>() + ')';
   os << s;
@@ -204,7 +205,7 @@ std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1> &x){
 }
 
 template<typename T0, typename T1, typename T2>
-std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2> &x){
+std::ostream &operator<<(std::ostream &os, const thrust::tuple<T0, T1, T2> &x){
   std::string s;
   s = '(' + x.get<0>() + ',' + x.get<1>() + ',' + x.get<2>() + ')';
   os << s;
@@ -212,7 +213,7 @@ std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2> &x){
 }
 
 template<typename T0, typename T1, typename T2, typename T3>
-std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3> &x){
+std::ostream &operator<<(std::ostream &os, const thrust::tuple<T0, T1, T2, T3> &x){
   std::string s;
   s = '(' + x.get<0>() + ',' + x.get<1>() + ',' + x.get<2>() + ',' + x.get<3>() + ')';
   os << s;
@@ -220,7 +221,7 @@ std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3> &x){
 }
 
 template<typename T0, typename T1, typename T2, typename T3, typename T4>
-std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3, T4> &x){
+std::ostream &operator<<(std::ostream &os, const thrust::tuple<T0, T1, T2, T3, T4> &x){
   std::string s;
   s = '(' + x.get<0>() + ',' + x.get<1>() + ',' + x.get<2>() + ',' + x.get<3>() + ',' + x.get<4>() + ')';
   os << s;
@@ -228,7 +229,7 @@ std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3, T4> &x)
 }
 
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5>
-std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5> &x){
+std::ostream &operator<<(std::ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5> &x){
   std::string s;
   s = '(' + x.get<0>() + ',' + x.get<1>() + ',' + x.get<2>() + ',' + x.get<3>() + ',' + x.get<4>() + ',' + x.get<5>() + ')';
   os << s;
@@ -236,7 +237,7 @@ std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5>
 }
 
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
-std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5, T6> &x){
+std::ostream &operator<<(std::ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5, T6> &x){
   std::string s;
   s = '(' + x.get<0>() + ',' + x.get<1>() + ',' + x.get<2>() + ',' + x.get<3>() + ',' + x.get<4>() + ',' + x.get<5>() + ',' + x.get<6>() + ')';
   os << s;
@@ -244,7 +245,7 @@ std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5,
 }
 
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7>
-std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5, T6, T7> &x){
+std::ostream &operator<<(std::ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5, T6, T7> &x){
   std::string s;
   s = '(' + x.get<0>() + ',' + x.get<1>() + ',' + x.get<2>() + ',' + x.get<3>() + ',' + x.get<4>() + ',' + x.get<5>() + ',' + x.get<6>() + ',' + x.get<7>() + ')';
   os << s;
@@ -252,7 +253,7 @@ std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5,
 }
 
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8>
-std::stream &operator<<(ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8> &x){
+std::ostream &operator<<(std::ostream &os, const thrust::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8> &x){
   std::string s;
   s = '(' + x.get<0>() + ',' + x.get<1>() + ',' + x.get<2>() + ',' + x.get<3>() + ',' + x.get<4>() + ',' + x.get<5>() + ',' + x.get<6>() + ',' + x.get<7>() + ',' + x.get<8>() + ')';
   os << s;

@@ -24,7 +24,7 @@ end
 
 """
 template<typename T0, typename T1, ...>
-std::stream &operator<<(const ostream &os, thrust::tuple<T0, T1, ...> x){
+std::stream &operator<<(const std::ostream &os, thrust::tuple<T0, T1, ...> x){
 }
 """
 
@@ -34,7 +34,7 @@ arg2 = (0...n).map { |i| "T#{i}" }
 s = (0...n).map { |i| "x.get<#{i}>()" }.join(" + ',' + ")
 """
 template<#{arg.join(", ")}>
-std::stream &operator<<(ostream &os, const thrust::tuple<#{arg2.join(", ")}> &x){
+std::ostream &operator<<(std::ostream &os, const thrust::tuple<#{arg2.join(", ")}> &x){
   std::string s;
   s = '(' + #{s} + ')';
   os << s;
@@ -80,6 +80,7 @@ operator = (from..to).map { |i| ops.map { |op| operator(i, op) } }.join
 ostream = (from..to).map { |i| ostream(i) }.join
 equality = (from..to).map { |i| equality(i) }.join
 """
+#include <iostream>
 #pragma once
 namespace thrusting {
 #{operator}

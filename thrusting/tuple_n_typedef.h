@@ -1,4 +1,5 @@
 
+#include <thrust/tuple.h>
 #pragma once
 namespace thrusting {
 
