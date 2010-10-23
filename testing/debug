@@ -1,0 +1,39 @@
+/Users/akira/sandbox/thrusting/thrusting/functional.h(28): error: expected an identifier
+
+/Users/akira/sandbox/thrusting/thrusting/functional.h(32): error: class "multiplies" may not have a template argument list
+
+/Users/akira/sandbox/thrusting/thrusting/functional.h(32): error: not a class or struct name
+
+/Users/akira/sandbox/thrusting/thrusting/functional.h(32): error: expected an identifier
+
+/Users/akira/sandbox/thrusting/thrusting/functional.h(40): error: expected an identifier
+
+/Users/akira/sandbox/thrusting/thrusting/functional.h(44): error: class "divides" may not have a template argument list
+
+/Users/akira/sandbox/thrusting/thrusting/functional.h(44): error: not a class or struct name
+
+/Users/akira/sandbox/thrusting/thrusting/functional.h(44): error: expected an identifier
+
+/Users/akira/sandbox/thrusting/thrusting/functional.h(52): error: expected an identifier
+
+/Users/akira/sandbox/thrusting/thrusting/functional.h(60): error: expected an identifier
+
+/Users/akira/sandbox/thrusting/thrusting/parallel_operator_a_a_a.h(7): error: parallel is not a template
+
+/Users/akira/sandbox/thrusting/thrusting/parallel_operator_a_a_a.h(14): error: parallel is not a template
+
+/Users/akira/sandbox/thrusting/thrusting/parallel_operator_a_a_a.h(21): error: parallel is not a template
+
+/Users/akira/sandbox/thrusting/thrusting/parallel_operator_a_a_a.h(28): error: parallel is not a template
+
+/Users/akira/sandbox/thrusting/thrusting/parallel_operator_a_a_a.h(35): error: parallel is not a template
+
+/Users/akira/sandbox/thrusting/thrusting/parallel_operator_a_a_a.h(42): error: parallel is not a template
+
+/Users/akira/sandbox/thrusting/thrusting/parallel_operator_a_a_a.h(49): error: parallel is not a template
+
+/Users/akira/sandbox/thrusting/thrusting/parallel_operator_a_a_a.h(56): error: parallel is not a template
+
+/Users/akira/sandbox/thrusting/thrusting/parallel.h(27): error: "head" has already been declared in the current scope
+
+19 errors detected in the compilation of "/tmp/tmpxft_000007d0_00000000-4_test.cpp1.ii".

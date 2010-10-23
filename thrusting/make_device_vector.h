@@ -10,7 +10,7 @@ thrust::device_vector<T> &make_device_vector(size_t n, ...){
   va_list values;
   va_start(values, n);
   for(size_t i=0; i<n; i++){
-    xs.push_back(var_arg(values, T));
+    xs.push_back(va_arg(values, T));
   }
   va_end(values);  
   return xs; 

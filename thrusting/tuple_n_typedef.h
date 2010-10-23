@@ -1,6 +1,6 @@
 
-#include <thrust/tuple.h>
 #pragma once
+#include <thrust/tuple.h>
 namespace thrusting {
 
 template<typename T>

@@ -12,6 +12,7 @@ void operator(op)=(parallel<A> xs, A ys){
 
 def _parallel_operator(op, functor)
 """
+template<typename A>
 void operator#{op}=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
@@ -29,6 +30,7 @@ s = op.zip(functors).map do |op, functor|
 end.join("")
 """
 #pragma once
+#include \"parallel.h\"
 namespace thrusting {
 #{s}
 }

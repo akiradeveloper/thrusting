@@ -2,7 +2,7 @@
 #pragma once
 #include "make_tuple_n.h"
 #include "real_n_typedef.h"
-using namespace thrusting {
+namespace thrusting {
 
 __host__ __device__
 real2 make_real2(real x0, real x1){

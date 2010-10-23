@@ -1,6 +1,6 @@
 
-#include "tuple_n_typedef.h"
 #pragma once
+#include "tuple_n_typedef.h"
 namespace thrusting {
 
 template<typename T>

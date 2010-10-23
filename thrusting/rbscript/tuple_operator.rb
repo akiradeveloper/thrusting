@@ -80,8 +80,8 @@ operator = (from..to).map { |i| ops.map { |op| operator(i, op) } }.join
 ostream = (from..to).map { |i| ostream(i) }.join
 equality = (from..to).map { |i| equality(i) }.join
 """
-#include <iostream>
 #pragma once
+#include <iostream>
 namespace thrusting {
 #{operator}
 #{ostream}

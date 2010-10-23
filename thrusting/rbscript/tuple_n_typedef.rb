@@ -17,8 +17,8 @@ end
 
 def all()
 """
-#include <thrust/tuple.h>
 #pragma once
+#include <thrust/tuple.h>
 namespace thrusting {
 #{(2..9).map { |i| tupleN(i) }.join}
 }

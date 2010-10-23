@@ -13,8 +13,7 @@ struct compose :public thrust::unary_function<A, C> {
     thrust::unary_function<A, B> first_,
     thrust::unary_function<B, C> second_)
   :first(first_), second(second_){}
-  
-  C operator()(A x, B y){
+  C operator()(A x){
     return second(first(x));
   }
 };
@@ -29,11 +28,11 @@ struct multiplies :public thrust::binary_function<A, B, C> {
 
 template<typename A, typename B>
 __host__ __device__
-struct multiplies :public multiplies<A, B, A>
+struct multiplies :public multiplies<A, B, A> {};
 
 template<typename A, typename B, typename C>
 __host__ __device__
-struct divides :public thrust::binary_function<A, B, C>{
+struct divides :public thrust::binary_function<A, B, C> {
   C operator()(A x, B y){
     return x / y;
   }
@@ -41,7 +40,7 @@ struct divides :public thrust::binary_function<A, B, C>{
 
 template<typename A, typename B>
 __host__ __device__
-struct divides :public divides<A, B, A>
+struct divides :public divides<A, B, A> {};
 
 template<typename A, typename B>
 __host__ __device__
