@@ -1,3 +1,4 @@
+#pragma once
 #include "char.h"
 #include "uchar.h"
 #include "short.h"

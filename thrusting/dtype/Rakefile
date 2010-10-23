@@ -4,13 +4,22 @@ require "rake/clean"
 typedef typename tupleN<T>::type TN
 """
 
-def typedef(n, type)
+def typedef(n, type, type_n)
 """
-typedef typename tuple#{n}<#{type}>::type #{type}#{n}
+typedef typename tuple#{n}<#{type}>::type #{type_n}#{n};
 """
 end
 
 types = [
+  "char", "unsigned char",
+  "short", "unsigned short",
+  "int", "unsigned int",
+  "long", "unsigned long",
+  "long long",
+  "float", "double", "size_t"
+]
+
+type_ns = [
   "char", "uchar",
   "short", "ushort",
   "int", "uint",
@@ -19,13 +28,14 @@ types = [
   "float", "double", "size_t"
 ]
 
-CLOBBER.include(types.map { |t| t+".h" })
+CLOBBER.include(type_ns.map { |t| t+".h" })
 
-def all(type)
+def all(type, type_n)
 typedefs = (2..9).map do |i|
-  typedef(i, type)
+  typedef(i, type, type_n)
 end
 """
+#pragma once
 #include \"../tuple_n_typedef.h\"
 namespace thrusting {
 #{typedefs.join("")}
@@ -33,20 +43,21 @@ namespace thrusting {
 """
 end
 
-types.each do |type|
-  file "#{type}.h" => "Rakefile" do |t|
+types.zip(type_ns).each do |type, type_n|
+  file "#{type_n}.h" => "Rakefile" do |t|
     fname = t.name
     f = File.open(fname, "w")
-    f.puts(all(type))
+    f.puts(all(type, type_n))
     f.close
   end
 end 
 
 task :gen_typedef_h do
-  includes = types.map { |t| "#include \"#{t}.h\"" }
+  includes = type_ns.map { |t| "#include \"#{t}.h\"" }
   f = File.open("dtype.h", "w")
+  f.puts("#pragma once")
   f.puts(includes.join("\n"))
   f.close
 end  
 
-task :gen_header => [:gen_typedef_h, types.map { |f| f + ".h" }].flatten
+task :gen_header => [:gen_typedef_h, type_ns.map { |f| f + ".h" }].flatten
