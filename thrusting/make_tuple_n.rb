@@ -10,6 +10,7 @@ arg = (0...n).map { |i| "T x#{i}" }
 input = (0...n).map { |i| "x#{i}" }
 """
 template<typename T>
+__host__ __device__
 typename tuple#{n}<T>::type make_tuple#{n}(#{arg.join(", ")}){
   return thrust::make_tuple(#{input.join(", ")});
 }
@@ -19,7 +20,6 @@ end
 def all()
 """
 #pragma once
-
 namespace thrusting {
 #{(2..9).map { |i| tupleN(i) }.join("")}
 }

@@ -15,6 +15,7 @@ arg4 = (n*2...n*3).map { |i| "T#{i}" }
 input = (0...n).map { |i| "x.get<#{i}>()#{op}y.get<#{i}>()" }
 """
 template<#{arg.join(", ")}>
+__host__ __device__
 thrust::tuple<#{arg4.join(", ")}> operator#{op}(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg3.join(", ")}> &y){
   return thrust::make_tuple(#{input.join(", ")});
 }
@@ -44,6 +45,7 @@ end
 
 """
 template<typename T0, ...>
+__host__ __device__
 bool operator==(const thrust::tuple<T0, ...> x, const thrust::tuple<T0, ...> y){
   return x.get<0>() == y.get<1>() && ...;
 }
@@ -58,10 +60,12 @@ arg2 = (0...n).map { |i| "T#{i}" }
 bool = (0...n).map { |i| "(x.get<#{i}>() == y.get<#{i}>())" }.join(" && ")
 """
 template<#{arg.join(", ")}>
+__host__ __device__
 bool operator==(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg2.join(", ")}> &y){
   return #{bool};
 }
 template<#{arg.join(", ")}>
+__host__ __device__
 bool operator!=(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg2.join(", ")}> &y){
   return ! (x==y);
 }

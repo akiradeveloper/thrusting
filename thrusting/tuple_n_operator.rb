@@ -15,6 +15,7 @@ def _operator(n, op)
 input = (0...n).map { |i| "x.get<#{i}>()#{op}y" }
 """
 template<typename T>
+__host__ __device__
 typename tuple#{n}<T>::type operator#{op}(const typename tuple#{n}<T>::type &x, T y){
   return make_tuple#{n}<T>(#{input.join(", ")});
 }
@@ -25,6 +26,7 @@ def operator(n)
 """
 #{_operator(n, "*")}
 template<typename T>
+__host__ __device__
 typename tuple#{n}<T>::type operator*(T n, const typename tuple#{n}<T>::type &x){
   return x * n;
 }
