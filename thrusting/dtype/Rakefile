@@ -1,0 +1,52 @@
+require "rake/clean"
+
+"""
+typedef typename tupleN<T>::type TN
+"""
+
+def typedef(n, type)
+"""
+typedef typename tuple#{n}<#{type}>::type #{type}#{n}
+"""
+end
+
+types = [
+  "char", "uchar",
+  "short", "ushort",
+  "int", "uint",
+  "long", "ulong",
+  "longlong",
+  "float", "double", "size_t"
+]
+
+CLOBBER.include(types.map { |t| t+".h" })
+
+def all(type)
+typedefs = (2..9).map do |i|
+  typedef(i, type)
+end
+"""
+#include \"../tuple_n_typedef.h\"
+namespace thrusting {
+#{typedefs.join("")}
+}  
+"""
+end
+
+types.each do |type|
+  file "#{type}.h" => "Rakefile" do |t|
+    fname = t.name
+    f = File.open(fname, "w")
+    f.puts(all(type))
+    f.close
+  end
+end 
+
+task :gen_typedef_h do
+  includes = types.map { |t| "#include \"#{t}.h\"" }
+  f = File.open("dtype.h", "w")
+  f.puts(includes.join("\n"))
+  f.close
+end  
+
+task :gen_header => [:gen_typedef_h, types.map { |f| f + ".h" }].flatten
