@@ -1,8 +1,4 @@
-//#include <thrusting/tuple.h>
-//#include <thrusting/real.h>
-//#include <thrusting/vector.h>
-//#include <thrusting/parallel.h>
-#include <thrusting/functional.h>
+#include <thrusting/thrusting.h>
 
 int main(void){
   return 0;

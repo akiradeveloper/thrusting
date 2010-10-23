@@ -1,14 +1,9 @@
 #pragma once
 
-#include "functional.h"
-#include "parallel_operator_a_a_a.h"
-#include "parallel_operator_a_b_a.h"
-#include "parallel_operator_a_a.h"
-
 #include <thrust/transform.h>
 #include <thrust/functional.h>
+#include <thrust/equal.h>
 #include <thrust/iterator/iterator_traits.h>
-#include <thrust/copy.h>
 
 #include <string>
 #include <iostream>
@@ -18,23 +13,20 @@ namespace thrusting {
 template<typename A>
 struct parallel {
   size_t n;
-  A head;
+  A _head;
   parallel(size_t n_, A &head_)
-  :n(n_), head(head_){}
-  size_t size(){
+  :n(n_), _head(head_){}
+  size_t length(){
     return n;
   }
   const A &head(){
-    return head;
-  }
-  void operator<<(A from){
-    thrust::copy(from, from+size(), head);
+    return _head;
   }
   bool operator==(A with){
-    return thrust::equal(head(), head()+size(), with);
+    return thrust::equal(head(), head()+length(), with);
   }
-  bool operator==(const parallel<A> &with){
-    if(size() != with.size(){ return false; }
+  bool operator==(parallel<A> &with){
+    if(length() != with.length()){ return false; }
     return (*this)==with.head();
   }
 };
@@ -43,11 +35,11 @@ template<typename A>
 std::ostream &operator<<(std::ostream &os, const parallel<A> &a){
   std::string s;
   s += "[";
-  for(size_t i=0; i<a.size()-1; i++){
+  for(size_t i=0; i<a.length()-1; i++){
     s += *(a.head()+i);
     s += ", ";
   }
-  s += *(a.head()+a.size()-1);
+  s += *(a.head()+a.length()-1);
   s += "]";
   os << s;
   return os;
@@ -60,3 +52,6 @@ parallel<A> make_parallel(size_t n, A head){
 
 } // end thrusting
 
+#include "parallel_operator_a_a_a.h"
+#include "parallel_operator_a_b_a.h"
+#include "parallel_operator_a_a.h"

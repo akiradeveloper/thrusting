@@ -16,6 +16,7 @@ template<typename A>
 void operator#{op}=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
+  size_t n = xs.length();
   thrust::transform(head, head+n, ys, head, thrust::#{functor}<VALUE_TYPE>());
 }
 """
@@ -31,6 +32,7 @@ end.join("")
 """
 #pragma once
 #include \"parallel.h\"
+#include <thrust/iterator/iterator_traits.h>
 namespace thrusting {
 #{s}
 }

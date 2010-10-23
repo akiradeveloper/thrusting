@@ -9,7 +9,7 @@ testcc = CC
 testcc = [testcc, GTEST_INCLUDE].join " -I"
 testcc = [testcc, CUDA_LIB, GTEST_LIB].join " -L"
 testcc = [testcc, "gtest"].join " -l"
-testcc = [testcc, "-m64"].join(" ")
+testcc = [testcc, "-m64", "-g", "-G"].join(" ")
 TESTCC = testcc
 
 p TESTCC

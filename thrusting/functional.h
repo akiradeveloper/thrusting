@@ -5,7 +5,6 @@
 namespace thrusting {
 
 template<typename A, typename B, typename C>
-__host__ __device__
 struct compose :public thrust::unary_function<A, C> {
   thrust::unary_function<A, B> first;
   thrust::unary_function<B, C> second;
@@ -13,47 +12,46 @@ struct compose :public thrust::unary_function<A, C> {
     thrust::unary_function<A, B> first_,
     thrust::unary_function<B, C> second_)
   :first(first_), second(second_){}
-  C operator()(A x){
+  __host__ __device__
+  C operator()(const A &x){
     return second(first(x));
   }
 };
 
 template<typename A, typename B, typename C>
-__host__ __device__
-struct multiplies :public thrust::binary_function<A, B, C> {
-  C operator()(A x, B y){
+struct multiplies_a_b_c :public thrust::binary_function<A, B, C> {
+  __host__ __device__
+  C operator()(const A &x, const B &y){
     return x * y;
   }
 };
 
 template<typename A, typename B>
-__host__ __device__
-struct multiplies :public multiplies<A, B, A> {};
+struct multiplies_a_b_a :public multiplies_a_b_c<A, B, A> {};
 
 template<typename A, typename B, typename C>
-__host__ __device__
-struct divides :public thrust::binary_function<A, B, C> {
-  C operator()(A x, B y){
+struct divides_a_b_c :public thrust::binary_function<A, B, C> {
+  __host__ __device__
+  C operator()(const A &x, const B &y){
     return x / y;
   }
 };
 
 template<typename A, typename B>
-__host__ __device__
-struct divides :public divides<A, B, A> {};
+struct divides_a_b_a :public divides_a_b_c<A, B, A> {};
 
 template<typename A, typename B>
-__host__ __device__
 struct left_shift :public thrust::binary_function<A, B, A> {
-  A operator()(A x, B y){
+  __host__ __device__
+  A operator()(const A &x, const B &y){
     return x << y;
   }
 };
 
 template<typename A, typename B>
-__host__ __device__
 struct right_shift :public thrust::binary_function<A, B, A> {
-  A operator()(A x, B y){
+  __host__ __device__
+  A operator()(const A &x, const B &y){
     return x >> y;
   }
 };
