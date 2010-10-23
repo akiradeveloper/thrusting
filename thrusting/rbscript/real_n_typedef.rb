@@ -1,3 +1,6 @@
+thisdir = File.expand_path(File.dirname(__FILE__))
+require [thisdir, "def_macro"].join "/"
+
 """
 typedef typename tupleN<real>::type realN
 """
@@ -12,7 +15,7 @@ def all()
 """
 #pragma once
 namespace thrusting {
-#{(2..9).map { |i| realN(i) }.join}
+#{(TUPLE_MIN..TUPLE_MAX).map { |i| realN(i) }.join}
 }
 """
 end

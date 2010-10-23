@@ -1,3 +1,6 @@
+thisdir = File.expand_path(File.dirname(__FILE__))
+require [thisdir, "def_macro"].join "/"
+
 """
 template<typename T>
 tupleN<T>::type operator*(tupleN<T>::type x, T n){
@@ -12,7 +15,7 @@ tupleN<T>::type operator/(tupleN<T>::type x, T n){
 """
 
 def _operator(n, op)
-input = (0...n).map { |i| "x.get(#{i})#{op}y" }
+input = (0...n).map { |i| "#{get_tuple(i, "x")}#{op}y" }
 """
 template<typename T>
 __host__ __device__
@@ -40,7 +43,7 @@ def all()
 #include \"make_tuple_n.h\"
 #include \"tuple_n_typedef.h\"
 namespace thrusting {
-#{(2..9).map { |i| operator(i) }.join} 
+#{(TUPLE_MIN..TUPLE_MAX).map { |i| operator(i) }.join} 
 }
 """
 end

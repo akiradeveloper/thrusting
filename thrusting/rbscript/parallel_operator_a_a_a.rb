@@ -1,3 +1,6 @@
+thisdir = File.expand_path(File.dirname(__FILE__))
+require [thisdir, "def_macro"].join "/"
+
 """
 op : op charcter for example '+'
 functor : for example 'plus'
@@ -13,7 +16,7 @@ void operator(op)=(parallel<A> xs, A ys){
 def _parallel_operator(op, functor)
 """
 template<typename A>
-void operator#{op}=(const parallel<A> &xs, A ys){
+void operator#{op}=(parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
   size_t n = xs.length();

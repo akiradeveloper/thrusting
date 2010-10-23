@@ -1,3 +1,6 @@
+thisdir = File.expand_path(File.dirname(__FILE__))
+require [thisdir, "def_macro"].join "/"
+
 """
 template<typename T>
 struct tupleN {
@@ -20,7 +23,7 @@ def all()
 #pragma once
 #include <thrust/tuple.h>
 namespace thrusting {
-#{(2..9).map { |i| tupleN(i) }.join}
+#{(TUPLE_MIN..TUPLE_MAX).map { |i| tupleN(i) }.join}
 }
 """
 end

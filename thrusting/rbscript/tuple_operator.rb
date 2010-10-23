@@ -1,3 +1,6 @@
+thisdir = File.expand_path(File.dirname(__FILE__))
+require [thisdir, "def_macro"].join "/"
+
 """
 N : LENGTH 
 op : Operator
@@ -12,11 +15,11 @@ arg = (0...n*3).map { |i| "typename T#{i}" }
 arg2 = (0...n).map { |i| "T#{i}" }
 arg3 = (n...n*2).map { |i| "T#{i}" }
 arg4 = (n*2...n*3).map { |i| "T#{i}" }
-input = (0...n).map { |i| "x.get(#{i})#{op}y.get(#{i})" }
+input = (0...n).map { |i| "#{get_tuple(i, "x")}#{op}#{get_tuple(i, "y")}" }
 """
 template<#{arg.join(", ")}>
 __host__ __device__
-thrust::tuple<#{arg4.join(", ")}> operator#{op}(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg3.join(", ")}> &y){
+typename thrust::tuple<#{arg4.join(", ")}> operator#{op}(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<#{arg3.join(", ")}> &y){
   return thrust::make_tuple(#{input.join(", ")});
 }
 """
@@ -31,13 +34,13 @@ std::stream &operator<<(const std::ostream &os, thrust::tuple<T0, T1, ...> x){
 def ostream(n)
 arg = (0...n).map { |i| "typename T#{i}" }
 arg2 = (0...n).map { |i| "T#{i}" }
-s = (0...n).map { |i| "x.get(#{i})" }.join(" + ',' + ")
+s = (0...n).map { |i| get_tuple(i, "x") }.join(" << \", \" << ")
 """
 template<#{arg.join(", ")}>
 std::ostream &operator<<(std::ostream &os, const thrust::tuple<#{arg2.join(", ")}> &x){
-  std::string s;
-  s = '(' + #{s} + ')';
-  os << s;
+  std::stringstream ss;
+  ss << \"(\" << #{s} << \")\";
+  os << ss.str();
   return os;
 }
 """
@@ -57,7 +60,7 @@ bool operator!=
 def equality(n)
 arg = (0...n).map { |i| "typename T#{i}" }
 arg2 = (0...n).map { |i| "T#{i}" }
-bool = (0...n).map { |i| "(x.get(#{i}) == y.get(#{i}))" }.join(" && ")
+bool = (0...n).map { |i| "(#{get_tuple(i, "x")} == #{get_tuple(i, "y")})" }.join(" && ")
 """
 template<#{arg.join(", ")}>
 __host__ __device__
@@ -73,8 +76,8 @@ bool operator!=(const thrust::tuple<#{arg2.join(", ")}> &x, const thrust::tuple<
 end
 
 def all()
-from = 2
-to = 9
+from = TUPLE_MIN
+to = TUPLE_MAX
 ops = ['+', '-', '*', '/'] 
 operator = (from..to).map { |i| ops.map { |op| operator(i, op) } }.join
 ostream = (from..to).map { |i| ostream(i) }.join
@@ -82,6 +85,7 @@ equality = (from..to).map { |i| equality(i) }.join
 """
 #pragma once
 #include <iostream>
+#include <sstream>
 namespace thrusting {
 #{operator}
 #{ostream}

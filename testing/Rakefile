@@ -1,0 +1,12 @@
+thisdir = File.dirname(__FILE__)
+
+require [thisdir, "compile_gtest"].join "/"
+
+files = [
+  "test_tuple.cu"
+]
+
+task :test_all do |t|
+  make_gtest(files)
+  run(GTEST_NAME)
+end

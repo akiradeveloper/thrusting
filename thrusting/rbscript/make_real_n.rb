@@ -1,3 +1,6 @@
+thisdir = File.expand_path(File.dirname(__FILE__))
+require [thisdir, "def_macro"].join "/"
+
 """
 realN make_realN(real x1, real x2, ...){
   return make_tupleN<real>(x1, x2, ...);
@@ -21,7 +24,7 @@ def all()
 #include \"make_tuple_n.h\"
 #include \"real_n_typedef.h\"
 namespace thrusting {
-#{(2..9).map { |i| make_realN(i) }.join("") }
+#{(TUPLE_MIN..TUPLE_MAX).map { |i| make_realN(i) }.join("") }
 }
 """
 end
