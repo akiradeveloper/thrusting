@@ -19,6 +19,7 @@ end
 
 def all()
 """
+#include \"tuple_n_typedef.h\"
 #pragma once
 namespace thrusting {
 #{(2..9).map { |i| tupleN(i) }.join("")}

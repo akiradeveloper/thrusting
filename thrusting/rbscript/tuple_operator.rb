@@ -12,7 +12,7 @@ arg = (0...n*3).map { |i| "typename T#{i}" }
 arg2 = (0...n).map { |i| "T#{i}" }
 arg3 = (n...n*2).map { |i| "T#{i}" }
 arg4 = (n*2...n*3).map { |i| "T#{i}" }
-input = (0...n).map { |i| "x.get<#{i}>()#{op}y.get<#{i}>()" }
+input = (0...n).map { |i| "x.get(#{i})#{op}y.get(#{i})" }
 """
 template<#{arg.join(", ")}>
 __host__ __device__
@@ -31,14 +31,14 @@ std::stream &operator<<(const std::ostream &os, thrust::tuple<T0, T1, ...> x){
 def ostream(n)
 arg = (0...n).map { |i| "typename T#{i}" }
 arg2 = (0...n).map { |i| "T#{i}" }
-s = (0...n).map { |i| "x.get<#{i}>()" }.join(" + ',' + ")
+s = (0...n).map { |i| "x.get(#{i})" }.join(" + ',' + ")
 """
 template<#{arg.join(", ")}>
 std::ostream &operator<<(std::ostream &os, const thrust::tuple<#{arg2.join(", ")}> &x){
   std::string s;
   s = '(' + #{s} + ')';
   os << s;
-  return s;
+  return os;
 }
 """
 end
@@ -57,7 +57,7 @@ bool operator!=
 def equality(n)
 arg = (0...n).map { |i| "typename T#{i}" }
 arg2 = (0...n).map { |i| "T#{i}" }
-bool = (0...n).map { |i| "(x.get<#{i}>() == y.get<#{i}>())" }.join(" && ")
+bool = (0...n).map { |i| "(x.get(#{i}) == y.get(#{i}))" }.join(" && ")
 """
 template<#{arg.join(", ")}>
 __host__ __device__

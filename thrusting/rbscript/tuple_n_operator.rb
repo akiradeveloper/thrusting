@@ -12,7 +12,7 @@ tupleN<T>::type operator/(tupleN<T>::type x, T n){
 """
 
 def _operator(n, op)
-input = (0...n).map { |i| "x.get<#{i}>()#{op}y" }
+input = (0...n).map { |i| "x.get(#{i})#{op}y" }
 """
 template<typename T>
 __host__ __device__
@@ -36,6 +36,7 @@ end
 
 def all()
 """
+#include \"make_tuple_n.h\"
 #include \"tuple_n_typedef.h\"
 #pragma once
 namespace thrusting {
