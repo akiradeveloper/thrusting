@@ -33,6 +33,7 @@ struct parallel {
     return thrust::equal(head(), head()+size(), with);
   }
   bool operator==(const parallel<A> &with){
+    if(size() != with.size(){ return false; }
     return (*this)==with.head();
   }
 };
