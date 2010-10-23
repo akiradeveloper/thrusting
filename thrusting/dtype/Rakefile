@@ -28,7 +28,7 @@ type_ns = [
   "float", "double", "size_t"
 ]
 
-CLOBBER.include(type_ns.map { |t| t+".h" })
+CLOBBER.include("dtype.h", type_ns.map { |t| t+".h" })
 
 def all(type, type_n)
 typedefs = (2..9).map do |i|
