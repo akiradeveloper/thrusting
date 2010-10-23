@@ -16,7 +16,7 @@ names.map { |x| x + ".h"  }.each do |h|
 end
 
 for name in names
-  file "#{name}.h" => "#{name}.rb" do |t|
+  file "#{name}.h" => "rbscript/#{name}.rb" do |t|
     rb = t.prerequisites[0]
     h = t.name
     sh "ruby #{rb} > #{h}"
