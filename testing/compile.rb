@@ -1,6 +1,9 @@
 thisdir = File.dirname(__FILE__)
 require [thisdir, "..", "project"].join "/"
 
+CUDA_HOME = "/usr/local/cuda"
+CUDA_LIB = [CUDA_HOME, "lib"].join "/"
+
 GTEST_HOME = "#{ENV["HOME"]}/local/gtest/gtest-1.5.0"
 GTEST_LIB = [GTEST_HOME, "lib"].join "/"
 GTEST_INCLUDE = [GTEST_HOME, "include"].join "/"

@@ -16,16 +16,16 @@ struct parallel {
   A _head;
   parallel(size_t n_, A &head_)
   :n(n_), _head(head_){}
-  size_t length(){
+  size_t length() const {
     return n;
   }
-  const A &head(){
+  A &head() const {
     return _head;
   }
-  bool operator==(A with){
+  bool operator==(A with) {
     return thrust::equal(head(), head()+length(), with);
   }
-  bool operator==(parallel<A> &with){
+  bool operator==(const parallel<A> &with) {
     if(length() != with.length()){ return false; }
     return (*this)==with.head();
   }
@@ -46,7 +46,7 @@ std::ostream &operator<<(std::ostream &os, const parallel<A> &a){
 }
 
 template<typename A>
-parallel<A> make_parallel(size_t n, A head){
+parallel<A> make_parallel(size_t n, A &head) {
   return parallel<A>(n, head);
 }
 
