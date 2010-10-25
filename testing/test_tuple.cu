@@ -16,12 +16,13 @@
 //}
 
 TEST(TupleTest, Plus){
-  using namespace thrusting;
-  EXPECT_EQ(make_tuple2<int>(2,3) + make_tuple2<int>(1,2), make_tuple2<int>(3,5));
+  // ADL not effective to alias.
+  // thrusting int2 aliased to thrust::tuple<int, int> and ADL failed.
+  thrusting::int2 x = thrusting::make_tuple2(2,3) * thrusting::make_tuple2(1,2);
+  EXPECT_EQ(x, thrusting::make_tuple2<int>(3,5));
 } 
 
 TEST(Tuple, Print){
-  using namespace thrusting;
-  const thrusting::int2 const x = make_tuple2<int>(2,1);
+  thrusting::int2 x = thrust::make_tuple2<int>(2,1);
   // std::cout << x << std::endl;
 }
