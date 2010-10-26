@@ -5,7 +5,7 @@
 namespace thrust {
 
 template<typename A>
-void operator+=(parallel<A> &xs, A ys){
+void operator+=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
   size_t n = xs.length();
@@ -13,7 +13,7 @@ void operator+=(parallel<A> &xs, A ys){
 }
 
 template<typename A>
-void operator-=(parallel<A> &xs, A ys){
+void operator-=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
   size_t n = xs.length();
@@ -21,7 +21,7 @@ void operator-=(parallel<A> &xs, A ys){
 }
 
 template<typename A>
-void operator*=(parallel<A> &xs, A ys){
+void operator*=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
   size_t n = xs.length();
@@ -29,7 +29,7 @@ void operator*=(parallel<A> &xs, A ys){
 }
 
 template<typename A>
-void operator/=(parallel<A> &xs, A ys){
+void operator/=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
   size_t n = xs.length();
@@ -37,7 +37,7 @@ void operator/=(parallel<A> &xs, A ys){
 }
 
 template<typename A>
-void operator%=(parallel<A> &xs, A ys){
+void operator%=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
   size_t n = xs.length();
@@ -45,7 +45,7 @@ void operator%=(parallel<A> &xs, A ys){
 }
 
 template<typename A>
-void operator&=(parallel<A> &xs, A ys){
+void operator&=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
   size_t n = xs.length();
@@ -53,7 +53,7 @@ void operator&=(parallel<A> &xs, A ys){
 }
 
 template<typename A>
-void operator|=(parallel<A> &xs, A ys){
+void operator|=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
   size_t n = xs.length();
@@ -61,7 +61,7 @@ void operator|=(parallel<A> &xs, A ys){
 }
 
 template<typename A>
-void operator^=(parallel<A> &xs, A ys){
+void operator^=(const parallel<A> &xs, A ys){
   typedef typename thrust::iterator_value<A>::type VALUE_TYPE;
   A head = xs.head(); 
   size_t n = xs.length();

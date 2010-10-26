@@ -23,11 +23,23 @@ struct parallel {
     return _head;
   }
   bool operator==(A with) const {
-    return thrust::equal(head(), head()+length(), with);
+    // Something is wrong with this line. But, I can find the one.
+    // The code by explicitly looping working fine.
+    // return thrust::equal(head(), head()+length(), with);
+    for(int i=0; i<length(); i++){
+      if( *(head()+i) != *(with+i) ){ return false; }
+    }
+    return true;
   }
   bool operator==(const parallel<A> &with) const {
     if(length() != with.length()){ return false; }
-    return (*this)==with.head();
+    return (*this) == with.head();
+  }
+  bool operator!=(A with) const {
+    return !( (*this) == with );
+  }
+  bool operator!=(const parallel<A> &with) const {
+    return !( (*this) == with );
   }
 };
 

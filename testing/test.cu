@@ -1,16 +1,10 @@
-#include <thrusting/thrusting.h>
-#include <string>
-#include <iostream>
-
-namespace {
-  using namespace thrusting;
-}
-
-template <typename A>
-A func(A x, A y) { return x + y; }
+#include <thrust/device_vector.h>
+#include <thrust/equal.h>
+#include <cassert>
 
 int main(void){
-  thrusting::int3 x;
-  func(10,20);
+  int xs[] = {1,2}; thrust::device_vector<int> d_xs(xs, xs+2); 
+  int xs2[] = {1,2}; thrust::device_vector<int> d_xs2(xs2, xs2+2); 
+  bool are_equal = thrust::equal(d_xs.begin(), d_xs.end(), d_xs2.begin());
   return 0;
 }

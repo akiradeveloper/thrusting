@@ -8,6 +8,7 @@ THRUST_INCLUDE = THRUST_HOME
 
 cc = "nvcc"
 cc = [cc, THRUST_INCLUDE, LIBPATH].join " -I"
+cc = [cc, THRUST_INCLUDE].join " -I"
 
 CUDA_HOME = "/usr/local/cuda"
 CUDA_LIB = [CUDA_HOME, "lib"].join "/"
@@ -20,9 +21,11 @@ testcc = cc
 testcc = [testcc, GTEST_INCLUDE].join " -I"
 testcc = [testcc, CUDA_LIB, GTEST_LIB].join " -L"
 testcc = [testcc, "gtest"].join " -l"
-testcc = [testcc, "-m64", "-g", "-G"].join(" ")
+testcc = [testcc, "-m64", "-g"].join(" ")
 
 TESTCC = testcc
+
+p TESTCC
 
 def run(bin)
   system "./#{bin}"
