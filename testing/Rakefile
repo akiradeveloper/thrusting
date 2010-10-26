@@ -1,12 +1,18 @@
+require "rake/clean"
 thisdir = File.dirname(__FILE__)
 
 require [thisdir, "compile_gtest"].join "/"
 
 files = [
-  "test_tuple.cu"
+  "test_tuple.cu",
+  "test_real.cu",
+  "test_vector.cu",
+  "test_parallel.cu"
 ]
 
+CLOBBER.include("all.test")
+
 task :test_all do |t|
-  make_gtest(files)
+  compile_gtest(files)
   run(GTEST_NAME)
 end

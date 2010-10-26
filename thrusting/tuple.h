@@ -1,7 +1,7 @@
 #pragma once
 
-#include "tuple_n_operator.h"
-#include "tuple_n_typedef.h"
-#include "tuple_operator.h"
-#include "make_tuple_n.h"
+#include "tuple/tuple_n_operator.h"
+#include "tuple/tuple_n_typedef.h"
+#include "tuple/tuple_operator.h"
+#include "tuple/make_tuple_n.h"
 

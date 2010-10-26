@@ -4,4 +4,4 @@
 #include "tuple.h"
 #include "parallel.h"
 #include "vector.h"
-#include "dtype/dtype.h"
+#include "dtype.h"

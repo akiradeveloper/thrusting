@@ -2,7 +2,7 @@ thisdir = File.dirname(__FILE__)
 require [thisdir, "def_compile"].join "/"
 
 GTEST_NAME = "all.test"
-def make_gtest(tests)
+def compile_gtest(tests)
   system "#{TESTCC} -o #{GTEST_NAME} test_all.cu #{tests.join(" ")}"
 end
 

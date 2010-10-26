@@ -1,0 +1,7 @@
+require "rake/clean"
+thisdir = File.dirname(__FILE__)
+require [thisdir, "..", "gen_header_task"].join "/"
+
+names = FileList.new("*.rb").ext("")
+
+gen_header_task(names, ".")

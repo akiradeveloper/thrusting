@@ -1,7 +1,7 @@
 
 #pragma once
 #include "../tuple_n_typedef.h"
-namespace thrusting {
+namespace thrust {
 
 typedef typename tuple2<short>::type short2;
 

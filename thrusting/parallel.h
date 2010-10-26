@@ -8,7 +8,7 @@
 #include <string>
 #include <iostream>
 
-namespace thrusting {
+namespace thrust {
 
 template<typename A>
 struct parallel {
@@ -52,6 +52,6 @@ parallel<A> make_parallel(size_t n, A &head) {
 
 } // end thrusting
 
-#include "parallel_operator_a_a_a.h"
-#include "parallel_operator_a_b_a.h"
-#include "parallel_operator_a_a.h"
+#include "parallel/parallel_operator_a_a_a.h"
+#include "parallel/parallel_operator_a_b_a.h"
+#include "parallel/parallel_operator_a_a.h"
