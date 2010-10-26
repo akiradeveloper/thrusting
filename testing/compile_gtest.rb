@@ -7,6 +7,6 @@ def compile_gtest(tests)
 end
 
 if __FILE__ == $0
-  make_gtest(ARGV)
+  compile_gtest(ARGV)
   run(GTEST_NAME)
 end

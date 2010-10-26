@@ -5,27 +5,27 @@
 #include <thrust/equal.h>
 #include <thrust/iterator/iterator_traits.h>
 
-#include <string>
 #include <iostream>
+#include <sstream>
 
 namespace thrust {
 
 template<typename A>
 struct parallel {
-  size_t n;
+  size_t _n;
   A _head;
-  parallel(size_t n_, A &head_)
-  :n(n_), _head(head_){}
+  parallel(size_t n_, A head_)
+  :_n(n_), _head(head_){}
   size_t length() const {
-    return n;
+    return _n;
   }
-  A &head() const {
+  A head() const {
     return _head;
   }
-  bool operator==(A with) {
+  bool operator==(A with) const {
     return thrust::equal(head(), head()+length(), with);
   }
-  bool operator==(const parallel<A> &with) {
+  bool operator==(const parallel<A> &with) const {
     if(length() != with.length()){ return false; }
     return (*this)==with.head();
   }
@@ -33,24 +33,26 @@ struct parallel {
 
 template<typename A>
 std::ostream &operator<<(std::ostream &os, const parallel<A> &a){
-  std::string s;
-  s += "[";
+  std::stringstream ss;
+  ss << "[";
   for(size_t i=0; i<a.length()-1; i++){
-    s += *(a.head()+i);
-    s += ", ";
+    ss << *(a.head()+i);
+    ss << ", ";
   }
-  s += *(a.head()+a.length()-1);
-  s += "]";
-  os << s;
+  ss << *(a.head()+a.length()-1);
+  ss << "]";
+  os << ss.str();
   return os;
 }
 
+// Akira Hayakawa Notes, 2010 10/26 22:09
+// iterator should be copied
 template<typename A>
-parallel<A> make_parallel(size_t n, A &head) {
+parallel<A> make_parallel(size_t n, A head) {
   return parallel<A>(n, head);
 }
 
-} // end thrusting
+} // end thrust
 
 #include "parallel/parallel_operator_a_a_a.h"
 #include "parallel/parallel_operator_a_b_a.h"

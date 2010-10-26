@@ -6,7 +6,6 @@ require [thisdir, "compile_gtest"].join "/"
 files = [
   "test_tuple.cu",
   "test_real.cu",
-  "test_vector.cu",
   "test_parallel.cu"
 ]
 
