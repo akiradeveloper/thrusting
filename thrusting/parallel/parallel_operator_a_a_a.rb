@@ -33,7 +33,7 @@ s = op.zip(functors).map do |op, functor|
 end.join("")
 """
 #pragma once
-#include \"parallel.h\"
+#include <thrusting/parallel.h>
 #include <thrust/iterator/iterator_traits.h>
 namespace thrust {
 #{s}

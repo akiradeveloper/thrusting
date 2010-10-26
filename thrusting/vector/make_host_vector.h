@@ -5,7 +5,7 @@
 namespace thrust {
 
 template<typename T>
-thrust::host_vector<T> &make_host_vector(size_t n, ...){
+thrust::host_vector<T> make_host_vector(size_t n, ...){
   thrust::host_vector<T> xs(n);
   va_list values;
   va_start(values, n);

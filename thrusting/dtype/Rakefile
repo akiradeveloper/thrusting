@@ -36,7 +36,7 @@ typedefs = (2..9).map do |i|
 end
 """
 #pragma once
-#include \"../tuple_n_typedef.h\"
+#include <thrusting/tuple/tuple_n_typedef.h>
 namespace thrust {
 #{typedefs.join("")}
 }  

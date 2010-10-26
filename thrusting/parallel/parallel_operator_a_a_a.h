@@ -1,6 +1,6 @@
 
 #pragma once
-#include "parallel.h"
+#include <thrusting/parallel.h>
 #include <thrust/iterator/iterator_traits.h>
 namespace thrust {
 

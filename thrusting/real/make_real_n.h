@@ -1,5 +1,6 @@
+
 #pragma once
-#include "make_tuple_n.h"
+#include <thrusting/tuple/make_tuple_n.h>
 #include "real_n_typedef.h"
 namespace thrust {
 

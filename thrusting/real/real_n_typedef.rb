@@ -15,7 +15,7 @@ def all()
 """
 #pragma once
 #include \"real_typedef.h\"
-#include \"../tuple_n_typedef.h\"
+#include <thrusting/tuple/tuple_n_typedef.h>
 namespace thrust {
 #{(TUPLE_MIN..TUPLE_MAX).map { |i| realN(i) }.join}
 }

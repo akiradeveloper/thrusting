@@ -5,7 +5,7 @@
 namespace thrust {
 
 template<typename T>
-thrust::device_vector<T> &make_device_vector(size_t n, ...){
+thrust::device_vector<T> make_device_vector(size_t n, ...){
   thrust::device_vector<T> xs(n);
   va_list values;
   va_start(values, n);
