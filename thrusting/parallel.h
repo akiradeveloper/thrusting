@@ -48,8 +48,6 @@ std::ostream &operator<<(std::ostream &os, const parallel<A> &a){
   return os;
 }
 
-// Akira Hayakawa Notes, 2010 10/26 22:09
-// iterator should be copied
 template<typename A>
 parallel<A> make_parallel(size_t n, A head) {
   return parallel<A>(n, head);

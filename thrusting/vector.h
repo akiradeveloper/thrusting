@@ -1,4 +1,7 @@
 #pragma once
 
-#include "vector/make_device_vector.h"
-#include "vector/make_host_vector.h"
+#ifdef THRUSTING_USING_DEVICE_VECTOR
+  #define thrust::device_vector thrusting::vector
+#else
+  #define thrust::host_vector thrusting::vector
+#endif
