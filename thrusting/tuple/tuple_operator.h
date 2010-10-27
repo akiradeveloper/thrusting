@@ -2,7 +2,7 @@
 #pragma once
 #include <iostream>
 #include <sstream>
-namespace thrust {
+namespace thrusting {
 
 template<typename T0, typename T1>
 __host__ __device__

@@ -2,7 +2,7 @@
 #pragma once
 #include <thrusting/parallel.h>
 #include <thrust/iterator/iterator_traits.h>
-namespace thrust {
+namespace thrusting {
 
 template<typename A>
 void operator+=(const parallel<A> &xs, A ys){

@@ -1,7 +1,7 @@
 
 #pragma once
 #include <thrust/tuple.h>
-namespace thrust {
+namespace thrusting {
 
 template<typename T>
 struct tuple2 {

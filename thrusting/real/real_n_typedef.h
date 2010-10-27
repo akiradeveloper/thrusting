@@ -2,7 +2,7 @@
 #pragma once
 #include "real_typedef.h"
 #include <thrusting/tuple/tuple_n_typedef.h>
-namespace thrust {
+namespace thrusting {
 
 typedef typename tuple2<real>::type real2;
 

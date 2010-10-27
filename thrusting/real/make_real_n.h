@@ -1,8 +1,8 @@
 
 #pragma once
-#include <thrusting/tuple/make_tuple_n.h>
 #include "real_n_typedef.h"
-namespace thrust {
+#include <thrusting/tuple/make_tuple_n.h>
+namespace thrusting {
 
 __host__ __device__
 real2 make_real2(real x0, real x1){

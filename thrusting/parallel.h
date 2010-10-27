@@ -1,14 +1,11 @@
 #pragma once
 
-#include <thrust/transform.h>
-#include <thrust/functional.h>
 #include <thrust/equal.h>
-#include <thrust/iterator/iterator_traits.h>
 
 #include <iostream>
 #include <sstream>
 
-namespace thrust {
+namespace thrusting {
 
 template<typename A>
 struct parallel {
@@ -23,13 +20,7 @@ struct parallel {
     return _head;
   }
   bool operator==(A with) const {
-    // Something is wrong with this line. But, I can find the one.
-    // The code by explicitly looping working fine.
-    // return thrust::equal(head(), head()+length(), with);
-    for(int i=0; i<length(); i++){
-      if( *(head()+i) != *(with+i) ){ return false; }
-    }
-    return true;
+    return thrust::equal(head(), head()+length(), with);
   }
   bool operator==(const parallel<A> &with) const {
     if(length() != with.length()){ return false; }

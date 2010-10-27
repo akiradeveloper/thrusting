@@ -2,7 +2,7 @@
 #pragma once
 #include "make_tuple_n.h"
 #include "tuple_n_typedef.h"
-namespace thrust {
+namespace thrusting {
 
 
 template<typename T>

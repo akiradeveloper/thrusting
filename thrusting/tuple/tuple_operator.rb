@@ -84,7 +84,7 @@ equality = (from..to).map { |i| equality(i) }.join
 #pragma once
 #include <iostream>
 #include <sstream>
-namespace thrust {
+namespace thrusting {
 #{operator}
 #{ostream}
 #{equality}

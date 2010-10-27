@@ -22,7 +22,7 @@ def all()
 """
 #pragma once
 #include <thrust/tuple.h>
-namespace thrust {
+namespace thrusting {
 #{(TUPLE_MIN..TUPLE_MAX).map { |i| tupleN(i) }.join}
 }
 """

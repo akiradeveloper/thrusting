@@ -1,7 +1,7 @@
 
 #pragma once
 #include "tuple_n_typedef.h"
-namespace thrust {
+namespace thrusting {
 
 template<typename T>
 __host__ __device__

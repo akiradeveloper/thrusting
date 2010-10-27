@@ -21,9 +21,9 @@ end
 def all()
 """
 #pragma once
-#include <thrusting/tuple/make_tuple_n.h>
 #include \"real_n_typedef.h\"
-namespace thrust {
+#include <thrusting/tuple/make_tuple_n.h>
+namespace thrusting {
 #{(TUPLE_MIN..TUPLE_MAX).map { |i| make_realN(i) }.join("") }
 }
 """

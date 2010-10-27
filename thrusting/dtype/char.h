@@ -1,7 +1,7 @@
 
 #pragma once
 #include <thrusting/tuple/tuple_n_typedef.h>
-namespace thrust {
+namespace thrusting {
 
 typedef typename tuple2<char>::type char2;
 

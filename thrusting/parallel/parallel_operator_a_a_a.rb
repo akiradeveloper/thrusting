@@ -35,7 +35,7 @@ end.join("")
 #pragma once
 #include <thrusting/parallel.h>
 #include <thrust/iterator/iterator_traits.h>
-namespace thrust {
+namespace thrusting {
 #{s}
 }
 """

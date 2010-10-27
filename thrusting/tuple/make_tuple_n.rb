@@ -24,7 +24,7 @@ def all()
 """
 #pragma once
 #include \"tuple_n_typedef.h\"
-namespace thrust {
+namespace thrusting {
 #{(TUPLE_MIN..TUPLE_MAX).map { |i| tupleN(i) }.join("")}
 }
 """

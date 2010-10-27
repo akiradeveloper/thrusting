@@ -37,7 +37,7 @@ end
 """
 #pragma once
 #include <thrusting/tuple/tuple_n_typedef.h>
-namespace thrust {
+namespace thrusting {
 #{typedefs.join("")}
 }  
 """
