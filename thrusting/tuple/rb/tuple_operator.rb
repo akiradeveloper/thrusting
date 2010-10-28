@@ -1,6 +1,7 @@
 thisdir = File.expand_path File.dirname __FILE__ 
 
-require [thisdir, "get_tuple"].join "/"
+require ["thrusting/rb", "get_tuple"].join "/"
+require ["thrusting/rb", "namespace"].join "/"
 
 """
 N : LENGTH 
@@ -81,15 +82,18 @@ ops = ['+', '-', '*', '/']
 operator = (from..to).map { |i| ops.map { |op| operator(i, op) } }.join
 ostream = (from..to).map { |i| ostream(i) }.join
 equality = (from..to).map { |i| equality(i) }.join
+code =
+"""
+#{operator}
+#{ostream}
+#{equality}
+"""
+
 """
 #pragma once
 #include <iostream>
 #include <sstream>
-namespace thrusting {
-#{operator}
-#{ostream}
-#{equality}
-}
+#{operator_tuple(code)}
 """
 end
 

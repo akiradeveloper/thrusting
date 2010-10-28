@@ -18,7 +18,7 @@ tuple_types = [
   "float", "double", "size_t"
 ]
 
-CLOBBER.include("dtype.h", tuple_types.map { |t| t+".h" })
+CLOBBER.include("dtype.h", tuple_types.map { |t| t + ".h" })
 
 """
 typedef typename tupleN<T>::type TN
@@ -28,7 +28,7 @@ def typedef(n, type, type_n)
 """
 typedef typename tuple#{n}<#{type}>::type #{type_n}#{n};
 """
-and
+end
 
 def all_typedefs(type, tuple_type)
 typedefs = (2..9).map do |i|

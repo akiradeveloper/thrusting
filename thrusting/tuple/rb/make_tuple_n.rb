@@ -1,6 +1,6 @@
 thisdir = File.expand_path File.dirname __FILE__ 
 
-require [thisdir, "get_tuple"].join "/"
+require ["thrusting/rb", "get_tuple"].join "/"
 
 """
 template<typename T>

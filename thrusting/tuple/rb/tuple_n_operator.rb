@@ -1,6 +1,7 @@
 thisdir = File.expand_path File.dirname __FILE__ 
 
-require [thisdir, "get_tuple"].join "/"
+require ["thrusting/rb", "get_tuple"].join "/"
+require ["thrusting/rb", "namespace"].join "/"
 
 """
 template<typename T>
@@ -43,9 +44,7 @@ def all()
 #pragma once
 #include \"make_tuple_n.h\"
 #include \"tuple_n_typedef.h\"
-namespace thrusting {
-#{(TUPLE_MIN..TUPLE_MAX).map { |i| operator(i) }.join} 
-}
+#{operator_tuple((TUPLE_MIN..TUPLE_MAX).map { |i| operator(i) }.join)} 
 """
 end
 

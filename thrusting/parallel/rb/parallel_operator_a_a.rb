@@ -1,10 +1,11 @@
 thisdir = File.expand_path File.dirname __FILE__ 
 
+require "thrusting/rb/namespace"
+
 def all()
 """
 #pragma once
-namespace thrusting {
-}
+#{operator_parallel("")}
 """
 end
 

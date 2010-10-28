@@ -1,5 +1,7 @@
 thisdir = File.expand_path File.dirname __FILE__
 
+require "thrusting/rb/namespace"
+
 """
 op : op charcter for example '+'
 functor : for example 'plus'
@@ -35,9 +37,7 @@ end.join("")
 #pragma once
 #include <thrusting/parallel.h>
 #include <thrust/iterator/iterator_traits.h>
-namespace thrusting {
-#{s}
-}
+#{operator_parallel(s)}
 """
 end
 
