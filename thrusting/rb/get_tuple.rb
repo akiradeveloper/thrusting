@@ -1,4 +1,4 @@
-thisdir = File.expand_path File.dirname(__FILE__)
+thisdir = File.expand_path File.dirname __FILE__ 
 require ["thrusting/rb", "tuple_min_max"].join "/"
 
 # Macro to hide how to get item from value

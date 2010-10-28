@@ -1,4 +1,4 @@
-thisdir = File.dirname(__FILE__)
+thisdir = File.expand_path File.dirname __FILE__ 
 require [thisdir, "..", "project"].join "/"
 
 LIBPATH = [thisdir, ".."].join "/"

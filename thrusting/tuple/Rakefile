@@ -1,7 +1,6 @@
-thisdir = File.dirname(__FILE__)
+thisdir = File.expand_path File.dirname __FILE__ 
+
 require ["thrusting/rb", "gen_header_task"].join "/"
-require "rake/clean"
 
-names = FileList.new("*.rb").exclude("get_tuple.rb").ext("")
-
-gen_header_task(names, ".")
+rbfiles = FileList.new("rb/*.rb")
+gen_header_task(rbfiles)

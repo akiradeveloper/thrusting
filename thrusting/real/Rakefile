@@ -1,7 +1,7 @@
-require "rake/clean"
 thisdir = File.expand_path File.dirname __FILE__
+
 require ["thrusting/rb", "gen_header_task"].join "/"
 
-names = FileList.new("*.rb").ext("")
+rbfiles = FileList.new("rb/*.rb")
 
-gen_header_task(names, ".")
+gen_header_task(rbfiles)

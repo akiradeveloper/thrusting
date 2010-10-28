@@ -1,2 +1,5 @@
-VERSION = "0.0.0"
-DEVELOPER = ["Akira Hayakawa <ruby.wktk@gmail.com>"]
+thisdir = File.expand_path File.dirname __FILE__
+
+["version.rb", "developer.rb"].each do |f|
+   require "#{thisdir}/f"
+end

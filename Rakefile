@@ -1,9 +1,4 @@
-thisdir = File.expand_path File.dirname(__FILE__)
-
-task :setup do
-  $: << thisdir
-  p $:
-end
+thisdir = File.expand_path File.dirname __FILE__ 
 
 task :push do
   repo = "http://bitbucket.org/akiradeveloper/thrusting"
@@ -11,6 +6,7 @@ task :push do
 end
 
 task :purge_ => [:setup] do 
+  p $:
   `hg status`.split("\n").grep(/^!/).each do |x|
     sh "hg remove #{x.split.at(1)}"
   end

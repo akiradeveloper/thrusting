@@ -28,7 +28,7 @@ def typedef(n, type, type_n)
 """
 typedef typename tuple#{n}<#{type}>::type #{type_n}#{n};
 """
-end
+and
 
 def all_typedefs(type, tuple_type)
 typedefs = (2..9).map do |i|

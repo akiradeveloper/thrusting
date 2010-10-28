@@ -1,4 +1,5 @@
-thisdir = File.dirname(__FILE__)
+thisdir = File.expand_path File.dirname __FILE__ 
+
 require [thisdir, "def_compile"].join "/"
 
 GTEST_NAME = "all.test"
