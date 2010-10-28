@@ -4,7 +4,7 @@
 #include "tuple_n_typedef.h"
 
 namespace thrusting {
-namespace operator {
+namespace op {
 namespace tuple {
 
 

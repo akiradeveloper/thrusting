@@ -2,7 +2,7 @@
 #pragma once
 
 namespace thrusting {
-namespace operator {
+namespace op {
 namespace parallel {
 
 }

@@ -4,7 +4,7 @@
 #include <sstream>
 
 namespace thrusting {
-namespace operator {
+namespace op {
 namespace tuple {
 
 

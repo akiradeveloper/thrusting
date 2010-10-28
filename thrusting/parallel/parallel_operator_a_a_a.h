@@ -4,7 +4,7 @@
 #include <thrust/iterator/iterator_traits.h>
 
 namespace thrusting {
-namespace operator {
+namespace op {
 namespace parallel {
 
 template<typename A>
