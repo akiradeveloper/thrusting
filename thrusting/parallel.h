@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 
-using namespace thrusting::operator::parallel;
+using namespace thrusting::op::parallel;
 
 namespace thrusting {
 

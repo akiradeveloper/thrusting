@@ -2,7 +2,7 @@
 
 #include <thrust/functional.h>
 
-namespace thrust {
+namespace thrusting {
 
 template<typename A, typename B, typename C>
 struct compose :public thrust::unary_function<A, C> {
