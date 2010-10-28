@@ -1,5 +1,5 @@
-thisdir = File.expand_path(File.dirname(__FILE__))
-require [thisdir, "..", "tuple_min_max"].join "/"
+thisdir = File.expand_path File.dirname(__FILE__) 
+require ["thrusting/rb", "tuple_min_max"].join "/"
 
 """
 realN make_realN(real x1, real x2, ...){

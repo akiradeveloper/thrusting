@@ -1,5 +1,5 @@
 thisdir = File.dirname(__FILE__)
-require [thisdir, "..", "gen_header_task"].join "/"
+require ["thrusting/rb", "gen_header_task"].join "/"
 require "rake/clean"
 
 names = FileList.new("*.rb").exclude("get_tuple.rb").ext("")

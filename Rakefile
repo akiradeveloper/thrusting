@@ -1,12 +1,16 @@
-thisdir = File.dirname(__FILE__)
-require [thisdir, "project"].join "/"
+thisdir = File.expand_path File.dirname(__FILE__)
 
-task :push do
-  rep = "http://bitbucket.org/akiradeveloper/thrusting"
-  sh "hg push #{rep}"
+task :setup do
+  $: << thisdir
+  p $:
 end
 
-task :remove_deprecated do
+task :push do
+  repo = "http://bitbucket.org/akiradeveloper/thrusting"
+  sh "hg push #{repo}"
+end
+
+task :purge_ => [:setup] do 
   `hg status`.split("\n").grep(/^!/).each do |x|
     sh "hg remove #{x.split.at(1)}"
   end
