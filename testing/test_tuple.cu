@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include <thrusting/thrusting.h>
 #include <thrust/device_vector.h>
+#include <thrusting/thrusting.h>
 
 TEST(Tuple, Plus){
   thrusting::int2 x = thrusting::make_tuple2(2,3) + thrusting::make_tuple2(1,2);

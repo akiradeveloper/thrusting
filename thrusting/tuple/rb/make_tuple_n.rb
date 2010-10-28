@@ -1,4 +1,5 @@
 thisdir = File.expand_path File.dirname __FILE__ 
+
 require [thisdir, "get_tuple"].join "/"
 
 """

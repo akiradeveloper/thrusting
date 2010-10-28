@@ -1,5 +1,6 @@
 require "rake/clean"
-thisdir = File.dirname(__FILE__)
+
+thisdir = File.expand_path File.dirname __FILE__ 
 
 require [thisdir, "compile_gtest"].join "/"
 

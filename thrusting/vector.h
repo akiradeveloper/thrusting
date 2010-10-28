@@ -1,7 +1,7 @@
 #pragma once
 
-#ifdef THRUSTING_USING_DEVICE_VECTOR
-  #define thrust::device_vector thrusting::vector
+#ifdef THRUSTING_USE_DEVICE_VECTOR
+  #define THRUSTING_VECTOR thrust::device_vector 
 #else
-  #define thrust::host_vector thrusting::vector
+  #define THRUSTING_VECTOR thrust::host_vector
 #endif
