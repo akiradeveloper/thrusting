@@ -49,5 +49,5 @@ def all()
 end
 
 if __FILE__ == $0
-  print all()
+  $stdout << all()
 end
