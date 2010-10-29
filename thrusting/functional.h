@@ -16,7 +16,7 @@ typename F::result_type> {
   :_f(f){}
   __host__ __device__
   typename F::result_type operator()(
-  const typename F::second_argument_type &b, const typename F::first_argument_type &a){
+  const typename F::second_argument_type &b, const typename F::first_argument_type &a) const {
     return _f(a, b);
   }
 };
@@ -42,14 +42,14 @@ typename F::result_type> {
 };
 
 template<typename F>
-_bind1st<F> bind1st(F f, const typename F::first_argument_type a){
+_bind1st<F> bind1st(F f, const typename F::first_argument_type a) {
   return _bind1st<F>(f, a);
 }
 
 // a->b->c -> b -> a->c
 template<typename F>
-_bind1st< _flip<F> > bind2nd(F f, const typename F::second_argument_type &b){
-  return thrusting::bind1st(flip(f), b);
+_bind1st< _flip<F> > bind2nd(F f, const typename F::second_argument_type &b) {
+  return thrusting::bind1st(thrusting::flip(f), b);
 }
 
 // (a,b)->c -> a->b->c

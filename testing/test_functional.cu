@@ -39,15 +39,20 @@ TEST(Functional, Bind1st){
 
 TEST(Functional, Bind2nd){
   // 4 / 2 = 2
-  int x = thrusting::bind2nd(thrust::divides<int>(), 2)(4);
-  EXPECT_EQ(2, x);
+  int x = thrusting::bind2nd(thrusting::divides<long, int>(), 2)(4L);
+  EXPECT_EQ(2L, x);
 }
 
 struct sum_f :public thrust::unary_function<thrust::tuple<int, int>, int> {
-  int operator()(const thrust::tuple<int, int> &t){
+  __host__ __device__
+  int operator()(const thrust::tuple<int, int> &t) const {
     return thrust::get<0>(t) + thrust::get<1>(t);
   }
 };
+
+TEST(FunctionalTest, Sumf){
+  EXPECT_EQ(5, sum_f()(thrust::make_tuple(2,3)));
+}
 
 TEST(Functional, UnCurry){
   // 2 + 3 = 5
