@@ -1,8 +1,11 @@
-#include <thrust/device_vector.h>
-#include <thrusting/vector.h>
+#include <thrust/functional.h>
+
+template<typename A, typename B>
+B adapter(A x, thrust::unary_function<A, B> f){
+  return f(x);
+}
 
 int main(void){
-  THRUSTING_VECTOR<int> xs(10);
-  xs.push_back(200);
+  adapter(1, thrust::negate<int>()); 
   return 0;
 }
