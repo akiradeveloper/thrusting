@@ -3,7 +3,7 @@
 
 namespace thrusting {
 namespace op {
-namespace parallel {
+namespace list {
 
 }
 }

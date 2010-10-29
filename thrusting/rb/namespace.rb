@@ -1,10 +1,10 @@
 THRUSTING = "thrusting"
 
-def operator_parallel(code="")
+def operator_list(code="")
 """
 namespace #{THRUSTING} {
 namespace op {
-namespace parallel {
+namespace list {
 #{code}
 }
 }

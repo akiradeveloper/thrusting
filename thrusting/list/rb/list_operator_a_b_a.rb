@@ -5,7 +5,7 @@ require "thrusting/rb/namespace"
 def all()
 """
 #pragma once
-#{operator_parallel("")}
+#{operator_list("")}
 """
 end
 

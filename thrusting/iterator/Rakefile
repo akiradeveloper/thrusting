@@ -1,0 +1,6 @@
+thisdir = File.expand_path File.dirname __FILE__
+
+require ["thrusting/rb", "gen_header_task"].join "/"
+
+rbfiles = FileList.new("rb/*.rb")
+gen_header_task(rbfiles)
