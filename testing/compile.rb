@@ -12,8 +12,6 @@ if __FILE__ == $0
     # ruby compile.rb hoge.cpp
     bin = File.basename(src, ".cu") + ".bin"
     compile(src, bin) 
-    p "-----COMPILATION FINISHED-----"
-    p "-----  START PROCESSING  -----"
     run(bin)
   end
 end
