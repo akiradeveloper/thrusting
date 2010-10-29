@@ -12,6 +12,7 @@ using namespace thrusting::op::list;
 namespace thrusting {
 
 template<typename A>
+
 struct list {
   size_t _n;
   A _head;
@@ -43,6 +44,6 @@ list<A> make_list(thrust::host_vector<T> xs){
 } // end thrusting
 
 #include "list/list_operator.h"
-#include "list/list_operator_a_a_a.h"
-#include "list/list_operator_a_b_a.h"
-#include "list/list_operator_a_a.h"
+//#include "list/list_operator_a_a_a.h"
+//#include "list/list_operator_a_b_a.h"
+//#include "list/list_operator_a_a.h"

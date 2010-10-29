@@ -5,6 +5,17 @@
 namespace thrusting {
 
 template<typename A, typename B, typename C>
+struct uncurry :public thrust::unary_function<thrust::tuple<A, B>, C>
+  thrust::binary_function<A, B, C> _f;
+  uncurry(thrust::binary_function<A, B, C> f){
+    _f = f;
+  }  
+  C operator()(thrust::tuple<A, B> t){
+    return _f(thrust::get<0>(t), thrust::get<1>(t));
+  }
+};
+
+template<typename A, typename B, typename C>
 struct compose :public thrust::unary_function<A, C> {
   thrust::unary_function<A, B> first;
   thrust::unary_function<B, C> second;

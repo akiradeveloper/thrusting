@@ -5,7 +5,7 @@ task :push do
   sh "hg push #{repo}"
 end
 
-task :purge_ => [:setup] do 
+task :remove_deprecated => [:setup] do 
   p $:
   `hg status`.split("\n").grep(/^!/).each do |x|
     sh "hg remove #{x.split.at(1)}"
