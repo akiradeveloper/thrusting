@@ -44,7 +44,7 @@ TEST(Functional, Bind2nd){
 }
 
 struct sum_f :public thrust::unary_function<thrust::tuple<int, int>, int> {
-  int operator()(thrust::tuple<int, int> t){
+  int operator()(const thrust::tuple<int, int> &t){
     return thrust::get<0>(t) + thrust::get<1>(t);
   }
 };
