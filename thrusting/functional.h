@@ -1,8 +1,20 @@
 #pragma once
 
 #include <thrust/functional.h>
+#include <thrust/tuple.h>
 
 namespace thrusting {
+
+template<typename A, typename B, typename C>
+struct curry :public thrust::binary_function<A, B, C>
+  thrust::unary_function<thrust::tuple<A, B>, C> _f;
+  curry(thrust::unary_function<thrust::tuple<A, B>, C> f){
+    _f = f;
+  }  
+  C operator()(A a, B b){
+    return _f(thrust::make_tuple(a, b));
+  }
+};
 
 template<typename A, typename B, typename C>
 struct uncurry :public thrust::unary_function<thrust::tuple<A, B>, C>
