@@ -1,0 +1,32 @@
+def gen_namespace(dir)
+namespace dir do
+  file = "#{dir}/Rakefile"
+  task :build =>  file do
+    Dir.chdir(dir) do
+      sh "rake build"
+    end 
+  end
+  task :clobber => file do
+    Dir.chdir(dir) do
+      sh "rake clobber"
+    end
+  end
+end
+end
+
+def gen_build_tasks(dirs)
+task :build => dirs.map { |dir| dir + ":build" }
+end
+
+def gen_clobber_tasks(dirs)
+task :clobber => dirs.map { |dir| dir + ":clobber" }
+end
+
+dirs = ["dtype", "list", "tuple", "real", "iterator"]
+
+dirs.each do |dir|
+  gen_namespace(dir)
+end
+
+gen_build_tasks(dirs)
+gen_clobber_tasks(dirs)

@@ -1,6 +1,9 @@
 #include <thrusting/real.h>
+#include <thrusting/tuple.h>
 
 #include <gtest/gtest.h>
+
+using namespace thrusting::op::tuple;
 
 TEST(Real, Create){
   thrusting::real x = 1.0;

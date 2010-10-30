@@ -1,3 +1,3 @@
 #pragma once
 
-#include "dtype/dtype.h"
+#include "detail/dtype/dtype.h"

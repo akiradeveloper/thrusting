@@ -1,6 +1,5 @@
 #pragma once
 
-#include "real/real_typedef.h"
-#include "real/real_n_typedef.h"
-#include "real/make_real_n.h"
-#include "real/make_real_n.h"
+#include "detail/real/real_typedef.h"
+#include "detail/real/real_n_typedef.h"
+#include "detail/real/make_real_n.h"

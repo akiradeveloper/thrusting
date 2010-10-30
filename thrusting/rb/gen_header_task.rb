@@ -17,7 +17,7 @@ def gen_header_task(rbfiles, base=".")
   end 
   generated_h = rbfiles.map { |rbfile| gen_header_name(rbfile, base) }
   CLOBBER.include(generated_h)
-  task :gen_header => generated_h
+  task :build => generated_h
 end
 
 if __FILE__ == $0
