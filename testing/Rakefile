@@ -6,7 +6,8 @@ require [thisdir, "compile_gtest"].join "/"
 
 files = [
   "test_tuple.cu",
-  "test_functional.cu"
+  "test_functional.cu",
+  "test_real.cu"
 ]
 
 CLOBBER.include("all.test")
