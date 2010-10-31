@@ -6,7 +6,7 @@
 
 TEST(Tuple, Plus){
   // T + T
-  EXPECT_EQ(thrusting::make_tuple2<int>(3,5), thrusting::make_tuple2(2,3) + thrusting::make_tuple2(1,2));
+  EXPECT_EQ(thrusting::make_tuple2(3,5), thrusting::make_tuple2(2,3) + thrusting::make_tuple2(1,2));
 } 
 
 TEST(Tuple, Minus){
@@ -16,7 +16,7 @@ TEST(Tuple, Minus){
 
 TEST(Tuple, Multiplies){
   // T * T
-  EXPECT_EQ(thrusting::make_tuple2<int>(2,6), thrusting::make_tuple2(2,3)*thrusting::make_tuple2(1,2));
+  EXPECT_EQ(thrusting::make_tuple2(2,6), thrusting::make_tuple2(2,3)*thrusting::make_tuple2(1,2));
 }
 
 TEST(Tuple, Multiplies2){
@@ -31,7 +31,7 @@ TEST(Tuple, Multiplies3){
 
 TEST(Tuple, Divides){
   // T / T
-  EXPECT_EQ(thrusting::make_tuple2<int>(1,2), thrusting::make_tuple2(4,2) / thrusting::make_tuple2(4,1));
+  EXPECT_EQ(thrusting::make_tuple2(1,2), thrusting::make_tuple2(4,2) / thrusting::make_tuple2(4,1));
 }
 
 TEST(Tuple, Divides2){
@@ -40,7 +40,7 @@ TEST(Tuple, Divides2){
 }
   
 TEST(Tuple, OStream){
-  std::cout << thrusting::make_tuple2<int>(2,1) << std::endl;
+  std::cout << thrusting::make_tuple2(2,1) << std::endl;
 }
 
 TEST(Tuple, ArithmaticOrdering){

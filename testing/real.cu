@@ -3,8 +3,6 @@
 
 #include <gtest/gtest.h>
 
-using namespace thrusting::op::tuple;
-
 TEST(Real, Create){
   thrusting::real x = 1.0;
   EXPECT_EQ(1.0, x);

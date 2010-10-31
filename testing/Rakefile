@@ -11,7 +11,7 @@ files = [
   "list.cu"
 ]
 
-CLOBBER.include("test.bin", "all.test")
+CLOBBER.include("simple.test", "all.test")
 
 task :test_all do |t|
   compile_gtest(files)
