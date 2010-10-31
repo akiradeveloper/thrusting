@@ -25,6 +25,7 @@ std::ostream &operator<<(std::ostream &os, const detail::list<A> &xs){
 }
 
 template<typename A>
+__host__ __device__
 bool operator==(const detail::list<A> &xs, const detail::list<A> &ys){
 //  if(xs.length() != ys.length()){ return false; }
 //  return thrust::equal(xs.head(), xs.head()+xs.length(), ys.head());

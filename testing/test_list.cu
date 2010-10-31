@@ -6,16 +6,6 @@
 
 using namespace thrusting::op::list;
 
-template<typename A>
-std::ostream &operator<<(std::ostream &os, const thrusting::detail::list<A> &xs){
-  return os;
-}
-
-template<typename A>
-bool operator==(const thrusting::detail::list<A> &xs, const thrusting::detail::list<A> &ys){
-  return true;
-}
-
 TEST(List, Ostream){
   int xs[] = {1,2}; THRUSTING_VECTOR<int> d_xs(xs, xs+2); 
   std::cout << thrusting::make_list(d_xs) << std::endl;
