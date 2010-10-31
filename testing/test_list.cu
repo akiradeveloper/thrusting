@@ -2,8 +2,14 @@
 #include <thrusting/vector.h>
 
 #include <gtest/gtest.h>
+#include <iostream>
 
 using namespace thrusting::op::list;
+
+template<typename A>
+std::ostream &operator<<(std::ostream &os, const thrusting::detail::list<A> &xs){
+  return os;
+}
 
 template<typename A>
 bool operator==(const thrusting::detail::list<A> &xs, const thrusting::detail::list<A> &ys){
