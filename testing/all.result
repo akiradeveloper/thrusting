@@ -1,8 +1,8 @@
 (in /Users/akira/sandbox/thrusting/testing)
 "nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/testing/.. -I/Users/akira/local/gtest/gtest-1.5.0/include -L/usr/local/cuda/lib -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 19 tests from 3 test cases.
+[==========] Running 25 tests from 5 test cases.
 [----------] Global test environment set-up.
-[----------] 8 tests from Tuple
+[----------] 9 tests from Tuple
 [ RUN      ] Tuple.Plus
 [       OK ] Tuple.Plus (0 ms)
 [ RUN      ] Tuple.Minus
@@ -20,7 +20,9 @@
 [ RUN      ] Tuple.OStream
 (2, 1)
 [       OK ] Tuple.OStream (0 ms)
-[----------] 8 tests from Tuple (0 ms total)
+[ RUN      ] Tuple.ArithmaticOrdering
+[       OK ] Tuple.ArithmaticOrdering (0 ms)
+[----------] 9 tests from Tuple (0 ms total)
 
 [----------] 10 tests from Functional
 [ RUN      ] Functional.Flip
@@ -50,6 +52,23 @@
 [       OK ] FunctionalTest.Sumf (0 ms)
 [----------] 1 test from FunctionalTest (0 ms total)
 
+[----------] 3 tests from Real
+[ RUN      ] Real.Create
+[       OK ] Real.Create (0 ms)
+[ RUN      ] Real.Tuple
+[       OK ] Real.Tuple (0 ms)
+[ RUN      ] Real.Arithmetic
+[       OK ] Real.Arithmetic (0 ms)
+[----------] 3 tests from Real (0 ms total)
+
+[----------] 2 tests from List
+[ RUN      ] List.Ostream
+[1, 2]
+[       OK ] List.Ostream (0 ms)
+[ RUN      ] List.Equality
+[       OK ] List.Equality (0 ms)
+[----------] 2 tests from List (0 ms total)
+
 [----------] Global test environment tear-down
-[==========] 19 tests from 3 test cases ran. (0 ms total)
-[  PASSED  ] 19 tests.
+[==========] 25 tests from 5 test cases ran. (1 ms total)
+[  PASSED  ] 25 tests.

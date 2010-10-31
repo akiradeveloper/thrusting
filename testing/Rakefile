@@ -5,12 +5,13 @@ thisdir = File.expand_path File.dirname __FILE__
 require [thisdir, "compile_gtest"].join "/"
 
 files = [
-  "test_tuple.cu",
-  "test_functional.cu",
-  "test_real.cu"
+  "tuple.cu",
+  "functional.cu",
+  "real.cu",
+  "list.cu"
 ]
 
-CLOBBER.include("all.test")
+CLOBBER.include("test.bin", "all.test")
 
 task :test_all do |t|
   compile_gtest(files)

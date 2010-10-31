@@ -1,5 +1,7 @@
 #pragma once
 
+#include <thrust/equal.h>
+
 namespace thrusting {
 namespace detail {
 
@@ -9,18 +11,19 @@ struct list {
   A _head;
   list(size_t n_, A head_)
   :_n(n_), _head(head_){}
-  size_t length() const {
-    return _n;
-  }
   A head() const {
     return _head;
   }
-//  bool operator==(const list<A> &ys) const {
-//    return true;
-//  }
-//  bool operator!=(const list<A> &ys) const {
-//    return true;
-//  }
+  size_t length() const {
+    return _n;
+  }
+  bool operator==(const list<A> &ys) const {
+    if(length() != ys.length()){ return false; }
+    return thrust::equal(head(), head()+length(), ys.head());
+  }
+  bool operator!=(const list<A> &ys) const {
+    return !( *(this) == ys );
+  }
 };
 
 } // end detail

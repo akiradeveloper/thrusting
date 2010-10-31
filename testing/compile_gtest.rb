@@ -4,7 +4,7 @@ require [thisdir, "def_compile"].join "/"
 
 GTEST_NAME = "all.test"
 def compile_gtest(tests)
-  system "#{TESTCC} -o #{GTEST_NAME} test_all.cu #{tests.join(" ")}"
+  system "#{TESTCC} -o #{GTEST_NAME} all.cu #{tests.join(" ")}"
 end
 
 if __FILE__ == $0

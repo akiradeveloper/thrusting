@@ -2,7 +2,6 @@
 
 #include <thrusting/list.h>
 
-#include <thrust/equal.h>
 #include <sstream>
 #include <iostream>
 
@@ -22,18 +21,6 @@ std::ostream &operator<<(std::ostream &os, const detail::list<A> &xs){
   ss << "]";
   os << ss.str();
   return os;
-}
-
-template<typename A>
-bool operator==(const detail::list<A> &xs, const detail::list<A> &ys){
-//  if(xs.length() != ys.length()){ return false; }
-//  return thrust::equal(xs.head(), xs.head()+xs.length(), ys.head());
-    return true;
-}
-
-template<typename A>
-bool operator!=(const detail::list<A> &xs, const detail::list<A> &ys){
-  return !( xs == ys );
 }
 
 } 

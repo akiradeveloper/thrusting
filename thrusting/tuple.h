@@ -5,3 +5,5 @@
 #include "detail/tuple/tuple_operator.h"
 #include "detail/tuple/make_tuple_n.h"
 
+using namespace thrusting::op::tuple;
+

@@ -2,19 +2,7 @@
 #include <thrusting/dtype.h>
 
 #include <gtest/gtest.h>
-#include <thrust/device_vector.h>
 #include <iostream>
-
-using namespace thrusting::op::tuple;
-
-TEST(Tuple, ArithmaticOrdering){
-  thrusting::int2 x = thrusting::make_tuple2(1,2);
-  thrusting::int2 y = thrusting::make_tuple2(3,4);
-  thrusting::int2 z = thrusting::make_tuple2(5,6);
-  
-  EXPECT_EQ(thrusting::make_tuple2(16, 26), x + y * z);
-  EXPECT_EQ(thrusting::make_tuple2(8, 20), x * (y+z));
-}
 
 TEST(Tuple, Plus){
   // T + T
@@ -53,4 +41,13 @@ TEST(Tuple, Divides2){
   
 TEST(Tuple, OStream){
   std::cout << thrusting::make_tuple2<int>(2,1) << std::endl;
+}
+
+TEST(Tuple, ArithmaticOrdering){
+  thrusting::int2 x = thrusting::make_tuple2(1,2);
+  thrusting::int2 y = thrusting::make_tuple2(3,4);
+  thrusting::int2 z = thrusting::make_tuple2(5,6);
+  
+  EXPECT_EQ(thrusting::make_tuple2(16, 26), x + y * z);
+  EXPECT_EQ(thrusting::make_tuple2(8, 20), x * (y+z));
 }
