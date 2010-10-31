@@ -15,12 +15,12 @@ struct list {
   A head() const {
     return _head;
   }
-  bool operator==(const list<A> &ys) const {
-    return true;
-  }
-  bool operator!=(const list<A> &ys) const {
-    return true;
-  }
+//  bool operator==(const list<A> &ys) const {
+//    return true;
+//  }
+//  bool operator!=(const list<A> &ys) const {
+//    return true;
+//  }
 };
 
 } // end detail
