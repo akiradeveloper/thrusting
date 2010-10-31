@@ -4,7 +4,6 @@
 
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
-#include <thrust/iterator/iterator_traits.h>
 #include <sstream>
 
 namespace thrusting {

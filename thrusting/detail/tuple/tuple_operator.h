@@ -1,6 +1,7 @@
 
 #pragma once
 #include <thrusting/tuple.h>
+
 #include <iostream>
 #include <sstream>
 

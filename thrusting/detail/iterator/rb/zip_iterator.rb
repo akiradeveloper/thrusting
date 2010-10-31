@@ -23,6 +23,7 @@ end
 def all()
 code = (TUPLE_MIN..TUPLE_MAX).map { |i| make_zip_iterator(i) }.join "\n"
 """
+#pragma once
 #include <thrust/iterator/zip_iterator.h>
 #include <thrust/tuple.h>
 namespace thrusting {

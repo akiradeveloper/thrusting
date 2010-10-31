@@ -1,4 +1,5 @@
 
+#pragma once
 #include <thrust/iterator/zip_iterator.h>
 #include <thrust/tuple.h>
 namespace thrusting {
