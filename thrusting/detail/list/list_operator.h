@@ -38,4 +38,3 @@ bool operator!=(const detail::list<A> &xs, const detail::list<A> &ys){
 }
 }
 }
-
