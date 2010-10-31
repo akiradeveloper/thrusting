@@ -2,6 +2,7 @@
 
 #include <thrusting/list.h>
 
+#include <thrust/equal.h>
 #include <sstream>
 #include <iostream>
 

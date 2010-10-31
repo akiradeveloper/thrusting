@@ -1,35 +1,25 @@
 #include <gtest/gtest.h>
 
-#include <thrusting/thrusting.h>
-// #include <thrusting/parallel.h>
-#include <thrust/device_vector.h>
+#include <thrusting/list.h>
+#include <thrusting/vector.h>
 
-TEST(Parallel, Ostream){
-  int xs[] = {1,2}; thrust::device_vector<int> d_xs(xs, xs+2); 
-  // std::cout << thrust::make_parallel(2, d_xs.begin()) << std::endl;
+using namespace thrusting::op::list;
+
+TEST(List, Ostream){
+  int xs[] = {1,2}; THRUSTING_VECTOR<int> d_xs(xs, xs+2); 
+  std::cout << thrusting::make_list(2, d_xs.begin()) << std::endl;
 }
 
-TEST(Parallel, Equality){
- int xs[] = {1,2}; thrust::device_vector<int> d_xs(xs, xs+2); 
-
- int ys[] = {1,2}; thrust::device_vector<int> d_ys(ys, ys+2); 
- EXPECT_EQ(
-   thrusting::make_parallel(2, d_xs.begin()),
-   thrusting::make_parallel(2, d_ys.begin()));
-
- int zs[] = {1,3}; thrust::device_vector<int> d_zs(zs, zs+2); 
- EXPECT_NE(
-   thrusting::make_parallel(2, d_xs.begin()),
-   thrusting::make_parallel(2, d_zs.begin())); 
-}
-
-TEST(Parallel, Addtion){
-  int xs[] = {1,2}; thrust::device_vector<int> d_xs(xs, xs+2); 
-  int ys[] = {3,4}; thrust::device_vector<int> d_ys(ys, ys+2); 
-  int zs[] = {4,7}; thrust::device_vector<int> d_zs(zs, zs+2); 
-  
-  thrusting::make_parallel(2, d_xs.begin()) += d_ys.begin();
+TEST(List, Equality){
+  int xs[] = {1,2}; THRUSTING_VECTOR<int> d_xs(xs, xs+2); 
+ 
+  int ys[] = {1,2}; THRUSTING_VECTOR<int> d_ys(ys, ys+2); 
+  EXPECT_EQ(
+    thrusting::make_list(2, d_xs.begin()),
+    thrusting::make_list(2, d_ys.begin()));
+ 
+  int zs[] = {1,3}; THRUSTING_VECTOR<int> d_zs(zs, zs+2); 
   EXPECT_NE(
-    thrusting::make_parallel(2, d_xs.begin()),
-    thrusting::make_parallel(2, d_zs.begin()));
+    thrusting::make_list(2, d_xs.begin()),
+    thrusting::make_list(2, d_zs.begin())); 
 }

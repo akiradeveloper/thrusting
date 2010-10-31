@@ -10,16 +10,16 @@ namespace thrusting {
 
 template<typename A>
 detail::list<A> make_list(size_t n, A head) {
-  return list<A>(n, head);
+  return detail::list<A>(n, head);
 }
 
-template<typename T>
-detail::list<A> make_list(thrust::device_vector<T> xs){
+template<typename A>
+detail::list<A> make_list(thrust::device_vector<A> xs){
   return make_list(xs.size(), xs.begin());
 }
 
-template<typename T>
-detail::list<A> make_list(thrust::host_vector<T> xs){
+template<typename A>
+detail::list<A> make_list(thrust::host_vector<A> xs){
   return make_list(xs.size(), xs.begin());
 }
 
