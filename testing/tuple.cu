@@ -38,9 +38,13 @@ TEST(Tuple, Divides2){
   // T / v
   EXPECT_EQ(thrusting::make_tuple2(1,1), thrusting::make_tuple2(2,2) / 2);
 }
+
+TEST(Tuple, MakeString){
+  EXPECT_EQ("(1, 2)", thrusting::make_string(thrusting::make_tuple2(1,2)));
+}
   
 TEST(Tuple, OStream){
-  std::cout << thrusting::make_tuple2(2,1) << std::endl;
+  std::cout << thrusting::make_tuple2(1,2) << std::endl;
 }
 
 TEST(Tuple, ArithmaticOrdering){
