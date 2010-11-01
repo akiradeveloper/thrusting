@@ -67,7 +67,15 @@ TEST(Functional, Curry){
 }
 
 TEST(Functional, Compose){
-  // -1 -> 1 -> 1
-  int x = thrusting::compose(thrust::negate<int>(), thrust::identity<int>())(-1);
-  EXPECT_EQ(1, x);
+  // -1 -> (-) -> () -> 1
+  EXPECT_EQ(1, thrusting::compose(thrust::negate<int>(), thrust::identity<int>())(-1));
+}
+
+TEST(Functional, Compose2){
+  // 1 -> (+1) -> (*2) -> 4
+  int x= 
+    thrusting::compose(
+      thrusting::bind1st(thrust::plus<int>(), 1),
+      thrusting::bind1st(thrust::multiplies<int>(), 2))(1);
+  EXPECT_EQ(4, x);
 }

@@ -8,10 +8,13 @@ files = [
   "tuple.cu",
   "functional.cu",
   "real.cu",
-  "list.cu"
+  "list.cu",
+  "zip_iterator.cu",
+  "iterator.cu"
 ]
 
-CLOBBER.include("simple.test", "all.test")
+CLEAN.include("simple.test", "all.test")
+CLOBBER.include("all.result")
 
 task :test_all do |t|
   compile_gtest(files)

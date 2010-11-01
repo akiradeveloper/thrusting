@@ -7,7 +7,7 @@ namespace thrusting {
 
 namespace {
 // Akira Hayakawa, 2010 11/1 19:45
-// tested host and device of 32 bit.
+// tested only on host and device of 32 bit.
 template<typename Iterator>
 typename thrust::iterator_value<Iterator>::type iterator_value_of(Iterator it){
   return *(it);

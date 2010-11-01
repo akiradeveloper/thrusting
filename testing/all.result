@@ -1,8 +1,8 @@
 (in /Users/akira/sandbox/thrusting/testing)
 "nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/testing/.. -I/Users/akira/local/gtest/gtest-1.5.0/include -L/usr/local/cuda/lib -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 25 tests from 5 test cases.
+[==========] Running 30 tests from 7 test cases.
 [----------] Global test environment set-up.
-[----------] 9 tests from Tuple
+[----------] 10 tests from Tuple
 [ RUN      ] Tuple.Plus
 [       OK ] Tuple.Plus (0 ms)
 [ RUN      ] Tuple.Minus
@@ -17,14 +17,16 @@
 [       OK ] Tuple.Divides (0 ms)
 [ RUN      ] Tuple.Divides2
 [       OK ] Tuple.Divides2 (0 ms)
+[ RUN      ] Tuple.MakeString
+[       OK ] Tuple.MakeString (0 ms)
 [ RUN      ] Tuple.OStream
-(2, 1)
+(1, 2)
 [       OK ] Tuple.OStream (0 ms)
 [ RUN      ] Tuple.ArithmaticOrdering
 [       OK ] Tuple.ArithmaticOrdering (0 ms)
-[----------] 9 tests from Tuple (0 ms total)
+[----------] 10 tests from Tuple (1 ms total)
 
-[----------] 10 tests from Functional
+[----------] 11 tests from Functional
 [ RUN      ] Functional.Flip
 [       OK ] Functional.Flip (0 ms)
 [ RUN      ] Functional.Multiplies
@@ -45,7 +47,9 @@
 [       OK ] Functional.Curry (0 ms)
 [ RUN      ] Functional.Compose
 [       OK ] Functional.Compose (0 ms)
-[----------] 10 tests from Functional (0 ms total)
+[ RUN      ] Functional.Compose2
+[       OK ] Functional.Compose2 (0 ms)
+[----------] 11 tests from Functional (0 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.Sumf
@@ -61,14 +65,26 @@
 [       OK ] Real.Arithmetic (0 ms)
 [----------] 3 tests from Real (0 ms total)
 
-[----------] 2 tests from List
+[----------] 3 tests from List
+[ RUN      ] List.MakeString
+[       OK ] List.MakeString (0 ms)
 [ RUN      ] List.Ostream
 [1, 2]
 [       OK ] List.Ostream (0 ms)
 [ RUN      ] List.Equality
 [       OK ] List.Equality (0 ms)
-[----------] 2 tests from List (0 ms total)
+[----------] 3 tests from List (0 ms total)
+
+[----------] 1 test from ZipIterator
+[ RUN      ] ZipIterator.Reference
+[       OK ] ZipIterator.Reference (0 ms)
+[----------] 1 test from ZipIterator (0 ms total)
+
+[----------] 1 test from Iterator
+[ RUN      ] Iterator.IteratorValueAt
+[       OK ] Iterator.IteratorValueAt (0 ms)
+[----------] 1 test from Iterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 25 tests from 5 test cases ran. (0 ms total)
-[  PASSED  ] 25 tests.
+[==========] 30 tests from 7 test cases ran. (1 ms total)
+[  PASSED  ] 30 tests.
