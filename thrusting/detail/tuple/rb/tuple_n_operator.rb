@@ -19,7 +19,7 @@ thrust::tuple<#{type(0...n)}> operator#{op}(const thrust::tuple<#{type(0...n)}> 
 end
 
 def gen_calc_reverse(op, n)
-(0...n).map { |i| get_tuple(i, "t") }.map { |x| "x #{op} #{x}" }.join(", ")
+  (0...n).map { |i| get_tuple(i, "t") }.map { |x| "x #{op} #{x}" }.join(", ")
 end
 
 def gen_def_reverse(op, n)

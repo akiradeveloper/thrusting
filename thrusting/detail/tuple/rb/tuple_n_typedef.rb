@@ -3,7 +3,7 @@ thisdir = File.expand_path File.dirname __FILE__
 require ["thrusting/rb", "get_tuple"].join "/"
 
 def tupleN(n)
-arg = (0...n).map { "T" }
+  arg = (0...n).map { "T" }
 """
 template<typename T>
 struct tuple#{n} {
