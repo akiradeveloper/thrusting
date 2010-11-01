@@ -3,7 +3,7 @@ thisdir = File.expand_path File.dirname __FILE__
 require [thisdir, "def_compile"].join "/"
 
 def compile(src, bin)
-  system "#{TESTCC} -D THRUSTING_USE_DEVICE_VECTOR -o #{bin} #{src}"  
+  system "#{TESTCC} -o #{bin} #{src}"  
 end
 
 if __FILE__ == $0

@@ -5,25 +5,25 @@
 #include <iostream>
 
 TEST(List, MakeString){
-  int xs[] = {1,2}; THRUSTING_VECTOR<int> d_xs(xs, xs+2); 
-  EXPECT_EQ("[1, 2]", thrusting::make_string(thrusting::make_list(d_xs)));
+  int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2); 
+  EXPECT_EQ("[1, 2]", thrusting::make_string(thrusting::make_list(xs)));
 }
 
 TEST(List, Ostream){
-  int xs[] = {1,2}; THRUSTING_VECTOR<int> d_xs(xs, xs+2); 
-  std::cout << thrusting::make_list(d_xs) << std::endl;
+  int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2); 
+  std::cout << thrusting::make_list(xs) << std::endl;
 }
 
 TEST(List, Equality){
-  int xs[] = {1,2}; THRUSTING_VECTOR<int> d_xs(xs, xs+2); 
+  int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2); 
  
-  int ys[] = {1,2}; THRUSTING_VECTOR<int> d_ys(ys, ys+2); 
+  int _ys[] = {1,2}; THRUSTING_VECTOR<int> ys(_ys, _ys+2); 
   EXPECT_EQ(
-    thrusting::make_list(d_xs),
-    thrusting::make_list(d_ys));
+    thrusting::make_list(xs),
+    thrusting::make_list(ys));
  
-  int zs[] = {1,3}; THRUSTING_VECTOR<int> d_zs(zs, zs+2); 
+  int _zs[] = {1,3}; THRUSTING_VECTOR<int> zs(_zs, _zs+2); 
   EXPECT_NE(
-    thrusting::make_list(d_xs),
-    thrusting::make_list(d_zs)); 
+    thrusting::make_list(xs),
+    thrusting::make_list(zs)); 
 }

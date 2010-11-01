@@ -20,7 +20,8 @@ testcc = cc
 testcc = [testcc, GTEST_INCLUDE].join " -I"
 testcc = [testcc, CUDA_LIB, GTEST_LIB].join " -L"
 testcc = [testcc, "gtest"].join " -l"
-testcc = [testcc, "-g"].join(" ")
+testcc = [testcc, "-g"].join " "
+#testcc = [testcc, "-D THRUSTING_USING_DEVICE_VECTOR"].join " " 
 
 TESTCC = testcc
 
