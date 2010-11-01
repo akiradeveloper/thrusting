@@ -5,6 +5,7 @@
 
 namespace thrusting {
 
+namespace {
 // Akira Hayakawa, 2010 11/1 19:45
 // tested host and device of 32 bit.
 template<typename Iterator>
@@ -16,6 +17,7 @@ template<typename Iterator, typename Distance>
 Iterator advance(Iterator it, Distance n){
   thrust::advance(it, n);
   return it;
+}
 }
 
 template<typename Index, typename Iterator>
