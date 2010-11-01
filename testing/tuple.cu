@@ -50,4 +50,5 @@ TEST(Tuple, ArithmaticOrdering){
   
   EXPECT_EQ(thrusting::make_tuple2(16, 26), x + y * z);
   EXPECT_EQ(thrusting::make_tuple2(8, 20), x * (y+z));
+  EXPECT_EQ(thrusting::make_tuple2(7, 10), x + 2 * y);
 }

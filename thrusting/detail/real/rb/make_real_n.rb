@@ -1,20 +1,14 @@
 thisdir = File.expand_path File.dirname __FILE__  
 
-require ["thrusting/rb", "tuple_min_max"].join "/"
-
-"""
-realN make_realN(real x1, real x2, ...){
-  return make_tupleN<real>(x1, x2, ...);
-}
-"""
+["tuple_min_max", "template_type"].each do |s|
+  require "thrusting/rb/#{s}"
+end
 
 def make_realN(n)
-arg = (0...n).map { |i| "real x#{i}" }
-input = (0...n).map { |i| "x#{i}" }
 """
 __host__ __device__
-real#{n} make_real#{n}(#{arg.join(", ")}){
-  return make_tuple#{n}<real>(#{input.join(", ")});
+real#{n} make_real#{n}(#{explicit_type_arg("real", 0...n)}){
+  return make_tuple#{n}<real>(#{arg(0...n)});
 }
 """
 end  

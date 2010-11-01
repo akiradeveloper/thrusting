@@ -1,27 +1,18 @@
-require ["thrusting/rb", "tuple_min_max"].join "/"
-
-"""
-template<typename X0>
-thrust::zip_iterator<thrust::tuple<X0>> make_zip_iterator(X0 x0){
-  return thrust::make_zip_iterator(thrust::make_tuple(x0));
-}
-"""
+["tuple_min_max", "template_type"].each do |s|
+  require "thrusting/rb/#{s}"
+end
 
 def make_zip_iterator(n)
-template_param = (0...n).map { |i| "typename X#{i}" }.join ", "
-tuple_param = (0...n).map { |i| "X#{i}" }.join ", "
-arg = (0...n).map { |i| "X#{i} x#{i}" }.join ", "
-tuple_arg = (0...n).map { |i| "x#{i}" }.join ", "
 """
-template<#{template_param}>
-thrust::zip_iterator<thrust::tuple<#{tuple_param}>> make_zip_iterator(#{arg}){
-  return thrust::make_zip_iterator(thrust::make_tuple(#{tuple_arg}));
+template<#{typename(0...n)}>
+thrust::zip_iterator< thrust::tuple<#{type(0...n)}> > make_zip_iterator(#{type_arg(0...n)}){
+  return thrust::make_zip_iterator(thrust::make_tuple(#{arg(0...n)}));
 }
 """
 end
 
 def all()
-code = (TUPLE_MIN..TUPLE_MAX).map { |i| make_zip_iterator(i) }.join "\n"
+  code = (TUPLE_MIN..TUPLE_MAX).map { |i| make_zip_iterator(i) }.join "\n"
 """
 #pragma once
 #include <thrust/iterator/zip_iterator.h>
@@ -31,7 +22,6 @@ namespace thrusting {
 }
 """
 end
-
 
 if __FILE__ == $0
   $stdout << all()

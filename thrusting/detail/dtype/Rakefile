@@ -6,7 +6,7 @@ types = [
   "int", "unsigned int",
   "long", "unsigned long",
   "long long",
-  "float", "double", "size_t"
+  "float", "double"
 ]
 
 tuple_types = [
@@ -15,7 +15,7 @@ tuple_types = [
   "int", "uint",
   "long", "ulong",
   "longlong",
-  "float", "double", "size_t"
+  "float", "double"
 ]
 
 CLOBBER.include("dtype.h", tuple_types.map { |t| t + ".h" })

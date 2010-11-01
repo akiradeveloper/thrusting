@@ -70,5 +70,5 @@
 [----------] 2 tests from List (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 25 tests from 5 test cases ran. (1 ms total)
+[==========] 25 tests from 5 test cases ran. (0 ms total)
 [  PASSED  ] 25 tests.
