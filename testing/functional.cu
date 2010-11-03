@@ -54,15 +54,15 @@ TEST(FunctionalTest, Sumf){
   EXPECT_EQ(5, sum_f()(thrust::make_tuple(2,3)));
 }
 
-TEST(Functional, UnCurry){
+TEST(Functional, Curry){
   // 2 + 3 = 5
-  int x = thrusting::uncurry(sum_f())(2,3);
+  int x = thrusting::curry(sum_f())(2,3);
   EXPECT_EQ(5, x);
 }
 
-TEST(Functional, Curry){
+TEST(Functional, UnCurry){
   // 2 + 3 = 5
-  int x = thrusting::curry(thrust::plus<int>())(thrust::make_tuple(2,3));
+  int x = thrusting::uncurry(thrust::plus<int>())(thrust::make_tuple(2,3));
   EXPECT_EQ(5, x);
 }
 

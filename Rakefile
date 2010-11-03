@@ -4,6 +4,7 @@ thisdir = File.expand_path File.dirname __FILE__
 
 CLOBBER.include("doc/html", "doc/latex")
 
+desc "generate API doc under doc dir"
 task :doxygen do
   sh "doxygen Doxyfile"
 end

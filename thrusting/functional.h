@@ -54,12 +54,12 @@ _bind1st< _flip<F> > bind2nd(F f, const typename F::second_argument_type &b) {
 
 // (a,b)->c -> a->b->c
 template<typename F>
-struct _uncurry :public thrust::binary_function<
+struct _curry :public thrust::binary_function<
 typename thrust::tuple_element<0, typename F::argument_type>::type, 
 typename thrust::tuple_element<1, typename F::argument_type>::type, 
 typename F::result_type> {
   F _f;
-  _uncurry(F f)
+  _curry(F f)
   :_f(f){}
   __host__ __device__
   typename F::result_type operator()(
@@ -70,17 +70,17 @@ typename F::result_type> {
 };
 
 template<typename F>
-_uncurry<F> uncurry(F f){
-  return _uncurry<F>(f);
+_curry<F> curry(F f){
+  return _curry<F>(f);
 }
 
 // a->b->c -> (a,b)->c
 template<typename F>
-struct _curry :public thrust::unary_function<
+struct _uncurry :public thrust::unary_function<
 thrust::tuple<typename F::first_argument_type, typename F::second_argument_type>, 
 typename F::result_type> {
   F _f;
-  _curry(F f)
+  _uncurry(F f)
   :_f(f){}
   __host__ __device__
   typename F::result_type operator()(
@@ -90,8 +90,8 @@ typename F::result_type> {
 };  
 
 template<typename F>
-_curry<F> curry(F f){
-  return _curry<F>(f);
+_uncurry<F> uncurry(F f){
+  return _uncurry<F>(f);
 }
 
 // a->b -> b->c -> a->c
