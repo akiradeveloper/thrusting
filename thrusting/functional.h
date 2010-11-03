@@ -94,7 +94,7 @@ _uncurry<F> uncurry(F f){
   return _uncurry<F>(f);
 }
 
-// a->b -> b->c -> a->c
+// b->c -> a->b -> a->c
 template<typename F, typename G>
 struct _compose :public thrust::unary_function<typename F::argument_type, typename G::result_type> {
   F _f;
@@ -102,8 +102,8 @@ struct _compose :public thrust::unary_function<typename F::argument_type, typena
   _compose(F f, G g)
   :_f(f), _g(g){}
   __host__ __device__
-  typename G::result_type operator()(const typename F::argument_type &x) const {
-    return _g(_f(x));
+  typename F::result_type operator()(const typename G::argument_type &x) const {
+    return _f(_g(x));
   }
 };
 

@@ -75,7 +75,7 @@ TEST(Functional, Compose2){
   // 1 -> (+1) -> (*2) -> 4
   int x= 
     thrusting::compose(
-      thrusting::bind1st(thrust::plus<int>(), 1),
-      thrusting::bind1st(thrust::multiplies<int>(), 2))(1);
+      thrusting::bind1st(thrust::multiplies<int>(), 2),
+      thrusting::bind1st(thrust::plus<int>(), 1))(1);
   EXPECT_EQ(4, x);
 }
