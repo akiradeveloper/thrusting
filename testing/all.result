@@ -1,6 +1,6 @@
 (in /Users/akira/sandbox/thrusting/testing)
 "nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/testing/.. -I/Users/akira/local/gtest/gtest-1.5.0/include -L/usr/local/cuda/lib -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 30 tests from 7 test cases.
+[==========] Running 31 tests from 7 test cases.
 [----------] Global test environment set-up.
 [----------] 10 tests from Tuple
 [ RUN      ] Tuple.Plus
@@ -24,7 +24,7 @@
 [       OK ] Tuple.OStream (0 ms)
 [ RUN      ] Tuple.ArithmaticOrdering
 [       OK ] Tuple.ArithmaticOrdering (0 ms)
-[----------] 10 tests from Tuple (1 ms total)
+[----------] 10 tests from Tuple (0 ms total)
 
 [----------] 11 tests from Functional
 [ RUN      ] Functional.Flip
@@ -49,7 +49,7 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 11 tests from Functional (0 ms total)
+[----------] 11 tests from Functional (1 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.Sumf
@@ -80,11 +80,13 @@
 [       OK ] ZipIterator.Reference (0 ms)
 [----------] 1 test from ZipIterator (0 ms total)
 
-[----------] 1 test from Iterator
+[----------] 2 tests from Iterator
 [ RUN      ] Iterator.IteratorValueAt
 [       OK ] Iterator.IteratorValueAt (0 ms)
-[----------] 1 test from Iterator (0 ms total)
+[ RUN      ] Iterator.IteratorValueOf
+[       OK ] Iterator.IteratorValueOf (0 ms)
+[----------] 2 tests from Iterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 30 tests from 7 test cases ran. (1 ms total)
-[  PASSED  ] 30 tests.
+[==========] 31 tests from 7 test cases ran. (1 ms total)
+[  PASSED  ] 31 tests.
