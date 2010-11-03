@@ -8,18 +8,19 @@
 
 namespace thrusting {
 
+/*
+  make string format of list -> [a, b, c]
+*/
 template<typename Iterator>
 std::string make_string(const detail::list<Iterator> &xs){
   std::stringstream ss;
   ss << "[";
-  for(size_t i=0; i<xs.length()-1; i++){
-    // This implementation is slow, not best where the complexity is O(N^2).
-    // For loop with iterator and get value at each iterator will be O(N).
-    // But I am too layman to C++.
-    ss << thrusting::iterator_value_at(i, xs.head());
+  Iterator end = xs.end(); thrust::advance(end, -1);
+  for(Iterator it = xs.begin(); it != end; thrust::advance(it, 1)){
+    ss << thrusting::iterator_value_of(it);
     ss << ", ";
   }
-  ss << *(xs.head()+xs.length()-1);
+  ss << thrusting::iterator_value_at(xs.length()-1, xs.begin());
   ss << "]";
   return ss.str();
 }
@@ -27,8 +28,8 @@ std::string make_string(const detail::list<Iterator> &xs){
 namespace op {
 namespace list {
 
-template<typename A>
-std::ostream &operator<<(std::ostream &os, const detail::list<A> &xs){
+template<typename Iterator>
+std::ostream &operator<<(std::ostream &os, const detail::list<Iterator> &xs){
   return os << thrusting::make_string(xs);
 }
 

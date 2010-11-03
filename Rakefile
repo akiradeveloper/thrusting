@@ -1,4 +1,12 @@
+require "rake/clean"
+
 thisdir = File.expand_path File.dirname __FILE__ 
+
+CLOBBER.include("doc/html", "doc/latex")
+
+task :doxygen do
+  sh "doxygen Doxyfile"
+end
 
 task :push do
   repo = "http://bitbucket.org/akiradeveloper/thrusting"
