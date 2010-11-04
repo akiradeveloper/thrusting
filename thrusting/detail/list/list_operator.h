@@ -8,9 +8,8 @@
 
 namespace thrusting {
 
-/*
-  make string format of list -> [a, b, c]
-*/
+
+// make string format of list -> [a, b, c]
 template<typename Iterator>
 std::string make_string(const detail::list<Iterator> &xs){
   std::stringstream ss;
@@ -20,7 +19,7 @@ std::string make_string(const detail::list<Iterator> &xs){
     ss << thrusting::iterator_value_of(it);
     ss << ", ";
   }
-  ss << thrusting::iterator_value_at(xs.length()-1, xs.begin());
+  ss << thrusting::iterator_value_of(end);
   ss << "]";
   return ss.str();
 }
