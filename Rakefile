@@ -1,8 +1,15 @@
 require "rake/clean"
 
+require "thrusting/rb/version.rb"
+
 thisdir = File.expand_path File.dirname __FILE__ 
 
 CLOBBER.include("doc/html", "doc/latex")
+
+desc "generate zip file"
+task :zip do
+  sh "hg archive -t zip #{ENV["HOME"]}/thrusting-v#{VERSION}.zip"
+end
 
 desc "generate API doc under doc dir"
 task :doxygen do
