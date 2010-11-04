@@ -16,7 +16,7 @@ thrust::tuple<#{type(0...n)}> operator#{op}(const thrust::tuple<#{type(0...n)}> 
 end
 
 def all()
-  ops = ['+', '-', '*', '/'] 
+  ops = ['+', '-'] 
   code = (TUPLE_MIN..TUPLE_MAX).map { |i| ops.map { |op| operator(i, op) } }.join
 """
 #pragma once
