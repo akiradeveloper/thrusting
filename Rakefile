@@ -1,8 +1,8 @@
+thisdir = File.expand_path File.dirname __FILE__ 
+
 require "rake/clean"
 
-require "thrusting/rb/version.rb"
-
-thisdir = File.expand_path File.dirname __FILE__ 
+require [thisdir, "thrusting/rb", "version"].join "/"
 
 CLOBBER.include("doc/html", "doc/latex")
 

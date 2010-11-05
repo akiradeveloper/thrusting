@@ -19,4 +19,4 @@ typedef typename tuple8<real>::type real8;
 
 typedef typename tuple9<real>::type real9;
 
-}
+}  
