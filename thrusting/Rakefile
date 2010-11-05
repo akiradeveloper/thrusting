@@ -2,6 +2,4 @@
   require "thrusting/rb/#{s}"
 end
 
-dirs = ["list", "tuple"]
-
-gen_autogen_task(dirs)
+gen_autogen_task(["iterator", "dtype", "detail"])

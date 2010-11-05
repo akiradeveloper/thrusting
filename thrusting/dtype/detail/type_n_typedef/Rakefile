@@ -1,26 +1,12 @@
+thisdir = File.expand_path File.dirname __FILE__
 require "rake/clean"
 
-["tuple_min_max"].each do |s|
+["value_type", "tuple_min_max"].each do |s|
   require "thrusting/rb/#{s}"
 end
 
-types = [
-  "char", "unsigned char",
-  "short", "unsigned short",
-  "int", "unsigned int",
-  "long", "unsigned long",
-  "long long",
-  "float", "double", "real"
-]
-
-tuple_types = [
-  "char", "uchar",
-  "short", "ushort",
-  "int", "uint",
-  "long", "ulong",
-  "longlong",
-  "float", "double", "real"
-]
+types = TYPES + ["real"]
+tuple_types = TUPLE_TYPES + ["real"]
 
 def to_hname(tuple_type)
   "#{tuple_type}_n_typedef.h"

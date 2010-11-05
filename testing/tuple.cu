@@ -1,5 +1,5 @@
 #include <thrusting/tuple.h>
-#include <thrusting/dtype.h>
+#include <thrusting/dtype/int.h>
 
 #include <gtest/gtest.h>
 #include <iostream>

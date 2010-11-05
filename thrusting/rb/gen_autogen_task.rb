@@ -27,6 +27,6 @@ def gen_autogen_task(dirs)
   dirs.each do |dir|
     gen_namespace(dir)
   end
-  gen_build_tasks(dirs)
-  gen_clobber_tasks(dirs)
+  gen_build_task(dirs)
+  gen_clobber_task(dirs)
 end
