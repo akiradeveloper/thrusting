@@ -6,7 +6,7 @@ TYPES = [
   "int", "unsigned int",
   "long", "unsigned long",
   "long long",
-  "float", "double"
+  "float", "double", "size_t"
 ]
 
 TUPLE_TYPES = [
@@ -15,5 +15,5 @@ TUPLE_TYPES = [
   "int", "uint",
   "long", "ulong",
   "longlong",
-  "float", "double"
+  "float", "double", "sizetype"
 ]
