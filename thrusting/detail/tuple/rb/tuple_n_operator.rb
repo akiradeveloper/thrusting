@@ -39,7 +39,6 @@ tuple_max = TUPLE_MAX
 """
 #pragma once
 #include <thrust/tuple.h>
-#{operator_tuple((tuple_min..tuple_max).map { |i| gen_def("*", i) }.join)} 
 #{operator_tuple((tuple_min..tuple_max).map { |i| gen_def("/", i) }.join)} 
 #{operator_tuple((tuple_min..tuple_max).map { |i| gen_def_reverse("*", i) }.join)} 
 """

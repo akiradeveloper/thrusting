@@ -1,22 +1,16 @@
 (in /Users/akira/sandbox/thrusting/testing)
 "nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/testing/.. -I/Users/akira/local/gtest/gtest-1.5.0/include -L/usr/local/cuda/lib -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 31 tests from 7 test cases.
+[==========] Running 28 tests from 7 test cases.
 [----------] Global test environment set-up.
-[----------] 10 tests from Tuple
+[----------] 7 tests from Tuple
 [ RUN      ] Tuple.Plus
 [       OK ] Tuple.Plus (0 ms)
 [ RUN      ] Tuple.Minus
 [       OK ] Tuple.Minus (0 ms)
-[ RUN      ] Tuple.Multiplies
-[       OK ] Tuple.Multiplies (0 ms)
 [ RUN      ] Tuple.Multiplies2
 [       OK ] Tuple.Multiplies2 (0 ms)
-[ RUN      ] Tuple.Multiplies3
-[       OK ] Tuple.Multiplies3 (0 ms)
 [ RUN      ] Tuple.Divides
 [       OK ] Tuple.Divides (0 ms)
-[ RUN      ] Tuple.Divides2
-[       OK ] Tuple.Divides2 (0 ms)
 [ RUN      ] Tuple.MakeString
 [       OK ] Tuple.MakeString (0 ms)
 [ RUN      ] Tuple.OStream
@@ -24,7 +18,7 @@
 [       OK ] Tuple.OStream (0 ms)
 [ RUN      ] Tuple.ArithmaticOrdering
 [       OK ] Tuple.ArithmaticOrdering (0 ms)
-[----------] 10 tests from Tuple (0 ms total)
+[----------] 7 tests from Tuple (1 ms total)
 
 [----------] 11 tests from Functional
 [ RUN      ] Functional.Flip
@@ -41,15 +35,15 @@
 [       OK ] Functional.Bind1st (0 ms)
 [ RUN      ] Functional.Bind2nd
 [       OK ] Functional.Bind2nd (0 ms)
-[ RUN      ] Functional.UnCurry
-[       OK ] Functional.UnCurry (0 ms)
 [ RUN      ] Functional.Curry
 [       OK ] Functional.Curry (0 ms)
+[ RUN      ] Functional.UnCurry
+[       OK ] Functional.UnCurry (0 ms)
 [ RUN      ] Functional.Compose
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 11 tests from Functional (1 ms total)
+[----------] 11 tests from Functional (0 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.Sumf
@@ -88,5 +82,5 @@
 [----------] 2 tests from Iterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 31 tests from 7 test cases ran. (1 ms total)
-[  PASSED  ] 31 tests.
+[==========] 28 tests from 7 test cases ran. (1 ms total)
+[  PASSED  ] 28 tests.

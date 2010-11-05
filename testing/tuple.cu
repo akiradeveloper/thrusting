@@ -14,11 +14,6 @@ TEST(Tuple, Minus){
   EXPECT_EQ(thrusting::make_tuple2(1,1), thrusting::make_tuple2(2,3) - thrusting::make_tuple2(1,2));
 }
 
-TEST(Tuple, Multiplies){
-  // T * v
-  EXPECT_EQ(thrusting::make_tuple2(2,2), thrusting::make_tuple2(1,1) * 2);
-}
-
 TEST(Tuple, Multiplies2){
   // v * T
   EXPECT_EQ(thrusting::make_tuple2(2,2), 2 * thrusting::make_tuple2(1,1));
@@ -42,6 +37,5 @@ TEST(Tuple, ArithmaticOrdering){
   thrusting::int2 y = thrusting::make_tuple2(3,4);
   
   EXPECT_EQ(thrusting::make_tuple2(7, 10), x + 2 * y);
-  EXPECT_EQ(thrusting::make_tuple2(7, 10), x + y * 2);
   EXPECT_EQ(thrusting::make_tuple2(8, 12), 2 * (x + y));
 }
