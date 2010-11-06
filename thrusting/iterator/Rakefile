@@ -1,6 +1,8 @@
 thisdir = File.expand_path File.dirname __FILE__
 
-require ["thrusting/rb", "gen_header_task"].join "/"
+["gen_header_task"].each do |s|
+  require "thrusting/rb/#{s}"
+end
 
 rbfiles = FileList.new("rb/*.rb")
 gen_header_task(rbfiles)
