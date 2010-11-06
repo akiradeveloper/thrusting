@@ -1,25 +1,7 @@
 (in /Users/akira/sandbox/thrusting/testing)
-"nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/testing/.. -I/Users/akira/local/gtest/gtest-1.5.0/include -L/usr/local/cuda/lib -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
+"nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
 [==========] Running 28 tests from 7 test cases.
 [----------] Global test environment set-up.
-[----------] 7 tests from Tuple
-[ RUN      ] Tuple.Plus
-[       OK ] Tuple.Plus (0 ms)
-[ RUN      ] Tuple.Minus
-[       OK ] Tuple.Minus (0 ms)
-[ RUN      ] Tuple.Multiplies2
-[       OK ] Tuple.Multiplies2 (0 ms)
-[ RUN      ] Tuple.Divides
-[       OK ] Tuple.Divides (0 ms)
-[ RUN      ] Tuple.MakeString
-[       OK ] Tuple.MakeString (0 ms)
-[ RUN      ] Tuple.OStream
-(1, 2)
-[       OK ] Tuple.OStream (0 ms)
-[ RUN      ] Tuple.ArithmaticOrdering
-[       OK ] Tuple.ArithmaticOrdering (0 ms)
-[----------] 7 tests from Tuple (0 ms total)
-
 [----------] 11 tests from Functional
 [ RUN      ] Functional.Flip
 [       OK ] Functional.Flip (0 ms)
@@ -50,14 +32,12 @@
 [       OK ] FunctionalTest.Sumf (0 ms)
 [----------] 1 test from FunctionalTest (0 ms total)
 
-[----------] 3 tests from Real
-[ RUN      ] Real.Create
-[       OK ] Real.Create (0 ms)
-[ RUN      ] Real.Tuple
-[       OK ] Real.Tuple (0 ms)
-[ RUN      ] Real.Arithmetic
-[       OK ] Real.Arithmetic (0 ms)
-[----------] 3 tests from Real (0 ms total)
+[----------] 2 tests from Iterator
+[ RUN      ] Iterator.IteratorValueAt
+[       OK ] Iterator.IteratorValueAt (0 ms)
+[ RUN      ] Iterator.IteratorValueOf
+[       OK ] Iterator.IteratorValueOf (0 ms)
+[----------] 2 tests from Iterator (0 ms total)
 
 [----------] 3 tests from List
 [ RUN      ] List.MakeString
@@ -69,17 +49,37 @@
 [       OK ] List.Equality (0 ms)
 [----------] 3 tests from List (0 ms total)
 
+[----------] 3 tests from Real
+[ RUN      ] Real.Create
+[       OK ] Real.Create (0 ms)
+[ RUN      ] Real.Tuple
+[       OK ] Real.Tuple (0 ms)
+[ RUN      ] Real.Arithmetic
+[       OK ] Real.Arithmetic (0 ms)
+[----------] 3 tests from Real (1 ms total)
+
+[----------] 7 tests from Tuple
+[ RUN      ] Tuple.Plus
+[       OK ] Tuple.Plus (0 ms)
+[ RUN      ] Tuple.Minus
+[       OK ] Tuple.Minus (0 ms)
+[ RUN      ] Tuple.Multiplies2
+[       OK ] Tuple.Multiplies2 (0 ms)
+[ RUN      ] Tuple.Divides
+[       OK ] Tuple.Divides (0 ms)
+[ RUN      ] Tuple.MakeString
+[       OK ] Tuple.MakeString (0 ms)
+[ RUN      ] Tuple.OStream
+(1, 2)
+[       OK ] Tuple.OStream (0 ms)
+[ RUN      ] Tuple.ArithmaticOrdering
+[       OK ] Tuple.ArithmaticOrdering (0 ms)
+[----------] 7 tests from Tuple (0 ms total)
+
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
 [       OK ] ZipIterator.Reference (0 ms)
 [----------] 1 test from ZipIterator (0 ms total)
-
-[----------] 2 tests from Iterator
-[ RUN      ] Iterator.IteratorValueAt
-[       OK ] Iterator.IteratorValueAt (0 ms)
-[ RUN      ] Iterator.IteratorValueOf
-[       OK ] Iterator.IteratorValueOf (0 ms)
-[----------] 2 tests from Iterator (0 ms total)
 
 [----------] Global test environment tear-down
 [==========] 28 tests from 7 test cases ran. (1 ms total)
