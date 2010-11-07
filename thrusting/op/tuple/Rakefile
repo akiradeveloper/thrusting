@@ -2,4 +2,4 @@
   require "thrusting/rb/#{s}"
 end
 
-gen_autogen_task(["dtype", "iterator", "tuple", "op"])
+gen_autogen_task(["detail"])

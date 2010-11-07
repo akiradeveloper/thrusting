@@ -4,7 +4,7 @@ require "rake/clean"
   require "thrusting/rb/#{s}"
 end
 
-task :build do |t|
+task :build => __FILE__ do |t|
   TYPES.zip(TUPLE_TYPES).each do |type, tuple_type|
     f = File.open("#{tuple_type}.h", "w")
     code =

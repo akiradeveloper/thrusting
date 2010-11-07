@@ -1,3 +1,5 @@
+require "rake/clean"
+
 thisdir = File.expand_path File.dirname __FILE__ 
 
 ["get_tuple", "namespace", "template_type"].each do |s|
@@ -29,6 +31,11 @@ def all()
 """
 end
 
-if __FILE__ == $0
-  $stdout << all()
+filename = "equality.h"
+task :build => __FILE__ do
+  f = File.open(filename, "w")
+  f.puts(all())
+  f.close
 end
+
+CLOBBER.include(filename)
