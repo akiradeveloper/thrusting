@@ -1,45 +1,9 @@
 thisdir = File.expand_path File.dirname __FILE__
+
 require "rake/clean"
 
-["value_type", "gen_autogen_task"].each do |s|
+["gen_autogen_task"].each do |s|
   require "thrusting/rb/#{s}"
 end 
 
-def gen_primitive(type)
-  f = File.open("#{type}.h", "w")
-  code =
-"""
-#pragma once
-#include \"detail/type_n_typedef/#{type}_n_typedef.h\"
-"""
-  f.puts(code)
-  f.close
-end
-
-TUPLE_TYPES.each do |t|
-  file "#{t}.h" do
-    gen_primitive(t)
-  end
-end
-
-def gen_real()
-  f = File.open("real.h", "w")
-  code =
-"""
-#pragma once
-#include \"detail/real_typedef.h\"
-#include \"detail/type_n_typedef/real_n_typedef.h\"
-"""
-  f.puts(code)
-  f.close
-end
-
-file "real.h" do |t|
-  gen_real()
-end
-
-all_files = TUPLE_TYPES.map { |s| "#{s}.h" } + ["real.h"]
-CLOBBER.include(all_files)
-task :build => all_files
-
-gen_autogen_task(["detail/type_n_typedef"])
+gen_autogen_task(["n_typedef"])

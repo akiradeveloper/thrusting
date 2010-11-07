@@ -1,3 +1,5 @@
+# generate namespace from dir
+# generate build, clobber tasks
 def gen_namespace(dir)
   namespace dir do
     file = "#{dir}/Rakefile"
@@ -15,7 +17,7 @@ def gen_namespace(dir)
 end
 
 def gen_build_task(dirs)
-  desc "generate .h files from .rb scripts"
+  desc "generate .h files"
   task :build => dirs.map { |dir| dir + ":build" }
 end
 
