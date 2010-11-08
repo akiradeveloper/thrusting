@@ -1,10 +1,15 @@
-#include <thrusting/iterator.h>
+#include <thrusting/detail/iterator.h>
 #include <thrusting/iterator/zip_iterator.h>
 #include <thrusting/vector.h>
 
 #include <thrusting/tuple.h>
 
 #include <gtest/gtest.h>
+
+#include <thrusting/op/tuple.h>
+namespace {
+  using namespace thrusting::op::tuple;
+}
 
 TEST(ZipIterator, Reference){
   int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2);

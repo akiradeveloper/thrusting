@@ -1,8 +1,13 @@
 #include <thrusting/tuple.h>
-#include <thrusting/dtype/int.h>
+#include <thrusting/dtype/n_typedef/int.h>
 
 #include <gtest/gtest.h>
 #include <iostream>
+
+#include <thrusting/op/tuple.h>
+namespace {
+  using namespace thrusting::op::tuple;
+}
 
 TEST(Tuple, Plus){
   // T + T

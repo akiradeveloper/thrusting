@@ -4,6 +4,11 @@
 #include <gtest/gtest.h>
 #include <iostream>
 
+#include <thrusting/op/list.h>
+namespace {
+  using namespace thrusting::op::list;
+}
+
 TEST(List, MakeString){
   int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2); 
   EXPECT_EQ("[1, 2]", thrusting::make_string(thrusting::make_list(xs)));

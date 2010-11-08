@@ -2,7 +2,5 @@
 
 #include <thrust/tuple.h>
 
-#include "tuple/detail/make_string.h"
-#include "tuple/detail/n_typedef.h"
-
-using namespace thrusting::op::tuple;
+#include "tuple/detail/make_string/make_string.h"
+#include "tuple/detail/n_typedef/n_typedef.h"

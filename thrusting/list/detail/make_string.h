@@ -1,7 +1,7 @@
 #pragma once
 
 #include <thrusting/list.h>
-#include <thrusting/iterator.h>
+#include <thrusting/detail/iterator.h>
 
 #include <sstream>
 #include <iostream>

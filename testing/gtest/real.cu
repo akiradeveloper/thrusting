@@ -1,7 +1,13 @@
 #include <thrusting/dtype/real.h>
+#include <thrusting/dtype/n_typedef/real.h>
 #include <thrusting/tuple.h>
 
 #include <gtest/gtest.h>
+
+#include <thrusting/op/tuple.h>
+namespace {
+  using namespace thrusting::op::tuple;
+}
 
 TEST(Real, Create){
   thrusting::real x = 1.0;

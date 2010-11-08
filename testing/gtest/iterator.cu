@@ -1,5 +1,5 @@
 #include <thrusting/vector.h>
-#include <thrusting/iterator.h>
+#include <thrusting/detail/iterator.h>
 
 #include <gtest/gtest.h>
 
