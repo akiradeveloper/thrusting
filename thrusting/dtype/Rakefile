@@ -6,4 +6,4 @@ require "rake/clean"
   require "thrusting/rb/#{s}"
 end 
 
-gen_autogen_task(["n_typedef"])
+gen_autogen_task(["tuple"])

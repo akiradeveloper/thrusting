@@ -4,7 +4,6 @@
 
 namespace thrusting {
 namespace op {
-namespace tuple {
 
 template<typename X0, typename X1, typename X2>
 __host__ __device__
@@ -144,12 +143,10 @@ thrust::get<8>(t)
 
 }
 }
-}
  
 
 namespace thrusting {
 namespace op {
-namespace tuple {
 
 template<typename X0, typename X1, typename X2>
 thrust::tuple<X0, X1> operator*(const X2 &x, const thrust::tuple<X0, X1> &t){
@@ -279,7 +276,6 @@ thrust::get<8>(t)
 );
 }
 
-}
 }
 }
  

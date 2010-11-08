@@ -18,7 +18,7 @@
 [ RUN      ] Functional.Bind2nd
 [       OK ] Functional.Bind2nd (0 ms)
 [ RUN      ] Functional.Curry
-[       OK ] Functional.Curry (0 ms)
+[       OK ] Functional.Curry (1 ms)
 [ RUN      ] Functional.UnCurry
 [       OK ] Functional.UnCurry (0 ms)
 [ RUN      ] Functional.Compose

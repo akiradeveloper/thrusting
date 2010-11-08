@@ -4,7 +4,6 @@
 
 namespace thrusting {
 namespace op {
-namespace tuple {
 
 template<typename X0, typename X1>
 __host__ __device__
@@ -270,7 +269,6 @@ bool operator!=(const thrust::tuple<X0, X1, X2, X3, X4, X5, X6, X7, X8> &x, cons
   return ! (x==y);
 }
 
-}
 }
 }
 

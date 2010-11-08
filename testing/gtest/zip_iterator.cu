@@ -6,9 +6,8 @@
 
 #include <gtest/gtest.h>
 
-#include <thrusting/op/tuple.h>
 namespace {
-  using namespace thrusting::op::tuple;
+  using namespace thrusting::op;
 }
 
 TEST(ZipIterator, Reference){
