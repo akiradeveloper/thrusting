@@ -10,8 +10,8 @@ template<typename Iterator>
 struct list {
   size_t _n;
   Iterator _head;
-  list(size_t n_, Iterator head_)
-  :_n(n_), _head(head_){}
+  list(size_t n, Iterator head)
+  :_n(n), _head(head){}
 
   size_t length() const {
     return _n;

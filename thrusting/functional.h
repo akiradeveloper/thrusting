@@ -113,9 +113,9 @@ _compose<F, G> compose(F f, G g){
 }
 
 template<typename A, typename B>
-struct multiplies :public thrust::binary_function<A, B, A> {
+struct multiplies :public thrust::binary_function<A, B, B> {
   __host__ __device__
-  A operator()(const A &x, const B &y) const {
+  B operator()(const A &x, const B &y) const {
     return x * y;
   }
 };

@@ -1,6 +1,6 @@
 (in /Users/akira/sandbox/thrusting/testing)
-"nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 28 tests from 7 test cases.
+"nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g -D THRUSTING_USING_DEVICE_VECTOR"
+[==========] Running 30 tests from 7 test cases.
 [----------] Global test environment set-up.
 [----------] 11 tests from Functional
 [ RUN      ] Functional.Flip
@@ -18,7 +18,7 @@
 [ RUN      ] Functional.Bind2nd
 [       OK ] Functional.Bind2nd (0 ms)
 [ RUN      ] Functional.Curry
-[       OK ] Functional.Curry (1 ms)
+[       OK ] Functional.Curry (0 ms)
 [ RUN      ] Functional.UnCurry
 [       OK ] Functional.UnCurry (0 ms)
 [ RUN      ] Functional.Compose
@@ -32,12 +32,16 @@
 [       OK ] FunctionalTest.Sumf (0 ms)
 [----------] 1 test from FunctionalTest (0 ms total)
 
-[----------] 2 tests from Iterator
+[----------] 4 tests from Iterator
 [ RUN      ] Iterator.IteratorValueAt
 [       OK ] Iterator.IteratorValueAt (0 ms)
 [ RUN      ] Iterator.IteratorValueOf
 [       OK ] Iterator.IteratorValueOf (0 ms)
-[----------] 2 tests from Iterator (0 ms total)
+[ RUN      ] Iterator.Advance
+[       OK ] Iterator.Advance (0 ms)
+[ RUN      ] Iterator.AllocAt
+[       OK ] Iterator.AllocAt (0 ms)
+[----------] 4 tests from Iterator (0 ms total)
 
 [----------] 3 tests from List
 [ RUN      ] List.MakeString
@@ -82,5 +86,5 @@
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 28 tests from 7 test cases ran. (1 ms total)
-[  PASSED  ] 28 tests.
+[==========] 30 tests from 7 test cases ran. (2 ms total)
+[  PASSED  ] 30 tests.

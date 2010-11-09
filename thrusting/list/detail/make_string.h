@@ -1,7 +1,7 @@
 #pragma once
 
 #include <thrusting/list.h>
-#include <thrusting/detail/iterator.h>
+#include <thrusting/iterator.h>
 
 #include <sstream>
 #include <iostream>
@@ -15,10 +15,10 @@ std::string make_string(const detail::list<Iterator> &xs){
   ss << "[";
   Iterator end = xs.end(); thrust::advance(end, -1);
   for(Iterator it = xs.begin(); it != end; thrust::advance(it, 1)){
-    ss << thrusting::iterator_value_of(it);
+    ss << thrusting::detail::iterator_value_of(it);
     ss << ", ";
   }
-  ss << thrusting::iterator_value_of(end);
+  ss << thrusting::detail::iterator_value_of(end);
   ss << "]";
   return ss.str();
 }
