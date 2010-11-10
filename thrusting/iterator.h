@@ -24,17 +24,17 @@ typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Itera
 
 // puzzling with thrust::advance(it, distance)
 // argument ordering is reversed
-template<typename Iterator>
-Iterator advance(size_t distance, Iterator it){
+template<typename Distance, typename Iterator>
+Iterator advance(Distance distance, Iterator it){
   thrust::advance(it, distance);
   return it;
 }
 
 // name is little bit strange
-template<typename Iterator>
-void alloc_at(size_t idx, Iterator it, typename thrust::iterator_value<Iterator>::type x){
-  // this can be lengthy.
-  Iterator _it = advance(idx, it);
+template<typename Index, typename Iterator>
+void alloc_at(Index idx, Iterator it, typename thrust::iterator_value<Iterator>::type x){
+  // this might be lengthy.
+  Iterator _it = thrusting::advance(idx, it);
   *_it = x;
 }
 

@@ -16,7 +16,7 @@
 [ RUN      ] Functional.Bind1st
 [       OK ] Functional.Bind1st (0 ms)
 [ RUN      ] Functional.Bind2nd
-[       OK ] Functional.Bind2nd (0 ms)
+[       OK ] Functional.Bind2nd (1 ms)
 [ RUN      ] Functional.Curry
 [       OK ] Functional.Curry (0 ms)
 [ RUN      ] Functional.UnCurry
@@ -86,5 +86,5 @@
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 30 tests from 7 test cases ran. (2 ms total)
+[==========] 30 tests from 7 test cases ran. (1 ms total)
 [  PASSED  ] 30 tests.
