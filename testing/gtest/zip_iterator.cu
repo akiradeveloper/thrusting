@@ -16,9 +16,9 @@ TEST(ZipIterator, Reference){
 
   EXPECT_EQ(
     thrust::make_tuple(1,3), 
-    thrusting::detail::iterator_value_at(0, thrusting::make_zip_iterator(xs.begin(), ys.begin())));
+    thrusting::iterator_value_at(0, thrusting::make_zip_iterator(xs.begin(), ys.begin())));
 
   EXPECT_EQ(
     thrust::make_tuple(2,4), 
-    thrusting::detail::iterator_value_at(1, thrusting::make_zip_iterator(xs.begin(), ys.begin())));
+    thrusting::iterator_value_at(1, thrusting::make_zip_iterator(xs.begin(), ys.begin())));
 }
