@@ -8,16 +8,16 @@ namespace {
   using namespace thrusting::op;
 }
 
-TEST(Real, Create){
+TEST(real, create){
   thrusting::real x = 1.0;
   EXPECT_EQ(1.0, x);
 }
 
-TEST(Real, Tuple){
+TEST(real, tuple){
   thrusting::real2 x = thrusting::make_tuple2<thrusting::real>(1.0, 2.0);
   EXPECT_EQ(thrusting::make_tuple2(1.0,2.0), x);
 }
 
-TEST(Real, Arithmetic){
+TEST(real, arithmatic){
   EXPECT_EQ(thrusting::make_tuple2<thrusting::real>(2.0, 4.0), 2 * thrusting::make_tuple2<thrusting::real>(1.0, 2.0));
 }

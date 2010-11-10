@@ -5,39 +5,39 @@
 
 #include <gtest/gtest.h>
 
-TEST(Functional, Flip){
+TEST(functional, flip){
   // 4 / 2 = 2
   int x = thrusting::flip(thrust::divides<int>())(2, 4);
   EXPECT_EQ(2, x);
 }
 
-TEST(Functional, Multiplies){
+TEST(functional, multiplies){
   int x = thrusting::multiplies<int, int>()(2, 2);
   EXPECT_EQ(4, x);
 }
 
-TEST(Functional, divides){
+TEST(functional, divides){
   int x = thrusting::divides<int, int>()(4, 2);
   EXPECT_EQ(2, x);
 }
 
-TEST(Functional, LeftShift){
+TEST(functional, left_shift){
   int x = thrusting::left_shift<int, int>()(2, 2);
   EXPECT_EQ(8, x);
 }
 
-TEST(Functional, RightShift){
+TEST(functional, right_shift){
   int x = thrusting::right_shift<int, int>()(8, 2);
   EXPECT_EQ(2, x);
 }
 
-TEST(Functional, Bind1st){
+TEST(functional, bind1st){
   // 2 / 1 = 2
   int x = thrusting::bind1st(thrust::divides<int>(), 2)(1);
   EXPECT_EQ(2, x);
 }
 
-TEST(Functional, Bind2nd){
+TEST(functional, bind2nd){
   // 4 / 2 = 2
   int x = thrusting::bind2nd(thrusting::divides<long, int>(), 2)(4L);
   EXPECT_EQ(2L, x);
@@ -50,28 +50,28 @@ struct sum_f :public thrust::unary_function<thrust::tuple<int, int>, int> {
   }
 };
 
-TEST(FunctionalTest, Sumf){
+TEST(functional_test, sum_f){
   EXPECT_EQ(5, sum_f()(thrust::make_tuple(2,3)));
 }
 
-TEST(Functional, Curry){
+TEST(functional, curry){
   // 2 + 3 = 5
   int x = thrusting::curry(sum_f())(2,3);
   EXPECT_EQ(5, x);
 }
 
-TEST(Functional, UnCurry){
+TEST(functional, uncurry){
   // 2 + 3 = 5
   int x = thrusting::uncurry(thrust::plus<int>())(thrust::make_tuple(2,3));
   EXPECT_EQ(5, x);
 }
 
-TEST(Functional, Compose){
+TEST(functional, compose){
   // -1 -> (-) -> () -> 1
   EXPECT_EQ(1, thrusting::compose(thrust::negate<int>(), thrust::identity<int>())(-1));
 }
 
-TEST(Functional, Compose2){
+TEST(functional, compose2){
   // 1 -> (+1) -> (*2) -> 4
   int x= 
     thrusting::compose(

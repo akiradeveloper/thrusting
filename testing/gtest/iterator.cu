@@ -10,18 +10,18 @@ namespace {
   using namespace thrusting::op;
 }
 
-TEST(Iterator, IteratorValueAt){
+TEST(iterator, iterator_value_at){
   int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2);
   EXPECT_EQ(1, thrusting::iterator_value_at(0, xs.begin()));
   EXPECT_EQ(2, thrusting::iterator_value_at(1, xs.begin()));
 }
 
-TEST(Iterator, IteratorValueOf){
+TEST(iterator, iterator_value_of){
   int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2);
   EXPECT_EQ(1, thrusting::detail::iterator_value_of(xs.begin()));
 }
 
-TEST(Iterator, Advance){
+TEST(iterator, advance){
   int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2);
   int _ys[] = {3,4}; THRUSTING_VECTOR<int> ys(_ys, _ys+2);
   EXPECT_EQ(thrust::make_tuple(2,4), 
@@ -29,7 +29,7 @@ TEST(Iterator, Advance){
       thrusting::advance(1, thrusting::make_zip_iterator(xs.begin(), ys.begin()))));
 }
 
-TEST(Iterator, AllocAt){
+TEST(iterator, alloc_at){
   int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2);
   int _ys[] = {3,4}; THRUSTING_VECTOR<int> ys(_ys, _ys+2);
   thrusting::alloc_at(1, thrusting::make_zip_iterator(xs.begin(), ys.begin()), thrust::make_tuple(5,6));
