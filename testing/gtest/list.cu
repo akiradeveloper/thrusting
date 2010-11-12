@@ -1,8 +1,14 @@
+#include <thrusting/dtype/real.h>
 #include <thrusting/list.h>
 #include <thrusting/vector.h>
+#include <thrusting/tuple.h>
 
 #include <gtest/gtest.h>
 #include <iostream>
+
+namespace {
+  using thrusting::real;
+}
 
 TEST(list, make_string){
   int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2); 
@@ -12,6 +18,11 @@ TEST(list, make_string){
 TEST(list, ostream){
   int _xs[] = {1,2}; THRUSTING_VECTOR<int> xs(_xs, _xs+2); 
   std::cout << thrusting::make_list(xs) << std::endl;
+}
+
+TEST(list, ostream2){
+  real _xs[] = {1.2, 2.9}; THRUSTING_VECTOR<real> xs(_xs, _xs+2); 
+  std::cout << thrusting::make_list(2, xs.begin()) << std::endl;
 }
 
 TEST(list, equality){

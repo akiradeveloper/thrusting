@@ -21,7 +21,7 @@
   nvcc does not support or will not support forever.
   After all we decided to use Macro.
 */
-#ifdef THRUSTING_USE_DEVICE_VECTOR
+#ifdef THRUSTING_USING_DEVICE_VECTOR
   #define THRUSTING_VECTOR thrust::device_vector 
 #else
   #define THRUSTING_VECTOR thrust::host_vector
