@@ -1,5 +1,6 @@
 
 #pragma once
+#include <thrusting/tuple.h>
 namespace thrusting {
 
 __host__ __device__

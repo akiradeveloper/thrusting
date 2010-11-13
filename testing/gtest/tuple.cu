@@ -1,8 +1,11 @@
 #include <thrusting/tuple.h>
 #include <thrusting/dtype/tuple/int.h>
+#include <thrusting/iterator.h>
+#include <thrusting/iterator/zip_iterator.h>
+
+#include <iostream>
 
 #include <gtest/gtest.h>
-#include <iostream>
 
 namespace {
   using namespace thrusting::op;

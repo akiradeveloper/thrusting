@@ -26,6 +26,7 @@ end
 def gen_def_reverse(op, n)
 """
 template<#{typename(0...n+1)}>
+__host__ __device__
 thrust::tuple<#{type(0...n)}> operator#{op}(const #{type(n..n)} &x, const thrust::tuple<#{type(0...n)}> &t){
   return thrust::make_tuple(#{gen_calc_reverse(op, n)});
 }

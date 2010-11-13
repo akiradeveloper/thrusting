@@ -30,22 +30,22 @@
 [----------] 1 test from functional_test
 [ RUN      ] functional_test.sum_f
 [       OK ] functional_test.sum_f (0 ms)
-[----------] 1 test from functional_test (1 ms total)
+[----------] 1 test from functional_test (0 ms total)
 
 [----------] 4 tests from iterator
 [ RUN      ] iterator.iterator_value_at
-[       OK ] iterator.iterator_value_at (50 ms)
+[       OK ] iterator.iterator_value_at (53 ms)
 [ RUN      ] iterator.iterator_value_of
 [       OK ] iterator.iterator_value_of (0 ms)
 [ RUN      ] iterator.advance
 [       OK ] iterator.advance (0 ms)
 [ RUN      ] iterator.alloc_at
 [       OK ] iterator.alloc_at (1 ms)
-[----------] 4 tests from iterator (52 ms total)
+[----------] 4 tests from iterator (55 ms total)
 
 [----------] 4 tests from list
 [ RUN      ] list.make_string
-[       OK ] list.make_string (1 ms)
+[       OK ] list.make_string (0 ms)
 [ RUN      ] list.ostream
 [1, 2]
 [       OK ] list.ostream (0 ms)
@@ -53,8 +53,8 @@
 [1.2, 2.9]
 [       OK ] list.ostream2 (0 ms)
 [ RUN      ] list.equality
-[       OK ] list.equality (1 ms)
-[----------] 4 tests from list (2 ms total)
+[       OK ] list.equality (0 ms)
+[----------] 4 tests from list (1 ms total)
 
 [----------] 3 tests from real
 [ RUN      ] real.create
@@ -71,7 +71,7 @@
 [ RUN      ] tuple.minus
 [       OK ] tuple.minus (0 ms)
 [ RUN      ] tuple.multiplies
-[       OK ] tuple.multiplies (1 ms)
+[       OK ] tuple.multiplies (0 ms)
 [ RUN      ] tuple.divides
 [       OK ] tuple.divides (0 ms)
 [ RUN      ] tuple.make_string
@@ -89,5 +89,5 @@
 [----------] 1 test from zip_iterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 31 tests from 7 test cases ran. (56 ms total)
+[==========] 31 tests from 7 test cases ran. (57 ms total)
 [  PASSED  ] 31 tests.

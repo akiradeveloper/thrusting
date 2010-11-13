@@ -19,6 +19,7 @@ def all(type, tuple_type)
   end.join
 """
 #pragma once
+#include <thrusting/tuple.h>
 namespace thrusting {
 #{code}
 }
