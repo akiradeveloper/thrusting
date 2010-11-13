@@ -11,13 +11,12 @@ task :build => __FILE__ do |t|
 """
 #pragma once
 #include \"detail/n_typedef/#{tuple_type}.h\"
-#include \"detail/make_n_typedef/#{tuple_type}.h\"
 """
     f.puts(code)
     f.close
   end
 end
 
-gen_autogen_task(["detail/n_typedef", "detail/make_n_typedef"])
+gen_autogen_task(["detail/n_typedef"])
 
 CLOBBER.include(TUPLE_TYPES.map { |s| "#{s}.h" })

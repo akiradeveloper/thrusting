@@ -1,4 +1,5 @@
 #include <thrusting/dtype/real.h>
+#include <thrusting/dtype/tuple/int.h>
 #include <thrusting/dtype/tuple/real.h>
 #include <thrusting/tuple.h>
 
