@@ -4,7 +4,18 @@
 #include <thrust/device_vector.h>
 
 /*
-  Akira Hayakawa 2010 10/9
+  You can switch vector type instead of THRUSTING_VECTOR macro
+  by adding "-D THRUSTING_USING_DEVICE_VECTOR".
+  This is useful for building a portable software where
+  you can benchmark the performance of your software between GPU and CPU
+  without modified here and there in your software.
+  
+  Use THRUSTING_VECTOR instead writing "thrust::device_vector" or "thrust::host_vector"
+  then you will be more easy to investigate GPU/CPU performance acceleration!
+*/
+
+/*
+  Akira Hayakawa 2010 11/9
   Here we are using Macro.
   This is little bit periling
   because it aborts type checking.
