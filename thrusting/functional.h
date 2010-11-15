@@ -3,6 +3,18 @@
 #include <thrust/functional.h>
 #include <thrust/tuple.h>
 
+/*
+  Thrusting functional module provides you with a
+  lot of additional functions to those of Thrust library.
+  For example,
+  you can compose two functions into one,
+  use bind1st and bind2nd like those of STL and so on.
+  
+  Thrusting recommend you to always include "thrusting/functional.h"
+  instead of "thrust/functional.h".
+  
+  Enjoy functional programming!
+*/
 namespace thrusting {
 
 // a->b->c -> b->a->c
