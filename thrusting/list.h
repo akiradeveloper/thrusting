@@ -5,6 +5,7 @@
 #include "list/detail/make_string.h"
 
 #include "op/list/detail/ostream.h"
+
 /*
   Akira Hayakawa, 2010 11/8
   It is usually not a good idea to write using directive in header file.
