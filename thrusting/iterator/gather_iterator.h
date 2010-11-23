@@ -8,7 +8,7 @@ namespace detail {
 
 template<typename UnaryFunction, typename Input>
 struct gather_iterator {
-  typedef typename transform_iterator<UnaryFunction, Input> type;
+  typedef typename thrust::transform_iterator<UnaryFunction, Input> type;
 };  
 
 } // END detail
@@ -17,7 +17,7 @@ struct gather_iterator {
   impl but not tested
 */
 template<typename Input, typename Map>
-detail::gather_iterator<detail::_for_map<Map>, Input>::type make_gather_iterator(
+typename detail::gather_iterator<detail::_for_map<Map>, Input>::type make_gather_iterator(
   Input input,
   Map map
 ){

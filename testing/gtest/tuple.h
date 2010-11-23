@@ -1,14 +1,14 @@
 #include <thrusting/tuple.h>
-#include <thrusting/dtype/tuple/int.h>
 #include <thrusting/iterator.h>
 #include <thrusting/iterator/zip_iterator.h>
+#include <thrusting/vectorspace.h>
 
 #include <iostream>
 
 #include <gtest/gtest.h>
 
 namespace {
-  using namespace thrusting::op;
+  using namespace thrusting;
 }
 
 TEST(Tuple, Plus){
@@ -40,8 +40,8 @@ TEST(Tuple, Ostream){
 }
 
 TEST(Tuple, ArithmaticPriority){
-  thrusting::int2 x = thrusting::make_tuple2(1,2);
-  thrusting::int2 y = thrusting::make_tuple2(3,4);
+  tuple2<int>::type x = thrusting::make_tuple2(1,2);
+  tuple2<int>::type y = thrusting::make_tuple2(3,4);
   
   EXPECT_EQ(thrusting::make_tuple2(7, 10), x + 2 * y);
   EXPECT_EQ(thrusting::make_tuple2(8, 12), 2 * (x + y));

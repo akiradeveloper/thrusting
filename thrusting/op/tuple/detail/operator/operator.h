@@ -3,7 +3,6 @@
 #include <thrusting/tuple.h>
 
 namespace thrusting {
-namespace op {
 
 template<typename X0, typename X1>
 __host__ __device__
@@ -453,6 +452,5 @@ thrust::get<8>(y)
 );
 }
 
-}
 }
 

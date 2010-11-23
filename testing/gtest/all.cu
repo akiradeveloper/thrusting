@@ -1,4 +1,6 @@
 #include "functional.h"
+#include "gather.h"
+#include "gather_iterator.h"
 #include "iterator.h"
 #include "list.h"
 #include "real.h"

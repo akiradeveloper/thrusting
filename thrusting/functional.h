@@ -1,11 +1,5 @@
 #pragma once
 
-#include <thrust/functional.h>
-#include <thrust/tuple.h>
-#include <thrust/iterator/iterator_traits.h>
-
-#include <thrusting/iterator.h>
-
 /*
   Thrusting functional module provides you with a
   lot of additional functions to those of Thrust library.
@@ -18,19 +12,32 @@
   
   Enjoy functional programming!
 */
+
+#include <thrust/functional.h>
+#include <thrust/tuple.h>
+#include <thrust/iterator/iterator_traits.h>
+
+#include <thrusting/iterator.h>
+
 namespace thrusting {
 
 namespace detail {
 
 template<typename Map>
-struct _for_map {
+struct _for_map :public thrust::unary_function<
+  typename thrust::iterator_difference<Map>::type,
+  typename thrust::iterator_value<Map>::type> {
   Map _it;
   typedef typename thrust::iterator_value<Map>::type T;
   typedef typename thrust::iterator_difference<Map>::type Index;
   _for_map(Map it)
   :_it(it){}
-  T operator()(Index idx){
-    return iterator_value_at(idx, _it);
+  __host__ __device__
+  T operator()(Index idx, thrust::device_space_tag){
+    return iterator_value_at(idx, _it, thrust::device_space_tag());
+  }
+  T operator()(Index idx, thrust::host_space_tag){
+    return iterator_value_at(idx, _it, thrust::host_space_tag());
   }
 };
 
@@ -113,7 +120,7 @@ struct _bind1st :public thrust::unary_function<
 */
 template<typename Iterator>
 detail::_for_map<Iterator> for_map(Iterator it){
-  return detail::_for_map<Iterator>(it);
+  return detail::_for_map<Iterator>(it, typename thrust::iterator_space<Iterator>::type());
 }
 
 /*

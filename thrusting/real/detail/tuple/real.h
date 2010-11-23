@@ -1,6 +1,7 @@
 
 #pragma once
 #include <thrusting/tuple.h>
+namespace thrusting {
 
 typedef typename tuple2<real>::type real2;
 
@@ -18,3 +19,4 @@ typedef typename tuple8<real>::type real8;
 
 typedef typename tuple9<real>::type real9;
 
+}

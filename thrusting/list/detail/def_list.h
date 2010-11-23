@@ -30,11 +30,13 @@ struct list {
     thrust::advance(it, length());
     return it;
   } 
-  bool operator==(const list<Iterator> &ys) const {
+  template<typename Iterator2>
+  bool operator==(const list<Iterator2> &ys) const {
     if(length() != ys.length()){ return false; }
     return thrust::equal(head(), head()+length(), ys.head());
   }
-  bool operator!=(const list<Iterator> &ys) const {
+  template<typename Iterator2>
+  bool operator!=(const list<Iterator2> &ys) const {
     return !( *(this) == ys );
   }
 };

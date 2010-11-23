@@ -1,14 +1,10 @@
-#include <thrusting/dtype/real.h>
-#include <thrusting/dtype/tuple/int.h>
-#include <thrusting/dtype/tuple/real.h>
+#include <thrusting/real.h>
 #include <thrusting/tuple.h>
 
 #include <gtest/gtest.h>
 
 namespace {
-  using thrusting::real;
-  using thrusting::real2;
-  using namespace thrusting::op;
+  using namespace thrusting;
 }
 
 TEST(Real, Create){

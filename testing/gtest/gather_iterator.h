@@ -16,5 +16,7 @@ TEST(GatherIterator, Test){
 
   EXPECT_EQ(
     make_list(ans),
-    make_list(2, make_gather_iterator(input, map)));
+    make_list(
+      2, 
+      make_gather_iterator(input.begin(), map.begin())));
 }

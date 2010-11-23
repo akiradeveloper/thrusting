@@ -4,7 +4,6 @@
 #include <iostream>
 
 namespace thrusting {
-namespace op {
 
 template<typename X0, typename X1>
 std::ostream &operator<<(std::ostream &os, const thrust::tuple<X0, X1> &t){
@@ -54,6 +53,5 @@ std::ostream &operator<<(std::ostream &os, const thrust::tuple<X0, X1, X2, X3, X
   return os;
 }
 
-}
 }
 
