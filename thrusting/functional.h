@@ -19,27 +19,11 @@
 
 #include <thrusting/iterator.h>
 
+#include "for_map.h"
+
 namespace thrusting {
 
 namespace detail {
-
-template<typename Map>
-struct _for_map :public thrust::unary_function<
-  typename thrust::iterator_difference<Map>::type,
-  typename thrust::iterator_value<Map>::type> {
-  Map _it;
-  typedef typename thrust::iterator_value<Map>::type T;
-  typedef typename thrust::iterator_difference<Map>::type Index;
-  _for_map(Map it)
-  :_it(it){}
-  __host__ __device__
-  T operator()(Index idx, thrust::device_space_tag){
-    return iterator_value_at(idx, _it, thrust::device_space_tag());
-  }
-  T operator()(Index idx, thrust::host_space_tag){
-    return iterator_value_at(idx, _it, thrust::host_space_tag());
-  }
-};
 
 template<typename F>
 struct _flip :public thrust::binary_function<
@@ -113,15 +97,6 @@ struct _bind1st :public thrust::unary_function<
 };
 
 } // END detail
-
-/*
-  [a] -> Int -> a
-  (!!) in Haskell
-*/
-template<typename Iterator>
-detail::_for_map<Iterator> for_map(Iterator it){
-  return detail::_for_map<Iterator>(it, typename thrust::iterator_space<Iterator>::type());
-}
 
 /*
   a->b->c -> b->a->c

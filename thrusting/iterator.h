@@ -22,6 +22,11 @@ typename thrust::iterator_value<Iterator>::type iterator_value_of(Iterator it, t
   return *(it);
 }
 
+template<typename Iterator>
+typename thrust::iterator_value<Iterator>::type iterator_value_of(Iterator it, thrust::any_space_tag){
+  return *(it);
+}
+
 template<typename Index, typename Iterator>
 __host__ __device__
 typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Iterator it, thrust::device_space_tag){
@@ -32,6 +37,12 @@ typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Itera
 template<typename Index, typename Iterator>
 typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Iterator it, thrust::host_space_tag){
   thrust::advance(it, n);
+  return detail::iterator_value_of(it, thrust::host_space_tag());
+}
+
+template<typename Index, typename Iterator>
+typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Iterator it, thrust::any_space_tag){
+  it += n;
   return detail::iterator_value_of(it, thrust::host_space_tag());
 }
 
