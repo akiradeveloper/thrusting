@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include <thrust/equal.h>
 #include <thrust/advance.h>
 
@@ -37,5 +39,5 @@ struct list {
   }
 };
 
-} // end detail
-} // end thrusting
+} // END detail
+} // END thrusting

@@ -44,7 +44,6 @@
   This version is more type-safe.
 */
 namespace thrusting {
-
 template<typename T>
 struct vector {
 #ifdef THRUSTING_USING_DEVICE_VECTOR
@@ -52,6 +51,5 @@ struct vector {
 #else
   typedef typename thrust::host_vector<T> type;
 #endif
-};
-
 } // END thrusting
+}

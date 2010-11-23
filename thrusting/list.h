@@ -14,4 +14,4 @@
   without declare using the op namespace.
   namespace thrusting::op::list should not be used by client.
 */
-using namespace thrusting::op::list;
+// using namespace thrusting::op::list;

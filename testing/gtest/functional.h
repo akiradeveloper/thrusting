@@ -1,7 +1,20 @@
 #include <thrusting/functional.h>
 #include <thrusting/tuple.h>
+#include <thrusting/vector.h>
 
 #include <gtest/gtest.h>
+
+namespace {
+  using namespace thrusting;
+}
+
+TEST(Functional, ForMap){
+  int _xs[] = {1,2,3}; vector<int>::type xs(_xs, _xs+3); 
+
+  EXPECT_EQ(1, for_map(xs.begin())(static_cast<size_t>(0)));
+  EXPECT_EQ(2, for_map(xs.begin())(static_cast<int>(1)));
+  EXPECT_EQ(3, for_map(xs.begin())(static_cast<unsigned short>(2)));
+}
 
 TEST(functional, flip){
   // 4 / 2 = 2
