@@ -27,6 +27,11 @@ typename thrust::iterator_value<Iterator>::type iterator_value_of(Iterator it, t
   return *(it);
 }
 
+template<typename Iterator>
+typename thrust::iterator_value<Iterator>::type iterator_value_of(Iterator it){
+  return iterator_value_of(it, typename thrust::iterator_space<Iterator>::type());
+}
+
 template<typename Index, typename Iterator>
 __host__ __device__
 typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Iterator it, thrust::device_space_tag){
@@ -50,7 +55,7 @@ typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Itera
 
 template<typename Index, typename Iterator>
 typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Iterator it){
-  return detail::iterator_value_at(n, it, thrust::iterator_space<Iterator>::type());
+  return detail::iterator_value_at(n, it, typename thrust::iterator_space<Iterator>::type());
 }
 
 template<typename Distance, typename Iterator>
@@ -61,9 +66,8 @@ Iterator advance(Distance distance, Iterator it){
 
 template<typename Index, typename Iterator>
 void alloc_at(Index idx, Iterator it, typename thrust::iterator_value<Iterator>::type x){
-  // Iterator _it = advance(idx, it); // lengthy
   thrust::advance(it, idx);
-  *_it = x;
+  *it = x;
 }
 
 } // END thrusting
