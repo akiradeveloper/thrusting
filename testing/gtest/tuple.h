@@ -11,35 +11,35 @@ namespace {
   using namespace thrusting::op;
 }
 
-TEST(tuple, plus){
+TEST(Tuple, Plus){
   // T + T
   EXPECT_EQ(thrusting::make_tuple2(3,5), thrusting::make_tuple2(2,3) + thrusting::make_tuple2(1,2));
 } 
 
-TEST(tuple, minus){
+TEST(Tuple, Minus){
   // T - T
   EXPECT_EQ(thrusting::make_tuple2(1,1), thrusting::make_tuple2(2,3) - thrusting::make_tuple2(1,2));
 }
 
-TEST(tuple, multiplies){
+TEST(Tuple, Multiplies){
   // v * T
   EXPECT_EQ(thrusting::make_tuple2(2,2), 2 * thrusting::make_tuple2(1,1));
 }
 
-TEST(tuple, divides){
+TEST(Tuple, Divides){
   // T / v
   EXPECT_EQ(thrusting::make_tuple2(1,1), thrusting::make_tuple2(2,2) / 2);
 }
 
-TEST(tuple, make_string){
+TEST(Tuple, MakeString){
   EXPECT_EQ("(1, 2)", thrusting::make_string(thrusting::make_tuple2(1,2)));
 }
   
-TEST(tuple, ostream){
+TEST(Tuple, Ostream){
   std::cout << thrusting::make_tuple2(1,2) << std::endl;
 }
 
-TEST(tuple, arithmatic_priority){
+TEST(Tuple, ArithmaticPriority){
   thrusting::int2 x = thrusting::make_tuple2(1,2);
   thrusting::int2 y = thrusting::make_tuple2(3,4);
   

@@ -1,9 +1,0 @@
-thisdir = File.expand_path File.dirname __FILE__
-
-require "rake/clean"
-
-["gen_autogen_task"].each do |s|
-  require "thrusting/rb/#{s}"
-end 
-
-gen_autogen_task(["tuple"])

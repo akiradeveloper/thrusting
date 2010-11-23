@@ -16,39 +16,39 @@ TEST(Functional, ForMap){
   EXPECT_EQ(3, for_map(xs.begin())(static_cast<unsigned short>(2)));
 }
 
-TEST(functional, flip){
+TEST(Functional, Flip){
   // 4 / 2 = 2
   int x = thrusting::flip(thrust::divides<int>())(2, 4);
   EXPECT_EQ(2, x);
 }
 
-TEST(functional, multiplies){
+TEST(Functional, Multiplies){
   int x = thrusting::multiplies<int, int>()(2, 2);
   EXPECT_EQ(4, x);
 }
 
-TEST(functional, divides){
+TEST(Functional, Divides){
   int x = thrusting::divides<int, int>()(4, 2);
   EXPECT_EQ(2, x);
 }
 
-TEST(functional, left_shift){
+TEST(Functional, LeftShift){
   int x = thrusting::left_shift<int, int>()(2, 2);
   EXPECT_EQ(8, x);
 }
 
-TEST(functional, right_shift){
+TEST(Functional, RightShift){
   int x = thrusting::right_shift<int, int>()(8, 2);
   EXPECT_EQ(2, x);
 }
 
-TEST(functional, bind1st){
+TEST(Functional, Bind1st){
   // 2 / 1 = 2
   int x = thrusting::bind1st(thrust::divides<int>(), 2)(1);
   EXPECT_EQ(2, x);
 }
 
-TEST(functional, bind2nd){
+TEST(Functional, Bind2nd){
   // 4 / 2 = 2
   int x = thrusting::bind2nd(thrusting::divides<long, int>(), 2)(4L);
   EXPECT_EQ(2L, x);
@@ -61,28 +61,28 @@ struct sum_f :public thrust::unary_function<thrust::tuple<int, int>, int> {
   }
 };
 
-TEST(functional_test, sum_f){
+TEST(FunctionalTest, SumF){
   EXPECT_EQ(5, sum_f()(thrust::make_tuple(2,3)));
 }
 
-TEST(functional, curry){
+TEST(Functional, Curry){
   // 2 + 3 = 5
   int x = thrusting::curry(sum_f())(2,3);
   EXPECT_EQ(5, x);
 }
 
-TEST(functional, uncurry){
+TEST(Functional, UnCurry){
   // 2 + 3 = 5
   int x = thrusting::uncurry(thrust::plus<int>())(thrust::make_tuple(2,3));
   EXPECT_EQ(5, x);
 }
 
-TEST(functional, compose){
+TEST(Functional, Compose){
   // -1 -> (-) -> () -> 1
   EXPECT_EQ(1, thrusting::compose(thrust::negate<int>(), thrust::identity<int>())(-1));
 }
 
-TEST(functional, compose2){
+TEST(Functional, Compose2){
   // 1 -> (+1) -> (*2) -> 4
   int x= 
     thrusting::compose(
