@@ -57,23 +57,23 @@ struct any_for_map :public thrust::unary_function<
 /*
   use if TMP.
 */
-//template<typename Space, typename Map>
-//struct _for_map {};
-//
-//template<typename Map>
-//struct _for_map<thrust::device_space_tag, Map> {
-//  typedef device_for_map<Map> type;
-//};
-//
-//template<typename Map>
-//struct _for_map<thrust::host_space_tag, Map> {
-//  typedef host_for_map<Map> type;
-//};
-//
-//template<typename Map>
-//struct _for_map<thrust::any_space_tag, Map> {
-//  typedef any_for_map<Map> type;
-//};
+template<typename Space, typename Map>
+struct _for_map {};
+
+template<typename Map>
+struct _for_map<thrust::device_space_tag, Map> {
+  typedef device_for_map<Map> type;
+};
+
+template<typename Map>
+struct _for_map<thrust::host_space_tag, Map> {
+  typedef host_for_map<Map> type;
+};
+
+template<typename Map>
+struct _for_map<thrust::any_space_tag, Map> {
+  typedef any_for_map<Map> type;
+};
 
 } // END detail
 
@@ -81,6 +81,7 @@ template<typename Map>
 detail::device_for_map<Map> for_map(Map it){
   return detail::device_for_map<Map>(it);
 }
+
 /*
   [a] :: of some space -> Int -> a
   (!!) in Haskell
