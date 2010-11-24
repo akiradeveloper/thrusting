@@ -8,14 +8,6 @@ namespace {
   using namespace thrusting;
 }
 
-TEST(Functional, ForMap){
-  int _xs[] = {1,2,3}; vector<int>::type xs(_xs, _xs+3); 
-
-  EXPECT_EQ(1, for_map(xs.begin())(static_cast<size_t>(0)));
-  EXPECT_EQ(2, for_map(xs.begin())(static_cast<int>(1)));
-  EXPECT_EQ(3, for_map(xs.begin())(static_cast<unsigned short>(2)));
-}
-
 TEST(Functional, Flip){
   // 4 / 2 = 2
   int x = thrusting::flip(thrust::divides<int>())(2, 4);

@@ -1,93 +1,109 @@
 (in /Users/akira/sandbox/thrusting/testing)
 "nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -Xcompiler -trigraphs -D THRUSTING_USING_DEVICE_VECTOR -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 31 tests from 7 test cases.
+[==========] Running 36 tests from 9 test cases.
 [----------] Global test environment set-up.
-[----------] 11 tests from functional
-[ RUN      ] functional.flip
-[       OK ] functional.flip (0 ms)
-[ RUN      ] functional.multiplies
-[       OK ] functional.multiplies (0 ms)
-[ RUN      ] functional.divides
-[       OK ] functional.divides (0 ms)
-[ RUN      ] functional.left_shift
-[       OK ] functional.left_shift (0 ms)
-[ RUN      ] functional.right_shift
-[       OK ] functional.right_shift (0 ms)
-[ RUN      ] functional.bind1st
-[       OK ] functional.bind1st (0 ms)
-[ RUN      ] functional.bind2nd
-[       OK ] functional.bind2nd (0 ms)
-[ RUN      ] functional.curry
-[       OK ] functional.curry (0 ms)
-[ RUN      ] functional.uncurry
-[       OK ] functional.uncurry (0 ms)
-[ RUN      ] functional.compose
-[       OK ] functional.compose (0 ms)
-[ RUN      ] functional.compose2
-[       OK ] functional.compose2 (0 ms)
-[----------] 11 tests from functional (1 ms total)
+[----------] 11 tests from Functional
+[ RUN      ] Functional.Flip
+[       OK ] Functional.Flip (0 ms)
+[ RUN      ] Functional.Multiplies
+[       OK ] Functional.Multiplies (0 ms)
+[ RUN      ] Functional.Divides
+[       OK ] Functional.Divides (0 ms)
+[ RUN      ] Functional.LeftShift
+[       OK ] Functional.LeftShift (1 ms)
+[ RUN      ] Functional.RightShift
+[       OK ] Functional.RightShift (0 ms)
+[ RUN      ] Functional.Bind1st
+[       OK ] Functional.Bind1st (0 ms)
+[ RUN      ] Functional.Bind2nd
+[       OK ] Functional.Bind2nd (0 ms)
+[ RUN      ] Functional.Curry
+[       OK ] Functional.Curry (0 ms)
+[ RUN      ] Functional.UnCurry
+[       OK ] Functional.UnCurry (0 ms)
+[ RUN      ] Functional.Compose
+[       OK ] Functional.Compose (0 ms)
+[ RUN      ] Functional.Compose2
+[       OK ] Functional.Compose2 (0 ms)
+[----------] 11 tests from Functional (1 ms total)
 
-[----------] 1 test from functional_test
-[ RUN      ] functional_test.sum_f
-[       OK ] functional_test.sum_f (0 ms)
-[----------] 1 test from functional_test (0 ms total)
+[----------] 1 test from FunctionalTest
+[ RUN      ] FunctionalTest.SumF
+[       OK ] FunctionalTest.SumF (0 ms)
+[----------] 1 test from FunctionalTest (0 ms total)
 
-[----------] 4 tests from iterator
-[ RUN      ] iterator.iterator_value_at
-[       OK ] iterator.iterator_value_at (123 ms)
-[ RUN      ] iterator.iterator_value_of
-[       OK ] iterator.iterator_value_of (0 ms)
-[ RUN      ] iterator.advance
-[       OK ] iterator.advance (0 ms)
-[ RUN      ] iterator.alloc_at
-[       OK ] iterator.alloc_at (2 ms)
-[----------] 4 tests from iterator (125 ms total)
+[----------] 2 tests from Thrust
+[ RUN      ] Thrust.Gather
+[       OK ] Thrust.Gather (54 ms)
+[ RUN      ] Thrust.Scatter
+[       OK ] Thrust.Scatter (0 ms)
+[----------] 2 tests from Thrust (54 ms total)
 
-[----------] 4 tests from list
-[ RUN      ] list.make_string
-[       OK ] list.make_string (0 ms)
-[ RUN      ] list.ostream
+[----------] 4 tests from Iterator
+[ RUN      ] Iterator.IteratorValueAt
+[       OK ] Iterator.IteratorValueAt (1 ms)
+[ RUN      ] Iterator.IteratorValueOf
+[       OK ] Iterator.IteratorValueOf (0 ms)
+[ RUN      ] Iterator.Advance
+[       OK ] Iterator.Advance (0 ms)
+[ RUN      ] Iterator.AllocAt
+[       OK ] Iterator.AllocAt (0 ms)
+[----------] 4 tests from Iterator (1 ms total)
+
+[----------] 5 tests from List
+[ RUN      ] List.MakeString
+[       OK ] List.MakeString (1 ms)
+[ RUN      ] List.Ostream
 [1, 2]
-[       OK ] list.ostream (1 ms)
-[ RUN      ] list.ostream2
+[       OK ] List.Ostream (0 ms)
+[ RUN      ] List.Ostream2
 [1.2, 2.9]
-[       OK ] list.ostream2 (0 ms)
-[ RUN      ] list.equality
-[       OK ] list.equality (1 ms)
-[----------] 4 tests from list (2 ms total)
+[       OK ] List.Ostream2 (0 ms)
+[ RUN      ] List.Equality
+[       OK ] List.Equality (1 ms)
+[ RUN      ] List.Equality2
+[       OK ] List.Equality2 (0 ms)
+[----------] 5 tests from List (2 ms total)
 
-[----------] 3 tests from real
-[ RUN      ] real.create
-[       OK ] real.create (0 ms)
-[ RUN      ] real.tuple_create
-[       OK ] real.tuple_create (0 ms)
-[ RUN      ] real.simple_arithmatic
-[       OK ] real.simple_arithmatic (0 ms)
-[----------] 3 tests from real (0 ms total)
+[----------] 2 tests from PermutationIterator
+[ RUN      ] PermutationIterator.Gather
+[       OK ] PermutationIterator.Gather (0 ms)
+[ RUN      ] PermutationIterator.Scatter
+[       OK ] PermutationIterator.Scatter (1 ms)
+[----------] 2 tests from PermutationIterator (1 ms total)
 
-[----------] 7 tests from tuple
-[ RUN      ] tuple.plus
-[       OK ] tuple.plus (0 ms)
-[ RUN      ] tuple.minus
-[       OK ] tuple.minus (0 ms)
-[ RUN      ] tuple.multiplies
-[       OK ] tuple.multiplies (0 ms)
-[ RUN      ] tuple.divides
-[       OK ] tuple.divides (0 ms)
-[ RUN      ] tuple.make_string
-[       OK ] tuple.make_string (0 ms)
-[ RUN      ] tuple.ostream
+[----------] 3 tests from Real
+[ RUN      ] Real.Create
+[       OK ] Real.Create (0 ms)
+[ RUN      ] Real.TupleCreate
+[       OK ] Real.TupleCreate (0 ms)
+[ RUN      ] Real.SimpleArithmatic
+[       OK ] Real.SimpleArithmatic (0 ms)
+[----------] 3 tests from Real (0 ms total)
+
+[----------] 7 tests from Tuple
+[ RUN      ] Tuple.Plus
+[       OK ] Tuple.Plus (0 ms)
+[ RUN      ] Tuple.Minus
+[       OK ] Tuple.Minus (0 ms)
+[ RUN      ] Tuple.Multiplies
+[       OK ] Tuple.Multiplies (0 ms)
+[ RUN      ] Tuple.Divides
+[       OK ] Tuple.Divides (0 ms)
+[ RUN      ] Tuple.MakeString
+[       OK ] Tuple.MakeString (0 ms)
+[ RUN      ] Tuple.Ostream
 (1, 2)
-[       OK ] tuple.ostream (0 ms)
-[ RUN      ] tuple.arithmatic_priority
-[       OK ] tuple.arithmatic_priority (0 ms)
-[----------] 7 tests from tuple (0 ms total)
+[       OK ] Tuple.Ostream (0 ms)
+[ RUN      ] Tuple.ArithmaticPriority
+[       OK ] Tuple.ArithmaticPriority (0 ms)
+[----------] 7 tests from Tuple (0 ms total)
 
-[----------] 1 test from zip_iterator
-[ RUN      ] zip_iterator.reference
-[       OK ] zip_iterator.reference (1 ms)
-[----------] 1 test from zip_iterator (1 ms total)
+[----------] 1 test from ZipIterator
+[ RUN      ] ZipIterator.Reference
+[       OK ] ZipIterator.Reference (1 ms)
+[----------] 1 test from ZipIterator (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 31 tests from 7 test cases ran. (129 ms total)
-[  PASSED  ] 31 tests.
+[==========] 36 tests from 9 test cases ran. (60 ms total)
+[  PASSED  ] 36 tests.

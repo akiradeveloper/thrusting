@@ -19,8 +19,6 @@
 
 #include <thrusting/iterator.h>
 
-#include "for_map.h"
-
 namespace thrusting {
 
 namespace detail {
@@ -99,6 +97,7 @@ struct _bind1st :public thrust::unary_function<
 } // END detail
 
 /*
+  flip the arguments of given binary function
   a->b->c -> b->a->c
 */
 template<typename F>
@@ -107,6 +106,7 @@ detail::_flip<F> flip(F f){
 }
 
 /*
+  bind1st
   a->b->c -> a -> b->c
 */
 template<typename F>
@@ -115,6 +115,7 @@ detail::_bind1st<F> bind1st(F f, const typename F::first_argument_type a) {
 }
 
 /*
+  bind2nd
   a->b->c -> b -> a->c
 */
 template<typename F>
@@ -139,6 +140,7 @@ detail::_uncurry<F> uncurry(F f){
 }
 
 /*
+  f * g
   b->c -> a->b -> a->c
 */
 template<typename F, typename G>
@@ -146,6 +148,9 @@ detail::_compose<F, G> compose(F f, G g){
   return detail::_compose<F, G>(f, g);
 }
 
+/*
+  a -> b -> (a*b)::b
+*/
 template<typename A, typename B>
 struct multiplies :public thrust::binary_function<A, B, B> {
   __host__ __device__
@@ -154,6 +159,9 @@ struct multiplies :public thrust::binary_function<A, B, B> {
   }
 };
 
+/*
+  a -> b -> (a/b)
+*/
 template<typename A, typename B>
 struct divides :public thrust::binary_function<A, B, A> {
   __host__ __device__
@@ -162,6 +170,9 @@ struct divides :public thrust::binary_function<A, B, A> {
   }
 };
 
+/*
+  a -> b -> (a<<b)
+*/
 template<typename A, typename B>
 struct left_shift :public thrust::binary_function<A, B, A> {
   __host__ __device__
@@ -170,6 +181,9 @@ struct left_shift :public thrust::binary_function<A, B, A> {
   }
 };
 
+/*
+  a -> b -> (a>>b)
+*/
 template<typename A, typename B>
 struct right_shift :public thrust::binary_function<A, B, A> {
   __host__ __device__

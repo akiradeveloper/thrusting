@@ -1,3 +1,5 @@
+#include <thrust/iterator/counting_iterator.h>
+
 #include <thrusting/real.h>
 #include <thrusting/list.h>
 #include <thrusting/vector.h>
@@ -39,3 +41,13 @@ TEST(List, Equality){
     thrusting::make_list(xs),
     thrusting::make_list(zs)); 
 }
+
+/*
+  Equality between vector of different space
+*/
+TEST(List, Equality2){
+  int _xs[] = {1,2}; vector<int>::type xs(_xs, _xs+2);
+  EXPECT_EQ(
+    make_list(xs),
+    make_list(2, thrust::make_counting_iterator(1)));
+}  
