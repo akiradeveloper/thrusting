@@ -1,16 +1,15 @@
 #pragma once
 
 /*
-  Thrusting functional module provides you with a
-  lot of additional functions to those of Thrust library.
-  For example,
-  you can compose two functions into one,
-  use bind1st and bind2nd like those of STL and so on.
+  functional.h in Thrusting library supports
+  several useful functions such as 
   
-  Thrusting recommend you to always include "thrusting/functional.h"
-  instead of "thrust/functional.h".
-  
-  Enjoy functional programming!
+  bind1st
+  bind2nd
+  curry, uncurry
+  compose
+
+  Enjoy Functional Programming!
 */
 
 #include <thrust/functional.h>

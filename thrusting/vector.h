@@ -1,13 +1,19 @@
 #pragma once
 
 /*
-  You can switch vector type by adding "-D THRUSTING_USING_DEVICE_VECTOR".
+  You can switch vector type by adding 
+
+  -D THRUSTING_USING_DEVICE_VECTOR
 
   This is useful for building a portable software where
   you can benchmark the performance of your software between GPU and CPU
   without modified here and there in your software.
   
-  Use thrusting::vector<datatype>::type instead writing "thrust::device_vector" or "thrust::host_vector"
+  Use 
+  
+  thrusting::vector<datatype>::type 
+
+  instead writing thrust::device_vector or thrust::host_vector
   then you will be more easy to investigate GPU/CPU performance acceleration!
 */
 

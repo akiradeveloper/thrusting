@@ -1,9 +1,18 @@
 #pragma once
 
 /*
-  You can switch the hidden type of "real" to type double
-  only by adding "-D THRUSTING_USING_DOUBLE_FOR_REAL",
-  otherwise "real" stands for float.
+  You can switch the hidden type of 
+  
+  thrusting::real -> double
+
+  only by 
+
+  -D THRUSTING_USING_DOUBLE_FOR_REAL
+
+  Otherwise, 
+
+  thrusting::real -> float.
+
   This is very effective to build a portable software.
 */
 
