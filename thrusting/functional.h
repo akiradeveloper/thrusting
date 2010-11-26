@@ -22,9 +22,6 @@ namespace thrusting {
 
 namespace detail {
 
-/*
- 
-*/
 //template<typename Out, typename Pred>
 //struct pred :public thrust::binary_function<
 //Pred::first_argument_type,
@@ -34,81 +31,28 @@ namespace detail {
 //  Pred _pred;
 //  equal_to(Out out_true, Out out_false, Pred pred)
 //  :_value(value), _pred(pred){}
-
-typedef Pred::first_argument_type In1;
-typedef Pred::second_argument_type In2;
-Out operator()(In1 in1, In2 in2) const {
-  if(_pred(in1, in2)){
-    return 
+//typedef Pred::first_argument_type In1;
+//typedef Pred::second_argument_type In2;
+//Out operator()(In1 in1, In2 in2) const {
+//  if(_pred(in1, in2)){
+//    return 
     
+} // END detail
+
+namespace detail {
+
 template<typename F>
-struct _flip :public thrust::binary_function<
+struct flip :public thrust::binary_function<
 typename F::second_argument_type,
 typename F::first_argument_type,
 typename F::result_type> {
   F _f;
-  _flip(F f)
+  flip(F f)
   :_f(f){}
   __host__ __device__
   typename F::result_type operator()(
   const typename F::second_argument_type &b, const typename F::first_argument_type &a) const {
     return _f(a, b);
-  }
-};
-
-template<typename F>
-struct _curry :public thrust::binary_function<
-typename thrust::tuple_element<0, typename F::argument_type>::type, 
-typename thrust::tuple_element<1, typename F::argument_type>::type, 
-typename F::result_type> {
-  F _f;
-  _curry(F f)
-  :_f(f){}
-  __host__ __device__
-  typename F::result_type operator()(
-  const typename thrust::tuple_element<0, typename F::argument_type>::type &a, 
-  const typename thrust::tuple_element<1, typename F::argument_type>::type &b) const {
-    return _f(thrust::make_tuple(a, b));
-  }
-};
-
-template<typename F>
-struct _uncurry :public thrust::unary_function<
-thrust::tuple<typename F::first_argument_type, typename F::second_argument_type>, 
-typename F::result_type> {
-  F _f;
-  _uncurry(F f)
-  :_f(f){}
-  __host__ __device__
-  typename F::result_type operator()(
-  thrust::tuple<typename F::first_argument_type, typename F::second_argument_type> t) const {
-    return _f(thrust::get<0>(t), thrust::get<1>(t));
-  }
-};  
-
-template<typename F, typename G>
-struct _compose :public thrust::unary_function<typename F::argument_type, typename G::result_type> {
-  F _f;
-  G _g;
-  _compose(F f, G g)
-  :_f(f), _g(g){}
-  __host__ __device__
-  typename F::result_type operator()(const typename G::argument_type &x) const {
-    return _f(_g(x));
-  }
-};
-
-template<typename F>
-struct _bind1st :public thrust::unary_function<
-  typename F::second_argument_type,
-  typename F::result_type> {
-  F _f;
-  typename F::first_argument_type _a;
-  _bind1st(F f, const typename F::first_argument_type &a)
-  :_f(f), _a(a){}
-  __host__ __device__
-  typename F::result_type operator()(const typename F::second_argument_type &b) const {
-    return _f(_a, b);
   }
 };
 
@@ -119,17 +63,35 @@ struct _bind1st :public thrust::unary_function<
   a->b->c -> b->a->c
 */
 template<typename F>
-detail::_flip<F> flip(F f){
-  return detail::_flip<F>(f);
+detail::flip<F> flip(F f){
+  return detail::flip<F>(f);
 }
+
+namespace detail {
+
+template<typename F>
+struct bind1st :public thrust::unary_function<
+  typename F::second_argument_type,
+  typename F::result_type> {
+  F _f;
+  typename F::first_argument_type _a;
+  bind1st(F f, const typename F::first_argument_type &a)
+  :_f(f), _a(a){}
+  __host__ __device__
+  typename F::result_type operator()(const typename F::second_argument_type &b) const {
+    return _f(_a, b);
+  }
+};
+
+} // END detail
 
 /*
   bind1st
   a->b->c -> a -> b->c
 */
 template<typename F>
-detail::_bind1st<F> bind1st(F f, const typename F::first_argument_type &a) {
-  return detail::_bind1st<F>(f, a);
+detail::bind1st<F> bind1st(F f, const typename F::first_argument_type &a) {
+  return detail::bind1st<F>(f, a);
 }
 
 /*
@@ -137,33 +99,108 @@ detail::_bind1st<F> bind1st(F f, const typename F::first_argument_type &a) {
   a->b->c -> b -> a->c
 */
 template<typename F>
-detail::_bind1st< detail::_flip<F> > bind2nd(F f, const typename F::second_argument_type &b) {
+detail::bind1st< detail::flip<F> > bind2nd(F f, const typename F::second_argument_type &b) {
   return thrusting::bind1st(flip(f), b);
 }
+
+namespace detail {
+
+template<typename F>
+struct curry :public thrust::binary_function<
+typename thrust::tuple_element<0, typename F::argument_type>::type, 
+typename thrust::tuple_element<1, typename F::argument_type>::type, 
+typename F::result_type> {
+  F _f;
+  curry(F f)
+  :_f(f){}
+  __host__ __device__
+  typename F::result_type operator()(
+  const typename thrust::tuple_element<0, typename F::argument_type>::type &a, 
+  const typename thrust::tuple_element<1, typename F::argument_type>::type &b) const {
+    return _f(thrust::make_tuple(a, b));
+  }
+};
+
+} // END detail
 
 /*
   (a,b)->c -> a->b->c
 */
 template<typename F>
-detail::_curry<F> curry(F f){
-  return detail::_curry<F>(f);
+detail::curry<F> curry(F f){
+  return detail::curry<F>(f);
 }
+
+namespace detail {
+
+template<typename F>
+struct uncurry :public thrust::unary_function<
+thrust::tuple<typename F::first_argument_type, typename F::second_argument_type>, 
+typename F::result_type> {
+  F _f;
+  uncurry(F f)
+  :_f(f){}
+  __host__ __device__
+  typename F::result_type operator()(
+  thrust::tuple<typename F::first_argument_type, typename F::second_argument_type> t) const {
+    return _f(thrust::get<0>(t), thrust::get<1>(t));
+  }
+};  
+
+} // END detail
 
 /*
   a->b->c -> (a,b)->c
 */
 template<typename F>
-detail::_uncurry<F> uncurry(F f){
-  return detail::_uncurry<F>(f);
+detail::uncurry<F> uncurry(F f){
+  return detail::uncurry<F>(f);
 }
+
+namespace detail {
+
+template<typename F, typename G>
+struct compose :public thrust::unary_function<typename F::argument_type, typename G::result_type> {
+  F _f;
+  G _g;
+  compose(F f, G g)
+  :_f(f), _g(g){}
+  __host__ __device__
+  typename F::result_type operator()(const typename G::argument_type &x) const {
+    return _f(_g(x));
+  }
+};
+
+} // END detail
 
 /*
   f * g
   b->c -> a->b -> a->c
 */
 template<typename F, typename G>
-detail::_compose<F, G> compose(F f, G g){
-  return detail::_compose<F, G>(f, g);
+detail::compose<F, G> compose(F f, G g){
+  return detail::compose<F, G>(f, g);
+}
+
+namespace detail {
+
+template<typename Out>
+struct constant {
+  Out _value;
+  constant(Out value)
+  :_value(value){} 
+  template<typename In>
+  __host__ __device__
+  Out operator()(In in) const {
+    return _value;
+  }
+};
+
+} // END detail
+
+template<typename Out>
+detail::constant<Out> constant(Out value){
+  return detail::constant<Out>(value);
 }
 
 /*
@@ -176,6 +213,11 @@ struct multiplies :public thrust::binary_function<A, B, B> {
     return x * y;
   }
 };
+
+//template<typename A, typename B>
+//detail::multiplies<A, B> multiplies(){
+  
+
 
 /*
   a -> b -> (a/b)::a
@@ -210,25 +252,22 @@ struct right_shift :public thrust::binary_function<A, B, A> {
   }
 };
 
+namespace detail {
 template<typename A, typename B>
-struct _equal_to :public thrust::binary_function<A, B, bool> {
+struct equal_to :public thrust::binary_function<A, B, bool> {
+  __host__ __device__
   bool operator()(A a, B b) const {
+    if(a==b){
+      return true;
+    }
+    return false; 
   }
 };
+} // END detail
 
-template<typename In, typename Out>
-struct _constant :public thrust::unary_function<In, Out> {
-  Out _value;
-  always(Out value)
-  :_value(value){} 
-  Out operator()(In in) const {
-    return _value;
-  }
-};
-
-template<typename Out, typename In>
-_constant<In, Out> constant(Out value){
-  return _constant<In, Out>(value);
+template<typename A, typename B>
+detail::equal_to<A, B> equal_to(A a, B b){
+  return detail::equal_to<A, B>(a, b);
 }
 
 } // end thrusting
