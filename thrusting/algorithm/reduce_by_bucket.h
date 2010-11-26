@@ -40,29 +40,16 @@ void reduce_by_bucket(
   typedef typename thrust::iterator_value<TmpIterator1>::type Count1;
   typedef typename thrust::iterator_value<TmpIterator2>::type Count2;
 
-  thrust::pair<TmpIterator1, TmpIterator2> end;
+  thrust::pair<TmpIterator2, TmpIterator1> end;
   end = thrust::reduce_by_key(
     idx,
     thrusting::advance(n_value, idx),
-    idx,
-    cnt_output_tmp1, // cnt for non_empty bucket, [a,b,...,*,*,...]
-    cnt_output_tmp2); // idx*cnt for non_empty bucket [idx_a*a,idx_b*b,...,*,*,...]
-
-  Size2 n_non_empty = end.first - cnt_output_tmp1;
-  
-  std::cout << n_non_empty << std::endl;
-  std::cout << make_list(n_bucket, cnt_output_tmp1) << std::endl;
-  std::cout << make_list(n_bucket, cnt_output_tmp2) << std::endl;
-  /*
-    calculate the idx*cnt / cnt in parallel.
-  */
-  thrust::transform(
-    cnt_output_tmp2, 
-    thrusting::advance(n_non_empty, cnt_output_tmp2),
-    cnt_output_tmp1,
+    thrust::make_constant_iterator(1),
     cnt_output_tmp2, // [idx_a,idx_b,...,*,*,...], where to jump
-    thrusting::divides<Count2, Count1>());
+    cnt_output_tmp1); // [a,b,...,*,*,...]
 
+  Size2 n_non_empty = end.first - cnt_output_tmp2;
+  
   Count null_cnt(0);
   thrust::fill(
     cnt_output,
@@ -74,12 +61,12 @@ void reduce_by_bucket(
     thrusting::advance(n_non_empty, cnt_output_tmp1),
     cnt_output_tmp2,
     cnt_output);
-
+  
   thrust::reduce_by_key(
     idx,
     thrusting::advance(n_value, idx),
     value,
-    cnt_output_tmp1, 
+    cnt_output_tmp2, 
     value_output);   
 
   thrust::scatter(
@@ -96,18 +83,18 @@ void reduce_by_bucket(
     cnt_output_tmp1,
     thrusting::advance(n_bucket, cnt_output_tmp1),
     Count1(0));
-  
+
   /*
-    bit up 0 
+    on bit  
   */
   thrust::transform_if(
-    cnt_output,
+    cnt_output, // means nothing 
     thrusting::advance(n_bucket, cnt_output),
-    thrust::make_constant_iterator(1), // stencil
+    cnt_output, // stencil
     cnt_output_tmp1, // result
-    thrusting::constant(1), // op return 1 if elem is 0
-    thrusting::bind2nd(thrust::equal_to<Count>(), Count(0))); // pred
-
+    thrusting::constant<Count1>(1), // op return 1 if stencil elem is 0
+    thrusting::bind2nd(thrust::equal_to<Count>(), Count(0))); // pred receiving stencil
+  
   /*
     replace by null_value if the stencil is on
   */
@@ -115,7 +102,7 @@ void reduce_by_bucket(
     value_output,
     thrusting::advance(n_bucket, value_output),
     cnt_output_tmp1, // stencil
-    thrusting::constant(true), // pred
+    thrust::identity<Count1>(),
     null_value); // new value
 }
 

@@ -1,15 +1,15 @@
 (in /Users/akira/sandbox/thrusting/testing)
 "nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -Xcompiler -trigraphs -D THRUSTING_USING_DEVICE_VECTOR -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 41 tests from 12 test cases.
+[==========] Running 44 tests from 15 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
-[       OK ] BucketIndexing.Test (75 ms)
-[----------] 1 test from BucketIndexing (75 ms total)
+[       OK ] BucketIndexing.Test (86 ms)
+[----------] 1 test from BucketIndexing (87 ms total)
 
 [----------] 13 tests from Functional
 [ RUN      ] Functional.Constant
-[       OK ] Functional.Constant (1 ms)
+[       OK ] Functional.Constant (0 ms)
 [ RUN      ] Functional.EqualTo
 [       OK ] Functional.EqualTo (0 ms)
 [ RUN      ] Functional.Flip
@@ -34,7 +34,7 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 13 tests from Functional (1 ms total)
+[----------] 13 tests from Functional (0 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -52,26 +52,26 @@
 [ RUN      ] Iterator.IteratorValueAt
 [       OK ] Iterator.IteratorValueAt (0 ms)
 [ RUN      ] Iterator.IteratorValueOf
-[       OK ] Iterator.IteratorValueOf (7 ms)
+[       OK ] Iterator.IteratorValueOf (1 ms)
 [ RUN      ] Iterator.Advance
 [       OK ] Iterator.Advance (0 ms)
 [ RUN      ] Iterator.AllocAt
 [       OK ] Iterator.AllocAt (0 ms)
-[----------] 4 tests from Iterator (7 ms total)
+[----------] 4 tests from Iterator (1 ms total)
 
 [----------] 5 tests from List
 [ RUN      ] List.MakeString
-[       OK ] List.MakeString (1 ms)
+[       OK ] List.MakeString (0 ms)
 [ RUN      ] List.Ostream
 [1, 2]
-[       OK ] List.Ostream (0 ms)
+[       OK ] List.Ostream (1 ms)
 [ RUN      ] List.Ostream2
 [1.2, 2.9]
 [       OK ] List.Ostream2 (0 ms)
 [ RUN      ] List.Equality
-[       OK ] List.Equality (1 ms)
+[       OK ] List.Equality (0 ms)
 [ RUN      ] List.Equality2
-[       OK ] List.Equality2 (0 ms)
+[       OK ] List.Equality2 (1 ms)
 [----------] 5 tests from List (2 ms total)
 
 [----------] 2 tests from PermutationIterator
@@ -88,17 +88,32 @@
 [       OK ] Real.TupleCreate (0 ms)
 [ RUN      ] Real.SimpleArithmatic
 [       OK ] Real.SimpleArithmatic (0 ms)
-[----------] 3 tests from Real (1 ms total)
+[----------] 3 tests from Real (0 ms total)
+
+[----------] 1 test from ReduceByBucket
+[ RUN      ] ReduceByBucket.Test
+[       OK ] ReduceByBucket.Test (3 ms)
+[----------] 1 test from ReduceByBucket (3 ms total)
+
+[----------] 1 test from ReduceByKey
+[ RUN      ] ReduceByKey.Test
+[       OK ] ReduceByKey.Test (2 ms)
+[----------] 1 test from ReduceByKey (2 ms total)
 
 [----------] 1 test from Scatter
 [ RUN      ] Scatter.Self
-[       OK ] Scatter.Self (0 ms)
-[----------] 1 test from Scatter (0 ms total)
+[       OK ] Scatter.Self (1 ms)
+[----------] 1 test from Scatter (1 ms total)
 
 [----------] 1 test from ScatterIterator
 [ RUN      ] ScatterIterator.Test
 [       OK ] ScatterIterator.Test (1 ms)
 [----------] 1 test from ScatterIterator (1 ms total)
+
+[----------] 1 test from TransformIf
+[ RUN      ] TransformIf.Test
+[       OK ] TransformIf.Test (0 ms)
+[----------] 1 test from TransformIf (0 ms total)
 
 [----------] 7 tests from Tuple
 [ RUN      ] Tuple.Plus
@@ -120,9 +135,9 @@
 
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
-[       OK ] ZipIterator.Reference (1 ms)
-[----------] 1 test from ZipIterator (1 ms total)
+[       OK ] ZipIterator.Reference (0 ms)
+[----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 41 tests from 12 test cases ran. (90 ms total)
-[  PASSED  ] 41 tests.
+[==========] 44 tests from 15 test cases ran. (100 ms total)
+[  PASSED  ] 44 tests.
