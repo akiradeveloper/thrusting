@@ -109,7 +109,7 @@ detail::_flip<F> flip(F f){
   a->b->c -> a -> b->c
 */
 template<typename F>
-detail::_bind1st<F> bind1st(F f, const typename F::first_argument_type a) {
+detail::_bind1st<F> bind1st(F f, const typename F::first_argument_type &a) {
   return detail::_bind1st<F>(f, a);
 }
 
