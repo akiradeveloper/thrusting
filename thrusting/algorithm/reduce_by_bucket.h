@@ -4,13 +4,18 @@
 #include <thrust/transform.h>
 #include <thrust/iterator/iterator_traits.h>
 #include <thrust/scatter.h>
+#include <thrust/iterator/constant_iterator.h>
 
 #include <thrusting/iterator.h>
+#include <thrusting/functional.h>
+
+// for debug
+#include <thrusting/list.h>
 
 namespace thrusting {
   
 
-<template
+template<
 typename Size1,
 typename Size2,
 typename InputIterator1,
@@ -31,9 +36,9 @@ void reduce_by_bucket(
   TmpIterator2 cnt_output_tmp2,
   const T &null_value
 ){
-  typedef thrust::iterator_value<OutputIterator1>::type Count;
-  typedef thrust::iterator_value<TmpIterator1>::type Count1;
-  typedef thrust::iterator_value<TmpIterator2>::type Count2;
+  typedef typename thrust::iterator_value<OutputIterator1>::type Count;
+  typedef typename thrust::iterator_value<TmpIterator1>::type Count1;
+  typedef typename thrust::iterator_value<TmpIterator2>::type Count2;
 
   thrust::pair<TmpIterator1, TmpIterator2> end;
   end = thrust::reduce_by_key(
@@ -45,6 +50,9 @@ void reduce_by_bucket(
 
   Size2 n_non_empty = end.first - cnt_output_tmp1;
   
+  std::cout << n_non_empty << std::endl;
+  std::cout << make_list(n_bucket, cnt_output_tmp1) << std::endl;
+  std::cout << make_list(n_bucket, cnt_output_tmp2) << std::endl;
   /*
     calculate the idx*cnt / cnt in parallel.
   */
@@ -76,7 +84,7 @@ void reduce_by_bucket(
 
   thrust::scatter(
     value_output,
-    thrusting::advance(n_non_empty, value_output_tmp),
+    thrusting::advance(n_non_empty, value_output),
     cnt_output_tmp2,
     value_output);
 
@@ -98,7 +106,7 @@ void reduce_by_bucket(
     thrust::make_constant_iterator(1), // stencil
     cnt_output_tmp1, // result
     thrusting::constant(1), // op return 1 if elem is 0
-    thrusting::bind2nd(thrust::equal_to<Const>(), Const(0))); // pred
+    thrusting::bind2nd(thrust::equal_to<Count>(), Count(0))); // pred
 
   /*
     replace by null_value if the stencil is on

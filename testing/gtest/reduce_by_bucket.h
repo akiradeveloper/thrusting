@@ -23,17 +23,17 @@ TEST(ReduceByBucket, Test){
 
   thrusting::reduce_by_bucket(
     n_value,
-    idx,
-    value,
+    idx.begin(),
+    value.begin(),
     n_bucket,
-    cnt_output,
-    value_output,
-    tmp1,
-    tmp2,
+    cnt_output.begin(),
+    value_output.begin(),
+    tmp1.begin(),
+    tmp2.begin(),
     null_value); 
 
-  int _ans_cnt = {0,2,3,0}; vector::type<int> ans_cnt(_ans_cnt, _ans_cnt+n_bucket);
-  int _ans_value = {10000,3,12,10000}; vector::type<int> ans_value(_ans_value, _ans_value+n_bucket);
+  int _ans_cnt[] = {0,2,3,0}; vector<int>::type ans_cnt(_ans_cnt, _ans_cnt+n_bucket);
+  int _ans_value[] = {10000,3,12,10000}; vector<int>::type ans_value(_ans_value, _ans_value+n_bucket);
   
   EXPECT_EQ(
     make_list(ans_cnt),
