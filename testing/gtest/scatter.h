@@ -31,3 +31,22 @@ TEST(Thrust, Scatter){
     make_list(ans),
     make_list(result));
 }
+
+/*
+  Self substitution is valid.
+*/
+TEST(Scatter, Self){
+  int _value[] = {1,2,3,4}; vector<int>::type value(_value, _value+4);
+  int _idx[] = {3,2,1,0}; vector<int>::type idx(_idx, _idx+4);
+  thrust::scatter(
+    value.begin(),
+    value.end(),
+    idx.begin(),
+    value.begin()); // output is value
+
+  int _ans[] = {4,3,2,1}; vector<int>::type ans(_ans, _ans+4);
+  
+  EXPECT_EQ(
+    make_list(ans),
+    make_list(value));
+}

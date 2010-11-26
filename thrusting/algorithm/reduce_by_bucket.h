@@ -9,6 +9,7 @@
 
 namespace thrusting {
   
+
 <template
 typename Size1,
 typename Size2,
@@ -16,6 +17,8 @@ typename InputIterator1,
 typename InputIterator2,
 typename OutputIterator1,
 typename OutputIterator2,
+typename TmpIterator1,
+typename TmpIterator2,
 typename T>
 void reduce_by_bucket(
   Size1 n_value,
@@ -24,36 +27,23 @@ void reduce_by_bucket(
   Size2 n_bucket,
   OutputIterator1 cnt_output,
   OutputIterator2 value_output,	
-  OutputIterator1 cnt_output_tmp1,
-  OutputIterator1 cnt_output_tmp2,
-  OutputIterator2 value_output_tmp,
+  TmpIterator1 cnt_output_tmp1,
+  TmpIterator2 cnt_output_tmp2,
   const T &null_value
 ){
   typedef thrust::iterator_value<OutputIterator1>::type Count;
-  Count sentinel(0);
-  
-  /*
-    if not empty, the cnt is more than 0.
-    finding 0 means finding the beginning of emtpy bucket.
-  */
-  thrust::fill(
-    cnt_output_tmp1,
-    thrusting::advance(n_bucket, cnt_output_tmp1),
-    sentinel);
+  typedef thrust::iterator_value<TmpIterator1>::type Count1;
+  typedef thrust::iterator_value<TmpIterator2>::type Count2;
 
-  thrust::reduce_by_key(
+  thrust::pair<TmpIterator1, TmpIterator2> end;
+  end = thrust::reduce_by_key(
     idx,
     thrusting::advance(n_value, idx),
     idx,
-    cnt_output_tmp1, // cnt for non_empty bucket, [a,b,...,0,0,...]
-    cnt_output_tmp2); // idx*cnt for non_empty bucket [idx_a*a,idx_b*b,...,0,0,...]
+    cnt_output_tmp1, // cnt for non_empty bucket, [a,b,...,*,*,...]
+    cnt_output_tmp2); // idx*cnt for non_empty bucket [idx_a*a,idx_b*b,...,*,*,...]
 
-  OutputIterator1 it_sentinel = thrust::find(
-    cnt_output_tmp1,
-    thrusting::advance(n_bucket, cnt_output_tmp1),
-    sentinel);
-  
-  Size2 n_non_empty = it_sentinel - cnt_output_tmp1;
+  Size2 n_non_empty = end.first - cnt_output_tmp1;
   
   /*
     calculate the idx*cnt / cnt in parallel.
@@ -62,14 +52,11 @@ void reduce_by_bucket(
     cnt_output_tmp2, 
     thrusting::advance(n_non_empty, cnt_output_tmp2),
     cnt_output_tmp1,
-    cnt_output_tmp2, // [idx_a,idx_b,...,0,0,...]
-    thrust::divides<Count>());
+    cnt_output_tmp2, // [idx_a,idx_b,...,*,*,...], where to jump
+    thrusting::divides<Count2, Count1>());
 
   /*
-    putting to output,
-    algorithm is common for cnt and value,
-    1. initialize the output
-    2. scatter the data by idx.
+    Output
   */
   Count null_cnt(0);
 
@@ -84,26 +71,40 @@ void reduce_by_bucket(
     cnt_output_tmp2,
     cnt_output);
 
-  /*
-    Output to value_output
-  */
   thrust::reduce_by_key(
     idx,
     thrusting::advance(n_value, idx),
     value,
-    cnt_output_tmp1, // resubstitute the same by key reducing
-    value_output_tmp);   
-
-  thrust::fill(
-    value_output,
-    thrusting::advance(n_bucket, value_output),
-    null_value);
+    cnt_output_tmp1, 
+    value_output);   
 
   thrust::scatter(
-    value_output_tmp,
+    value_output,
     thrusting::advance(n_non_empty, value_output_tmp),
     cnt_output_tmp2,
-    value_output);   
+    value_output);
+
+  /*
+    cnt_output_tmp1 will be used as stencil in replace_if
+    initialize all bit to 0
+  */
+  thrust::fill(
+    cnt_output_tmp1,
+    thrusting::advance(n_bucket, cnt_output_tmp1),
+    0);
+  
+  /*
+    not 0 to 1 in stencil
+  */
+  thrust::transform_if(
+    cnt_output,
+    thrusting::advance(n_bucket, cnt_output),
+    cnt_output_tmp1,
+    ); 
+
+  thrust::replace_if(
+    
+     
 }
 
 } // END thrusting

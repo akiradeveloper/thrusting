@@ -22,6 +22,25 @@ namespace thrusting {
 
 namespace detail {
 
+/*
+ 
+*/
+//template<typename Out, typename Pred>
+//struct pred :public thrust::binary_function<
+//Pred::first_argument_type,
+//Pred::second_argument_type> {
+//  Out _out_true; 
+//  Out _out_false;
+//  Pred _pred;
+//  equal_to(Out out_true, Out out_false, Pred pred)
+//  :_value(value), _pred(pred){}
+
+typedef Pred::first_argument_type In1;
+typedef Pred::second_argument_type In2;
+Out operator()(In1 in1, In2 in2) const {
+  if(_pred(in1, in2)){
+    return 
+    
 template<typename F>
 struct _flip :public thrust::binary_function<
 typename F::second_argument_type,
@@ -159,7 +178,7 @@ struct multiplies :public thrust::binary_function<A, B, B> {
 };
 
 /*
-  a -> b -> (a/b)
+  a -> b -> (a/b)::a
 */
 template<typename A, typename B>
 struct divides :public thrust::binary_function<A, B, A> {
@@ -170,7 +189,7 @@ struct divides :public thrust::binary_function<A, B, A> {
 };
 
 /*
-  a -> b -> (a<<b)
+  a -> b -> (a<<b)::a
 */
 template<typename A, typename B>
 struct left_shift :public thrust::binary_function<A, B, A> {
@@ -181,7 +200,7 @@ struct left_shift :public thrust::binary_function<A, B, A> {
 };
 
 /*
-  a -> b -> (a>>b)
+  a -> b -> (a>>b)::a
 */
 template<typename A, typename B>
 struct right_shift :public thrust::binary_function<A, B, A> {
@@ -190,5 +209,26 @@ struct right_shift :public thrust::binary_function<A, B, A> {
     return x >> y;
   }
 };
+
+template<typename A, typename B>
+struct _equal_to :public thrust::binary_function<A, B, bool> {
+  bool operator()(A a, B b) const {
+  }
+};
+
+template<typename In, typename Out>
+struct _constant :public thrust::unary_function<In, Out> {
+  Out _value;
+  always(Out value)
+  :_value(value){} 
+  Out operator()(In in) const {
+    return _value;
+  }
+};
+
+template<typename Out, typename In>
+_constant<In, Out> constant(Out value){
+  return _constant<In, Out>(value);
+}
 
 } // end thrusting
