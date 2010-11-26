@@ -87,7 +87,7 @@ void reduce_by_bucket(
   thrust::fill(
     cnt_output_tmp1,
     thrusting::advance(n_bucket, cnt_output_tmp1),
-    0);
+    Count1(0));
   
   /*
     bit up 0 
@@ -95,20 +95,20 @@ void reduce_by_bucket(
   thrust::transform_if(
     cnt_output,
     thrusting::advance(n_bucket, cnt_output),
-    thrust::make_constant_iterator(1),
-    cnt_output_tmp1,
-    thrusting::constant(1), // return 1
-    thrusting::bind2nd(thrust::equal_to<Const>(), 0)); // if elem is 0
+    thrust::make_constant_iterator(1), // stencil
+    cnt_output_tmp1, // result
+    thrusting::constant(1), // op return 1 if elem is 0
+    thrusting::bind2nd(thrust::equal_to<Const>(), Const(0))); // pred
 
   /*
-    replace if the stencil is on
+    replace by null_value if the stencil is on
   */
   thrust::replace_if(
     value_output,
     thrusting::advance(n_bucket, value_output),
     cnt_output_tmp1, // stencil
     thrusting::constant(true), // pred
-    null_value);
+    null_value); // new value
 }
 
 } // END thrusting

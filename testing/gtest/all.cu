@@ -6,6 +6,7 @@
 #include "list.h"
 #include "permutation_iterator.h"
 #include "real.h"
+#include "reduce_by_bucket.h"
 #include "scatter.h"
 #include "scatter_iterator.h"
 #include "tuple.h"
