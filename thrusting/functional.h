@@ -214,11 +214,6 @@ struct multiplies :public thrust::binary_function<A, B, B> {
   }
 };
 
-//template<typename A, typename B>
-//detail::multiplies<A, B> multiplies(){
-  
-
-
 /*
   a -> b -> (a/b)::a
 */
@@ -252,7 +247,6 @@ struct right_shift :public thrust::binary_function<A, B, A> {
   }
 };
 
-namespace detail {
 template<typename A, typename B>
 struct equal_to :public thrust::binary_function<A, B, bool> {
   __host__ __device__
@@ -263,11 +257,5 @@ struct equal_to :public thrust::binary_function<A, B, bool> {
     return false; 
   }
 };
-} // END detail
-
-template<typename A, typename B>
-detail::equal_to<A, B> equal_to(A a, B b){
-  return detail::equal_to<A, B>(a, b);
-}
 
 } // end thrusting

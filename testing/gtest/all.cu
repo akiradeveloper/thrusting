@@ -1,4 +1,5 @@
 #include "bucket_indexing.h"
+#include "constant.h"
 #include "functional.h"
 #include "gather.h"
 #include "iterator.h"

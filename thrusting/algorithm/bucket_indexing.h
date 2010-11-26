@@ -13,27 +13,30 @@ namespace thrusting {
 */
 template<typename IntIterator1, typename IntIterator2, typename IntIterator3>
 void bucket_indexing(
-  size_t n_particle,
-  IntIterator1 cell_idx, // Which cell the particle belongs to
-  size_t n_cell,
+  size_t n_idx,
+  IntIterator1 idx, // Which cell the particle belongs to
+  size_t n_bucket,
   IntIterator2 prefix, IntIterator3 count // output
 ){
   thrust::counting_iterator<size_t> search_begin(0);
+
   thrust::lower_bound(
-    cell_idx,
-    thrusting::advance(n_particle, cell_idx),
+    idx,
+    thrusting::advance(n_idx, idx),
     search_begin,
-    thrusting::advance(n_cell, search_begin),
+    thrusting::advance(n_bucket, search_begin),
     prefix);
+
   thrust::upper_bound(
-    cell_idx,
-    thrusting::advance(n_particle, cell_idx),
+    idx,
+    thrusting::advance(n_idx, idx),
     search_begin,
-    thrusting::advance(n_cell, search_begin),
+    thrusting::advance(n_bucket, search_begin),
     count);
+
   thrust::transform(
     count,
-    thrusting::advance(n_cell, count),
+    thrusting::advance(n_bucket, count),
     prefix,
     count,
     thrust::minus<size_t>());

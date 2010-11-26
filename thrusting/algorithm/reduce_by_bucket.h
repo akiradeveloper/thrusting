@@ -55,11 +55,7 @@ void reduce_by_bucket(
     cnt_output_tmp2, // [idx_a,idx_b,...,*,*,...], where to jump
     thrusting::divides<Count2, Count1>());
 
-  /*
-    Output
-  */
   Count null_cnt(0);
-
   thrust::fill(
     cnt_output,
     thrusting::advance(n_bucket, cnt_output),
@@ -86,7 +82,7 @@ void reduce_by_bucket(
 
   /*
     cnt_output_tmp1 will be used as stencil in replace_if
-    initialize all bit to 0
+    initialize all bit off 
   */
   thrust::fill(
     cnt_output_tmp1,
@@ -94,17 +90,25 @@ void reduce_by_bucket(
     0);
   
   /*
-    not 0 to 1 in stencil
+    bit up 0 
   */
   thrust::transform_if(
     cnt_output,
     thrusting::advance(n_bucket, cnt_output),
+    thrust::make_constant_iterator(1),
     cnt_output_tmp1,
-    ); 
+    thrusting::constant(1), // return 1
+    thrusting::bind2nd(thrust::equal_to<Const>(), 0)); // if elem is 0
 
+  /*
+    replace if the stencil is on
+  */
   thrust::replace_if(
-    
-     
+    value_output,
+    thrusting::advance(n_bucket, value_output),
+    cnt_output_tmp1, // stencil
+    thrusting::constant(true), // pred
+    null_value);
 }
 
 } // END thrusting
