@@ -14,7 +14,6 @@
 
 namespace thrusting {
   
-
 template<
 typename Size1,
 typename Size2,
@@ -75,35 +74,13 @@ void reduce_by_bucket(
     cnt_output_tmp2,
     value_output);
 
-  /*
-    cnt_output_tmp1 will be used as stencil in replace_if
-    initialize all bit off 
-  */
-  thrust::fill(
-    cnt_output_tmp1,
-    thrusting::advance(n_bucket, cnt_output_tmp1),
-    Count1(0));
-
-  /*
-    on bit  
-  */
   thrust::transform_if(
-    cnt_output, // means nothing 
-    thrusting::advance(n_bucket, cnt_output),
-    cnt_output, // stencil
-    cnt_output_tmp1, // result
-    thrusting::constant<Count1>(1), // op return 1 if stencil elem is 0
-    thrusting::bind2nd(thrust::equal_to<Count>(), Count(0))); // pred receiving stencil
-  
-  /*
-    replace by null_value if the stencil is on
-  */
-  thrust::replace_if(
-    value_output,
+    value_output, // means nothing 
     thrusting::advance(n_bucket, value_output),
-    cnt_output_tmp1, // stencil
-    thrust::identity<Count1>(),
-    null_value); // new value
+    cnt_output, // stencil
+    value_output, // result
+    thrusting::constant(null_value), // op return null_value if stencil elem is 0
+    thrusting::bind2nd(thrust::equal_to<Count>(), Count(0))); // pred
 }
 
 } // END thrusting
