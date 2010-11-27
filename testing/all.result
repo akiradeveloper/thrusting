@@ -1,6 +1,6 @@
 (in /Users/akira/sandbox/thrusting/testing)
 "nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -Xcompiler -trigraphs -D THRUSTING_USING_DEVICE_VECTOR -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 44 tests from 15 test cases.
+[==========] Running 45 tests from 15 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
@@ -52,9 +52,9 @@
 [ RUN      ] Iterator.IteratorValueAt
 [       OK ] Iterator.IteratorValueAt (0 ms)
 [ RUN      ] Iterator.IteratorValueOf
-[       OK ] Iterator.IteratorValueOf (1 ms)
+[       OK ] Iterator.IteratorValueOf (0 ms)
 [ RUN      ] Iterator.Advance
-[       OK ] Iterator.Advance (0 ms)
+[       OK ] Iterator.Advance (1 ms)
 [ RUN      ] Iterator.AllocAt
 [       OK ] Iterator.AllocAt (0 ms)
 [----------] 4 tests from Iterator (1 ms total)
@@ -90,10 +90,12 @@
 [       OK ] Real.SimpleArithmatic (0 ms)
 [----------] 3 tests from Real (0 ms total)
 
-[----------] 1 test from ReduceByBucket
+[----------] 2 tests from ReduceByBucket
 [ RUN      ] ReduceByBucket.Test
 [       OK ] ReduceByBucket.Test (3 ms)
-[----------] 1 test from ReduceByBucket (3 ms total)
+[ RUN      ] ReduceByBucket.Test2
+[       OK ] ReduceByBucket.Test2 (2 ms)
+[----------] 2 tests from ReduceByBucket (5 ms total)
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
@@ -135,9 +137,9 @@
 
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
-[       OK ] ZipIterator.Reference (0 ms)
-[----------] 1 test from ZipIterator (0 ms total)
+[       OK ] ZipIterator.Reference (1 ms)
+[----------] 1 test from ZipIterator (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 44 tests from 15 test cases ran. (100 ms total)
-[  PASSED  ] 44 tests.
+[==========] 45 tests from 15 test cases ran. (102 ms total)
+[  PASSED  ] 45 tests.
