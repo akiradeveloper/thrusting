@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 
 #include <thrust/reduce.h>
 #include <thrust/transform.h>

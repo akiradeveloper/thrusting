@@ -1,5 +1,6 @@
 #include <thrusting/real.h>
 #include <thrusting/tuple.h>
+#include <thrusting/vectorspace.h>
 
 #include <gtest/gtest.h>
 
@@ -13,8 +14,9 @@ TEST(Real, Create){
 }
 
 TEST(Real, TupleCreate){
-  real2 x = real2(1.0, 2.0);
-  EXPECT_EQ(thrusting::make_tuple2<real>(1.0, 2.0), x);
+  real7 t = real7(1,2,3,4,5,6,7);
+  std::cout << t << std::endl;
+  EXPECT_EQ(thrusting::make_tuple7<real>(1,2,3,4,5,6,7), t);
 }
 
 TEST(Real, SimpleArithmatic){
