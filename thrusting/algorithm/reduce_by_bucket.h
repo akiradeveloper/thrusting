@@ -8,6 +8,7 @@
 #include <thrusting/algorithm/bucket_indexing.h>
 #include <thrusting/iterator.h>
 #include <thrusting/functional.h>
+#include <thrusting/algorithm/safe_scatter.h>
 
 namespace thrusting {
   
@@ -41,6 +42,7 @@ void reduce_by_bucket(
 
   Size2 n_non_empty = end.first - cnt_bucket;
 
+  // wrong
   thrust::scatter(
     value_sum_bucket,
     thrusting::advance(n_non_empty, value_sum_bucket),

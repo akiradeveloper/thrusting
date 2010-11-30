@@ -9,7 +9,7 @@ namespace {
   using namespace thrusting;
 }
 
-TEST(Thrust, Gather){
+TEST(Gather, Test){
   int _idx[10] = {0,2,4,6,8,1,3,5,7,9};
   vector<int>::type idx(_idx, _idx+10);
 

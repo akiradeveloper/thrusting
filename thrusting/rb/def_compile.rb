@@ -15,7 +15,7 @@ cc = [cc, THRUST_INCLUDE, LIBPATH].join " -I"
 cc = [cc, CUDA_LIB].join " -L"
 
 cc = [cc, "-Xcompiler -trigraphs"].join " "
-cc = [cc, "-D THRUSTING_USING_DEVICE_VECTOR"].join " " 
+# cc = [cc, "-D THRUSTING_USING_DEVICE_VECTOR"].join " " 
 # cc = [cc, "-D THRUSTING_USE_DOUBLE_FOR_REAL"].join " "
 
 CC = cc

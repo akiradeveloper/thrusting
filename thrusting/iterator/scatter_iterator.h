@@ -7,30 +7,29 @@
 namespace thrusting {
 
 template<
-typename Size, 
-typename ElementIterator, 
-typename IndexIterator1,
-typename IndexIterator2>
-thrust::permutation_iterator<ElementIterator, IndexIterator2>
+typename InputIterator1,
+typename InputIterator2,
+typename InputIterator3>
+thrust::permutation_iterator<InputIterator1, InputIterator3>
 make_scatter_iterator(
-  Size len,
-  ElementIterator elem,
-  IndexIterator1 index,
-  IndexIterator2 index_tmp
+  InputIterator1 first,
+  InputIterator1 last,
+  InputIterator2 map,
+  InputIterator3 tmp 
 ){
   /*
     index_tmp = [0,...len-1]
   */
   thrust::sequence(
-    index_tmp,
-    thrusting::advance(len, index_tmp));
+    tmp,
+    thrusting::advance(last-first, tmp));
 
   thrust::sort_by_key(
-    index,
-    thrusting::advance(len, index),
-    index_tmp); 
+    map,
+    thrusting::advance(last-first, map),
+    tmp); 
 
-  return thrust::make_permutation_iterator(elem, index_tmp);
+  return thrust::make_permutation_iterator(first, tmp);
 }
 
 } // END thrusting

@@ -6,8 +6,6 @@
 #include <thrusting/vector.h>
 #include <thrusting/list.h>
 
-#include <bphcuda/cell.h>
-
 #include <gtest/gtest.h>
 
 namespace {

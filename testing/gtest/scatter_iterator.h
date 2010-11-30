@@ -26,8 +26,8 @@ TEST(ScatterIterator, Test){
     make_list(
       10,
       thrusting::make_scatter_iterator(
-        10,
         value.begin(),
+        value.end(),
         idx.begin(),
         tmp.begin())));
 }
