@@ -1,5 +1,3 @@
-# configuration for google test
-
 thisdir = File.expand_path File.dirname __FILE__ 
 
 ["def_compile"].each do |s|

@@ -1,0 +1,18 @@
+inplace
+inplace
+inplace
+inplace
+inplace
+inplace
+inplace
+inplace
+inplace
+inplace
+--- thrusting scatter ---
+Average: 1.45067
+Times:
+[1.45063, 1.45062, 1.45074, 1.45068, 1.45044, 1.451, 1.45065, 1.45061, 1.45095, 1.45041]
+--- thrust::scatter ---
+Average: 1.37315
+Times:
+[1.37315, 1.37318, 1.37322, 1.37307, 1.37318, 1.37313, 1.37316, 1.37313, 1.37312, 1.37316]

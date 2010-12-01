@@ -6,6 +6,16 @@ require [thisdir, "compile_gtest"].join "/"
 
 CLEAN.include("simple.test", "all.test")
 
+task :test_on_host do |t|
+  compile_gtest(["gtest/all.cu"])
+  run(GTEST_NAME)
+end
+
+task :test_on_device do |t|
+  compile_gtest(["gtest/all.cu"])
+  run(GTEST_NAME)
+end
+
 task :test_all do |t|
   compile_gtest(["gtest/all.cu"])
   run(GTEST_NAME)

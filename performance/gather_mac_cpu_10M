@@ -1,0 +1,18 @@
+default
+default
+default
+default
+default
+default
+default
+default
+default
+default
+--- thrusting scatter ---
+Average: 1.5822
+Times:
+[1.58261, 1.58136, 1.58232, 1.58243, 1.5822, 1.58116, 1.58233, 1.58255, 1.58248, 1.58257]
+--- thrust::scatter ---
+Average: 1.58087
+Times:
+[1.58001, 1.57995, 1.57976, 1.58093, 1.58132, 1.58136, 1.58134, 1.58139, 1.58149, 1.58119]

@@ -4,6 +4,8 @@
   in-placable scatter
 */
 
+#include <thrusting/iterator.h>
+
 #include <thrust/iterator/iterator_traits.h>
 #include <thrust/gather.h>
 #include <thrust/copy.h>

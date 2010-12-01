@@ -41,6 +41,7 @@ public:
   }
    
   void show(){
+    std::cout << "--- " << _title << " ---" << std::endl;
     std::cout << "Average: " << average() << std::endl;
     std::cout << "Times:" << std::endl;
     std::cout << make_list(_times) << std::endl;

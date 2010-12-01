@@ -1,0 +1,22 @@
+require "rake/clean"
+
+thisdir = File.expand_path File.dirname __FILE__ 
+
+["def_compile"].each do |s|
+  require "thrusting/rb/#{s}"
+end
+
+task :scatter do
+  cc = CC
+  cc += " -D THRUSTING_USING_DEVICE_VECTOR"
+  system "#{cc} scatter.cu"
+end
+
+task :gather do
+  cc = CC
+  cc += " -D THRUSTING_USING_DEVICE_VECTOR"
+  system "#{cc} gather.cu"
+end
+
+task :reduce_by_bucket do
+end
