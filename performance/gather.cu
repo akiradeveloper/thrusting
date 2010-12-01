@@ -11,7 +11,7 @@ namespace {
 }
 
 int main(void){
-  size_t N = 10000000;
+  size_t N = 1000000;
 
   vector<int>::type value(N);
   thrust::sequence(value.begin(), value.end());
