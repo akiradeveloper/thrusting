@@ -1,5 +1,9 @@
 #pragma once
 
+/*
+  in-placable scatter implementation
+*/
+
 #include <thrust/iterator/iterator_traits.h>
 #include <thrust/scatter.h>
 #include <thrust/copy.h>
@@ -12,7 +16,7 @@ template<
 typename InputIterator1,
 typename InputIterator2,
 typename OutputIterator>
-void safe_scatter(
+void scatter(
   InputIterator1 first,
   InputIterator1 last,
   InputIterator2 map,
@@ -20,23 +24,24 @@ void safe_scatter(
   thrust::host_space_tag
 ){
   typedef typename thrust::iterator_value<OutputIterator>::type OutputType;
-  thrust::host_vector<OutputType> output_tmp(last-first); // this code is not the best portable.
-  thrust::scatter(first, last, map, output_tmp.begin());
-  thrust::copy(output_tmp.begin(), output_tmp.end(), output);
+  thrust::host_vector<OutputType> value_copy(first, last);
+  thrust::scatter(value_copy.begin(), value_copy.end(), map, output);
 }
 
 template<
 typename InputIterator1,
 typename InputIterator2,
 typename OutputIterator>
-void safe_scatter(
+void scatter(
   InputIterator1 first,
   InputIterator1 last,
   InputIterator2 map,
   OutputIterator output,
   thrust::device_space_tag
 ){
-  thrust::scatter(first, last, map, output);
+  typedef typename thrust::iterator_value<OutputIterator>::type OutputType;
+  thrust::device_vector<OutputType> value_copy(first, last);
+  thrust::scatter(value_copy.begin(), value_copy.end(), map, output);
 }
 
 } // END detail
@@ -45,15 +50,21 @@ template<
 typename InputIterator1,
 typename InputIterator2,
 typename OutputIterator>
-void safe_scatter(
+void scatter(
   InputIterator1 first,
   InputIterator1 last,
   InputIterator2 map,
   OutputIterator output
 ){
-  detail::safe_scatter(
-    first, last, map, output, 
-    typename thrust::iterator_space<OutputIterator>::type());
+  if(first==output){
+    std::cout << "inplace" << std::endl;
+    detail::scatter(
+      first, last, map, output, 
+      typename thrust::iterator_space<OutputIterator>::type());
+  } else {
+    std::cout << "default" << std::endl;
+    thrust::scatter(first, last, map, output);
+  }
 }
 
 } // END thrusting

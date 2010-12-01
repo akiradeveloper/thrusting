@@ -3,12 +3,11 @@
 #include <thrust/reduce.h>
 #include <thrust/transform.h>
 #include <thrust/iterator/iterator_traits.h>
-#include <thrust/scatter.h>
 
 #include <thrusting/algorithm/bucket_indexing.h>
 #include <thrusting/iterator.h>
 #include <thrusting/functional.h>
-#include <thrusting/algorithm/safe_scatter.h>
+#include <thrusting/algorithm/scatter.h>
 
 namespace thrusting {
   
@@ -42,8 +41,7 @@ void reduce_by_bucket(
 
   Size2 n_non_empty = end.first - cnt_bucket;
 
-  // wrong
-  thrust::scatter(
+  thrusting::scatter(
     value_sum_bucket,
     thrusting::advance(n_non_empty, value_sum_bucket),
     cnt_bucket,

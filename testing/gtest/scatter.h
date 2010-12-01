@@ -1,12 +1,47 @@
 #include <thrusting/vector.h>
 #include <thrusting/list.h>
-
-#include <thrust/scatter.h>
+#include <thrusting/algorithm/scatter.h>
+#include <thrusting/iterator/zip_iterator.h>
 
 #include <gtest/gtest.h>
 
 namespace {
   using namespace thrusting;
+}
+
+TEST(Scatter, InPlaceForZipIterator){
+  double _x[] = {1,2,3,4}; vector<double>::type x(_x, _x+4);
+  long _y[] = {1,2,3,4}; vector<long>::type y(_y, _y+4);
+  int _idx[] = {3,2,1,0}; vector<int>::type idx(_idx, _idx+4);
+  
+  thrusting::scatter(
+    thrusting::make_zip_iterator(x.begin(), y.begin()),
+    thrusting::make_zip_iterator(x.end(), y.end()),
+    idx.begin(),
+    thrusting::make_zip_iterator(x.begin(), y.begin()));
+ 
+  double _ans_x[] = {4,3,2,1}; vector<double>::type ans_x(_ans_x, _ans_x+4);
+  long _ans_y[] = {4,3,2,1}; vector<long>::type ans_y(_ans_y, _ans_y+4);
+
+  EXPECT_EQ(make_list(ans_x), make_list(x));
+  EXPECT_EQ(make_list(ans_y), make_list(y));
+}
+
+TEST(Scatter, InPlace){
+  int _value[] = {1,2,3,4}; vector<int>::type value(_value, _value+4);
+  int _idx[] = {3,2,1,0}; vector<int>::type idx(_idx, _idx+4);
+
+  thrusting::scatter(
+    value.begin(),
+    value.end(),
+    idx.begin(),
+    value.begin()); 
+
+  int _ans[] = {4,3,2,1}; vector<int>::type ans(_ans, _ans+4);
+  
+  EXPECT_EQ(
+    make_list(ans),
+    make_list(value));
 }
 
 TEST(Scatter, Test){
@@ -18,7 +53,7 @@ TEST(Scatter, Test){
 
   vector<int>::type result(10);
   
-  thrust::scatter(
+  thrusting::scatter(
     value.begin(),
     value.end(),
     idx.begin(),

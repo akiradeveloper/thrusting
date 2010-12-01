@@ -1,15 +1,15 @@
 (in /Users/akira/sandbox/thrusting/testing)
-"nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -Xcompiler -trigraphs -D THRUSTING_USING_DEVICE_VECTOR -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 45 tests from 15 test cases.
+"nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -Xcompiler -trigraphs -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g -D THRUSTING_USING_DEVICE_VECTOR"
+[==========] Running 49 tests from 17 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
-[       OK ] BucketIndexing.Test (86 ms)
-[----------] 1 test from BucketIndexing (87 ms total)
+[       OK ] BucketIndexing.Test (114 ms)
+[----------] 1 test from BucketIndexing (114 ms total)
 
 [----------] 13 tests from Functional
 [ RUN      ] Functional.Constant
-[       OK ] Functional.Constant (0 ms)
+[       OK ] Functional.Constant (1 ms)
 [ RUN      ] Functional.EqualTo
 [       OK ] Functional.EqualTo (0 ms)
 [ RUN      ] Functional.Flip
@@ -34,37 +34,39 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 13 tests from Functional (0 ms total)
+[----------] 13 tests from Functional (1 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
 [       OK ] FunctionalTest.SumF (0 ms)
 [----------] 1 test from FunctionalTest (0 ms total)
 
-[----------] 2 tests from Thrust
-[ RUN      ] Thrust.Gather
-[       OK ] Thrust.Gather (1 ms)
-[ RUN      ] Thrust.Scatter
-[       OK ] Thrust.Scatter (0 ms)
-[----------] 2 tests from Thrust (1 ms total)
+[----------] 2 tests from Gather
+[ RUN      ] Gather.Test
+default
+[       OK ] Gather.Test (1 ms)
+[ RUN      ] Gather.InPlace
+inplace
+[       OK ] Gather.InPlace (1 ms)
+[----------] 2 tests from Gather (2 ms total)
 
 [----------] 4 tests from Iterator
 [ RUN      ] Iterator.IteratorValueAt
 [       OK ] Iterator.IteratorValueAt (0 ms)
 [ RUN      ] Iterator.IteratorValueOf
-[       OK ] Iterator.IteratorValueOf (0 ms)
+[       OK ] Iterator.IteratorValueOf (1 ms)
 [ RUN      ] Iterator.Advance
-[       OK ] Iterator.Advance (1 ms)
+[       OK ] Iterator.Advance (0 ms)
 [ RUN      ] Iterator.AllocAt
-[       OK ] Iterator.AllocAt (0 ms)
-[----------] 4 tests from Iterator (1 ms total)
+[       OK ] Iterator.AllocAt (2 ms)
+[----------] 4 tests from Iterator (3 ms total)
 
 [----------] 5 tests from List
 [ RUN      ] List.MakeString
-[       OK ] List.MakeString (0 ms)
+[       OK ] List.MakeString (1 ms)
 [ RUN      ] List.Ostream
 [1, 2]
-[       OK ] List.Ostream (1 ms)
+[       OK ] List.Ostream (0 ms)
 [ RUN      ] List.Ostream2
 [1.2, 2.9]
 [       OK ] List.Ostream2 (0 ms)
@@ -78,39 +80,62 @@
 [ RUN      ] PermutationIterator.Gather
 [       OK ] PermutationIterator.Gather (0 ms)
 [ RUN      ] PermutationIterator.Scatter
-[       OK ] PermutationIterator.Scatter (1 ms)
-[----------] 2 tests from PermutationIterator (1 ms total)
+[       OK ] PermutationIterator.Scatter (2 ms)
+[----------] 2 tests from PermutationIterator (2 ms total)
 
 [----------] 3 tests from Real
 [ RUN      ] Real.Create
 [       OK ] Real.Create (0 ms)
 [ RUN      ] Real.TupleCreate
+(1, 2, 3, 4, 5, 6, 7)
 [       OK ] Real.TupleCreate (0 ms)
 [ RUN      ] Real.SimpleArithmatic
 [       OK ] Real.SimpleArithmatic (0 ms)
 [----------] 3 tests from Real (0 ms total)
 
-[----------] 2 tests from ReduceByBucket
+[----------] 3 tests from ReduceByBucket
 [ RUN      ] ReduceByBucket.Test
-[       OK ] ReduceByBucket.Test (3 ms)
+inplace
+[       OK ] ReduceByBucket.Test (2 ms)
 [ RUN      ] ReduceByBucket.Test2
+inplace
 [       OK ] ReduceByBucket.Test2 (2 ms)
-[----------] 2 tests from ReduceByBucket (5 ms total)
+[ RUN      ] ReduceByBucket.Test3
+inplace
+[       OK ] ReduceByBucket.Test3 (2 ms)
+[----------] 3 tests from ReduceByBucket (6 ms total)
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
 [       OK ] ReduceByKey.Test (2 ms)
 [----------] 1 test from ReduceByKey (2 ms total)
 
-[----------] 1 test from Scatter
-[ RUN      ] Scatter.Self
-[       OK ] Scatter.Self (1 ms)
-[----------] 1 test from Scatter (1 ms total)
+[----------] 2 tests from Scatter
+[ RUN      ] Scatter.InPlace
+inplace
+[       OK ] Scatter.InPlace (1 ms)
+[ RUN      ] Scatter.Test
+default
+[       OK ] Scatter.Test (0 ms)
+[----------] 2 tests from Scatter (1 ms total)
 
 [----------] 1 test from ScatterIterator
 [ RUN      ] ScatterIterator.Test
 [       OK ] ScatterIterator.Test (1 ms)
 [----------] 1 test from ScatterIterator (1 ms total)
+
+[----------] 1 test from Thrust
+[ RUN      ] Thrust.SortByKey
+[       OK ] Thrust.SortByKey (1 ms)
+[----------] 1 test from Thrust (1 ms total)
+
+[----------] 1 test from StopWatch
+[ RUN      ] StopWatch.TestByLooping
+Average: 0.00239
+Times:
+[0.002388, 0.002382, 0.002386, 0.002382, 0.002412]
+[       OK ] StopWatch.TestByLooping (13 ms)
+[----------] 1 test from StopWatch (13 ms total)
 
 [----------] 1 test from TransformIf
 [ RUN      ] TransformIf.Test
@@ -141,5 +166,5 @@
 [----------] 1 test from ZipIterator (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 45 tests from 15 test cases ran. (102 ms total)
-[  PASSED  ] 45 tests.
+[==========] 49 tests from 17 test cases ran. (149 ms total)
+[  PASSED  ] 49 tests.
