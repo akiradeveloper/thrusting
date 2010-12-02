@@ -6,6 +6,8 @@ thisdir = File.expand_path File.dirname __FILE__
   require "thrusting/rb/#{s}"
 end
 
+CLOBBER.include("a.out")
+
 task :reduce_by_bucket do
   cc = CC
   cc += " -D THRUSTING_USING_DEVICE_VECTOR"

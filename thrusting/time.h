@@ -24,6 +24,7 @@ public:
   }
   
   double CPUTime(){
+    cudaThreadSynchronize();
     double t = (double) clock();
     return t / CLOCKS_PER_SEC;
   }

@@ -2,18 +2,18 @@
 #include <thrusting/algorithm/scatter.h>
 #include <thrusting/real.h>
 #include <thrusting/time.h>
-#include <thrusting/timer.h>
 
 #include <thrust/sequence.h>
 
+#include <cstdlib>
 #include <algorithm>
 
 namespace {
   using namespace thrusting;
 }
 
-int main(void){
-  size_t N = 10000000;
+int main(int narg, char **args){
+  size_t N = atoi(args[1]);
 
   thrust::host_vector<int> _value(N);
   thrust::sequence(_value.begin(), _value.end());

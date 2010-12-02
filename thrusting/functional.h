@@ -22,23 +22,6 @@ namespace thrusting {
 
 namespace detail {
 
-//template<typename Out, typename Pred>
-//struct pred :public thrust::binary_function<
-//Pred::first_argument_type,
-//Pred::second_argument_type> {
-//  Out _out_true; 
-//  Out _out_false;
-//  Pred _pred;
-//  equal_to(Out out_true, Out out_false, Pred pred)
-//  :_value(value), _pred(pred){}
-//typedef Pred::first_argument_type In1;
-//typedef Pred::second_argument_type In2;
-//Out operator()(In1 in1, In2 in2) const {
-//  if(_pred(in1, in2)){
-//    return 
-    
-} // END detail
-
 namespace detail {
 
 template<typename F>
@@ -247,6 +230,8 @@ struct right_shift :public thrust::binary_function<A, B, A> {
   }
 };
 
+// is this function used anywhere?
+// I guess no.
 template<typename A, typename B>
 struct equal_to :public thrust::binary_function<A, B, bool> {
   __host__ __device__

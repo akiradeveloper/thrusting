@@ -7,7 +7,7 @@
 #include <thrust/sequence.h>
 #include <thrust/sort.h>
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <algorithm>
 
@@ -16,6 +16,8 @@ namespace {
 }
 
 namespace thrusting {
+
+// this is bad. causes error
 struct random {
   random(int seed)
   {
@@ -29,9 +31,9 @@ struct random {
 };
 } // END thrusting
 
-int main(void){
-  size_t N_VALUE = 10000000;
-  size_t N_BUCKET = 500000;
+int main(int nargs, char **args){
+  size_t N_VALUE = atoi(args[1]);
+  size_t N_BUCKET = atoi(args[2]);
 
   vector<int>::type prefix_output(N_BUCKET); 
   vector<int>::type cnt_output(N_BUCKET);
