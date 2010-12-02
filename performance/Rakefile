@@ -6,6 +6,12 @@ thisdir = File.expand_path File.dirname __FILE__
   require "thrusting/rb/#{s}"
 end
 
+task :reduce_by_bucket do
+  cc = CC
+  # cc += " -D THRUSTING_USING_DEVICE_VECTOR"
+  system "#{cc} reduce_by_bucket.cu"
+end
+
 task :scatter do
   cc = CC
   cc += " -D THRUSTING_USING_DEVICE_VECTOR"
@@ -16,7 +22,4 @@ task :gather do
   cc = CC
   cc += " -D THRUSTING_USING_DEVICE_VECTOR"
   system "#{cc} gather.cu"
-end
-
-task :reduce_by_bucket do
 end

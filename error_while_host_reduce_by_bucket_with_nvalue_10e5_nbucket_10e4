@@ -1,0 +1,2 @@
+a.out(1376) malloc: *** error for object 0x87ea04: incorrect checksum for freed object - object was probably modified after being freed.
+*** set a breakpoint in malloc_error_break to debug
