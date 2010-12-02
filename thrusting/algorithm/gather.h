@@ -1,7 +1,7 @@
 #pragma once
 
 /*
-  in-placable scatter
+  in-placeable gather algorithm
 */
 
 #include <thrusting/iterator.h>
@@ -9,6 +9,8 @@
 #include <thrust/iterator/iterator_traits.h>
 #include <thrust/gather.h>
 #include <thrust/copy.h>
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
 
 namespace thrusting {
 

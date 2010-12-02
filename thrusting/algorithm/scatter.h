@@ -1,7 +1,7 @@
 #pragma once
 
 /*
-  in-placable scatter implementation
+  in-placeable scatter algorithm
 */
 
 #include <thrust/iterator/iterator_traits.h>

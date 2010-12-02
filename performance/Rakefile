@@ -8,7 +8,7 @@ end
 
 task :reduce_by_bucket do
   cc = CC
-  # cc += " -D THRUSTING_USING_DEVICE_VECTOR"
+  cc += " -D THRUSTING_USING_DEVICE_VECTOR"
   system "#{cc} reduce_by_bucket.cu"
 end
 

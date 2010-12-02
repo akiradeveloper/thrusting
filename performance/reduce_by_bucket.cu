@@ -30,13 +30,8 @@ struct random {
 } // END thrusting
 
 int main(void){
-  size_t N_VALUE = 100000;
-  size_t N_BUCKET = 10000;
-
-  thrust::host_vector<int> _value(N_VALUE);
-  thrust::sequence(_value.begin(), _value.end());
-   
-  thrust::host_vector<int> _idx(N_VALUE);
+  size_t N_VALUE = 10000000;
+  size_t N_BUCKET = 500000;
 
   vector<int>::type prefix_output(N_BUCKET); 
   vector<int>::type cnt_output(N_BUCKET);
@@ -45,9 +40,12 @@ int main(void){
   thrusting::stopwatch sw("reduce_by_bucket"); 
 
   for(int i=0; i<3; ++i){
+    thrust::host_vector<int> _value(N_VALUE);
+    thrust::sequence(_value.begin(), _value.end());
     std::random_shuffle(_value.begin(), _value.end());
     vector<int>::type value(_value.begin(), _value.end());
 
+    thrust::host_vector<int> _idx(N_VALUE);
     int lucky_seed = 777;
     thrusting::random ran(lucky_seed);
     thrust::transform(
@@ -55,7 +53,6 @@ int main(void){
       thrust::make_constant_iterator(N_BUCKET) + N_VALUE,
       _idx.begin(),
       ran); 
-      
     vector<int>::type idx(_idx.begin(), _idx.end());
     thrust::sort(idx.begin(), idx.end());
 
@@ -65,8 +62,7 @@ int main(void){
     thrusting::reduce_by_bucket(
       N_VALUE,
       value.begin(),
-      // idx.begin(),
-      thrust::make_constant_iterator(7),
+      idx.begin(),
       N_BUCKET,
       prefix_output.begin(),
       cnt_output.begin(),
