@@ -1,0 +1,7 @@
+/Users/akira/sandbox/thrusting/thrusting/rb/../../thrusting/functional.h(151): error: function "thrusting::uniform_real_distribution<RealType, Engine>::operator() [with RealType=float, Engine=thrust::random::default_random_engine]" cannot be called with the given argument list
+            argument types are: (thrust::random::default_random_engine)
+            object type is: const thrusting::uniform_real_distribution<float, thrust::random::default_random_engine>
+          detected during instantiation of "F::result_type thrusting::detail::compose<F, G>::operator()(const G::argument_type &) const [with F=thrusting::uniform_real_distribution<float, thrust::random::default_random_engine>, G=thrusting::fast_rng_generator<int, thrust::random::default_random_engine>]" 
+gtest/engine.h(17): here
+
+1 error detected in the compilation of "/tmp/tmpxft_000010df_00000000-17_engine.cpp1.ii".

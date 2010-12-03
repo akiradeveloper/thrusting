@@ -98,6 +98,9 @@ typename F::result_type> {
   typename F::result_type operator()(
   const typename thrust::tuple_element<0, typename F::argument_type>::type &a, 
   const typename thrust::tuple_element<1, typename F::argument_type>::type &b) const {
+    /*
+      should be once store the tuple because it has not reference
+    */
     return _f(thrust::make_tuple(a, b));
   }
 };
@@ -148,7 +151,8 @@ struct compose :public thrust::unary_function<typename F::argument_type, typenam
   :_f(f), _g(g){}
   __host__ __device__
   typename F::result_type operator()(const typename G::argument_type &x) const {
-    return _f(_g(x));
+    typename G::result_type y = _g(x);
+    return _f(y);
   }
 };
 

@@ -1,6 +1,6 @@
 (in /Users/akira/sandbox/thrusting/testing)
 "nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -Xcompiler -trigraphs -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
-[==========] Running 51 tests from 17 test cases.
+[==========] Running 56 tests from 20 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
@@ -34,7 +34,21 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 13 tests from Functional (0 ms total)
+[----------] 13 tests from Functional (1 ms total)
+
+[----------] 2 tests from Distribution
+[ RUN      ] Distribution.UniformReal
+[       OK ] Distribution.UniformReal (0 ms)
+[ RUN      ] Distribution.UniformInt
+[       OK ] Distribution.UniformInt (0 ms)
+[----------] 2 tests from Distribution (0 ms total)
+
+[----------] 2 tests from Engine
+[ RUN      ] Engine.Fast
+[       OK ] Engine.Fast (0 ms)
+[ RUN      ] Engine.Discard
+[       OK ] Engine.Discard (0 ms)
+[----------] 2 tests from Engine (0 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -62,7 +76,7 @@ inplace
 [       OK ] Iterator.Advance (0 ms)
 [ RUN      ] Iterator.AllocAt
 [       OK ] Iterator.AllocAt (0 ms)
-[----------] 4 tests from Iterator (1 ms total)
+[----------] 4 tests from Iterator (0 ms total)
 
 [----------] 5 tests from List
 [ RUN      ] List.MakeString
@@ -83,8 +97,13 @@ inplace
 [ RUN      ] PermutationIterator.Gather
 [       OK ] PermutationIterator.Gather (0 ms)
 [ RUN      ] PermutationIterator.Scatter
-[       OK ] PermutationIterator.Scatter (0 ms)
-[----------] 2 tests from PermutationIterator (0 ms total)
+[       OK ] PermutationIterator.Scatter (1 ms)
+[----------] 2 tests from PermutationIterator (1 ms total)
+
+[----------] 1 test from Random
+[ RUN      ] Random.RandomGenerator
+[       OK ] Random.RandomGenerator (1 ms)
+[----------] 1 test from Random (1 ms total)
 
 [----------] 3 tests from Real
 [ RUN      ] Real.Create
@@ -125,23 +144,24 @@ default
 [       OK ] Scatter.Test (0 ms)
 [----------] 3 tests from Scatter (0 ms total)
 
-[----------] 1 test from ScatterIterator
-[ RUN      ] ScatterIterator.Test
-[       OK ] ScatterIterator.Test (0 ms)
-[----------] 1 test from ScatterIterator (0 ms total)
-
 [----------] 1 test from Thrust
 [ RUN      ] Thrust.SortByKey
 [       OK ] Thrust.SortByKey (0 ms)
-[----------] 1 test from Thrust (1 ms total)
+[----------] 1 test from Thrust (0 ms total)
+
+[----------] 1 test from StrideIterator
+[ RUN      ] StrideIterator.Test
+[       OK ] StrideIterator.Test (0 ms)
+[----------] 1 test from StrideIterator (0 ms total)
 
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
-Average: 0.0023834
+--- stopwatch test ---
+Average: 2.64528 [ms]
 Times:
-[0.002384, 0.002386, 0.002381, 0.002384, 0.002382]
-[       OK ] StopWatch.TestByLooping (12 ms)
-[----------] 1 test from StopWatch (12 ms total)
+[2.56374, 2.63514, 2.6047, 2.3928, 3.03002]
+[       OK ] StopWatch.TestByLooping (69 ms)
+[----------] 1 test from StopWatch (70 ms total)
 
 [----------] 1 test from TransformIf
 [ RUN      ] TransformIf.Test
@@ -172,5 +192,5 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 51 tests from 17 test cases ran. (14 ms total)
-[  PASSED  ] 51 tests.
+[==========] 56 tests from 20 test cases ran. (73 ms total)
+[  PASSED  ] 56 tests.

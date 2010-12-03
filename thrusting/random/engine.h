@@ -1,6 +1,7 @@
 #pragma once
 
 #include <thrust/random.h>
+#include <thrust/functional.h>
 
 #include <climits>
 
@@ -23,12 +24,12 @@ unsigned int hash(unsigned int a){
 
 template<
 typename Idx,
-typename Engine>
-class hash_engine_generator :public thrust::unary_function<Idx, Engine> {
+typename Engine = thrust::default_random_engine>
+class fast_rng_generator :public thrust::unary_function<Idx, Engine> {
 public:
   __host__ __device__
   Engine operator()(Idx idx) const {
-    unsigned int x = idx $ UINT_MAX;
+    unsigned int x = idx % UINT_MAX;
     unsigned int seed =  detail::hash(x);
     return Engine(seed);
   }
@@ -36,36 +37,19 @@ public:
 
 template<
 typename Idx,
+typename Seed = int,
 typename Engine = thrust::default_random_engine>
-hash_engine_generator<Idx, Engine> make_hash_engine_generator(){
-  return hash_engine_generator();
-}
-}
-
-template<
-typename Idx,
-typename Engine,
-typename Seed>
-class discard_engine_generator :public thrust::unary_function<Idx, Engine> {
+class rng_generator :public thrust::unary_function<Idx, Engine> {
   Seed _seed;
 public:
-  discard_engine_generator(Seed seed)
+  rng_generator(Seed seed)
   :_seed(seed){}
-  __device__ __host__
+  __host__ __device__
   Engine operator()(Idx idx) const {
     Engine rng(_seed);
     rng.discard(idx);
     return rng;
   }
-}
 };
-
-template<
-typename Idx,
-typename Engine = thrust::default_random_engine,
-typename Seed>
-discard_engine_generator<Idx, Engine> make_discard_engine_generator(Seed seed){
-  return discard_engine_generator(seed);
-}
 
 } // END thrusting
