@@ -1,3 +1,5 @@
+#pragma once
+
 #include <thrusting/vector.h>
 #include <thrusting/list.h>
 #include <thrust/transform.h>

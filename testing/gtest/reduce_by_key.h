@@ -1,3 +1,5 @@
+#pragma once
+
 #include <thrust/reduce.h>
 
 #include <thrusting/vector.h>

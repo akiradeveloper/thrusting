@@ -1,3 +1,5 @@
+#pragma once
+
 #include <thrust/iterator/permutation_iterator.h>
 #include <thrust/iterator/counting_iterator.h>
 #include <thrust/sort.h>

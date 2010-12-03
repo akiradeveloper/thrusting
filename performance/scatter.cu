@@ -23,7 +23,7 @@ int main(int narg, char **args){
   
   thrusting::stopwatch sw("thrusting"); 
 
-  for(int i=0; i<1; ++i){
+  for(int i=0; i<3; ++i){
     std::random_shuffle(_value.begin(), _value.end());
     vector<int>::type value(_value.begin(), _value.end());
 

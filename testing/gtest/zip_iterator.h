@@ -1,3 +1,5 @@
+#pragma once
+
 #include <thrusting/iterator.h>
 #include <thrusting/iterator/zip_iterator.h>
 #include <thrusting/vector.h>

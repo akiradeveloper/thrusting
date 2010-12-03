@@ -1,3 +1,5 @@
+#pragma once
+
 #include <thrust/sort.h>
 
 #include <thrusting/real.h>

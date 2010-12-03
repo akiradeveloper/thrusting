@@ -1,3 +1,5 @@
+#pragma once
+
 #include <thrust/transform.h>
 #include <thrust/functional.h>
 

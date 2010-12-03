@@ -1,3 +1,5 @@
+#pragma once
+
 #include <thrusting/functional.h>
 #include <thrusting/tuple.h>
 #include <thrusting/vector.h>

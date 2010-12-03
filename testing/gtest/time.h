@@ -1,3 +1,5 @@
+#pragma once 
+
 #include <thrusting/time.h>
 
 #include <gtest/gtest.h>
