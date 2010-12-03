@@ -1,12 +1,16 @@
 #pragma once
 
+#include <thrusting/real.h>
+
 #include <thrust/functional.h>
 #include <thrust/random/uniform_int_distribution.h>
 #include <thrust/random/uniform_real_distribution.h>
 
 namespace thrusting {
 
-template<typename Engine, typename RealType>
+template<
+typename RealType,
+typename Engine = thrust::default_random_engine>
 class uniform_real_distribution :public thrust:unary_function<Engine, RealType> {
   RealType _min, _max;
   thrust::uniform_real_distribution<RealType> _dist;
@@ -21,7 +25,9 @@ public:
   } 
 };
 
-template<typename Engine, typename IntType>
+template<
+typename IntType,
+typename Engine = thrust::default_random_engine>
 class uniform_int_distribution :public thrust::unary_function<Engine, IntType> {
   IntType _min, _max;
   thrust::uniform_int_distribution<IntType> _dist;

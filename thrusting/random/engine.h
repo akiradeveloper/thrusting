@@ -63,7 +63,7 @@ public:
 template<
 typename Idx,
 typename Engine = thrust::default_random_engine,
-typename Seed = unsigned long long>
+typename Seed>
 discard_engine_generator<Idx, Engine> make_discard_engine_generator(Seed seed){
   return discard_engine_generator(seed);
 }
