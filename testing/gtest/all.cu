@@ -9,7 +9,6 @@
 #include "reduce_by_bucket.h"
 #include "reduce_by_key.h"
 #include "scatter.h"
-#include "scatter_iterator.h"
 #include "sort_by_key.h"
 #include "time.h"
 #include "transform_if.h"

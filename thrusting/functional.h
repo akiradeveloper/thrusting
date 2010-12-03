@@ -22,8 +22,6 @@ namespace thrusting {
 
 namespace detail {
 
-namespace detail {
-
 template<typename F>
 struct flip :public thrust::binary_function<
 typename F::second_argument_type,

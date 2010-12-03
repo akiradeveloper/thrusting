@@ -10,7 +10,7 @@ namespace {
 }
 
 TEST(Scatter, InPlaceForZipIterator){
-  double _x[] = {1,2,3,4}; vector<double>::type x(_x, _x+4);
+  float _x[] = {1,2,3,4}; vector<float>::type x(_x, _x+4);
   long _y[] = {1,2,3,4}; vector<long>::type y(_y, _y+4);
   int _idx[] = {3,2,1,0}; vector<int>::type idx(_idx, _idx+4);
   
@@ -20,7 +20,7 @@ TEST(Scatter, InPlaceForZipIterator){
     idx.begin(),
     thrusting::make_zip_iterator(x.begin(), y.begin()));
  
-  double _ans_x[] = {4,3,2,1}; vector<double>::type ans_x(_ans_x, _ans_x+4);
+  float _ans_x[] = {4,3,2,1}; vector<float>::type ans_x(_ans_x, _ans_x+4);
   long _ans_y[] = {4,3,2,1}; vector<long>::type ans_y(_ans_y, _ans_y+4);
 
   EXPECT_EQ(make_list(ans_x), make_list(x));
