@@ -2,6 +2,8 @@
 
 /*
   in-placeable gather algorithm
+
+  Akira Hayakawa, 2010.
 */
 
 #include <thrusting/iterator.h>

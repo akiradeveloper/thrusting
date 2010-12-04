@@ -4,6 +4,7 @@
 #include "engine.h"
 #include "functional.h"
 #include "gather.h"
+#include "generate.h"
 #include "iterator.h"
 #include "list.h"
 #include "permutation_iterator.h"

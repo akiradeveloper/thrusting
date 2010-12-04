@@ -1,5 +1,3 @@
-(in /Users/akira/sandbox/thrusting/testing)
-"nvcc -I/Users/akira/local/thrust -I/Users/akira/sandbox/thrusting/thrusting/rb/../.. -L/usr/local/cuda/lib -Xcompiler -trigraphs -I/Users/akira/local/gtest/gtest-1.5.0/include -L/Users/akira/local/gtest/gtest-1.5.0/lib -lgtest -g"
 [==========] Running 56 tests from 20 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
@@ -34,14 +32,14 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 13 tests from Functional (1 ms total)
+[----------] 13 tests from Functional (0 ms total)
 
 [----------] 2 tests from Distribution
 [ RUN      ] Distribution.UniformReal
 [       OK ] Distribution.UniformReal (0 ms)
 [ RUN      ] Distribution.UniformInt
 [       OK ] Distribution.UniformInt (0 ms)
-[----------] 2 tests from Distribution (0 ms total)
+[----------] 2 tests from Distribution (1 ms total)
 
 [----------] 2 tests from Engine
 [ RUN      ] Engine.Fast
@@ -97,8 +95,8 @@ inplace
 [ RUN      ] PermutationIterator.Gather
 [       OK ] PermutationIterator.Gather (0 ms)
 [ RUN      ] PermutationIterator.Scatter
-[       OK ] PermutationIterator.Scatter (1 ms)
-[----------] 2 tests from PermutationIterator (1 ms total)
+[       OK ] PermutationIterator.Scatter (0 ms)
+[----------] 2 tests from PermutationIterator (0 ms total)
 
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
@@ -157,11 +155,11 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.64528 [ms]
+Average: 2.42406 [ms]
 Times:
-[2.56374, 2.63514, 2.6047, 2.3928, 3.03002]
-[       OK ] StopWatch.TestByLooping (69 ms)
-[----------] 1 test from StopWatch (70 ms total)
+[2.40976, 2.41386, 2.41488, 2.41462, 2.4672]
+[       OK ] StopWatch.TestByLooping (68 ms)
+[----------] 1 test from StopWatch (68 ms total)
 
 [----------] 1 test from TransformIf
 [ RUN      ] TransformIf.Test
@@ -192,5 +190,5 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 56 tests from 20 test cases ran. (73 ms total)
+[==========] 56 tests from 20 test cases ran. (71 ms total)
 [  PASSED  ] 56 tests.

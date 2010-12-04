@@ -6,22 +6,28 @@ thisdir = File.expand_path File.dirname __FILE__
   require "thrusting/rb/#{s}"
 end
 
-CLOBBER.include("a.out")
+CLOBBER.include("reduce_by_bucket", "scatter", "gather")
 
-task :reduce_by_bucket do
-  cc = CC
-  cc += " -D THRUSTING_USING_DEVICE_VECTOR"
-  system "#{cc} reduce_by_bucket.cu"
+def add_option(cc)
+  cc = add_device_option(cc, "omp")
+  cc = add_floating_option(cc, "float")
 end
 
-task :scatter do
-  cc = CC
-  cc += " -D THRUSTING_USING_DEVICE_VECTOR"
-  system "#{cc} scatter.cu"
+cc = CC
+
+task :reduce_by_bucket do |t|
+  cc = add_option(cc)
+  compile(cc, t.name, [t.name + ".cu"])
 end
 
-task :gather do
-  cc = CC
-  cc += " -D THRUSTING_USING_DEVICE_VECTOR"
-  system "#{cc} gather.cu"
+task :scatter do |t|
+  cc = add_option(cc)
+  compile(cc, t.name, [t.name + ".cu"])
 end
+
+task :gather do |t|
+  cc = add_option(cc)
+  compile(cc, t.name, [t.name + ".cu"])
+end
+
+task :performance_all => [:reduce_by_bucket, :scatter, :gather]

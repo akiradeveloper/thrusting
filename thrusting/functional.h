@@ -176,7 +176,7 @@ struct constant {
   :_value(value){} 
   template<typename In>
   __host__ __device__
-  Out operator()(In in) const {
+  Out operator()(const In &in) const {
     return _value;
   }
 };

@@ -13,7 +13,7 @@ namespace thrusting {
 namespace detail {
 
 template<typename A, typename B>
-struct BUCKET_INDEXING_LOCAL_MINUS :public thrust::binary_function<A, B, A> {
+struct local_minus :public thrust::binary_function<A, B, A> {
   __host__ __device__
   A operator()(A a, B b) const {
     return a-b;
@@ -73,7 +73,7 @@ void bucket_indexing(
     thrusting::advance(n_bucket, cnt_bucket),
     prefix_bucket,
     cnt_bucket,
-    detail::BUCKET_INDEXING_LOCAL_MINUS<OutputValue2, OutputValue1>());
+    detail::local_minus<OutputValue2, OutputValue1>());
 }
 
 } // END thrusting

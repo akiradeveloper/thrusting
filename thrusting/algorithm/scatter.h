@@ -2,6 +2,8 @@
 
 /*
   in-placeable scatter algorithm
+
+  Akira Hayakawa, 2010.
 */
 
 #include <thrust/iterator/iterator_traits.h>

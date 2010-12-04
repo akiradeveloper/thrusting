@@ -1,7 +1,18 @@
-/Users/akira/sandbox/thrusting/thrusting/rb/../../thrusting/functional.h(151): error: function "thrusting::uniform_real_distribution<RealType, Engine>::operator() [with RealType=float, Engine=thrust::random::default_random_engine]" cannot be called with the given argument list
-            argument types are: (thrust::random::default_random_engine)
-            object type is: const thrusting::uniform_real_distribution<float, thrust::random::default_random_engine>
-          detected during instantiation of "F::result_type thrusting::detail::compose<F, G>::operator()(const G::argument_type &) const [with F=thrusting::uniform_real_distribution<float, thrust::random::default_random_engine>, G=thrusting::fast_rng_generator<int, thrust::random::default_random_engine>]" 
-gtest/engine.h(17): here
+/Users/akira/local/thrust/thrust/iterator/detail/transform_iterator.inl(37): error: class "thrusting::detail::constant<int>" has no member "result_type"
+          detected during:
+            instantiation of class "thrust::detail::function_object_result<UnaryFunc> [with UnaryFunc=thrusting::detail::constant<int>]" 
+/Users/akira/local/thrust/thrust/detail/type_traits.h(388): here
+            instantiation of class "thrust::detail::eval_if<true, Then, Else> [with Then=thrust::detail::function_object_result<thrusting::detail::constant<int>>, Else=thrust::detail::identity_<thrust::use_default>]" 
+/Users/akira/local/thrust/thrust/iterator/detail/iterator_adaptor.inl(41): here
+            instantiation of class "thrust::experimental::detail::ia_dflt_help<T, DefaultNullaryFn> [with T=thrust::use_default, DefaultNullaryFn=thrust::detail::function_object_result<thrusting::detail::constant<int>>]" 
+(60): here
+            instantiation of class "thrust::detail::transform_iterator_base<UnaryFunc, Iterator, Reference, Value> [with UnaryFunc=thrusting::detail::constant<int>, Iterator=thrust::counting_iterator<int, thrust::use_default, thrust::use_default, thrust::use_default>, Reference=thrust::use_default, Value=thrust::use_default]" 
+/Users/akira/local/thrust/thrust/iterator/transform_iterator.h(187): here
+            instantiation of class "thrust::transform_iterator<AdaptableUnaryFunction, Iterator, Reference, Value> [with AdaptableUnaryFunction=thrusting::detail::constant<int>, Iterator=thrust::counting_iterator<int, thrust::use_default, thrust::use_default, thrust::use_default>, Reference=thrust::use_default, Value=thrust::use_default]" 
+/Users/akira/local/thrust/thrust/iterator/transform_iterator.h(281): here
+            instantiation of "thrust::transform_iterator<AdaptableUnaryFunction, Iterator, thrust::use_default, thrust::use_default> thrust::make_transform_iterator(Iterator, AdaptableUnaryFunction) [with AdaptableUnaryFunction=thrusting::detail::constant<int>, Iterator=thrust::counting_iterator<int, thrust::use_default, thrust::use_default, thrust::use_default>]" 
+/Users/akira/sandbox/thrusting/thrusting/rb/../../thrusting/random/generate.h(31): here
+            instantiation of "void thrusting::generate(OutputIterator, OutputIterator, RandomGenerator) [with OutputIterator=thrust::detail::normal_iterator<float *>, RandomGenerator=thrusting::detail::constant<int>]" 
+gtest/generate.h(17): here
 
-1 error detected in the compilation of "/tmp/tmpxft_000010df_00000000-17_engine.cpp1.ii".
+1 error detected in the compilation of "/tmp/tmpxft_00000a74_00000000-17_generate.cpp1.ii".

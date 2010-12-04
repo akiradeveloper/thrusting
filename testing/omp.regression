@@ -2,12 +2,12 @@
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
-[       OK ] BucketIndexing.Test (107 ms)
-[----------] 1 test from BucketIndexing (107 ms total)
+[       OK ] BucketIndexing.Test (1 ms)
+[----------] 1 test from BucketIndexing (1 ms total)
 
 [----------] 13 tests from Functional
 [ RUN      ] Functional.Constant
-[       OK ] Functional.Constant (1 ms)
+[       OK ] Functional.Constant (0 ms)
 [ RUN      ] Functional.EqualTo
 [       OK ] Functional.EqualTo (0 ms)
 [ RUN      ] Functional.Flip
@@ -23,7 +23,7 @@
 [ RUN      ] Functional.Bind1st
 [       OK ] Functional.Bind1st (0 ms)
 [ RUN      ] Functional.Bind2nd
-[       OK ] Functional.Bind2nd (0 ms)
+[       OK ] Functional.Bind2nd (1 ms)
 [ RUN      ] Functional.Curry
 [       OK ] Functional.Curry (0 ms)
 [ RUN      ] Functional.UnCurry
@@ -56,52 +56,57 @@
 [----------] 3 tests from Gather
 [ RUN      ] Gather.Test
 default
-[       OK ] Gather.Test (1 ms)
+[       OK ] Gather.Test (0 ms)
 [ RUN      ] Gather.InPlace
 inplace
 [       OK ] Gather.InPlace (0 ms)
 [ RUN      ] Gather.InPlaceForZipIterator
 inplace
 [       OK ] Gather.InPlaceForZipIterator (1 ms)
-[----------] 3 tests from Gather (2 ms total)
+[----------] 3 tests from Gather (1 ms total)
 
 [----------] 4 tests from Iterator
 [ RUN      ] Iterator.IteratorValueAt
-[       OK ] Iterator.IteratorValueAt (1 ms)
+[       OK ] Iterator.IteratorValueAt (0 ms)
 [ RUN      ] Iterator.IteratorValueOf
 [       OK ] Iterator.IteratorValueOf (0 ms)
 [ RUN      ] Iterator.Advance
 [       OK ] Iterator.Advance (0 ms)
 [ RUN      ] Iterator.AllocAt
-[       OK ] Iterator.AllocAt (1 ms)
-[----------] 4 tests from Iterator (2 ms total)
+[       OK ] Iterator.AllocAt (0 ms)
+[----------] 4 tests from Iterator (0 ms total)
 
 [----------] 5 tests from List
 [ RUN      ] List.MakeString
-[       OK ] List.MakeString (0 ms)
+[       OK ] List.MakeString (1 ms)
 [ RUN      ] List.Ostream
 [1, 2]
-[       OK ] List.Ostream (1 ms)
+[       OK ] List.Ostream (0 ms)
 [ RUN      ] List.Ostream2
 [1.2, 2.9]
 [       OK ] List.Ostream2 (0 ms)
 [ RUN      ] List.Equality
-[       OK ] List.Equality (1 ms)
+[       OK ] List.Equality (0 ms)
 [ RUN      ] List.Equality2
 [       OK ] List.Equality2 (0 ms)
-[----------] 5 tests from List (2 ms total)
+[----------] 5 tests from List (1 ms total)
 
 [----------] 2 tests from PermutationIterator
 [ RUN      ] PermutationIterator.Gather
-[       OK ] PermutationIterator.Gather (1 ms)
+gtest/permutation_iterator.h:25: Failure
+Value of: make_list( 4, thrust::make_permutation_iterator( thrust::make_counting_iterator(1), map.begin()))
+  Actual: [1, 2, 1, 2]
+Expected: make_list(ans)
+Which is: [1, 2, 1, 2]
+[  FAILED  ] PermutationIterator.Gather (0 ms)
 [ RUN      ] PermutationIterator.Scatter
 [       OK ] PermutationIterator.Scatter (1 ms)
-[----------] 2 tests from PermutationIterator (2 ms total)
+[----------] 2 tests from PermutationIterator (1 ms total)
 
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
-[       OK ] Random.RandomGenerator (2 ms)
-[----------] 1 test from Random (2 ms total)
+[       OK ] Random.RandomGenerator (1 ms)
+[----------] 1 test from Random (1 ms total)
 
 [----------] 3 tests from Real
 [ RUN      ] Real.Create
@@ -116,36 +121,36 @@ inplace
 [----------] 3 tests from ReduceByBucket
 [ RUN      ] ReduceByBucket.Test
 inplace
-[       OK ] ReduceByBucket.Test (5 ms)
+[       OK ] ReduceByBucket.Test (1 ms)
 [ RUN      ] ReduceByBucket.Test2
 inplace
-[       OK ] ReduceByBucket.Test2 (6 ms)
+[       OK ] ReduceByBucket.Test2 (1 ms)
 [ RUN      ] ReduceByBucket.Test3
 inplace
-[       OK ] ReduceByBucket.Test3 (5 ms)
-[----------] 3 tests from ReduceByBucket (16 ms total)
+[       OK ] ReduceByBucket.Test3 (0 ms)
+[----------] 3 tests from ReduceByBucket (2 ms total)
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
-[       OK ] ReduceByKey.Test (5 ms)
-[----------] 1 test from ReduceByKey (5 ms total)
+[       OK ] ReduceByKey.Test (1 ms)
+[----------] 1 test from ReduceByKey (1 ms total)
 
 [----------] 3 tests from Scatter
 [ RUN      ] Scatter.InPlaceForZipIterator
 inplace
-[       OK ] Scatter.InPlaceForZipIterator (1 ms)
+[       OK ] Scatter.InPlaceForZipIterator (0 ms)
 [ RUN      ] Scatter.InPlace
 inplace
 [       OK ] Scatter.InPlace (1 ms)
 [ RUN      ] Scatter.Test
 default
 [       OK ] Scatter.Test (0 ms)
-[----------] 3 tests from Scatter (2 ms total)
+[----------] 3 tests from Scatter (1 ms total)
 
 [----------] 1 test from Thrust
 [ RUN      ] Thrust.SortByKey
-[       OK ] Thrust.SortByKey (3 ms)
-[----------] 1 test from Thrust (3 ms total)
+[       OK ] Thrust.SortByKey (0 ms)
+[----------] 1 test from Thrust (0 ms total)
 
 [----------] 1 test from StrideIterator
 [ RUN      ] StrideIterator.Test
@@ -155,11 +160,11 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.56377 [ms]
+Average: 2.41635 [ms]
 Times:
-[2.40435, 2.40598, 2.8001, 2.40694, 2.80147]
-[       OK ] StopWatch.TestByLooping (13 ms)
-[----------] 1 test from StopWatch (13 ms total)
+[2.41238, 2.42038, 2.41853, 2.41824, 2.41219]
+[       OK ] StopWatch.TestByLooping (64 ms)
+[----------] 1 test from StopWatch (64 ms total)
 
 [----------] 1 test from TransformIf
 [ RUN      ] TransformIf.Test
@@ -186,9 +191,13 @@ Times:
 
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
-[       OK ] ZipIterator.Reference (1 ms)
-[----------] 1 test from ZipIterator (1 ms total)
+[       OK ] ZipIterator.Reference (0 ms)
+[----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 56 tests from 20 test cases ran. (160 ms total)
-[  PASSED  ] 56 tests.
+[==========] 56 tests from 20 test cases ran. (75 ms total)
+[  PASSED  ] 55 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] PermutationIterator.Gather
+
+ 1 FAILED TEST

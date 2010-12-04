@@ -2,18 +2,49 @@
 
 thisdir = File.expand_path File.dirname __FILE__ 
 
-LIBPATH = [thisdir, "..", ".."].join "/"
+libpath = [thisdir, "..", ".."].join "/"
 
-THRUST_HOME = "#{ENV["HOME"]}/local/thrust"
-THRUST_INCLUDE = THRUST_HOME
+thrust_home = "#{ENV["HOME"]}/local/thrust"
+thrust_include = thrust_home
 
-CUDA_HOME = "/usr/local/cuda"
-CUDA_LIB = [CUDA_HOME, "lib"].join "/"
+cuda_home = "/usr/local/cuda"
+cuda_lib = [cuda_home, "lib"].join "/"
   
 cc = "nvcc"
-cc = [cc, THRUST_INCLUDE, LIBPATH].join " -I"
-cc = [cc, CUDA_LIB].join " -L"
+cc = [cc, thrust_include, libpath].join " -I"
+cc += " -L #{cuda_lib}"
 
-cc = [cc, "-Xcompiler -trigraphs"].join " "
+cc += " -Xcompiler -trigraphs"
 
 CC = cc
+
+def add_device_option(cc, name)
+  case name 
+  when "host"
+    cc
+  when "device"
+    cc += " -D THRUSTING_USING_DEVICE_VECTOR"
+  when "omp" 
+    cc += " -D THRUSTING_USING_DEVICE_VECTOR"
+    cc += " -Xcompiler -fopenmp"
+    cc += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_OMP"
+  else
+    raise "invalid name"
+  end
+end
+
+def add_floating_option(cc, name)
+  case name
+  when "double"
+    cc += " -D THRUSTING_USING_REAL_FOR_REAL"
+  when "float"
+    cc
+  else
+    raise "invalid name"
+  end
+end
+
+def compile(cc, bin, files)
+  p cc
+  system "#{cc} -o #{bin} #{files.join(" ")}"
+end

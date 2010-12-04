@@ -15,10 +15,7 @@ class uniform_real_distribution :public thrust::unary_function<Engine, RealType>
 public:
   uniform_real_distribution(RealType min, RealType max)
   :_min(min), _max(max){}
-  /* 
-    This function can not be const.
-    But that is not a big problem per se.
-  */
+
   __host__ __device__
   RealType operator()(Engine &engine) const {
     thrust::uniform_real_distribution<RealType> dist(_min, _max);

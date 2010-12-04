@@ -9,19 +9,15 @@ GTEST_HOME = "#{ENV["HOME"]}/local/gtest/gtest-1.5.0"
 GTEST_LIB = [GTEST_HOME, "lib"].join "/"
 GTEST_INCLUDE = [GTEST_HOME, "include"].join "/"
 
-testcc = CC 
-testcc = [testcc, GTEST_INCLUDE].join " -I"
-testcc = [testcc, GTEST_LIB].join " -L"
-testcc = [testcc, "gtest"].join " -l"
-testcc = [testcc, "-g"].join " "
+cc = CC 
+cc += " -I #{GTEST_INCLUDE}"
+cc += " -L #{GTEST_LIB}"
+cc += " -l gtest"
+cc += " -g"
 
-# testcc = [testcc, "-D THRUSTING_USING_DEVICE_VECTOR"].join " " 
-# testcc = [testcc, "-D THRUSTING_USE_DOUBLE_FOR_REAL"].join " "
+TEST_CC = cc
 
-TESTCC = testcc
-
-p TESTCC
-
-def run(bin)
-  system "./#{bin}"
+def compile_gtest(cc, bin, files)
+  sources = ["gtest_main.cu"] + files
+  compile(cc, bin, sources)
 end
