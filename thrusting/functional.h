@@ -139,7 +139,7 @@ detail::uncurrier<F> uncurry(F f){
 
 namespace detail {
 template<typename F, typename G>
-class composer :public thrust::unary_function<typename F::argument_type, typename G::result_type> {
+class composer :public thrust::unary_function<typename G::argument_type, typename F::result_type> {
   F _f;
   G _g;
 public:
@@ -164,7 +164,7 @@ detail::composer<F, G> compose(F f, G g){
 
 namespace detail {
 template<typename In, typename Out>
-class constant_functor {
+class constant_functor :public thrust::unary_function<In, Out> {
   Out _value;
 public:
   constant_functor(Out value)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <thrusting/random/generate.h>
+
 #include <thrusting/vector.h>
 #include <thrusting/list.h>
 #include <thrusting/functional.h>
@@ -17,10 +18,9 @@ TEST(Generate, Test){
   thrusting::generate(
     output.begin(),
     output.end(),
-    thrusting::constant(1));
-//    compose(
-//      thrusting::uniform_real_distribution<float>(0, 10),
-//      fast_rng_generator<int>()));
+    compose(
+      make_uniform_real_distribution<float>(0, 10),
+      make_fast_rng_generator<int>()));
 
   std::cout << make_list(output) << std::endl;
 }

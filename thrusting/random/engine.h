@@ -24,6 +24,7 @@ unsigned int hash(unsigned int a){
 }
 } // END detail
 
+namespace detail {
 template<
 typename Idx,
 typename Engine = thrust::default_random_engine>
@@ -36,12 +37,14 @@ public:
     return Engine(seed);
   }
 };
+} // END detail
 
 template<typename Idx>
-fast_rng_generator<Idx> make_fast_rng_generator(){
-  return fast_rng_generator<Idx>();
+detail::fast_rng_generator<Idx> make_fast_rng_generator(){
+  return detail::fast_rng_generator<Idx>();
 }
 
+namespace detail {
 template<
 typename Idx,
 typename Seed,
@@ -58,12 +61,13 @@ public:
     return rng;
   }
 };
+} // END detail
 
 template<
 typename Idx,
 typename Seed>
-rng_generator<Idx, Seed> make_rng_generator(Seed seed){
-  return rng_generator<Idx, Seed>(seed);
+detail::rng_generator<Idx, Seed> make_rng_generator(Seed seed){
+  return detail::rng_generator<Idx, Seed>(seed);
 }
 
 } // END thrusting

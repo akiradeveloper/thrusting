@@ -7,6 +7,7 @@
 
 namespace thrusting {
 
+namespace detail {
 template<
 typename RealType,
 typename Engine = thrust::default_random_engine>
@@ -21,13 +22,15 @@ public:
     return dist(engine);
   } 
 };
+} // END detail
 
 template<
 typename RealType>
-uniform_real_distribution<RealType> make_uniform_real_distribution(RealType min, RealType max){
-  return uniform_real_distribution<RealType>(min, max);
+detail::uniform_real_distribution<RealType> make_uniform_real_distribution(RealType min, RealType max){
+  return detail::uniform_real_distribution<RealType>(min, max);
 }
 
+namespace detail {
 template<
 typename IntType,
 typename Engine = thrust::default_random_engine>
@@ -42,10 +45,11 @@ public:
     return dist(engine);
   } 
 };
+} // END detail
 
 template<typename IntType>
-uniform_int_distribution<IntType> make_uniform_int_distribution(IntType min, IntType max){
-  return uniform_int_distribution<IntType>(min, max);
+detail::uniform_int_distribution<IntType> make_uniform_int_distribution(IntType min, IntType max){
+  return detail::uniform_int_distribution<IntType>(min, max);
 }
 
 } // END thrusting

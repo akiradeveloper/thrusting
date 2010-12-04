@@ -33,7 +33,7 @@ detail::stride_functor<Idx> make_stride_functor(Idx first, Idx step){
   to alloc randomly generated tuples to an array.
 */
 template<typename Idx>
-thrust::transform_iterator<stride_functor<Idx>, thrust::counting_iterator<Idx> >
+thrust::transform_iterator<detail::stride_functor<Idx>, thrust::counting_iterator<Idx> >
 make_stride_iterator(Idx first, Idx step){
   return thrust::make_transform_iterator(
     thrust::make_counting_iterator(0),
