@@ -6,6 +6,7 @@
 
 namespace thrusting {
 
+namespace detail {
 template<typename Idx>
 class stride_functor :public thrust::unary_function<Idx, Idx> {
   Idx _first, _step;
@@ -17,11 +18,11 @@ public:
     return _first + idx * _step;
   }
 };
+} // END detail
 
 template<typename Idx>
-stride_functor<Idx> 
-make_stride_functor(Idx first, Idx step){
-  return stride_functor<Idx>(first, step);
+detail::stride_functor<Idx> make_stride_functor(Idx first, Idx step){
+  return detail::stride_functor<Idx>(first, step);
 }
 
 /*

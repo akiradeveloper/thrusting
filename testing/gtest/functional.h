@@ -10,11 +10,6 @@ namespace {
   using namespace thrusting;
 }
 
-TEST(Functional, EqualTo){
-  bool b = equal_to<size_t, float>()(1, 1.0F);
-  EXPECT_TRUE(b);
-}
-
 TEST(Functional, Flip){
   // 4 / 2 = 2
   int x = thrusting::flip(thrust::divides<int>())(2, 4);

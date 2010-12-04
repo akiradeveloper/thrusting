@@ -6,6 +6,7 @@
 #include <thrust/advance.h>
 
 namespace thrusting {
+namespace detail {
 
 template<typename Iterator>
 struct list {
@@ -44,4 +45,5 @@ struct list {
   }
 };
 
+} // END detail
 } // END thrusting

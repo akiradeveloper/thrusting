@@ -36,7 +36,7 @@ end
 def add_floating_option(cc, name)
   case name
   when "double"
-    cc += " -D THRUSTING_USING_REAL_FOR_REAL"
+    cc += " -D THRUSTING_USING_DOUBLE_FOR_REAL"
   when "float"
     cc
   else
