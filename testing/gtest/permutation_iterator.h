@@ -18,6 +18,10 @@ TEST(PermutationIterator, Gather){
   int _ans[] = {1,2,1,2}; vector<int>::type ans(_ans, _ans+4);
 
   EXPECT_EQ(
+    4,
+    make_list(ans).length());
+
+  EXPECT_EQ(
     make_list(ans),
     make_list(
       4,

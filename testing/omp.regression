@@ -1,8 +1,8 @@
-[==========] Running 56 tests from 21 test cases.
+[==========] Running 57 tests from 22 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
-[       OK ] BucketIndexing.Test (1 ms)
+[       OK ] BucketIndexing.Test (0 ms)
 [----------] 1 test from BucketIndexing (1 ms total)
 
 [----------] 12 tests from Functional
@@ -66,7 +66,7 @@ inplace
 [----------] 1 test from Generate
 [ RUN      ] Generate.Test
 [6.91545, 2.37462, 2.75667, 3.84435, 9.51158, 2.03073, 2.95432, 1.77436, 6.76713, 1.13813]
-[       OK ] Generate.Test (1 ms)
+[       OK ] Generate.Test (0 ms)
 [----------] 1 test from Generate (1 ms total)
 
 [----------] 4 tests from Iterator
@@ -95,22 +95,27 @@ inplace
 [       OK ] List.Equality2 (0 ms)
 [----------] 5 tests from List (1 ms total)
 
+[----------] 1 test from Equal
+[ RUN      ] Equal.Test
+[       OK ] Equal.Test (0 ms)
+[----------] 1 test from Equal (0 ms total)
+
 [----------] 2 tests from PermutationIterator
 [ RUN      ] PermutationIterator.Gather
-gtest/permutation_iterator.h:25: Failure
+gtest/permutation_iterator.h:29: Failure
 Value of: make_list( 4, thrust::make_permutation_iterator( thrust::make_counting_iterator(1), map.begin()))
   Actual: [1, 2, 1, 2]
 Expected: make_list(ans)
 Which is: [1, 2, 1, 2]
 [  FAILED  ] PermutationIterator.Gather (0 ms)
 [ RUN      ] PermutationIterator.Scatter
-[       OK ] PermutationIterator.Scatter (0 ms)
-[----------] 2 tests from PermutationIterator (0 ms total)
+[       OK ] PermutationIterator.Scatter (1 ms)
+[----------] 2 tests from PermutationIterator (1 ms total)
 
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
-[       OK ] Random.RandomGenerator (2 ms)
-[----------] 1 test from Random (2 ms total)
+[       OK ] Random.RandomGenerator (1 ms)
+[----------] 1 test from Random (1 ms total)
 
 [----------] 3 tests from Real
 [ RUN      ] Real.Create
@@ -128,11 +133,11 @@ inplace
 [       OK ] ReduceByBucket.Test (1 ms)
 [ RUN      ] ReduceByBucket.Test2
 inplace
-[       OK ] ReduceByBucket.Test2 (0 ms)
+[       OK ] ReduceByBucket.Test2 (1 ms)
 [ RUN      ] ReduceByBucket.Test3
 inplace
-[       OK ] ReduceByBucket.Test3 (0 ms)
-[----------] 3 tests from ReduceByBucket (2 ms total)
+[       OK ] ReduceByBucket.Test3 (1 ms)
+[----------] 3 tests from ReduceByBucket (3 ms total)
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
@@ -164,9 +169,9 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.39799 [ms]
+Average: 2.39686 [ms]
 Times:
-[2.39709, 2.40304, 2.39379, 2.39894, 2.39709]
+[2.39754, 2.39402, 2.39376, 2.40333, 2.39565]
 [       OK ] StopWatch.TestByLooping (59 ms)
 [----------] 1 test from StopWatch (59 ms total)
 
@@ -199,8 +204,8 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 56 tests from 21 test cases ran. (69 ms total)
-[  PASSED  ] 55 tests.
+[==========] 57 tests from 22 test cases ran. (70 ms total)
+[  PASSED  ] 56 tests.
 [  FAILED  ] 1 test, listed below:
 [  FAILED  ] PermutationIterator.Gather
 

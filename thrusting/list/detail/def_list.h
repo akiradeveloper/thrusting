@@ -9,9 +9,10 @@ namespace thrusting {
 namespace detail {
 
 template<typename Iterator>
-struct list {
+class list {
   size_t _n;
   Iterator _head;
+public:
   list(size_t n, Iterator head)
   :_n(n), _head(head){}
 
@@ -36,7 +37,7 @@ struct list {
   template<typename Iterator2>
   bool operator==(const list<Iterator2> &ys) const {
     if(length() != ys.length()){ return false; }
-    return thrust::equal(head(), head()+length(), ys.head());
+    return thrust::equal(head(), end(), ys.head());
   }
 
   template<typename Iterator2>

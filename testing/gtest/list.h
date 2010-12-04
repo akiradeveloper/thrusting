@@ -52,4 +52,15 @@ TEST(List, Equality2){
   EXPECT_EQ(
     make_list(xs),
     make_list(2, thrust::make_counting_iterator(1)));
-}  
+}
+
+/*
+  Make sure that equal does right for all devices
+*/
+TEST(Equal, Test){
+  int _xs[] = {1,2,1,2}; vector<int>::type xs(_xs, _xs+4);
+  int _ans[] = {1,2,1,2}; vector<int>::type ans(_ans, _ans+4);
+  EXPECT_TRUE(
+    thrust::equal(
+      xs.begin(), xs.end(), ans.begin()));
+}
