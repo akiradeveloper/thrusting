@@ -1,15 +1,13 @@
-[==========] Running 56 tests from 20 test cases.
+[==========] Running 56 tests from 21 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
 [       OK ] BucketIndexing.Test (0 ms)
 [----------] 1 test from BucketIndexing (0 ms total)
 
-[----------] 13 tests from Functional
+[----------] 12 tests from Functional
 [ RUN      ] Functional.Constant
 [       OK ] Functional.Constant (0 ms)
-[ RUN      ] Functional.EqualTo
-[       OK ] Functional.EqualTo (0 ms)
 [ RUN      ] Functional.Flip
 [       OK ] Functional.Flip (0 ms)
 [ RUN      ] Functional.Multiplies
@@ -17,7 +15,7 @@
 [ RUN      ] Functional.Divides
 [       OK ] Functional.Divides (0 ms)
 [ RUN      ] Functional.LeftShift
-[       OK ] Functional.LeftShift (0 ms)
+[       OK ] Functional.LeftShift (1 ms)
 [ RUN      ] Functional.RightShift
 [       OK ] Functional.RightShift (0 ms)
 [ RUN      ] Functional.Bind1st
@@ -32,14 +30,14 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 13 tests from Functional (0 ms total)
+[----------] 12 tests from Functional (1 ms total)
 
 [----------] 2 tests from Distribution
 [ RUN      ] Distribution.UniformReal
 [       OK ] Distribution.UniformReal (0 ms)
 [ RUN      ] Distribution.UniformInt
 [       OK ] Distribution.UniformInt (0 ms)
-[----------] 2 tests from Distribution (1 ms total)
+[----------] 2 tests from Distribution (0 ms total)
 
 [----------] 2 tests from Engine
 [ RUN      ] Engine.Fast
@@ -64,6 +62,12 @@ inplace
 inplace
 [       OK ] Gather.InPlaceForZipIterator (0 ms)
 [----------] 3 tests from Gather (0 ms total)
+
+[----------] 1 test from Generate
+[ RUN      ] Generate.Test
+[6.91545, 2.37462, 2.75667, 3.84435, 9.51158, 2.03073, 2.95432, 1.77436, 6.76713, 1.13813]
+[       OK ] Generate.Test (0 ms)
+[----------] 1 test from Generate (0 ms total)
 
 [----------] 4 tests from Iterator
 [ RUN      ] Iterator.IteratorValueAt
@@ -155,11 +159,11 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.42406 [ms]
+Average: 2.55162 [ms]
 Times:
-[2.40976, 2.41386, 2.41488, 2.41462, 2.4672]
-[       OK ] StopWatch.TestByLooping (68 ms)
-[----------] 1 test from StopWatch (68 ms total)
+[2.40067, 2.40342, 3.16842, 2.3921, 2.39347]
+[       OK ] StopWatch.TestByLooping (62 ms)
+[----------] 1 test from StopWatch (62 ms total)
 
 [----------] 1 test from TransformIf
 [ RUN      ] TransformIf.Test
@@ -182,7 +186,7 @@ Times:
 [       OK ] Tuple.Ostream (0 ms)
 [ RUN      ] Tuple.ArithmaticPriority
 [       OK ] Tuple.ArithmaticPriority (0 ms)
-[----------] 7 tests from Tuple (0 ms total)
+[----------] 7 tests from Tuple (1 ms total)
 
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
@@ -190,5 +194,5 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 56 tests from 20 test cases ran. (71 ms total)
+[==========] 56 tests from 21 test cases ran. (67 ms total)
 [  PASSED  ] 56 tests.

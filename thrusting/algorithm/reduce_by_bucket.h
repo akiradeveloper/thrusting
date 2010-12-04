@@ -75,12 +75,13 @@ void reduce_by_bucket(
     cnt_bucket);
 
   typedef typename thrust::iterator_value<OutputIterator2>::type Count2;
+  typedef typename thrust::iterator_value<OutputIterator3>::type Count3;
   thrust::transform_if(
     value_sum_bucket,
     thrusting::advance(n_bucket, value_sum_bucket),
     cnt_bucket, // stencil
     value_sum_bucket, // result
-    thrusting::constant(null_value), // op return null_value if stencil elem is 0
+    thrusting::make_constant_functor<Count3>(null_value), // op return null_value if stencil elem is 0
     thrusting::bind2nd(thrust::equal_to<Count2>(), Count2(0)));
 }
 
