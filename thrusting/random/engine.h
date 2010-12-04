@@ -8,7 +8,6 @@
 namespace thrusting {
 
 namespace detail {
-  
 /*
   This hash implementation is copied
   from monte-carlo example code of Thrust Library v-1.3.0
@@ -23,7 +22,6 @@ unsigned int hash(unsigned int a){
   a = (a^0xb55a4f09) ^ (a>>16);
   return a;
 }
-
 } // END detail
 
 template<
@@ -39,9 +37,14 @@ public:
   }
 };
 
+template<typename Idx>
+fast_rng_generator<Idx> make_fast_rng_generator(){
+  return fast_rng_generator<Idx>();
+}
+
 template<
 typename Idx,
-typename Seed = unsigned int,
+typename Seed,
 typename Engine = thrust::default_random_engine>
 class rng_generator :public thrust::unary_function<Idx, Engine> {
   Seed _seed;
@@ -55,5 +58,12 @@ public:
     return rng;
   }
 };
+
+template<
+typename Idx,
+typename Seed>
+rng_generator<Idx, Seed> make_rng_generator(Seed seed){
+  return rng_generator<Idx, Seed>(seed);
+}
 
 } // END thrusting

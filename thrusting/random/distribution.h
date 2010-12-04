@@ -15,13 +15,18 @@ class uniform_real_distribution :public thrust::unary_function<Engine, RealType>
 public:
   uniform_real_distribution(RealType min, RealType max)
   :_min(min), _max(max){}
-
   __host__ __device__
   RealType operator()(Engine &engine) const {
     thrust::uniform_real_distribution<RealType> dist(_min, _max);
     return dist(engine);
   } 
 };
+
+template<
+typename RealType>
+uniform_real_distribution<RealType> make_uniform_real_distribution(RealType min, RealType max){
+  return uniform_real_distribution<RealType>(min, max);
+}
 
 template<
 typename IntType,
@@ -31,12 +36,16 @@ class uniform_int_distribution :public thrust::unary_function<Engine, IntType> {
 public:
   uniform_int_distribution(IntType min, IntType max)
   :_min(min), _max(max){}
-
   __host__ __device__
   IntType operator()(Engine &engine) const {
     thrust::uniform_int_distribution<IntType> dist(_min, _max);
     return dist(engine);
   } 
 };
+
+template<typename IntType>
+uniform_int_distribution<IntType> make_uniform_int_distribution(IntType min, IntType max){
+  return uniform_int_distribution<IntType>(min, max);
+}
 
 } // END thrusting

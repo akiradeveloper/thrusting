@@ -6,8 +6,6 @@
 
 namespace thrusting {
 
-namespace detail {
-
 template<typename Idx>
 class stride_functor :public thrust::unary_function<Idx, Idx> {
   Idx _first, _step;
@@ -20,7 +18,11 @@ public:
   }
 };
 
-} // END detail
+template<typename Idx>
+stride_functor<Idx> 
+make_stride_functor(Idx first, Idx step){
+  return stride_functor<Idx>(first, step);
+}
 
 /*
   Make fancy iterator that generates
@@ -30,11 +32,11 @@ public:
   to alloc randomly generated tuples to an array.
 */
 template<typename Idx>
-thrust::transform_iterator<detail::stride_functor<Idx>, thrust::counting_iterator<Idx> >
+thrust::transform_iterator<stride_functor<Idx>, thrust::counting_iterator<Idx> >
 make_stride_iterator(Idx first, Idx step){
   return thrust::make_transform_iterator(
     thrust::make_counting_iterator(0),
-    detail::stride_functor<Idx>(first, step));
+    make_stride_functor(first, step));
 }
 
 } // END thrusting

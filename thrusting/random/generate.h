@@ -14,7 +14,6 @@ namespace {
 }
 
 namespace thrusting {
-
 /*
   RandomGenerator is Idx -> ValueType
 */
@@ -33,5 +32,4 @@ void generate(
       make_counting_iterator(last-first), gen),
     first);
 }
-
 } // END thrusting

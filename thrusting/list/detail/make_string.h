@@ -12,7 +12,7 @@ namespace thrusting {
   make string format of list -> [a, b, c]
 */
 template<typename Iterator>
-std::string make_string(const detail::list<Iterator> &xs){
+std::string make_string(const list<Iterator> &xs){
   std::stringstream ss;
   ss << "[";
   Iterator end = xs.end(); thrust::advance(end, -1);

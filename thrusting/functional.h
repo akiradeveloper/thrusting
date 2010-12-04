@@ -20,15 +20,14 @@
 
 namespace thrusting {
 
-namespace detail {
-
 template<typename F>
-struct flip :public thrust::binary_function<
+class flipper :public thrust::binary_function<
 typename F::second_argument_type,
 typename F::first_argument_type,
 typename F::result_type> {
   F _f;
-  flip(F f)
+public:
+  flipper(F f)
   :_f(f){}
   __host__ __device__
   typename F::result_type operator()(
@@ -37,26 +36,23 @@ typename F::result_type> {
   }
 };
 
-} // END detail
-
 /*
   flip the arguments of given binary function
   a->b->c -> b->a->c
 */
 template<typename F>
-detail::flip<F> flip(F f){
-  return detail::flip<F>(f);
+flipper<F> flip(F f){
+  return flipper<F>(f);
 }
 
-namespace detail {
-
 template<typename F>
-struct bind1st :public thrust::unary_function<
+class binder1st :public thrust::unary_function<
   typename F::second_argument_type,
   typename F::result_type> {
   F _f;
   typename F::first_argument_type _a;
-  bind1st(F f, const typename F::first_argument_type &a)
+public:
+  binder1st(F f, const typename F::first_argument_type &a)
   :_f(f), _a(a){}
   __host__ __device__
   typename F::result_type operator()(const typename F::second_argument_type &b) const {
@@ -64,15 +60,13 @@ struct bind1st :public thrust::unary_function<
   }
 };
 
-} // END detail
-
 /*
   bind1st
   a->b->c -> a -> b->c
 */
 template<typename F>
-detail::bind1st<F> bind1st(F f, const typename F::first_argument_type &a) {
-  return detail::bind1st<F>(f, a);
+binder1st<F> bind1st(F f, const typename F::first_argument_type &a) {
+  return binder1st<F>(f, a);
 }
 
 /*
@@ -80,19 +74,18 @@ detail::bind1st<F> bind1st(F f, const typename F::first_argument_type &a) {
   a->b->c -> b -> a->c
 */
 template<typename F>
-detail::bind1st< detail::flip<F> > bind2nd(F f, const typename F::second_argument_type &b) {
+binder1st<flipper<F> > bind2nd(F f, const typename F::second_argument_type &b) {
   return thrusting::bind1st(flip(f), b);
 }
 
-namespace detail {
-
 template<typename F>
-struct curry :public thrust::binary_function<
+class currier :public thrust::binary_function<
 typename thrust::tuple_element<0, typename F::argument_type>::type, 
 typename thrust::tuple_element<1, typename F::argument_type>::type, 
 typename F::result_type> {
   F _f;
-  curry(F f)
+public:
+  currier(F f)
   :_f(f){}
   __host__ __device__
   typename F::result_type operator()(
@@ -105,49 +98,43 @@ typename F::result_type> {
   }
 };
 
-} // END detail
-
 /*
   (a,b)->c -> a->b->c
 */
 template<typename F>
-detail::curry<F> curry(F f){
-  return detail::curry<F>(f);
+currier<F> curry(F f){
+  return currier<F>(f);
 }
 
-namespace detail {
-
 template<typename F>
-struct uncurry :public thrust::unary_function<
+class uncurrier :public thrust::unary_function<
 thrust::tuple<typename F::first_argument_type, typename F::second_argument_type>, 
 typename F::result_type> {
   F _f;
-  uncurry(F f)
+public:
+  uncurrier(F f)
   :_f(f){}
   __host__ __device__
   typename F::result_type operator()(
-  thrust::tuple<typename F::first_argument_type, typename F::second_argument_type> t) const {
+  const thrust::tuple<typename F::first_argument_type, typename F::second_argument_type> &t) const {
     return _f(thrust::get<0>(t), thrust::get<1>(t));
   }
 };  
-
-} // END detail
 
 /*
   a->b->c -> (a,b)->c
 */
 template<typename F>
-detail::uncurry<F> uncurry(F f){
-  return detail::uncurry<F>(f);
+uncurrier<F> uncurry(F f){
+  return uncurrier<F>(f);
 }
 
-namespace detail {
-
 template<typename F, typename G>
-struct compose :public thrust::unary_function<typename F::argument_type, typename G::result_type> {
+class composer :public thrust::unary_function<typename F::argument_type, typename G::result_type> {
   F _f;
   G _g;
-  compose(F f, G g)
+public:
+  composer(F f, G g)
   :_f(f), _g(g){}
   __host__ __device__
   typename F::result_type operator()(const typename G::argument_type &x) const {
@@ -156,36 +143,30 @@ struct compose :public thrust::unary_function<typename F::argument_type, typenam
   }
 };
 
-} // END detail
-
 /*
   f * g
   b->c -> a->b -> a->c
 */
 template<typename F, typename G>
-detail::compose<F, G> compose(F f, G g){
-  return detail::compose<F, G>(f, g);
+composer<F, G> compose(F f, G g){
+  return composer<F, G>(f, g);
 }
 
-namespace detail {
-
-template<typename Out>
-struct constant {
+template<typename In, typename Out>
+class constant_functor {
   Out _value;
-  constant(Out value)
+public:
+  constant_functor(Out value)
   :_value(value){} 
-  template<typename In>
   __host__ __device__
   Out operator()(const In &in) const {
     return _value;
   }
 };
 
-} // END detail
-
-template<typename Out>
-detail::constant<Out> constant(Out value){
-  return detail::constant<Out>(value);
+template<typename In, typename Out>
+constant_functor<In, Out> make_constant_functor(Out value){
+  return constant_functor<In, Out>(value);
 }
 
 /*
@@ -199,6 +180,11 @@ struct multiplies :public thrust::binary_function<A, B, B> {
   }
 };
 
+template<typename A, typename B>
+multiplies<A, B> make_multiply_functor(){
+  return multiplies<A, B>();
+}
+
 /*
   a -> b -> (a/b)::a
 */
@@ -209,6 +195,11 @@ struct divides :public thrust::binary_function<A, B, A> {
     return x / y;
   }
 };
+
+template<typename A, typename B>
+divides<A, B> make_divide_functor(){
+  return divides<A, B>();
+}
 
 /*
   a -> b -> (a<<b)::a
@@ -221,6 +212,11 @@ struct left_shift :public thrust::binary_function<A, B, A> {
   }
 };
 
+template<typename A, typename B>
+left_shift<A, B> make_left_shift_functor(){
+  return left_shift<A, B>();
+}
+
 /*
   a -> b -> (a>>b)::a
 */
@@ -232,17 +228,9 @@ struct right_shift :public thrust::binary_function<A, B, A> {
   }
 };
 
-// is this function used anywhere?
-// I guess no.
 template<typename A, typename B>
-struct equal_to :public thrust::binary_function<A, B, bool> {
-  __host__ __device__
-  bool operator()(A a, B b) const {
-    if(a==b){
-      return true;
-    }
-    return false; 
-  }
-};
+right_shift<A, B> make_right_shift_functor(){
+  return right_shift<A, B>();
+}
 
-} // end thrusting
+} // END thrusting
