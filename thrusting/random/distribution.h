@@ -24,8 +24,7 @@ public:
 };
 } // END detail
 
-template<
-typename RealType>
+template<typename RealType>
 detail::uniform_real_distribution<RealType> make_uniform_real_distribution(RealType min, RealType max){
   return detail::uniform_real_distribution<RealType>(min, max);
 }

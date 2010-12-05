@@ -27,9 +27,9 @@ void generate(
 ){
   thrust::copy( 
     make_transform_iterator(
-      make_counting_iterator(0), gen),
+      make_counting_iterator<size_t>(0), gen),
     make_transform_iterator(
-      make_counting_iterator(last-first), gen),
+      make_counting_iterator<size_t>(last-first), gen),
     first);
 }
 } // END thrusting

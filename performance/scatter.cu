@@ -30,16 +30,12 @@ int main(int narg, char **args){
     std::random_shuffle(_idx.begin(), _idx.end());
     vector<int>::type idx(_idx.begin(), _idx.end());
 
-    cudaThreadSynchronize();
     sw.begin();
-
     thrusting::scatter(
       value.begin(),
       value.end(),
       idx.begin(),
       value.begin()); // in-place
-    
-    cudaThreadSynchronize();
     sw.end();
   }
    
@@ -55,7 +51,6 @@ int main(int narg, char **args){
     std::random_shuffle(_idx.begin(), _idx.end());
     vector<int>::type idx(_idx.begin(), _idx.end());
 
-    cudaThreadSynchronize();
     sw2.begin();
     thrust::scatter(
       value.begin(),
@@ -63,7 +58,6 @@ int main(int narg, char **args){
       idx.begin(),
       output.begin());
 
-    cudaThreadSynchronize();
     sw2.end();
   }
   

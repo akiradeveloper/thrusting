@@ -20,7 +20,7 @@ TEST(Generate, Test){
     output.end(),
     compose(
       make_uniform_real_distribution<float>(0, 10),
-      make_fast_rng_generator<int>()));
+      make_fast_rng_generator(777)));
 
   std::cout << make_list(output) << std::endl;
 }

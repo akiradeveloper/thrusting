@@ -27,21 +27,29 @@ unsigned int hash(unsigned int a){
 namespace detail {
 template<
 typename Idx,
+typename Seed,
 typename Engine = thrust::default_random_engine>
 class fast_rng_generator :public thrust::unary_function<Idx, Engine> {
+/*
+  Maybe this module should have
+  seed number to generate different randomness at different seed.
+*/
+  Seed _seed;
 public:
+  fast_rng_generator(Seed seed)
+  :_seed(seed){}
   __host__ __device__
   Engine operator()(Idx idx) const {
-    unsigned int x = idx % UINT_MAX;
+    unsigned int x = (_seed + idx) % UINT_MAX;
     unsigned int seed =  detail::hash(x);
     return Engine(seed);
   }
 };
 } // END detail
 
-template<typename Idx>
-detail::fast_rng_generator<Idx> make_fast_rng_generator(){
-  return detail::fast_rng_generator<Idx>();
+template<typename Seed>
+detail::fast_rng_generator<size_t, Seed> make_fast_rng_generator(Seed seed){
+  return detail::fast_rng_generator<size_t, Seed>(seed);
 }
 
 namespace detail {
@@ -63,11 +71,9 @@ public:
 };
 } // END detail
 
-template<
-typename Idx,
-typename Seed>
-detail::rng_generator<Idx, Seed> make_rng_generator(Seed seed){
-  return detail::rng_generator<Idx, Seed>(seed);
+template<typename Seed>
+detail::rng_generator<size_t, Seed> make_rng_generator(Seed seed){
+  return detail::rng_generator<size_t, Seed>(seed);
 }
 
 } // END thrusting

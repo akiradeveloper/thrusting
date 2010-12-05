@@ -9,11 +9,12 @@ end
 CLOBBER.include("reduce_by_bucket", "scatter", "gather")
 
 def add_option(cc)
-  cc = add_device_option(cc, "omp")
+  cc = add_device_option(cc, "host")
   cc = add_floating_option(cc, "float")
 end
 
 cc = CC
+cc += " -O3"
 
 task :reduce_by_bucket do |t|
   cc = add_option(cc)
