@@ -1,4 +1,4 @@
-[==========] Running 59 tests from 23 test cases.
+[==========] Running 60 tests from 24 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
@@ -23,7 +23,7 @@
 [ RUN      ] Functional.Bind2nd
 [       OK ] Functional.Bind2nd (0 ms)
 [ RUN      ] Functional.Curry
-[       OK ] Functional.Curry (1 ms)
+[       OK ] Functional.Curry (0 ms)
 [ RUN      ] Functional.UnCurry
 [       OK ] Functional.UnCurry (0 ms)
 [ RUN      ] Functional.Compose
@@ -31,6 +31,11 @@
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
 [----------] 12 tests from Functional (1 ms total)
+
+[----------] 1 test from Copy
+[ RUN      ] Copy.Test
+[       OK ] Copy.Test (0 ms)
+[----------] 1 test from Copy (0 ms total)
 
 [----------] 2 tests from Distribution
 [ RUN      ] Distribution.UniformReal
@@ -45,6 +50,11 @@
 [ RUN      ] Engine.Discard
 [       OK ] Engine.Discard (0 ms)
 [----------] 2 tests from Engine (0 ms total)
+
+[----------] 1 test from Equal
+[ RUN      ] Equal.Test
+[       OK ] Equal.Test (54 ms)
+[----------] 1 test from Equal (55 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -95,22 +105,17 @@ inplace
 [       OK ] List.Equality2 (0 ms)
 [----------] 5 tests from List (0 ms total)
 
-[----------] 1 test from Equal
-[ RUN      ] Equal.Test
-[       OK ] Equal.Test (0 ms)
-[----------] 1 test from Equal (0 ms total)
-
 [----------] 2 tests from PermutationIterator
 [ RUN      ] PermutationIterator.Gather
 [       OK ] PermutationIterator.Gather (0 ms)
 [ RUN      ] PermutationIterator.Scatter
 [       OK ] PermutationIterator.Scatter (0 ms)
-[----------] 2 tests from PermutationIterator (1 ms total)
+[----------] 2 tests from PermutationIterator (0 ms total)
 
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
-[       OK ] Random.RandomGenerator (1 ms)
-[----------] 1 test from Random (1 ms total)
+[       OK ] Random.RandomGenerator (2 ms)
+[----------] 1 test from Random (2 ms total)
 
 [----------] 3 tests from Real
 [ RUN      ] Real.Create
@@ -164,11 +169,11 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.43683 [ms]
+Average: 2.39816 [ms]
 Times:
-[2.40074, 2.40051, 2.58048, 2.39555, 2.40688]
-[       OK ] StopWatch.TestByLooping (61 ms)
-[----------] 1 test from StopWatch (61 ms total)
+[2.39728, 2.39306, 2.3928, 2.40605, 2.4016]
+[       OK ] StopWatch.TestByLooping (12 ms)
+[----------] 1 test from StopWatch (12 ms total)
 
 [----------] 1 test from TransformIf
 [ RUN      ] TransformIf.Test
@@ -191,7 +196,7 @@ Times:
 [       OK ] Tuple.Ostream (0 ms)
 [ RUN      ] Tuple.ArithmaticPriority
 [       OK ] Tuple.ArithmaticPriority (0 ms)
-[----------] 7 tests from Tuple (1 ms total)
+[----------] 7 tests from Tuple (0 ms total)
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
@@ -206,5 +211,5 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 59 tests from 23 test cases ran. (65 ms total)
-[  PASSED  ] 59 tests.
+[==========] 60 tests from 24 test cases ran. (71 ms total)
+[  PASSED  ] 60 tests.

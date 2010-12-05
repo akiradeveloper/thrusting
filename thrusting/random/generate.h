@@ -9,10 +9,6 @@
 #include <thrusting/random/engine.h>
 #include <thrusting/random/distribution.h>
 
-namespace {
-  using namespace thrust;
-}
-
 namespace thrusting {
 /*
   RandomGenerator is Idx -> ValueType
@@ -26,10 +22,10 @@ void generate(
   RandomGenerator gen
 ){
   thrust::copy( 
-    make_transform_iterator(
-      make_counting_iterator<size_t>(0), gen),
-    make_transform_iterator(
-      make_counting_iterator<size_t>(last-first), gen),
+    thrust::make_transform_iterator(
+      thrust::make_counting_iterator<size_t>(0), gen),
+    thrust::make_transform_iterator(
+      thrust::make_counting_iterator<size_t>(last-first), gen),
     first);
 }
 } // END thrusting

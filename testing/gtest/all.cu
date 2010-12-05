@@ -3,6 +3,7 @@
 #include "copy.h"
 #include "distribution.h"
 #include "engine.h"
+#include "equal.h"
 #include "functional.h"
 #include "gather.h"
 #include "generate.h"

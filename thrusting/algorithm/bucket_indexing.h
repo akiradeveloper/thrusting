@@ -11,7 +11,6 @@
 namespace thrusting {
 
 namespace detail {
-
 template<typename A, typename B>
 struct BUCKET_INDEXING_LOCAL_MINUS :public thrust::binary_function<A, B, A> {
   __host__ __device__
@@ -19,7 +18,6 @@ struct BUCKET_INDEXING_LOCAL_MINUS :public thrust::binary_function<A, B, A> {
     return a-b;
   }
 };
-
 } // END detail
 
 /*

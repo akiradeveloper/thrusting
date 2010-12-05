@@ -5,6 +5,7 @@
 #include <thrusting/iterator.h>
 
 namespace thrusting {
+
 template<
 typename Size,
 typename InputIterator,
@@ -15,4 +16,5 @@ void copy(Size n, InputIterator from, OutputIterator to){
     thrusting::advance(n, from),
     to);
 }
+
 } // END thrusting
