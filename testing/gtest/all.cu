@@ -1,5 +1,6 @@
 #include "bucket_indexing.h"
 #include "constant.h"
+#include "copy.h"
 #include "distribution.h"
 #include "engine.h"
 #include "functional.h"

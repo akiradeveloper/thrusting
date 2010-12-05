@@ -5,13 +5,13 @@ thisdir = File.expand_path File.dirname __FILE__
 end
 
 # gtest is 32bit
-GTEST_HOME = "#{ENV["HOME"]}/local/gtest/gtest-1.5.0"
-GTEST_LIB = [GTEST_HOME, "lib"].join "/"
-GTEST_INCLUDE = [GTEST_HOME, "include"].join "/"
+gtest_home = "#{ENV["HOME"]}/local/gtest/gtest-1.5.0"
+gtest_lib = [gtest_home, "lib"].join "/"
+gtest_include = [gtest_home, "include"].join "/"
 
 cc = CC 
-cc += " -I #{GTEST_INCLUDE}"
-cc += " -L #{GTEST_LIB}"
+cc += " -I #{gtest_include}"
+cc += " -L #{gtest_lib}"
 cc += " -l gtest"
 cc += " -g"
 
