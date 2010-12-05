@@ -31,4 +31,15 @@ struct vector {
 #endif
 };
 
+#include <thrust/detail/type_traits.h>
+
+template<typename Iterator>
+struct vector_of
+:public thrust::detail::eval_if<
+  thrust::detail::is_convertible<typename thrust::iterator_space<Iterator>::type, thrust::host_space_tag>::value,
+  thrust::detail::identity_<thrust::host_vector<typename thrust::iterator_value<Iterator>::type> >,
+  thrust::detail::identity_<thrust::device_vector<typename thrust::iterator_value<Iterator>::type> >
+> 
+{};
+
 } // END thrusting

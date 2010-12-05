@@ -18,4 +18,5 @@
 #include "time.h"
 #include "transform_if.h"
 #include "tuple.h"
+#include "vector.h"
 #include "zip_iterator.h"
