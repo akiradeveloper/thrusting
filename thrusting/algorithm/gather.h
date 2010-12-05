@@ -14,47 +14,9 @@
 #include <thrust/host_vector.h>
 #include <thrust/device_vector.h>
 
+#include <thrusting/vector.h>
+
 namespace thrusting {
-
-namespace detail {
-
-template<
-typename InputIterator1,
-typename InputIterator2,
-typename OutputIterator>
-void gather(
-  InputIterator1 map_first,
-  InputIterator1 map_last,
-  InputIterator2 input,
-  OutputIterator output,
-  thrust::host_space_tag
-){
-  typedef typename thrust::iterator_value<OutputIterator>::type OutputType;
-  thrust::host_vector<OutputType> value_copy(
-    input, 
-    thrusting::advance(map_last-map_first, input));
-  thrust::gather(map_first, map_last, value_copy.begin(), output);
-}
-
-template<
-typename InputIterator1,
-typename InputIterator2,
-typename OutputIterator>
-void gather(
-  InputIterator1 map_first,
-  InputIterator1 map_last,
-  InputIterator2 input,
-  OutputIterator output,
-  thrust::device_space_tag
-){
-  typedef typename thrust::iterator_value<OutputIterator>::type OutputType;
-  thrust::device_vector<OutputType> value_copy(
-    input, 
-    thrusting::advance(map_last-map_first, input));
-  thrust::gather(map_first, map_last, value_copy.begin(), output);
-}
-
-} // END detail
 
 template<
 typename InputIterator1,
@@ -68,9 +30,10 @@ void gather(
 ){
   if(input==output){
     std::cout << "inplace" << std::endl;
-    detail::gather(
-      map_first, map_last, input, output, 
-      typename thrust::iterator_space<OutputIterator>::type());
+    typename vector_of<InputIterator2>::type value_copy(
+      input,
+      thrusting::advance(map_last-map_first, input));
+    thrust::gather(map_first, map_last, value_copy.begin(), output);
   } else {
     std::cout << "default" << std::endl;
     thrust::gather(map_first, map_last, input, output);
