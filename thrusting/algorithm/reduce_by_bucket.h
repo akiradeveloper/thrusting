@@ -29,7 +29,7 @@ namespace thrusting {
   Then the Output will be
   [0,0,1,3] for prefix
   [0,1,2,0] for cnt
-  [N,3,9,0] for values where N is null value.
+  [N,3,9,N] for values where N is null value.
 */
 template<
 typename Size1,
