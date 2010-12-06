@@ -48,6 +48,16 @@ TEST(Functional, Bind2nd){
   EXPECT_EQ(2L, x);
 }
 
+TEST(Functional, Bind2nd1){
+  bool b = thrusting::bind2nd(thrust::greater<size_t>(), 1)(1);
+  EXPECT_FALSE(b);
+}
+
+TEST(Functional, Bind2nd2){
+  bool b = thrusting::bind2nd(thrust::greater<size_t>(), 1)(2);
+  EXPECT_TRUE(b);
+}
+
 struct sum_f :public thrust::unary_function<thrust::tuple<int, int>, int> {
   __host__ __device__
   int operator()(const thrust::tuple<int, int> &t) const {

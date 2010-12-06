@@ -12,7 +12,7 @@ namespace {
   using namespace thrusting;
 }
 
-TEST(TransformIf, Test){
+TEST(Thrust, TransformIf){
   int _data[10] = {-5, 0, 2, -3, 2, 4, 0, -1, 2, 8}; vector<int>::type data(_data, _data+10);
   int _stencil[10] = {1, 0, 1, 0, 1, 0, 1, 0, 1, 0}; vector<int>::type stencil(_stencil, _stencil+10);
 
