@@ -1,11 +1,11 @@
-[==========] Running 60 tests from 24 test cases.
+[==========] Running 63 tests from 24 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
 [       OK ] BucketIndexing.Test (1 ms)
 [----------] 1 test from BucketIndexing (1 ms total)
 
-[----------] 12 tests from Functional
+[----------] 14 tests from Functional
 [ RUN      ] Functional.Constant
 [       OK ] Functional.Constant (0 ms)
 [ RUN      ] Functional.Flip
@@ -21,7 +21,11 @@
 [ RUN      ] Functional.Bind1st
 [       OK ] Functional.Bind1st (0 ms)
 [ RUN      ] Functional.Bind2nd
-[       OK ] Functional.Bind2nd (0 ms)
+[       OK ] Functional.Bind2nd (1 ms)
+[ RUN      ] Functional.Bind2nd1
+[       OK ] Functional.Bind2nd1 (0 ms)
+[ RUN      ] Functional.Bind2nd2
+[       OK ] Functional.Bind2nd2 (0 ms)
 [ RUN      ] Functional.Curry
 [       OK ] Functional.Curry (0 ms)
 [ RUN      ] Functional.UnCurry
@@ -30,7 +34,7 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 12 tests from Functional (0 ms total)
+[----------] 14 tests from Functional (1 ms total)
 
 [----------] 1 test from Copy
 [ RUN      ] Copy.Test
@@ -63,15 +67,12 @@
 
 [----------] 3 tests from Gather
 [ RUN      ] Gather.Test
-default
 [       OK ] Gather.Test (0 ms)
 [ RUN      ] Gather.InPlace
-inplace
-[       OK ] Gather.InPlace (3 ms)
+[       OK ] Gather.InPlace (1 ms)
 [ RUN      ] Gather.InPlaceForZipIterator
-inplace
-[       OK ] Gather.InPlaceForZipIterator (2 ms)
-[----------] 3 tests from Gather (5 ms total)
+[       OK ] Gather.InPlaceForZipIterator (0 ms)
+[----------] 3 tests from Gather (1 ms total)
 
 [----------] 1 test from Generate
 [ RUN      ] Generate.Test
@@ -161,10 +162,12 @@ default
 [       OK ] Scatter.Test (1 ms)
 [----------] 3 tests from Scatter (1 ms total)
 
-[----------] 1 test from Thrust
+[----------] 2 tests from Thrust
 [ RUN      ] Thrust.SortByKey
 [       OK ] Thrust.SortByKey (0 ms)
-[----------] 1 test from Thrust (0 ms total)
+[ RUN      ] Thrust.TransformIf
+[       OK ] Thrust.TransformIf (0 ms)
+[----------] 2 tests from Thrust (0 ms total)
 
 [----------] 1 test from StrideIterator
 [ RUN      ] StrideIterator.Test
@@ -174,16 +177,16 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.62652 [ms]
+Average: 2.46101 [ms]
 Times:
-[3.04486, 2.86883, 2.40806, 2.40003, 2.41078]
-[       OK ] StopWatch.TestByLooping (72 ms)
-[----------] 1 test from StopWatch (72 ms total)
+[2.39584, 2.51072, 2.58422, 2.40598, 2.40829]
+[       OK ] StopWatch.TestByLooping (59 ms)
+[----------] 1 test from StopWatch (59 ms total)
 
-[----------] 1 test from TransformIf
-[ RUN      ] TransformIf.Test
-[       OK ] TransformIf.Test (0 ms)
-[----------] 1 test from TransformIf (0 ms total)
+[----------] 1 test from Transform
+[ RUN      ] Transform.TransformIf
+[       OK ] Transform.TransformIf (0 ms)
+[----------] 1 test from Transform (1 ms total)
 
 [----------] 7 tests from Tuple
 [ RUN      ] Tuple.Plus
@@ -205,10 +208,10 @@ Times:
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
-[       OK ] Vector.Device (1 ms)
+[       OK ] Vector.Device (0 ms)
 [ RUN      ] Vector.Host
 [       OK ] Vector.Host (0 ms)
-[----------] 2 tests from Vector (1 ms total)
+[----------] 2 tests from Vector (0 ms total)
 
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
@@ -216,8 +219,8 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 60 tests from 24 test cases ran. (87 ms total)
-[  PASSED  ] 59 tests.
+[==========] 63 tests from 24 test cases ran. (70 ms total)
+[  PASSED  ] 62 tests.
 [  FAILED  ] 1 test, listed below:
 [  FAILED  ] PermutationIterator.Gather
 

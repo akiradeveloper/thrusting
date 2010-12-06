@@ -1,8 +1,14 @@
 #pragma once
 
+#include <thrusting/vector.h>
+#include <thrusting/list.h>
 #include <thrusting/algorithm/transform.h>
 
 #include <gtest/gtest.h>
+
+namespace {
+  using namespace thrusting;
+}
 
 TEST(Transform, TransformIf){
   size_t n = 3;

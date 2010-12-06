@@ -29,13 +29,13 @@ void gather(
   OutputIterator output
 ){
   if(input==output){
-    std::cout << "inplace" << std::endl;
+    // std::cout << "inplace" << std::endl;
     typename vector_of<InputIterator2>::type value_copy(
       input,
       thrusting::advance(map_last-map_first, input));
     thrust::gather(map_first, map_last, value_copy.begin(), output);
   } else {
-    std::cout << "default" << std::endl;
+    // std::cout << "default" << std::endl;
     thrust::gather(map_first, map_last, input, output);
   } 
 }

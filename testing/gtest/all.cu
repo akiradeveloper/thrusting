@@ -18,6 +18,7 @@
 #include "sort_by_key.h"
 #include "stride_iterator.h"
 #include "time.h"
+#include "transform.h"
 #include "transform_if.h"
 #include "tuple.h"
 #include "vector.h"

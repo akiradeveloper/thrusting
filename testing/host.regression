@@ -1,11 +1,11 @@
-[==========] Running 60 tests from 24 test cases.
+[==========] Running 63 tests from 24 test cases.
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
 [       OK ] BucketIndexing.Test (0 ms)
 [----------] 1 test from BucketIndexing (0 ms total)
 
-[----------] 12 tests from Functional
+[----------] 14 tests from Functional
 [ RUN      ] Functional.Constant
 [       OK ] Functional.Constant (0 ms)
 [ RUN      ] Functional.Flip
@@ -22,15 +22,19 @@
 [       OK ] Functional.Bind1st (0 ms)
 [ RUN      ] Functional.Bind2nd
 [       OK ] Functional.Bind2nd (0 ms)
+[ RUN      ] Functional.Bind2nd1
+[       OK ] Functional.Bind2nd1 (0 ms)
+[ RUN      ] Functional.Bind2nd2
+[       OK ] Functional.Bind2nd2 (0 ms)
 [ RUN      ] Functional.Curry
 [       OK ] Functional.Curry (0 ms)
 [ RUN      ] Functional.UnCurry
-[       OK ] Functional.UnCurry (0 ms)
+[       OK ] Functional.UnCurry (1 ms)
 [ RUN      ] Functional.Compose
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 12 tests from Functional (1 ms total)
+[----------] 14 tests from Functional (1 ms total)
 
 [----------] 1 test from Copy
 [ RUN      ] Copy.Test
@@ -53,8 +57,8 @@
 
 [----------] 1 test from Equal
 [ RUN      ] Equal.Test
-[       OK ] Equal.Test (54 ms)
-[----------] 1 test from Equal (55 ms total)
+[       OK ] Equal.Test (46 ms)
+[----------] 1 test from Equal (46 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -63,13 +67,10 @@
 
 [----------] 3 tests from Gather
 [ RUN      ] Gather.Test
-default
 [       OK ] Gather.Test (0 ms)
 [ RUN      ] Gather.InPlace
-inplace
 [       OK ] Gather.InPlace (0 ms)
 [ RUN      ] Gather.InPlaceForZipIterator
-inplace
 [       OK ] Gather.InPlaceForZipIterator (0 ms)
 [----------] 3 tests from Gather (0 ms total)
 
@@ -102,8 +103,8 @@ inplace
 [ RUN      ] List.Equality
 [       OK ] List.Equality (0 ms)
 [ RUN      ] List.Equality2
-[       OK ] List.Equality2 (0 ms)
-[----------] 5 tests from List (0 ms total)
+[       OK ] List.Equality2 (1 ms)
+[----------] 5 tests from List (1 ms total)
 
 [----------] 2 tests from PermutationIterator
 [ RUN      ] PermutationIterator.Gather
@@ -114,8 +115,8 @@ inplace
 
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
-[       OK ] Random.RandomGenerator (2 ms)
-[----------] 1 test from Random (2 ms total)
+[       OK ] Random.RandomGenerator (1 ms)
+[----------] 1 test from Random (1 ms total)
 
 [----------] 3 tests from Real
 [ RUN      ] Real.Create
@@ -156,10 +157,12 @@ default
 [       OK ] Scatter.Test (0 ms)
 [----------] 3 tests from Scatter (0 ms total)
 
-[----------] 1 test from Thrust
+[----------] 2 tests from Thrust
 [ RUN      ] Thrust.SortByKey
 [       OK ] Thrust.SortByKey (0 ms)
-[----------] 1 test from Thrust (0 ms total)
+[ RUN      ] Thrust.TransformIf
+[       OK ] Thrust.TransformIf (1 ms)
+[----------] 2 tests from Thrust (1 ms total)
 
 [----------] 1 test from StrideIterator
 [ RUN      ] StrideIterator.Test
@@ -169,16 +172,16 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.39816 [ms]
+Average: 2.39491 [ms]
 Times:
-[2.39728, 2.39306, 2.3928, 2.40605, 2.4016]
+[2.39584, 2.39686, 2.39357, 2.39411, 2.39418]
 [       OK ] StopWatch.TestByLooping (12 ms)
 [----------] 1 test from StopWatch (12 ms total)
 
-[----------] 1 test from TransformIf
-[ RUN      ] TransformIf.Test
-[       OK ] TransformIf.Test (0 ms)
-[----------] 1 test from TransformIf (0 ms total)
+[----------] 1 test from Transform
+[ RUN      ] Transform.TransformIf
+[       OK ] Transform.TransformIf (0 ms)
+[----------] 1 test from Transform (0 ms total)
 
 [----------] 7 tests from Tuple
 [ RUN      ] Tuple.Plus
@@ -211,5 +214,5 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 60 tests from 24 test cases ran. (71 ms total)
-[  PASSED  ] 60 tests.
+[==========] 63 tests from 24 test cases ran. (62 ms total)
+[  PASSED  ] 63 tests.
