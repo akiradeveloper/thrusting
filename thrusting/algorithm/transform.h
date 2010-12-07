@@ -30,4 +30,23 @@ ForwardIterator transform_if(
     pred);
 }
 
+// not tested
+template<
+typename Size,
+typename InputIterator,
+typename OutputIterator,
+typename UnaryFunction>
+OutputIterator transform(
+  Size n,
+  InputIterator first,
+  OutputIterator result,
+  UnaryFunction op
+){
+  return thrust::transform(
+    first,
+    thrusting::advance(n, first),
+    result,
+    op);
+}
+
 } // END thrusting
