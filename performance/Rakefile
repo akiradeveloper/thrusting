@@ -1,34 +1,12 @@
 require "rake/clean"
 
-thisdir = File.expand_path File.dirname __FILE__ 
-
-["def_compile"].each do |s|
-  require "thrusting/rb/#{s}"
+["def_compile", "make_compile_task", "compile_option"].each do |f|
+  require "build/thrusting/#{f}"
 end
 
-CLOBBER.include("reduce_by_bucket", "scatter", "gather")
+cc = THRUSTING_CXX
 
-def add_option(cc)
-  cc = add_device_option(cc, "host")
-  cc = add_floating_option(cc, "float")
-end
+cc = with_mode(cc, "release")
+p cc
 
-cc = CC
-cc += " -O3"
-
-task :reduce_by_bucket do |t|
-  cc = add_option(cc)
-  compile(cc, t.name, [t.name + ".cu"])
-end
-
-task :scatter do |t|
-  cc = add_option(cc)
-  compile(cc, t.name, [t.name + ".cu"])
-end
-
-task :gather do |t|
-  cc = add_option(cc)
-  compile(cc, t.name, [t.name + ".cu"])
-end
-
-task :performance_all => [:reduce_by_bucket, :scatter, :gather]
+make_compile_task(cc, "thrusting")

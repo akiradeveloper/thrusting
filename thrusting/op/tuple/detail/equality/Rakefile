@@ -1,9 +1,7 @@
 require "rake/clean"
 
-thisdir = File.expand_path File.dirname __FILE__ 
-
-["get_tuple", "namespace", "template_type"].each do |s|
-  require "thrusting/rb/#{s}"
+["get_tuple", "namespace", "template_type"].each do |f|
+  require "script/thrusting/#{f}" 
 end
 
 def equality(n)

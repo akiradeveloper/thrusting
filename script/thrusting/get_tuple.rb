@@ -1,6 +1,6 @@
-thisdir = File.expand_path File.dirname __FILE__ 
-
-require ["thrusting/rb", "tuple_min_max"].join "/"
+["tuple_min_max"].each do |f|
+  require "script/thrusting/#{f}"
+end
 
 # Macro to hide how to get item from value
 

@@ -2,8 +2,8 @@
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
-[       OK ] BucketIndexing.Test (118 ms)
-[----------] 1 test from BucketIndexing (118 ms total)
+[       OK ] BucketIndexing.Test (119 ms)
+[----------] 1 test from BucketIndexing (119 ms total)
 
 [----------] 14 tests from Functional
 [ RUN      ] Functional.Constant
@@ -21,7 +21,7 @@
 [ RUN      ] Functional.Bind1st
 [       OK ] Functional.Bind1st (0 ms)
 [ RUN      ] Functional.Bind2nd
-[       OK ] Functional.Bind2nd (1 ms)
+[       OK ] Functional.Bind2nd (0 ms)
 [ RUN      ] Functional.Bind2nd1
 [       OK ] Functional.Bind2nd1 (0 ms)
 [ RUN      ] Functional.Bind2nd2
@@ -57,8 +57,8 @@
 
 [----------] 1 test from Equal
 [ RUN      ] Equal.Test
-[       OK ] Equal.Test (1 ms)
-[----------] 1 test from Equal (1 ms total)
+[       OK ] Equal.Test (0 ms)
+[----------] 1 test from Equal (0 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -77,8 +77,8 @@
 [----------] 1 test from Generate
 [ RUN      ] Generate.Test
 [1.74589, 4.62136, 8.63085, 1.41854, 4.87638, 2.14032, 2.10161, 3.79938, 4.57459, 7.91371]
-[       OK ] Generate.Test (1 ms)
-[----------] 1 test from Generate (1 ms total)
+[       OK ] Generate.Test (0 ms)
+[----------] 1 test from Generate (0 ms total)
 
 [----------] 4 tests from Iterator
 [ RUN      ] Iterator.IteratorValueAt
@@ -154,7 +154,7 @@ inplace
 [       OK ] Scatter.InPlace (0 ms)
 [ RUN      ] Scatter.Test
 default
-[       OK ] Scatter.Test (0 ms)
+[       OK ] Scatter.Test (1 ms)
 [----------] 3 tests from Scatter (2 ms total)
 
 [----------] 2 tests from Thrust
@@ -172,20 +172,20 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.41883 [ms]
+Average: 2.44898 [ms]
 Times:
-[2.44029, 2.41312, 2.40346, 2.3928, 2.44448]
+[2.43645, 2.52394, 2.40102, 2.4376, 2.44589]
 [       OK ] StopWatch.TestByLooping (12 ms)
 [----------] 1 test from StopWatch (12 ms total)
 
 [----------] 1 test from Transform
 [ RUN      ] Transform.TransformIf
-[       OK ] Transform.TransformIf (0 ms)
-[----------] 1 test from Transform (0 ms total)
+[       OK ] Transform.TransformIf (1 ms)
+[----------] 1 test from Transform (1 ms total)
 
 [----------] 7 tests from Tuple
 [ RUN      ] Tuple.Plus
-[       OK ] Tuple.Plus (1 ms)
+[       OK ] Tuple.Plus (0 ms)
 [ RUN      ] Tuple.Minus
 [       OK ] Tuple.Minus (0 ms)
 [ RUN      ] Tuple.Multiplies
@@ -199,7 +199,7 @@ Times:
 [       OK ] Tuple.Ostream (0 ms)
 [ RUN      ] Tuple.ArithmaticPriority
 [       OK ] Tuple.ArithmaticPriority (0 ms)
-[----------] 7 tests from Tuple (1 ms total)
+[----------] 7 tests from Tuple (0 ms total)
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
@@ -214,5 +214,5 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 63 tests from 24 test cases ran. (154 ms total)
+[==========] 63 tests from 24 test cases ran. (155 ms total)
 [  PASSED  ] 63 tests.

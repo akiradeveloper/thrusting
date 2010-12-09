@@ -1,6 +1,4 @@
-# generate namespace from dir
-# generate build, clobber tasks
-def gen_namespace(dir)
+def make_build_clobber_task(dir)
   namespace dir do
     file = "#{dir}/Rakefile"
     task :build =>  file do
@@ -16,19 +14,18 @@ def gen_namespace(dir)
   end
 end
 
-def gen_build_task(dirs)
-  desc "generate .h files"
+def make_build_task(dirs)
   task :build => dirs.map { |dir| dir + ":build" }
 end
 
-def gen_clobber_task(dirs)
+def make_clobber_task(dirs)
   task :clobber => dirs.map { |dir| dir + ":clobber" }
 end
 
-def gen_autogen_task(dirs)
+def make_autogen_task(dirs)
   dirs.each do |dir|
-    gen_namespace(dir)
+    make_build_clobber_task(dir)
   end
-  gen_build_task(dirs)
-  gen_clobber_task(dirs)
+  make_build_task(dirs)
+  make_clobber_task(dirs)
 end

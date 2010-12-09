@@ -29,7 +29,7 @@
 [ RUN      ] Functional.Curry
 [       OK ] Functional.Curry (0 ms)
 [ RUN      ] Functional.UnCurry
-[       OK ] Functional.UnCurry (1 ms)
+[       OK ] Functional.UnCurry (0 ms)
 [ RUN      ] Functional.Compose
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
@@ -103,8 +103,8 @@
 [ RUN      ] List.Equality
 [       OK ] List.Equality (0 ms)
 [ RUN      ] List.Equality2
-[       OK ] List.Equality2 (1 ms)
-[----------] 5 tests from List (1 ms total)
+[       OK ] List.Equality2 (0 ms)
+[----------] 5 tests from List (0 ms total)
 
 [----------] 2 tests from PermutationIterator
 [ RUN      ] PermutationIterator.Gather
@@ -161,8 +161,8 @@ default
 [ RUN      ] Thrust.SortByKey
 [       OK ] Thrust.SortByKey (0 ms)
 [ RUN      ] Thrust.TransformIf
-[       OK ] Thrust.TransformIf (1 ms)
-[----------] 2 tests from Thrust (1 ms total)
+[       OK ] Thrust.TransformIf (0 ms)
+[----------] 2 tests from Thrust (0 ms total)
 
 [----------] 1 test from StrideIterator
 [ RUN      ] StrideIterator.Test
@@ -172,9 +172,9 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.39491 [ms]
+Average: 2.40694 [ms]
 Times:
-[2.39584, 2.39686, 2.39357, 2.39411, 2.39418]
+[2.40602, 2.40861, 2.40605, 2.40368, 2.41034]
 [       OK ] StopWatch.TestByLooping (12 ms)
 [----------] 1 test from StopWatch (12 ms total)
 
@@ -203,10 +203,10 @@ Times:
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
-[       OK ] Vector.Device (0 ms)
+[       OK ] Vector.Device (1 ms)
 [ RUN      ] Vector.Host
 [       OK ] Vector.Host (0 ms)
-[----------] 2 tests from Vector (0 ms total)
+[----------] 2 tests from Vector (1 ms total)
 
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
@@ -214,5 +214,5 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 63 tests from 24 test cases ran. (62 ms total)
+[==========] 63 tests from 24 test cases ran. (63 ms total)
 [  PASSED  ] 63 tests.

@@ -1,3 +1,4 @@
+#pragma once
 #include "bucket_indexing.h"
 #include "constant.h"
 #include "copy.h"

@@ -11,7 +11,7 @@
 [ RUN      ] Functional.Flip
 [       OK ] Functional.Flip (0 ms)
 [ RUN      ] Functional.Multiplies
-[       OK ] Functional.Multiplies (0 ms)
+[       OK ] Functional.Multiplies (1 ms)
 [ RUN      ] Functional.Divides
 [       OK ] Functional.Divides (0 ms)
 [ RUN      ] Functional.LeftShift
@@ -21,7 +21,7 @@
 [ RUN      ] Functional.Bind1st
 [       OK ] Functional.Bind1st (0 ms)
 [ RUN      ] Functional.Bind2nd
-[       OK ] Functional.Bind2nd (1 ms)
+[       OK ] Functional.Bind2nd (0 ms)
 [ RUN      ] Functional.Bind2nd1
 [       OK ] Functional.Bind2nd1 (0 ms)
 [ RUN      ] Functional.Bind2nd2
@@ -67,9 +67,9 @@
 
 [----------] 3 tests from Gather
 [ RUN      ] Gather.Test
-[       OK ] Gather.Test (0 ms)
+[       OK ] Gather.Test (1 ms)
 [ RUN      ] Gather.InPlace
-[       OK ] Gather.InPlace (1 ms)
+[       OK ] Gather.InPlace (0 ms)
 [ RUN      ] Gather.InPlaceForZipIterator
 [       OK ] Gather.InPlaceForZipIterator (0 ms)
 [----------] 3 tests from Gather (1 ms total)
@@ -88,8 +88,8 @@
 [ RUN      ] Iterator.Advance
 [       OK ] Iterator.Advance (0 ms)
 [ RUN      ] Iterator.AllocAt
-[       OK ] Iterator.AllocAt (1 ms)
-[----------] 4 tests from Iterator (1 ms total)
+[       OK ] Iterator.AllocAt (0 ms)
+[----------] 4 tests from Iterator (0 ms total)
 
 [----------] 5 tests from List
 [ RUN      ] List.MakeString
@@ -103,8 +103,8 @@
 [ RUN      ] List.Equality
 [       OK ] List.Equality (0 ms)
 [ RUN      ] List.Equality2
-[       OK ] List.Equality2 (0 ms)
-[----------] 5 tests from List (0 ms total)
+[       OK ] List.Equality2 (1 ms)
+[----------] 5 tests from List (1 ms total)
 
 [----------] 2 tests from PermutationIterator
 [ RUN      ] PermutationIterator.Gather
@@ -113,10 +113,10 @@ Value of: make_list( 4, thrust::make_permutation_iterator( thrust::make_counting
   Actual: [1, 2, 1, 2]
 Expected: make_list(ans)
 Which is: [1, 2, 1, 2]
-[  FAILED  ] PermutationIterator.Gather (1 ms)
+[  FAILED  ] PermutationIterator.Gather (0 ms)
 [ RUN      ] PermutationIterator.Scatter
 [       OK ] PermutationIterator.Scatter (0 ms)
-[----------] 2 tests from PermutationIterator (1 ms total)
+[----------] 2 tests from PermutationIterator (0 ms total)
 
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
@@ -131,43 +131,43 @@ Which is: [1, 2, 1, 2]
 [       OK ] Real.TupleCreate (0 ms)
 [ RUN      ] Real.SimpleArithmatic
 [       OK ] Real.SimpleArithmatic (0 ms)
-[----------] 3 tests from Real (0 ms total)
+[----------] 3 tests from Real (1 ms total)
 
 [----------] 3 tests from ReduceByBucket
 [ RUN      ] ReduceByBucket.Test
 inplace
-[       OK ] ReduceByBucket.Test (1 ms)
+[       OK ] ReduceByBucket.Test (0 ms)
 [ RUN      ] ReduceByBucket.Test2
 inplace
 [       OK ] ReduceByBucket.Test2 (1 ms)
 [ RUN      ] ReduceByBucket.Test3
 inplace
-[       OK ] ReduceByBucket.Test3 (0 ms)
+[       OK ] ReduceByBucket.Test3 (1 ms)
 [----------] 3 tests from ReduceByBucket (2 ms total)
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
-[       OK ] ReduceByKey.Test (1 ms)
-[----------] 1 test from ReduceByKey (1 ms total)
+[       OK ] ReduceByKey.Test (0 ms)
+[----------] 1 test from ReduceByKey (0 ms total)
 
 [----------] 3 tests from Scatter
 [ RUN      ] Scatter.InPlaceForZipIterator
 inplace
-[       OK ] Scatter.InPlaceForZipIterator (0 ms)
+[       OK ] Scatter.InPlaceForZipIterator (1 ms)
 [ RUN      ] Scatter.InPlace
 inplace
 [       OK ] Scatter.InPlace (0 ms)
 [ RUN      ] Scatter.Test
 default
-[       OK ] Scatter.Test (1 ms)
+[       OK ] Scatter.Test (0 ms)
 [----------] 3 tests from Scatter (1 ms total)
 
 [----------] 2 tests from Thrust
 [ RUN      ] Thrust.SortByKey
-[       OK ] Thrust.SortByKey (0 ms)
+[       OK ] Thrust.SortByKey (1 ms)
 [ RUN      ] Thrust.TransformIf
 [       OK ] Thrust.TransformIf (0 ms)
-[----------] 2 tests from Thrust (0 ms total)
+[----------] 2 tests from Thrust (1 ms total)
 
 [----------] 1 test from StrideIterator
 [ RUN      ] StrideIterator.Test
@@ -177,11 +177,11 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.46101 [ms]
+Average: 2.39569 [ms]
 Times:
-[2.39584, 2.51072, 2.58422, 2.40598, 2.40829]
-[       OK ] StopWatch.TestByLooping (59 ms)
-[----------] 1 test from StopWatch (59 ms total)
+[2.39539, 2.40051, 2.39293, 2.39498, 2.39466]
+[       OK ] StopWatch.TestByLooping (58 ms)
+[----------] 1 test from StopWatch (58 ms total)
 
 [----------] 1 test from Transform
 [ RUN      ] Transform.TransformIf
@@ -219,7 +219,7 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 63 tests from 24 test cases ran. (70 ms total)
+[==========] 63 tests from 24 test cases ran. (71 ms total)
 [  PASSED  ] 62 tests.
 [  FAILED  ] 1 test, listed below:
 [  FAILED  ] PermutationIterator.Gather
