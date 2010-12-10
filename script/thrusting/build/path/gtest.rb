@@ -1,4 +1,3 @@
-
 def use_gtest(cc)
   gtest_home = "#{ENV["HOME"]}/local/gtest/gtest-1.5.0"
   gtest_lib = [gtest_home, "lib"].join "/"

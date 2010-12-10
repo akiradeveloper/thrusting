@@ -1,5 +1,5 @@
 ["cuda", "thrust", "thrusting"].each do |f|
-  require "build/path/#{f}"
+  require "thrusting/build/path/#{f}"
 end
 
 cc = "nvcc"

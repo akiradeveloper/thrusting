@@ -1,5 +1,5 @@
 ["tuple_min_max"].each do |f|
-  require "script/thrusting/#{f}"
+  require "thrusting/detail/#{f}"
 end
 
 # Macro to hide how to get item from value

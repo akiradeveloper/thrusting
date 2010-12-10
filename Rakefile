@@ -3,7 +3,7 @@ thisdir = File.expand_path File.dirname __FILE__
 require "rake/clean"
 
 ["version"].each do |f|
-  require "script/thrusting/#{f}"
+  require "thrusting/detail/#{f}"
 end
 
 CLOBBER.include("doc/html", "doc/latex")

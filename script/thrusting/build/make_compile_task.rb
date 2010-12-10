@@ -1,7 +1,7 @@
 require "rake/clean"
 
 ["compile_option"].each do |f|
-  require "build/thrusting/#{f}"
+  require "thrusting/build/#{f}"
 end
 
 def make_compile_task(cc, dir)
