@@ -7,9 +7,9 @@
 
 #include <thrust/sequence.h>
 
+#include <cstdio>
 #include <cstdlib>
 #include <algorithm>
-#include <fstream>
 
 namespace {
   using namespace thrusting;
@@ -46,8 +46,9 @@ int main(int narg, char **args){
   
   sw.show();
 
-  std::ofstream ofs(filename);
-  ofs << sw.average() << std::endl;
-  
+  FILE *fp = fopen(filename, "w");
+  fprintf(fp, "%f\n", sw.average());
+  fclose(fp);
+
   return 0;
 }

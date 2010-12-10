@@ -9,8 +9,8 @@
 #include <thrust/sequence.h>
 #include <thrust/sort.h>
 
+#include <cstdio>
 #include <cstdlib>
-#include <fstream>
 #include <algorithm>
 
 namespace {
@@ -65,8 +65,9 @@ int main(int nargs, char **args){
   
   sw.show();
   
-  std::ofstream ofs(filename);
-  ofs << sw.average() << std::endl;
+  FILE *fp = fopen(filename, "w");
+  fprintf(fp, "%f\n", sw.average());
+  fclose(fp);
 
   return 0;
 }
