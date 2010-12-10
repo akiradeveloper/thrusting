@@ -2,16 +2,16 @@
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
-[       OK ] BucketIndexing.Test (1 ms)
-[----------] 1 test from BucketIndexing (1 ms total)
+[       OK ] BucketIndexing.Test (0 ms)
+[----------] 1 test from BucketIndexing (0 ms total)
 
 [----------] 14 tests from Functional
 [ RUN      ] Functional.Constant
-[       OK ] Functional.Constant (0 ms)
+[       OK ] Functional.Constant (1 ms)
 [ RUN      ] Functional.Flip
 [       OK ] Functional.Flip (0 ms)
 [ RUN      ] Functional.Multiplies
-[       OK ] Functional.Multiplies (1 ms)
+[       OK ] Functional.Multiplies (0 ms)
 [ RUN      ] Functional.Divides
 [       OK ] Functional.Divides (0 ms)
 [ RUN      ] Functional.LeftShift
@@ -77,8 +77,8 @@
 [----------] 1 test from Generate
 [ RUN      ] Generate.Test
 [1.74589, 4.62136, 8.63085, 1.41854, 4.87638, 2.14032, 2.10161, 3.79938, 4.57459, 7.91371]
-[       OK ] Generate.Test (0 ms)
-[----------] 1 test from Generate (0 ms total)
+[       OK ] Generate.Test (1 ms)
+[----------] 1 test from Generate (1 ms total)
 
 [----------] 4 tests from Iterator
 [ RUN      ] Iterator.IteratorValueAt
@@ -131,7 +131,7 @@ Which is: [1, 2, 1, 2]
 [       OK ] Real.TupleCreate (0 ms)
 [ RUN      ] Real.SimpleArithmatic
 [       OK ] Real.SimpleArithmatic (0 ms)
-[----------] 3 tests from Real (1 ms total)
+[----------] 3 tests from Real (0 ms total)
 
 [----------] 3 tests from ReduceByBucket
 [ RUN      ] ReduceByBucket.Test
@@ -147,27 +147,27 @@ inplace
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
-[       OK ] ReduceByKey.Test (0 ms)
-[----------] 1 test from ReduceByKey (0 ms total)
+[       OK ] ReduceByKey.Test (1 ms)
+[----------] 1 test from ReduceByKey (1 ms total)
 
 [----------] 3 tests from Scatter
 [ RUN      ] Scatter.InPlaceForZipIterator
 inplace
-[       OK ] Scatter.InPlaceForZipIterator (1 ms)
+[       OK ] Scatter.InPlaceForZipIterator (0 ms)
 [ RUN      ] Scatter.InPlace
 inplace
 [       OK ] Scatter.InPlace (0 ms)
 [ RUN      ] Scatter.Test
 default
-[       OK ] Scatter.Test (0 ms)
+[       OK ] Scatter.Test (1 ms)
 [----------] 3 tests from Scatter (1 ms total)
 
 [----------] 2 tests from Thrust
 [ RUN      ] Thrust.SortByKey
-[       OK ] Thrust.SortByKey (1 ms)
+[       OK ] Thrust.SortByKey (0 ms)
 [ RUN      ] Thrust.TransformIf
 [       OK ] Thrust.TransformIf (0 ms)
-[----------] 2 tests from Thrust (1 ms total)
+[----------] 2 tests from Thrust (0 ms total)
 
 [----------] 1 test from StrideIterator
 [ RUN      ] StrideIterator.Test
@@ -177,16 +177,16 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.39569 [ms]
+Average: 2.40158 [ms]
 Times:
-[2.39539, 2.40051, 2.39293, 2.39498, 2.39466]
-[       OK ] StopWatch.TestByLooping (58 ms)
-[----------] 1 test from StopWatch (58 ms total)
+[2.39392, 2.3937, 2.39741, 2.41328, 2.4096]
+[       OK ] StopWatch.TestByLooping (59 ms)
+[----------] 1 test from StopWatch (59 ms total)
 
 [----------] 1 test from Transform
 [ RUN      ] Transform.TransformIf
 [       OK ] Transform.TransformIf (0 ms)
-[----------] 1 test from Transform (1 ms total)
+[----------] 1 test from Transform (0 ms total)
 
 [----------] 7 tests from Tuple
 [ RUN      ] Tuple.Plus
@@ -208,10 +208,10 @@ Times:
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
-[       OK ] Vector.Device (0 ms)
+[       OK ] Vector.Device (1 ms)
 [ RUN      ] Vector.Host
 [       OK ] Vector.Host (0 ms)
-[----------] 2 tests from Vector (0 ms total)
+[----------] 2 tests from Vector (1 ms total)
 
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
@@ -219,7 +219,7 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 63 tests from 24 test cases ran. (71 ms total)
+[==========] 63 tests from 24 test cases ran. (70 ms total)
 [  PASSED  ] 62 tests.
 [  FAILED  ] 1 test, listed below:
 [  FAILED  ] PermutationIterator.Gather

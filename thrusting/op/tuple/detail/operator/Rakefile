@@ -1,7 +1,7 @@
 require "rake/clean"
 
 ["get_tuple", "namespace", "template_type"].each do |f|
-  require "script/thrusting/#{f}" 
+  require "thrusting/detail/#{f}" 
 end
 
 def operator(n, op)

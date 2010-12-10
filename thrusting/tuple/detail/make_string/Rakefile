@@ -1,7 +1,7 @@
 require "rake/clean"
 
 ["tuple_min_max", "get_tuple", "template_type"].each do |f|
-  require "script/thrusting/#{f}" 
+  require "thrusting/detail/#{f}" 
 end
 
 def write_function(n)

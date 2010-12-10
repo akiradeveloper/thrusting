@@ -1,5 +1,5 @@
 ["make_autogen_task"].each do |f|
-  require "script/thrusting/#{f}"
+  require "thrusting/detail/#{f}"
 end
 
 make_autogen_task(["tuple"])
