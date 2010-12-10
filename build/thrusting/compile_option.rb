@@ -30,7 +30,7 @@ end
 def with_mode(cc, type)
   case type
   when "release"
-    cc += " -O2" # optimized
+    cc += " -O3" # optimized
   when "debug"
     cc += " -g"
   else

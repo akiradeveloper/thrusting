@@ -6,7 +6,59 @@ end
 
 cc = THRUSTING_CXX
 
-cc = with_mode(cc, "release")
-p cc
+# cc = with_mode(cc, "release")
+cc += " -O3"
 
-make_compile_task(cc, "thrusting")
+make_compile_task(cc, "thrusting_scatter")
+make_compile_task(cc, "thrust_scatter")
+make_compile_task(cc, "thrusting_gather")
+make_compile_task(cc, "thrust_gather")
+make_compile_task(cc, "reduce_by_bucket")
+
+NS = [
+10000, 20000, 50000,
+100000, 200000, 500000]
+
+MS = [
+100, 200, 500]
+
+DEVICES = ["device"]
+
+def make_scatter_gather_type_performance_task(dir)
+  task dir => DEVICES.map { |dev| "#{dir}:main_on_#{dev}" } do
+    NS.each do |n|
+      DEVICES.each do |dev|   
+        f = "#{dir}/data/#{dev}/#{n}.dat"
+        cmd = "#{dir}/main_on_#{dev} #{f} #{n}"
+        p cmd
+        sh cmd
+      end
+    end
+  end
+end
+
+make_scatter_gather_type_performance_task("thrust_scatter")
+make_scatter_gather_type_performance_task("thrusting_scatter")
+make_scatter_gather_type_performance_task("thrust_gather")
+make_scatter_gather_type_performance_task("thrusting_gather")
+
+def make_reduce_by_bucket_type_performance_task(dir)
+  task dir => DEVICES.map { |dev| "#{dir}:main_on_#{dev}" } do
+    NS.each do |n|
+      MS.each do |m|
+        DEVICES.each do |dev|
+          f = "#{dir}/data/#{dev}/#{n}_#{m}.dat"
+          cmd = "#{dir}/main_on_#{dev} #{f} #{n} #{m}"
+          sh cmd
+        end
+      end
+    end
+  end
+end
+
+make_reduce_by_bucket_type_performance_task("reduce_by_bucket")
+
+task :performance_all => 
+["thrust_scatter", "thrusting_scatter",
+ "thrust_gather", "thrusting_gather",
+ "reduce_by_bucket"]

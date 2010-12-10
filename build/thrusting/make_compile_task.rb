@@ -22,6 +22,7 @@ def make_compile_task(cc, dir)
           tmp.close
     
           cc = with_device(cc, type)
+          p cc
           system "#{cc} -o #{dir}/#{binname} #{dir}/#{cuname}"
 
           FileUtils.rm("#{dir}/#{cuname}")

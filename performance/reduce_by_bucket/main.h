@@ -10,7 +10,7 @@
 #include <thrust/sort.h>
 
 #include <cstdlib>
-
+#include <fstream>
 #include <algorithm>
 
 namespace {
@@ -18,8 +18,10 @@ namespace {
 }
 
 int main(int nargs, char **args){
-  size_t N_VALUE = atoi(args[1]);
-  size_t N_BUCKET = atoi(args[2]);
+  char *filename = args[1];
+  size_t N_VALUE = atoi(args[2]);
+  size_t N_BUCKET = atoi(args[3]);
+
   std::cout << N_VALUE << std::endl;
   std::cout << N_BUCKET << std::endl;
 
@@ -47,8 +49,6 @@ int main(int nargs, char **args){
         make_uniform_int_distribution<int>(0, N_BUCKET),
         make_rng_generator(lucky_seed)));   
     thrust::sort(idx.begin(), idx.end());
-//    std::cout << "sorted idx" << std::endl;
-//    std::cout << make_list(idx) << std::endl;
 
     sw.begin();
     thrusting::reduce_by_bucket(
@@ -65,9 +65,8 @@ int main(int nargs, char **args){
   
   sw.show();
   
-//  std::cout << make_list(prefix_output) << std::endl;
-//  std::cout << make_list(cnt_output) << std::endl;
-//  std::cout << make_list(value_output) << std::endl;
-  
+  std::ofstream ofs(filename);
+  ofs << sw.average() << std::endl;
+
   return 0;
 }
