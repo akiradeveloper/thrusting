@@ -26,7 +26,6 @@ int main(int narg, char **args){
   thrust::sequence(_idx.begin(), _idx.end());
 
   thrusting::stopwatch sw("thrust");     
-  vector<int>::type output(N);     
   
   for(int i=0; i<1; ++i){
     std::random_shuffle(_value.begin(), _value.end());
@@ -35,6 +34,7 @@ int main(int narg, char **args){
     std::random_shuffle(_idx.begin(), _idx.end());
     vector<int>::type idx(_idx.begin(), _idx.end());
 
+    vector<int>::type output(N);     
     sw.begin();
     thrust::gather(
       idx.begin(),
