@@ -1,62 +1,169 @@
 require "rake/clean"
+require "gnuplot"
 
 ["def_compile", "make_compile_task", "compile_option"].each do |f|
   require "thrusting/build/#{f}"
+end
+
+["make_performance_task"].each do |f|
+  require "thrusting/performance/#{f}"
 end
 
 cc = THRUSTING_CXX
 
 cc = with_mode(cc, "release")
 
-make_compile_task(cc, "thrusting_scatter")
-make_compile_task(cc, "thrust_scatter")
-make_compile_task(cc, "thrusting_gather")
-make_compile_task(cc, "thrust_gather")
-make_compile_task(cc, "reduce_by_bucket")
-
-NS = [
-10000, 20000, 50000,
-100000, 200000, 500000]
-
-MS = [
-100, 200, 500]
+NS = make_xs([1,2,5], [10, 100, 1000, 10000, 100000]) + [1000000]
+MS = make_xs([1,2,5], [10, 100, 1000, 10000]) + [100000]
 
 DEVICES = ["device", "host"]
 
-def make_scatter_gather_type_performance_task(dir)
-  task dir => DEVICES.map { |dev| "#{dir}:main_on_#{dev}" } do
-    NS.each do |n|
-      DEVICES.each do |dev|   
-        f = "#{dir}/data/#{dev}/#{n}.dat"
-        cmd = "#{dir}/main_on_#{dev} #{f} #{n}"
-        sh cmd
+["thrust_scatter", "thrusting_scatter", "thrust_gather", "thrusting_gather"].each do |dir|
+  make_compile_task(cc, dir)
+  make_performance_task_1(dir, NS)
+end
+
+["reduce_by_bucket"].each do |dir|
+  make_compile_task(cc, dir)
+  make_performance_task_2(dir, NS, MS)
+end
+
+namespace :plot do
+  task :scatter do
+    Gnuplot.open do |gp|
+      Gnuplot::Plot.new(gp) do |plot|
+        plot.title("comparing scatter")
+        plot.xlabel "n"
+        plot.ylabel "time [ms]"
+        plot.terminal("jpeg")
+        plot.output("figure/scatter_comparison.jpeg")
+        
+        ["thrusting_scatter", "thrust_scatter"].each do |dir|
+          PERFORMANCE_DEVICES.each do |dev|
+            ys = []
+            NS.each do |n|
+              f = File.read("#{dir}/data/#{dev}/#{n}.dat")
+              time = f.strip.to_f     
+              ys << time
+            end 
+            plot.data << Gnuplot::DataSet.new( [NS, ys] ) do |ds|
+              ds.title = "#{dir} on #{dev}"
+              ds.with = "lines"
+            end
+          end
+        end
       end
     end
   end
-end
+  task :gather do
+    Gnuplot.open do |gp|
+      Gnuplot::Plot.new(gp) do |plot|
+        plot.title("comparing gather")
+        plot.xlabel "n"
+        plot.ylabel "time [ms]"
+        plot.terminal("jpeg")
+        plot.output("figure/gather_comparison.jpeg")
+        
+        ["thrusting_gather", "thrust_gather"].each do |dir|
+          PERFORMANCE_DEVICES.each do |dev|
+            ys = []
+            NS.each do |n|
+              f = File.read("#{dir}/data/#{dev}/#{n}.dat")
+              time = f.strip.to_f     
+              ys << time
+            end 
+            plot.data << Gnuplot::DataSet.new( [NS, ys] ) do |ds|
+              ds.title = "#{dir} on #{dev}"
+              ds.with = "lines"
+            end
+          end
+        end
+      end
+    end
+  end
+  # M = const
+  task :reduce_by_bucket do
+    Gnuplot.open do |gp|
+      Gnuplot::Plot.new(gp) do |plot|
+        plot.title("reduce_by_bucket on M 1000 const")
+        plot.xlabel "m"
+        plot.ylabel "time [ms]"
+        plot.terminal("jpeg")
+        plot.output("figure/reduce_by_bucket_mconst.jpeg")
 
-make_scatter_gather_type_performance_task("thrust_scatter")
-make_scatter_gather_type_performance_task("thrusting_scatter")
-make_scatter_gather_type_performance_task("thrust_gather")
-make_scatter_gather_type_performance_task("thrusting_gather")
+        M_CONST = 1000
+        PERFORMANCE_DEVICES.each do |dev|
+          ys = []
+          NS.each do |n|
+            f = File.read("reduce_by_bucket/data/#{dev}/#{n}_#{M_CONST}.dat")
+            time = f.strip.to_f     
+            ys << time
+          end 
+          plot.data << Gnuplot::DataSet.new( [NS, ys] ) do |ds|
+            ds.title = "on #{dev}"
+            ds.with = "lines"
+          end
+        end
+      end
+    end
+  end
 
-def make_reduce_by_bucket_type_performance_task(dir)
-  task dir => DEVICES.map { |dev| "#{dir}:main_on_#{dev}" } do
-    NS.each do |n|
-      MS.each do |m|
-        DEVICES.each do |dev|
-          f = "#{dir}/data/#{dev}/#{n}_#{m}.dat"
-          cmd = "#{dir}/main_on_#{dev} #{f} #{n} #{m}"
-          sh cmd
+  # N = const
+  task :reduce_by_bucket do
+    Gnuplot.open do |gp|
+      Gnuplot::Plot.new(gp) do |plot|
+        plot.title("reduce_by_bucket on N 1000000 const")
+        plot.xlabel "m"
+        plot.ylabel "time [ms]"
+        plot.terminal("jpeg")
+        plot.output("figure/reduce_by_bucket_nconst.jpeg")
+
+        N_CONST = 1000000
+        PERFORMANCE_DEVICES.each do |dev|
+          ys = []
+          MS.each do |m|
+            f = File.read("reduce_by_bucket/data/#{dev}/#{N_CONST}_#{m}.dat")
+            time = f.strip.to_f     
+            ys << time
+          end 
+          plot.data << Gnuplot::DataSet.new( [MS, ys] ) do |ds|
+            ds.title = "on #{dev}"
+            ds.with = "lines"
+          end
+        end
+      end
+    end
+  end
+  task :reduce_by_bucket do
+    Gnuplot.open do |gp|
+      Gnuplot::SPlot.new(gp) do |plot|
+        plot.title "reduce_by_bucket performance"
+        plot.xlabel "n"
+        plot.ylabel "m"
+        # plot.zlabel "time"
+        plot.terminal "jpeg"
+        plot.output "figure/reduce_by_bucket_performance.jpeg"
+       
+        PERFORMANCE_DEVICES.each do |dev|
+          zs = []
+          NS.each_with_index do |n, i|
+            zs[i] = []
+            MS.each_with_index do |m, j|
+              f = File.read("reduce_by_bucket/data/#{dev}/#{n}_#{m}.dat")
+              time = f.strip.to_f
+              zs[i][j] = time
+            end
+          end
+          plot.data << Gnuplot::DataSet.new( [NS, MS, zs] ) do |ds|
+            ds.title = "on #{dev}"
+            # ds.with = "lines"
+          end  
         end
       end
     end
   end
 end
 
-make_reduce_by_bucket_type_performance_task("reduce_by_bucket")
-
-task :performance_all => 
-["thrust_scatter", "thrusting_scatter",
- "thrust_gather", "thrusting_gather",
- "reduce_by_bucket"]
+namespace :plot do
+  task :all => [:scatter, :gather, :reduce_by_bucket]
+end

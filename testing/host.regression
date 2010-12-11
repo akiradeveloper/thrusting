@@ -34,7 +34,7 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 14 tests from Functional (1 ms total)
+[----------] 14 tests from Functional (0 ms total)
 
 [----------] 1 test from Copy
 [ RUN      ] Copy.Test
@@ -46,7 +46,7 @@
 [       OK ] Distribution.UniformReal (0 ms)
 [ RUN      ] Distribution.UniformInt
 [       OK ] Distribution.UniformInt (0 ms)
-[----------] 2 tests from Distribution (0 ms total)
+[----------] 2 tests from Distribution (1 ms total)
 
 [----------] 2 tests from Engine
 [ RUN      ] Engine.Fast
@@ -57,8 +57,8 @@
 
 [----------] 1 test from Equal
 [ RUN      ] Equal.Test
-[       OK ] Equal.Test (46 ms)
-[----------] 1 test from Equal (46 ms total)
+[       OK ] Equal.Test (121 ms)
+[----------] 1 test from Equal (121 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -99,12 +99,12 @@
 [       OK ] List.Ostream (0 ms)
 [ RUN      ] List.Ostream2
 [1.2, 2.9]
-[       OK ] List.Ostream2 (0 ms)
+[       OK ] List.Ostream2 (1 ms)
 [ RUN      ] List.Equality
 [       OK ] List.Equality (0 ms)
 [ RUN      ] List.Equality2
 [       OK ] List.Equality2 (0 ms)
-[----------] 5 tests from List (0 ms total)
+[----------] 5 tests from List (1 ms total)
 
 [----------] 2 tests from PermutationIterator
 [ RUN      ] PermutationIterator.Gather
@@ -115,8 +115,8 @@
 
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
-[       OK ] Random.RandomGenerator (2 ms)
-[----------] 1 test from Random (2 ms total)
+[       OK ] Random.RandomGenerator (1 ms)
+[----------] 1 test from Random (1 ms total)
 
 [----------] 3 tests from Real
 [ RUN      ] Real.Create
@@ -154,8 +154,8 @@ inplace
 [       OK ] Scatter.InPlace (0 ms)
 [ RUN      ] Scatter.Test
 default
-[       OK ] Scatter.Test (0 ms)
-[----------] 3 tests from Scatter (0 ms total)
+[       OK ] Scatter.Test (1 ms)
+[----------] 3 tests from Scatter (1 ms total)
 
 [----------] 2 tests from Thrust
 [ RUN      ] Thrust.SortByKey
@@ -172,11 +172,11 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.39578 [ms]
+Average: 2.59544 [ms]
 Times:
-[2.40314, 2.39683, 2.39254, 2.39149, 2.39488]
-[       OK ] StopWatch.TestByLooping (12 ms)
-[----------] 1 test from StopWatch (12 ms total)
+[2.83411, 2.43002, 2.41344, 2.89456, 2.40509]
+[       OK ] StopWatch.TestByLooping (14 ms)
+[----------] 1 test from StopWatch (14 ms total)
 
 [----------] 1 test from Transform
 [ RUN      ] Transform.TransformIf
@@ -214,5 +214,5 @@ Times:
 [----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 63 tests from 24 test cases ran. (62 ms total)
+[==========] 63 tests from 24 test cases ran. (139 ms total)
 [  PASSED  ] 63 tests.
