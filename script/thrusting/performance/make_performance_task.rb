@@ -11,6 +11,13 @@ def make_xs(as, bs)
   xs.sort
 end
 
+def make_dat_clobber_task(dir)
+  PERFORMANCE_DEVICES.each do |dev|
+    dats = FileList["#{dir}/data/#{dev}/*.dat"] 
+    CLOBBER.include(dats)
+  end
+end
+
 def make_performance_task_1(dir, xs)
   namespace :run do
     task dir => PERFORMANCE_DEVICES.map { |dev| "#{dir}/main_on_#{dev}" } do
@@ -23,6 +30,7 @@ def make_performance_task_1(dir, xs)
       end
     end
     task :all => dir
+    make_dat_clobber_task(dir)
   end
 end
 
@@ -40,5 +48,6 @@ def make_performance_task_2(dir, xs, ys)
       end
     end
     task :all => dir
+    make_dat_clobber_task(dir)
   end
 end

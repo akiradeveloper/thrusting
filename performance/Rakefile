@@ -85,13 +85,13 @@ namespace :plot do
   task :reduce_by_bucket do
     Gnuplot.open do |gp|
       Gnuplot::Plot.new(gp) do |plot|
-        plot.title("reduce_by_bucket on M 1000 const")
+        plot.title("reduce_by_bucket on M 100000 const")
         plot.xlabel "m"
         plot.ylabel "time [ms]"
         plot.terminal("jpeg")
         plot.output("figure/reduce_by_bucket_mconst.jpeg")
 
-        M_CONST = 1000
+        M_CONST = 100000
         PERFORMANCE_DEVICES.each do |dev|
           ys = []
           NS.each do |n|
