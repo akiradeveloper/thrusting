@@ -34,12 +34,12 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 14 tests from Functional (1 ms total)
+[----------] 14 tests from Functional (0 ms total)
 
 [----------] 1 test from Copy
 [ RUN      ] Copy.Test
-[       OK ] Copy.Test (0 ms)
-[----------] 1 test from Copy (0 ms total)
+[       OK ] Copy.Test (1 ms)
+[----------] 1 test from Copy (1 ms total)
 
 [----------] 2 tests from Distribution
 [ RUN      ] Distribution.UniformReal
@@ -69,9 +69,9 @@
 [ RUN      ] Gather.Test
 [       OK ] Gather.Test (0 ms)
 [ RUN      ] Gather.InPlace
-[       OK ] Gather.InPlace (1 ms)
+[       OK ] Gather.InPlace (0 ms)
 [ RUN      ] Gather.InPlaceForZipIterator
-[       OK ] Gather.InPlaceForZipIterator (0 ms)
+[       OK ] Gather.InPlaceForZipIterator (1 ms)
 [----------] 3 tests from Gather (1 ms total)
 
 [----------] 1 test from Generate
@@ -142,13 +142,13 @@ inplace
 [       OK ] ReduceByBucket.Test2 (1 ms)
 [ RUN      ] ReduceByBucket.Test3
 inplace
-[       OK ] ReduceByBucket.Test3 (0 ms)
-[----------] 3 tests from ReduceByBucket (2 ms total)
+[       OK ] ReduceByBucket.Test3 (1 ms)
+[----------] 3 tests from ReduceByBucket (3 ms total)
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
-[       OK ] ReduceByKey.Test (1 ms)
-[----------] 1 test from ReduceByKey (1 ms total)
+[       OK ] ReduceByKey.Test (0 ms)
+[----------] 1 test from ReduceByKey (0 ms total)
 
 [----------] 3 tests from Scatter
 [ RUN      ] Scatter.InPlaceForZipIterator
@@ -156,17 +156,17 @@ inplace
 [       OK ] Scatter.InPlaceForZipIterator (0 ms)
 [ RUN      ] Scatter.InPlace
 inplace
-[       OK ] Scatter.InPlace (4 ms)
+[       OK ] Scatter.InPlace (1 ms)
 [ RUN      ] Scatter.Test
 default
-[       OK ] Scatter.Test (1 ms)
-[----------] 3 tests from Scatter (5 ms total)
+[       OK ] Scatter.Test (0 ms)
+[----------] 3 tests from Scatter (1 ms total)
 
 [----------] 2 tests from Thrust
 [ RUN      ] Thrust.SortByKey
 [       OK ] Thrust.SortByKey (0 ms)
 [ RUN      ] Thrust.TransformIf
-[       OK ] Thrust.TransformIf (1 ms)
+[       OK ] Thrust.TransformIf (0 ms)
 [----------] 2 tests from Thrust (1 ms total)
 
 [----------] 1 test from StrideIterator
@@ -177,11 +177,11 @@ default
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.46232 [ms]
+Average: 2.46972 [ms]
 Times:
-[2.40243, 2.39443, 2.39875, 2.71744, 2.39856]
-[       OK ] StopWatch.TestByLooping (62 ms)
-[----------] 1 test from StopWatch (62 ms total)
+[2.39334, 2.75754, 2.40214, 2.40176, 2.39379]
+[       OK ] StopWatch.TestByLooping (58 ms)
+[----------] 1 test from StopWatch (58 ms total)
 
 [----------] 1 test from Transform
 [ RUN      ] Transform.TransformIf
@@ -204,7 +204,7 @@ Times:
 [       OK ] Tuple.Ostream (0 ms)
 [ RUN      ] Tuple.ArithmaticPriority
 [       OK ] Tuple.ArithmaticPriority (0 ms)
-[----------] 7 tests from Tuple (0 ms total)
+[----------] 7 tests from Tuple (1 ms total)
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
@@ -216,10 +216,10 @@ Times:
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
 [       OK ] ZipIterator.Reference (0 ms)
-[----------] 1 test from ZipIterator (1 ms total)
+[----------] 1 test from ZipIterator (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 63 tests from 24 test cases ran. (78 ms total)
+[==========] 63 tests from 24 test cases ran. (70 ms total)
 [  PASSED  ] 62 tests.
 [  FAILED  ] 1 test, listed below:
 [  FAILED  ] PermutationIterator.Gather

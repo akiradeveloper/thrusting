@@ -13,8 +13,8 @@ cc = THRUSTING_CXX
 
 cc = with_mode(cc, "release")
 
-NS = make_xs([1,2,5], [10, 100, 1000, 10000, 100000]) + [1000000]
-MS = make_xs([1,2,5], [10, 100, 1000, 10000]) + [100000]
+NS = make_xs([1,2,5], [10, 100, 1000])
+MS = make_xs([1,2,5], [10, 100, 1000])
 
 DEVICES = ["device", "host"]
 
@@ -91,7 +91,7 @@ namespace :plot do
         plot.terminal("jpeg")
         plot.output("figure/reduce_by_bucket_mconst.jpeg")
 
-        M_CONST = 100000
+        M_CONST = 100
         PERFORMANCE_DEVICES.each do |dev|
           ys = []
           NS.each do |n|
@@ -118,7 +118,7 @@ namespace :plot do
         plot.terminal("jpeg")
         plot.output("figure/reduce_by_bucket_nconst.jpeg")
 
-        N_CONST = 1000000
+        N_CONST = 100
         PERFORMANCE_DEVICES.each do |dev|
           ys = []
           MS.each do |m|
@@ -165,5 +165,6 @@ namespace :plot do
 end
 
 namespace :plot do
+  desc "generate figure"
   task :all => [:scatter, :gather, :reduce_by_bucket]
 end

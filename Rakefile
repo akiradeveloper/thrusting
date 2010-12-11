@@ -6,6 +6,7 @@ require "rake/clean"
   require "thrusting/detail/#{f}"
 end
 
+CLOBBER.include ["doc/html", "doc/latex"]
 
 desc "generate zip file"
 task :zip do
@@ -17,7 +18,7 @@ task :doxygen do
   sh "doxygen Doxyfile"
 end
 
-task :push => [:remove_deprecated, :clobber] do
+task :push => [:remove_deprecated] do
   repo = "http://bitbucket.org/akiradeveloper/thrusting"
   sh "hg push #{repo}"
 end
@@ -36,5 +37,3 @@ task :clobber do
     end
   end
 end
-
-CLOBBER.include("doc/html", "doc/latex")

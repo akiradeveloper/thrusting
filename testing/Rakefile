@@ -18,16 +18,16 @@ make_compile_task(cc, "gtest")
 dirname = "gtest"
 
 namespace :regress do
-  task :on_host => "#{dirname}/all_on_host" do |t|
-    system "#{dirname}/all_on_host 1> host.regression"
+  task :on_host => "#{dirname}/all_on_host.bin" do |t|
+    system "#{dirname}/all_on_host.bin 1> host.regression"
   end
   
-  task :on_device => "#{dirname}/all_on_device" do |t|
-    system "#{dirname}/all_on_device 1> device.regression"
+  task :on_device => "#{dirname}/all_on_device.bin" do |t|
+    system "#{dirname}/all_on_device.bin 1> device.regression"
   end
   
-  task :on_omp => "#{dirname}/all_on_omp" do |t|
-    system "#{dirname}/all_on_omp 1> omp.regression"
+  task :on_omp => "#{dirname}/all_on_omp.bin" do |t|
+    system "#{dirname}/all_on_omp.bin 1> omp.regression"
   end
   
   desc("Run all the test on all devices")

@@ -9,7 +9,7 @@ def make_compile_task(cc, dir)
   files.each do |f|
     name = File.basename(f, ".h")
     COMPILE_DEVICES.each do |type|
-      binname = "#{name}_on_#{type}"
+      binname = "#{name}_on_#{type}.bin"
       file "#{dir}/#{binname}" => f do |t|
         cuname = "#{name}.cu"
         tmp = File.open("#{dir}/#{cuname}", "w")
@@ -19,7 +19,6 @@ def make_compile_task(cc, dir)
         """
         tmp.write(txt)
         tmp.close
-  
         _cc = with_device(cc, type)
         p __FILE__
         p _cc 
