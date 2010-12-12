@@ -27,11 +27,11 @@ void scatter(
   OutputIterator output
 ){
   if(first==output){
-    std::cout << "inplace" << std::endl;
+//    std::cout << "inplace" << std::endl;
     typename vector_of<InputIterator1>::type value_copy(first, last);
     thrust::scatter(value_copy.begin(), value_copy.end(), map, output);
   } else {
-    std::cout << "default" << std::endl;
+ //   std::cout << "default" << std::endl;
     thrust::scatter(first, last, map, output);
   }
 }

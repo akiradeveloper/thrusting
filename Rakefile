@@ -29,11 +29,3 @@ task :remove_deprecated do
     sh "hg remove #{x.split.at(1)}"
   end
 end
-
-task :clobber do
-  ["testing", "performance"].each do |dir|
-    Dir.chdir(dir) do
-      sh "rake clobber"
-    end
-  end
-end

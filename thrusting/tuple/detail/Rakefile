@@ -2,4 +2,6 @@
   require "thrusting/detail/#{f}"
 end
 
-make_autogen_task(["make_string", "n_typedef"])
+["make_string", "n_typedef"].each do |dir|
+  make_autogen_task(dir)
+end

@@ -2,4 +2,4 @@
   require "thrusting/detail/#{f}"
 end
 
-make_autogen_task(["tuple"])
+make_autogen_task("tuple")

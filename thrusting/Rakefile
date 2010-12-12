@@ -2,4 +2,6 @@
   require "thrusting/detail/#{f}"
 end
 
-make_autogen_task(["real", "iterator", "tuple", "op"])
+["real", "iterator", "tuple", "op"].each do |dir|
+  make_autogen_task(dir)
+end

@@ -1,24 +1,12 @@
-def make_build_task(dirs)
-  dirs.each do |dir|
-    task :build do
-      Dir.chdir(dir) do
-        sh "rake build"
-      end
+def chain_task(taskname, dir)
+  task taskname do
+    Dir.chdir(dir) do 
+      sh "rake #{taskname}"
     end
   end
 end
 
-def make_clobber_task(dirs)
-  dirs.each do |dir|
-    task :build do
-      Dir.chdir(dir) do
-        sh "rake clobber"
-      end
-    end
-  end
-end
-
-def make_autogen_task(dirs)
-  make_build_task(dirs)
-  make_clobber_task(dirs)
+def make_autogen_task(dir)
+  chain_task("build", dir)
+  chain_task("clobber", dir)
 end

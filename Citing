@@ -1,0 +1,9 @@
+For citing this library,
+please using following BibTEX.
+
+@MISC { BPHCUDA,
+  author = "Akira Hayakawa",
+  title = "Thrusting : An extention for Thrust library",
+  year = "2010",
+  url = "http://bitbucket.org/akiradeveloper/thrusting"
+}

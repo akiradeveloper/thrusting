@@ -2,7 +2,7 @@ require "rake/clean"
 
 hs = FileList["*.h"].exclude("all.h")
 
-task "all.h" => hs do
+file "all.h" => hs do
   f = File.open("all.h", "w")
   f.write("#pragma once\n")
   txt = hs.map { |f| "#include \"#{f}\"" }.join "\n"

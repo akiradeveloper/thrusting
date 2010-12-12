@@ -4,4 +4,4 @@ require "rake/clean"
   require "thrusting/detail/#{f}"
 end 
 
-make_autogen_task(["detail/tuple"])
+make_autogen_task("detail/tuple")
