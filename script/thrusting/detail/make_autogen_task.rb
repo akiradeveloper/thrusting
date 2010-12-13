@@ -1,3 +1,5 @@
+module Thrusting 
+
 def chain_task(taskname, dir)
   task taskname do
     Dir.chdir(dir) do 
@@ -10,3 +12,5 @@ def make_autogen_task(dir)
   chain_task("build", dir)
   chain_task("clobber", dir)
 end
+
+end # END Thrusting

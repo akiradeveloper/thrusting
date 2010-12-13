@@ -1,14 +1,10 @@
-require "rake/clean"
-
-["compile_option", "device"].each do |f|
-  require "thrusting/build/#{f}"
-end
+module Thrusting
 
 def make_compile_task(cc, dir)
   files = FileList["#{dir}/*.h"]
   files.each do |f|
     name = File.basename(f, ".h")
-    COMPILE_DEVICES.each do |type|
+    get_runnable_devices().each do |backend|
       binname = "#{name}_on_#{type}.bin"
       file "#{dir}/#{binname}" => f do |t|
         cuname = "#{name}.cu"
@@ -19,8 +15,7 @@ def make_compile_task(cc, dir)
         """
         tmp.write(txt)
         tmp.close
-        _cc = with_device(cc, type)
-        p __FILE__
+        _cc = use_device(cc, backend)
         p _cc 
         sh "#{_cc} -o #{dir}/#{binname} #{dir}/#{cuname}"
         FileUtils.rm("#{dir}/#{cuname}")
@@ -38,3 +33,5 @@ def make_compile_task(cc, dir)
     end
   end
 end
+
+end # END Thrusting

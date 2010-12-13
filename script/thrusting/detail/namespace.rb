@@ -1,11 +1,11 @@
-THRUSTING = "thrusting"
+module Thrusting
 
 def operator_tuple(code="")
 """
-namespace #{THRUSTING} {
+namespace thrusting {
 #{code}
 }
 """
 end
 
-
+end # END Thrusting

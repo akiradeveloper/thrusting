@@ -4,6 +4,8 @@ require "rake/clean"
   require "thrusting/detail/#{f}" 
 end
 
+include Thrusting
+
 def equality(n)
   bool = (0...n).map { |i| "(#{get_tuple(i, "x")} == #{get_tuple(i, "y")})" }.join(" && ")
 """

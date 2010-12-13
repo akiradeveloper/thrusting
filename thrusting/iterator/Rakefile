@@ -6,6 +6,8 @@ thisdir = File.expand_path File.dirname __FILE__
   require "thrusting/detail/#{f}" 
 end
 
+include Thrusting
+
 def make_zip_iterator(n)
 """
 template<#{typename(0...n)}>

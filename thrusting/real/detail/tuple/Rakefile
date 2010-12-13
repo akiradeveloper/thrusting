@@ -6,6 +6,8 @@ require "rake/clean"
   require "thrusting/detail/#{f}"
 end
 
+include Thrusting
+
 types = ["real"] 
 tuple_types = ["real"]
 

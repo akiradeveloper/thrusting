@@ -2,6 +2,8 @@
   require "thrusting/detail/#{f}"
 end
 
+include Thrusting
+
 ["real", "iterator", "tuple", "op"].each do |dir|
   make_autogen_task(dir)
 end

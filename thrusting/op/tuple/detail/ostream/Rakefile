@@ -4,6 +4,8 @@ require "rake/clean"
   require "thrusting/detail/#{f}" 
 end
 
+include Thrusting
+
 def ostream(n)
 """
 template<#{typename(0...n)}>

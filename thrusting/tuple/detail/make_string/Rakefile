@@ -4,6 +4,8 @@ require "rake/clean"
   require "thrusting/detail/#{f}" 
 end
 
+include Thrusting
+
 def write_function(n)
   s = (0...n).map { |i| get_tuple(i, "t") }.join(" << \", \" << ")
 """

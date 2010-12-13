@@ -1,10 +1,12 @@
-# type is host or device or omp
-def with_device(cc, type)
+module Thrusting 
+
+def use_device(cc, backend)
   case type 
   when "host"
     cc
   when "device"
     cc += " -D THRUSTING_USING_DEVICE_VECTOR"
+    cc += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_CUDA"
   when "omp" 
     cc += " -D THRUSTING_USING_DEVICE_VECTOR"
     cc += " -Xcompiler -fopenmp"
@@ -14,8 +16,7 @@ def with_device(cc, type)
   end
 end
 
-# type is float or double
-def with_floating(cc, type)
+def use_floating(cc, type)
   case type
   when "double"
     cc += " -D THRUSTING_USING_DOUBLE_FOR_REAL"
@@ -26,14 +27,18 @@ def with_floating(cc, type)
   end
 end
 
-# mode is release or debug
-def with_mode(cc, type)
+def use_mode(cc, mode)
   case type
   when "release"
     cc += " -O2" # optimized
   when "debug"
     cc += " -g"
+    if will_debug_on_device()
+      cc += " -G"
+    end
   else
     raise "invalid type"
   end 
 end
+
+end # Thrusting

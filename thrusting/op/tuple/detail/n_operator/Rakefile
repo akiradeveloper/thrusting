@@ -4,6 +4,8 @@ require "rake/clean"
   require "thrusting/detail/#{f}" 
 end
 
+include Thrusting
+
 def gen_calc(op, n)
   (0...n).map { |i| get_tuple(i, "t") }.map { |x| "#{x} #{op} x" }.join(", ")
 end

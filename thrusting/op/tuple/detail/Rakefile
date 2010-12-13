@@ -2,6 +2,8 @@
   require "thrusting/detail/#{f}"
 end
 
+include Thrusting
+
 ["equality", "n_operator", "operator", "ostream"].each do |dir|
   make_autogen_task(dir)
 end
