@@ -1,29 +1,23 @@
 require "rake/clean"
-require "gnuplot"
 
-["def_compile", "make_compile_task", "compile_option"].each do |f|
-  require "thrusting/build/#{f}"
-end
+require "thrusting/build"
 
-["make_plot", "make_run_task"].each do |f|
-  require "thrusting/performance/#{f}"
-end
+cc = Thrusting.make_default_compiler("nvcc")
 
-cc = THRUSTING_CXX
+figdir = Thrusting.get_figure_dir(File.dirname __FILE__)
+FileUtils.mkdir_p(figdir)
 
-cc = with_mode(cc, "release")
-
-NS = make_xs([1,2,5], [10, 100, 1000])
-MS = make_xs([1,2,5], [10, 100, 1000])
+NS = Thrusting.make_xs([1,2,5], [100, 1000])
+MS = Thrusting.make_xs([1,2,5], [100, 1000])
 
 ["thrust_scatter", "thrusting_scatter", "thrust_gather", "thrusting_gather"].each do |dir|
-  make_compile_task(cc, dir)
-  make_run_task_1(NS, dir)
+  Thrusting.make_compile_task(cc, "release", dir)
+  Thrusting.make_run_task_1(NS, dir)
 end
 
 ["reduce_by_bucket"].each do |dir|
-  make_compile_task(cc, dir)
-  make_run_task_2(NS, MS, dir)
+  Thrusting.make_compile_task(cc, "release", dir)
+  Thrusting.make_run_task_2(NS, MS, dir)
 end
 
 namespace :plot do
@@ -34,10 +28,10 @@ namespace :plot do
         plot.xlabel "n"
         plot.ylabel "time [ms]"
         plot.terminal("jpeg")
-        plot.output("figure/scatter_comparison.jpeg")
+        plot.output("#{figdir}/scatter_comparison.jpeg")
         
         ["thrusting_scatter", "thrust_scatter"].each do |dir|
-          make_xs_plot(plot, NS, dir)
+          Thrusting.make_xs_plot(plot, NS, dir)
         end
       end
     end
@@ -49,10 +43,10 @@ namespace :plot do
         plot.xlabel "n"
         plot.ylabel "time [ms]"
         plot.terminal("jpeg")
-        plot.output("figure/gather_comparison.jpeg")
+        plot.output("#{figdir}/gather_comparison.jpeg")
         
         ["thrusting_gather", "thrust_gather"].each do |dir|
-          make_xs_plot(plot, NS, dir)
+          Thrusting.make_xs_plot(plot, NS, dir)
         end
       end
     end
@@ -66,9 +60,9 @@ namespace :plot do
         plot.xlabel "m"
         plot.ylabel "time [ms]"
         plot.terminal("jpeg")
-        plot.output("figure/reduce_by_bucket_mconst.jpeg")
+        plot.output("#{figdir}/reduce_by_bucket_mconst.jpeg")
 
-        make_xs_y_plot(plot, NS, M_CONST, "reduce_by_bucket");
+        Thrusting.make_xs_y_plot(plot, NS, M_CONST, "reduce_by_bucket");
       end
     end
   end
@@ -81,9 +75,9 @@ namespace :plot do
         plot.xlabel "m"
         plot.ylabel "time [ms]"
         plot.terminal("jpeg")
-        plot.output("figure/reduce_by_bucket_nconst.jpeg")
+        plot.output("#{figdir}/reduce_by_bucket_nconst.jpeg")
 
-        make_x_ys_plot(plot, N_CONST, MS, "reduce_by_bucket")
+        Thrusting.make_x_ys_plot(plot, N_CONST, MS, "reduce_by_bucket")
       end
     end
   end
@@ -95,9 +89,9 @@ namespace :plot do
         plot.ylabel "m"
         # plot.zlabel "time"
         plot.terminal "jpeg"
-        plot.output "figure/reduce_by_bucket_performance.jpeg"
+        plot.output "#{figdir}/reduce_by_bucket_performance.jpeg"
        
-        make_xs_ys_plot(plot, NS, MS, "reduce_by_bucket")
+        Thrusting.make_xs_ys_plot(plot, NS, MS, "reduce_by_bucket")
       end
     end
   end

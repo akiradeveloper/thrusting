@@ -1,35 +1,6 @@
 require "rake/clean"
 
-["def_compile", "make_compile_task", "compile_option"].each do |f|
-  require "thrusting/build/#{f}"
-end
+require "thrusting/build"
 
-["gtest"].each do |f|
-  require "thrusting/build/path/#{f}"
-end
-
-cc = THRUSTING_CXX
-
-cc = with_mode(cc, "debug")
-cc = use_gtest(cc)
-
-make_compile_task(cc, "gtest")
-
-dirname = "gtest"
-
-namespace :regress do
-  task :on_host => "#{dirname}/all_on_host.bin" do |t|
-    system "#{dirname}/all_on_host.bin 1> host.regression"
-  end
-  
-  task :on_device => "#{dirname}/all_on_device.bin" do |t|
-    system "#{dirname}/all_on_device.bin 1> device.regression"
-  end
-  
-  task :on_omp => "#{dirname}/all_on_omp.bin" do |t|
-    system "#{dirname}/all_on_omp.bin 1> omp.regression"
-  end
-  
-  desc("Run all the test on all devices")
-  task :on_all => [:on_host, :on_device, :on_omp]
-end
+cc = Thrusting.make_default_compiler("nvcc")
+Thrusting.make_gtest_task(cc, "debug", "gtest")

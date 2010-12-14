@@ -1,35 +1,31 @@
 module Thrusting
+
   module_function
-  def make_gtest_task(cc, dir)
-    cc = use_gtest(cc)
+  def make_gtest_task(cc, mode, dir)
     hs = FileList["*.h"]
-    file "all.h" => hs do |t|
+    file "#{dir}/all.h" => hs do |t|
       f = File.open(t.name, "w")
       f.write("#pragma once\n")
       txt = hs.map { |h| "#include \"#{h}\"" }.join "\n"
       f.write(txt)
       f.close
     end
+    CLOBBER.include("#{dir}/all.h")
   
-    make_compile_task(cc, dir)
+    cc = use_gtest(cc)
+    p cc
+    make_compile_task(cc, mode, dir)
   
     outputdir = "#{dir}/regression/#{get_machine_name()}"
-    FileUtils.mkdir(outputdir)
+    FileUtils.mkdir_p(outputdir)
+
     namespace :regress do
-      task :on_host => "#{dir}/all_on_host.bin" do |t|
-        system "#{dir}/all_on_host.bin 1> #{outputdir}/host"
+      get_runnable_devices().each do |dev|
+        task "on_#{dev}" => ["#{dir}/all.h", "#{dir}/all_on_#{dev}.bin"] do |t|
+          system "#{dir}/all_on_#{dev}.bin 1> #{outputdir}/#{dev}"
+        end
+        task :on_all => "on_#{dev}" 
       end
-      
-      task :on_device => "#{dir}/all_on_device.bin" do |t|
-        system "#{dir}/all_on_device.bin 1> #{outputdir}/device"
-      end
-      
-      task :on_omp => "#{dir}/all_on_omp.bin" do |t|
-        system "#{dir}/all_on_omp.bin 1> #{outputdir}/omp"
-      end
-      
-      desc("Run all the test on all devices")
-      task :on_all => [:on_host, :on_device, :on_omp]
     end
   end
 end 

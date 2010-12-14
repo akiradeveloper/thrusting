@@ -1,20 +1,21 @@
 require "thrusting/build"
 
-
 module Thrusting
 
-  module_function
-
-  def get_data_dir
-    "#{dir}/data/#{get_machine_name()}/#{dev}"
-  end
-  
-  def make_data_dir(dir)
-    get_runnable_devices().each do |dev|
-      FileUtils.mkdir_p(get_data_dir())
+  class << self
+    private
+    def get_data_dir(dir, backend)
+      return "#{dir}/data/#{get_machine_name()}/#{backend}"
+    end
+    
+    def make_data_dir(dir)
+      get_runnable_devices().each do |backend|
+        FileUtils.mkdir_p(get_data_dir(dir, backend))
+      end
     end
   end
 
+  module_function
   def make_xs(as, bs)
     xs = Array.new
     as.each do |a|
@@ -30,7 +31,7 @@ module Thrusting
     namespace :run do
       task dir do
         get_runnable_devices().each do |dev|
-          f = "#{get_data_dir()}/.dat"
+          f = "#{get_data_dir(dir, dev)}/.dat"
           cmd = "#{dir}/main_on_#{dev}.bin #{f}"
           sh cmd
         end
@@ -44,7 +45,7 @@ module Thrusting
         make_data_dir(dir)
         xs.each do |x|
           get_runnable_devices().each do |dev|   
-            f = "#{get_data_dir()}/#{x}.dat"
+            f = "#{get_data_dir(dir, dev)}/#{x}.dat"
             cmd = "#{dir}/main_on_#{dev}.bin #{f} #{x}"
             sh cmd
           end
@@ -61,7 +62,7 @@ module Thrusting
         xs.each do |x|
           ys.each do |y|
             get_runnable_devices().each do |dev|
-              f = "#{get_data_dir()}/#{x}_#{y}.dat"
+              f = "#{get_data_dir(dir, dev)}/#{x}_#{y}.dat"
               cmd = "#{dir}/main_on_#{dev}.bin #{f} #{x} #{y}"
               sh cmd
             end
