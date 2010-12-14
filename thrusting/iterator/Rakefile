@@ -1,12 +1,6 @@
 require "rake/clean"
 
-thisdir = File.expand_path File.dirname __FILE__
-
-["tuple_min_max", "template_type"].each do |f|
-  require "thrusting/detail/#{f}" 
-end
-
-include Thrusting
+require "thrusting/generate" 
 
 def make_zip_iterator(n)
 """

@@ -1,9 +1,5 @@
 require "rake/clean"
 
-["make_autogen_task"].each do |f|
-  require "thrusting/detail/#{f}"
-end 
-
-include Thrusting
+require "thrusting/generate"
 
 make_autogen_task("detail/tuple")

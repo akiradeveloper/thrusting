@@ -2,16 +2,12 @@ thisdir = File.expand_path File.dirname __FILE__
 
 require "rake/clean"
 
-
-["version"].each do |f|
-  require "thrusting/detail/#{f}"
-end
-
 CLOBBER.include ["doc/html", "doc/latex"]
 
 desc "generate zip file"
 task :zip do
-  sh "hg archive -t zip #{ENV["HOME"]}/thrusting-v#{Thrusting::VERSION}.zip"
+  version = "0.0.1"
+  sh "hg archive -t zip #{ENV["HOME"]}/thrusting-v#{version}.zip"
 end
 
 desc "generate API doc under doc dir"

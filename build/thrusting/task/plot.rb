@@ -1,7 +1,5 @@
 require "gnuplot"
 
-module Thrusting 
-
 def make_xs_plot(plot, xs, dir)
   get_runnable_devices().each do |dev|
     ys = []
@@ -64,5 +62,3 @@ def make_x_ys_plot(plot, x, ys, dir)
     end
   end
 end
-
-end # END Thrusting

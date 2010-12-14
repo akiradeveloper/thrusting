@@ -1,8 +1,4 @@
-["environment"].each do |f|
-  require "thrusting/build/#{f}"
-end
-
-module Thrusting 
+require "thrusting/build"
 
 def make_xs(as, bs)
   xs = Array.new
@@ -70,5 +66,3 @@ def make_run_task_2(xs, ys, dir)
     task :all => dir
   end
 end
-
-end # END Thrusting

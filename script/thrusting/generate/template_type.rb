@@ -1,5 +1,3 @@
-module Thrusting
-
 def typename(range)
   range.map { |i| "typename X#{i}" }.join ", "
 end
@@ -19,5 +17,3 @@ end
 def type_arg(range)
   range.map { |i| "X#{i} x#{i}" }.join ", "
 end
-
-end # Thrusting 

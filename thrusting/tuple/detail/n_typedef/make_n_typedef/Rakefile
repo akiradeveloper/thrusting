@@ -1,10 +1,6 @@
 require "rake/clean"
 
-["get_tuple", "template_type"].each do |f|
-  require "thrusting/detail/#{f}" 
-end
-
-include Thrusting
+require "thrusting/generate"
 
 def tupleN(n)
   arg = (0...n).map { |i| "T x#{i}" }

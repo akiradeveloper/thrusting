@@ -1,5 +1,3 @@
-module Thrusting
-
 def make_compile_task(cc, dir)
   files = FileList["#{dir}/*.h"]
   files.each do |f|
@@ -33,5 +31,3 @@ def make_compile_task(cc, dir)
     end
   end
 end
-
-end # END Thrusting

@@ -1,1 +1,1 @@
-export RUBYLIB=$PWD/script:$RUBYLIB
+export RUBYLIB=$PWD/script:$PWD/build$RUBYLIB

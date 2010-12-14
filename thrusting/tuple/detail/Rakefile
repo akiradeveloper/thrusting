@@ -1,8 +1,4 @@
-["make_autogen_task"].each do |f|
-  require "thrusting/detail/#{f}"
-end
-
-include Thrusting
+require "thrusting/generate"
 
 ["make_string", "n_typedef"].each do |dir|
   make_autogen_task(dir)
