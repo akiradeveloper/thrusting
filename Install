@@ -1,0 +1,11 @@
+Installation
+
+=============
+Configuration
+=============
+For Thrusting library needs user configurations,
+you must setup configuration file $HOME/.thrusting/configure.rb
+
+Copy thisdir/.thrusting to your home directory,
+and configure it manually.
+It is a simple Ruby script.
