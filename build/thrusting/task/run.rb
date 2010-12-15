@@ -4,10 +4,6 @@ module Thrusting
 
   class << self
     private
-    def get_data_dir(dir, backend)
-      return "#{dir}/data/#{get_machine_name()}/#{backend}"
-    end
-    
     def make_data_dir(dir)
       get_runnable_devices().each do |backend|
         FileUtils.mkdir_p(get_data_dir(dir, backend))
@@ -16,6 +12,10 @@ module Thrusting
   end
 
   module_function
+  def get_data_dir(dir, backend)
+    return "#{dir}/data/#{get_machine_name()}/#{backend}"
+  end
+
   def make_xs(as, bs)
     xs = Array.new
     as.each do |a|

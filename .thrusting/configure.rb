@@ -33,38 +33,39 @@ module Thrusting
       if get_os_name() == "darwin"
         return 32
       end
-      return 32 # user specified
+      return 32 # user specific
     end
     
     def get_gpu_arch
-      return "sm10" # user specified
+      return "sm_10" # user specific
     end
     
     def pre_fermi?
-      devices = ["sm10", "sm11", "sm12", "sm20", "sm21"]
-      return devices.index(get_gpu_arch()) < devices.index("sm20")
+      devices = ["sm_10", "sm_11", "sm_12", "sm_20", "sm_21"]
+      return devices.index(get_gpu_arch()) < devices.index("sm_20")
     end
-    
-    def get_runnable_devices
-      # if pre-Fermi, not worth run on devices expect host risking
-      if pre_fermi?()
-        return ["host"]
-      end
-      return ["host", "omp", "devices"] # user specified
-    end
-    
+#    
     def debug_on_device?
       if pre_fermi?()
         return false
       end
-      return false # user specified
+      return false # user specific
     end
     
     def get_floating_type
       if pre_fermi?()
         return "float"
       end
-      return "float" # user specified
+      return "float" # user specific
     end
+  end
+  
+  module_function
+  def get_runnable_devices
+    # if pre-Fermi, not worth run on devices except host risking runtime error
+    if pre_fermi?()
+      return ["host"]
+    end
+    return ["host", "omp", "devices"] # user specific
   end
 end

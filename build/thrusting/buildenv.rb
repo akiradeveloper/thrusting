@@ -7,10 +7,12 @@ module Thrusting
     private
 
     def use_cuda(cc)
+      cc += " -arch=#{get_gpu_arch()}"
       cuda_home = get_cuda_home()
       cuda_lib = [cuda_home, "lib"].join "/"
       cc += " -L #{cuda_lib}"
-      if get_machine_bit() == "64"
+      # if on 64 bit, use lib64 instead
+      if get_machine_bit() == 64
         cc += "64"
       end
       return cc
@@ -30,7 +32,6 @@ module Thrusting
       cc += " -I #{libpath}"
       return cc
     end
-    
     
     def use_floating(cc, type)
       case type
@@ -56,6 +57,8 @@ module Thrusting
       cc += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_CUDA"
       return cc
     when "omp" 
+      # omp is not working on my Mac.
+      # this configuration may not be correct.
       cc += " -D THRUSTING_USING_DEVICE_VECTOR"
       cc += " -Xcompiler -fopenmp"
       cc += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_OMP"
@@ -68,10 +71,14 @@ module Thrusting
   def use_mode(cc, mode, backend)
     case mode
     when "release"
-      cc += " -O2" # optimized
+      # optimized by O2 option.
+      # because Thrust library do so. 
+      cc += " -O2"
       return cc
     when "debug"
       cc += " -g"
+      # maybe backend == "device" is correct
+      # if error happens, try it.
       if backend != "host" and debug_on_device?()
         cc += " -G"
       end

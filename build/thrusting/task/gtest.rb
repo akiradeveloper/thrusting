@@ -2,11 +2,11 @@ module Thrusting
 
   module_function
   def make_gtest_task(cc, mode, dir)
-    hs = FileList["*.h"]
+    hs = FileList["#{dir}/*.h"].exclude("#{dir}/all.h")
     file "#{dir}/all.h" => hs do |t|
       f = File.open(t.name, "w")
       f.write("#pragma once\n")
-      txt = hs.map { |h| "#include \"#{h}\"" }.join "\n"
+      txt = hs.map { |h| "#include \"#{File.basename(h)}\"" }.join "\n"
       f.write(txt)
       f.close
     end

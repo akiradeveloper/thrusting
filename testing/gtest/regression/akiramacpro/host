@@ -2,8 +2,8 @@
 [----------] Global test environment set-up.
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
-[       OK ] BucketIndexing.Test (0 ms)
-[----------] 1 test from BucketIndexing (0 ms total)
+[       OK ] BucketIndexing.Test (1 ms)
+[----------] 1 test from BucketIndexing (1 ms total)
 
 [----------] 14 tests from Functional
 [ RUN      ] Functional.Constant
@@ -34,7 +34,7 @@
 [       OK ] Functional.Compose (0 ms)
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
-[----------] 14 tests from Functional (1 ms total)
+[----------] 14 tests from Functional (0 ms total)
 
 [----------] 1 test from Copy
 [ RUN      ] Copy.Test
@@ -57,8 +57,8 @@
 
 [----------] 1 test from Equal
 [ RUN      ] Equal.Test
-[       OK ] Equal.Test (127 ms)
-[----------] 1 test from Equal (127 ms total)
+[       OK ] Equal.Test (123 ms)
+[----------] 1 test from Equal (123 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -166,11 +166,11 @@
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.84863 [ms]
+Average: 2.44004 [ms]
 Times:
-[2.42141, 3.76019, 2.81766, 2.40403, 2.83984]
-[       OK ] StopWatch.TestByLooping (17 ms)
-[----------] 1 test from StopWatch (17 ms total)
+[2.54582, 2.4136, 2.41504, 2.40928, 2.41648]
+[       OK ] StopWatch.TestByLooping (13 ms)
+[----------] 1 test from StopWatch (13 ms total)
 
 [----------] 1 test from Transform
 [ RUN      ] Transform.TransformIf
@@ -197,16 +197,16 @@ Times:
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
-[       OK ] Vector.Device (1 ms)
+[       OK ] Vector.Device (0 ms)
 [ RUN      ] Vector.Host
 [       OK ] Vector.Host (0 ms)
-[----------] 2 tests from Vector (1 ms total)
+[----------] 2 tests from Vector (0 ms total)
 
 [----------] 1 test from ZipIterator
 [ RUN      ] ZipIterator.Reference
-[       OK ] ZipIterator.Reference (0 ms)
-[----------] 1 test from ZipIterator (0 ms total)
+[       OK ] ZipIterator.Reference (1 ms)
+[----------] 1 test from ZipIterator (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 63 tests from 24 test cases ran. (148 ms total)
+[==========] 63 tests from 24 test cases ran. (141 ms total)
 [  PASSED  ] 63 tests.
