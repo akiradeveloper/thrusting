@@ -44,7 +44,7 @@ module Thrusting
       devices = ["sm_10", "sm_11", "sm_12", "sm_20", "sm_21"]
       return devices.index(get_gpu_arch()) < devices.index("sm_20")
     end
-#    
+    
     def debug_on_device?
       if pre_fermi?()
         return false

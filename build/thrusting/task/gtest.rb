@@ -21,7 +21,7 @@ module Thrusting
 
     namespace :regress do
       get_runnable_devices().each do |dev|
-        task "on_#{dev}" => ["#{dir}/all.h", "#{dir}/all_on_#{dev}.bin"] do |t|
+        task "on_#{dev}" => ["#{dir}/all_on_#{dev}.bin", "#{dir}/all.h"] do |t|
           system "#{dir}/all_on_#{dev}.bin 1> #{outputdir}/#{dev}"
         end
         task :on_all => "on_#{dev}" 
