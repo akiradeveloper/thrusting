@@ -3,7 +3,7 @@ please using following BibTEX.
 
 @MISC { THRUSTING,
   author = "Akira Hayakawa",
-  title = "Thrusting : An extention for Thrust library",
+  title = "Thrusting : An extension for Thrust library",
   year = "2010",
   url = "http://bitbucket.org/akiradeveloper/thrusting"
 }
