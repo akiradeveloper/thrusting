@@ -2,6 +2,5 @@ require "rake/clean"
 
 require "thrusting/build"
 
-cc = Thrusting.make_default_compiler("nvcc")
-
-Thrusting.make_gtest_task(cc, "debug", "gtest")
+cc = Thrusting.make_default_compiler()
+cc.enable_gtest.enable_debug.make_gtest_task("gtest")
