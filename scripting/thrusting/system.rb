@@ -70,6 +70,8 @@ module Detail
     end
   
     def get_num_cores_linux
+      s= `cat /proc/cpuinfo`
+      p s
     end
   end
 

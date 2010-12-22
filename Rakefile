@@ -9,7 +9,7 @@ namespace :download do
   end
   task :gnuplotrb do
   end
-  task :all do
+  task :all => [:thrust] do
   end
 end
 
@@ -20,9 +20,7 @@ task :build do
 end
 
 task :clobber do
-  p "CLOBBBERREEEEEE"
   Dir.chdir("bin") do
-    p ENV["PWD"]
     sh "rake clobber"
   end
 end
@@ -38,7 +36,7 @@ task :doxygen do
   sh "doxygen Doxyfile"
 end
 
-task :add => [:clobber, :remove_deprecated] do
+task :add => [:remove_deprecated] do
   sh "hg add"
 end
 

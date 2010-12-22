@@ -39,6 +39,7 @@ module Thrusting
             cc = self.deepcopy
             cc = cc.enable_backend(dev)
 
+            print "COMPILE_CMD: #{cc.to_s}"
             sh "#{cc.to_s} -o #{dir}/#{binname} #{dir}/#{cuname}"
 
             FileUtils.rm("#{dir}/#{cuname}")
@@ -195,6 +196,8 @@ module Thrusting
         cxx += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_CUDA"
         return cxx
       when "omp" 
+        ENV["OMP_NUM_THREADS"] = get_num_cores.to_s # not tested
+        p ENV["OMP_NUM_THREADS"]
         cxx += " -D THRUSTING_USING_DEVICE_VECTOR"
         cxx += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_OMP"
         cxx += " -Xcompiler -fopenmp"

@@ -13,7 +13,7 @@ module Thrusting
 
   module_function
   def get_data_dir(dir, backend)
-    return "#{dir}/data/#{get_machine_name()}/#{backend}"
+    return "#{dir}/data/#{get_machine_name}/#{backend}"
   end
 
   def make_xs(as, bs)
@@ -30,7 +30,7 @@ module Thrusting
     make_data_dir(dir)
     namespace :run do
       task dir do
-        get_runnable_devices().each do |dev|
+        get_runnable_devices.each do |dev|
           f = "#{get_data_dir(dir, dev)}/.dat"
           cmd = "#{dir}/main_on_#{dev}.bin #{f}"
           sh cmd

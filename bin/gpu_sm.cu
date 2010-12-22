@@ -1,6 +1,8 @@
 /*
   Copied From Thrust Library v-1.3.0
   and refactored a little bit. 
+  
+  Akira Hayakawa, 2010
 */
 
 #include <cstdio>
