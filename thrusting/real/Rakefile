@@ -1,5 +1,5 @@
 require "rake/clean"
 
-require "thrusting/generate"
+require "thrusting"
 
-make_autogen_task("detail/tuple")
+Thrusting::Detail.make_autogen_task("detail/tuple")

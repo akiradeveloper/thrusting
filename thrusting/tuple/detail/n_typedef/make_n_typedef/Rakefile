@@ -1,6 +1,7 @@
 require "rake/clean"
 
-require "thrusting/generate"
+require "thrusting"
+include Thrusting::Detail
 
 def tupleN(n)
   arg = (0...n).map { |i| "T x#{i}" }

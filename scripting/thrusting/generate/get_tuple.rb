@@ -4,10 +4,17 @@ end
 
 # Macro to hide how to get item from value
 
-def get_tuple(i, tuple)
-"""
-thrust::get<#{i}>(#{tuple})
-"""
+module Thrusting
+module Detail
+
+  module_function
+  def get_tuple(i, tuple)
+  """
+  thrust::get<#{i}>(#{tuple})
+  """
+  end
+
+end
 end
 
 if __FILE__ == $0

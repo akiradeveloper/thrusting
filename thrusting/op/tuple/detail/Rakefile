@@ -1,5 +1,5 @@
-require "thrusting/generate"
+require "thrusting"
 
 ["equality", "n_operator", "operator", "ostream"].each do |dir|
-  make_autogen_task(dir)
+  Thrusting::Detail.make_autogen_task(dir)
 end

@@ -1,6 +1,7 @@
 require "rake/clean"
 
-require "thrusting/generate"
+require "thrusting"
+include Thrusting::Detail
 
 def equality(n)
   bool = (0...n).map { |i| "(#{get_tuple(i, "x")} == #{get_tuple(i, "y")})" }.join(" && ")

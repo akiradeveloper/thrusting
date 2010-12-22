@@ -1,1 +1,2 @@
-export RUBYLIB=$PWD/thrusting/scripting:$PWD/build:$RUBYLIB
+export RUBYLIB=$PWD/scripting:$RUBYLIB
+export PATH=$PWD/bin:$PATH

@@ -1,3 +1,3 @@
-require "thrusting/generate"
+require "thrusting"
 
-make_autogen_task("detail")
+Thrusting::Detail.make_autogen_task("detail")

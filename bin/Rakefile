@@ -1,0 +1,11 @@
+require "rake/clean"
+
+require "thrusting"
+
+task :build => ["nvcc_sm_version"]
+  
+file "nvcc_sm_version" => "nvcc_sm_version.cu" do |t|
+  cxx = Thrusting.nvcc_config("nvcc")
+  sh "#{cxx} -o nvcc_sm_version nvcc_sm_version.c"
+  CLOBBER.include(t.name)
+end

@@ -4,6 +4,27 @@ require "rake/clean"
 
 CLOBBER.include ["doc/html", "doc/latex"]
 
+namespace :download do
+  task :thrust do
+  end
+  task :gnuplotrb do
+  end
+  task :all do
+  end
+end
+
+task :build do
+  Dir.chdir("bin") do
+    sh "rake build"
+  end
+end
+
+task :clobber do
+  Dir.chdir("bin") do
+    sh "rake clobber"
+  end
+end
+
 desc "generate zip file"
 task :zip do
   version = "0.0.1"
@@ -13,6 +34,10 @@ end
 desc "generate API doc under doc dir"
 task :doxygen do
   sh "doxygen Doxyfile"
+end
+
+task :add => [:clobber, :remove_deprecated] do
+  sh "hg add"
 end
 
 task :push do

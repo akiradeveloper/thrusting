@@ -1,4 +1,4 @@
-require "thrusting/build"
+require "thrusting"
 
 module Thrusting
 

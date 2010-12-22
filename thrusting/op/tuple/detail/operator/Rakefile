@@ -1,13 +1,15 @@
 require "rake/clean"
 
-require "thrusting/generate"
+require "thrusting"
+include Thrusting::Detail
 
 def operator(n, op)
   input = (0...n).map { |i| "#{get_tuple(i, "x")}#{op}#{get_tuple(i, "y")}" }
 """
 template<#{typename(0...n)}>
 __host__ __device__
-thrust::tuple<#{type(0...n)}> operator#{op}(const thrust::tuple<#{type(0...n)}> &x, const thrust::tuple<#{type(0...n)}> &y){
+thrust::tuple<#{type(0...n)}> operator#{op}(
+const thrust::tuple<#{type(0...n)}> &x, const thrust::tuple<#{type(0...n)}> &y){
   return thrust::make_tuple(#{input.join(", ")});
 }
 """
