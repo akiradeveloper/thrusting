@@ -20,7 +20,9 @@ task :build do
 end
 
 task :clobber do
+  p "CLOBBBERREEEEEE"
   Dir.chdir("bin") do
+    p ENV["PWD"]
     sh "rake clobber"
   end
 end

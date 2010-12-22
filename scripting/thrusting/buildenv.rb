@@ -1,8 +1,14 @@
+thisdir = File.expand_path File.dirname __FILE__
+["nvcc_config"].each do |f|
+  require "#{thisdir}/#{f}"
+end
+
 module Thrusting
    
   DEFAULT_OPTIMIZE_FLAG = "-O2"
 
   class Compiler
+    include Thrusting::Detail
 
     def initialize(cmd)
       @cmd = cmd
@@ -137,27 +143,10 @@ module Thrusting
       return cxx
     end
 
-    def get_runnable_devices
-      # if pre-Fermi, not worth run on devices except host risking runtime error
-      if pre_fermi?
-        return ["host"]
-      end
-      return ["host", "omp", "device"] # USER SPECIFIC
-    end
-
     private
-
     def use_gtest(cxx)
       thisdir = File.expand_path File.dirname __FILE__
-      homepath = get_gtest_home()
-      libpath = [homepath, "lib"].join "/"
-      incpath = [homepath, "include"].join "/"
-#      cxx += " -I #{incpath}"
-#      cxx += " -L #{libpath}"
-#      cxx += " -l gtest"
-      # using gtest-config
       conf = `gtest-config --cxxflags --cppflags --ldflags --libs`
-      p conf
       cxx += " #{conf.rstrip}"
       cxx += " -Xcompiler -trigraphs"
       cxx += " #{thisdir}/gtest_main.cu"
@@ -165,19 +154,13 @@ module Thrusting
     end
 
     def use_cuda(cxx)
-      cxx += " -arch=#{get_gpu_arch()}"
-      homepath = get_cuda_home()
-      libpath = [homepath, "lib"].join "/"
-      # if on 64 bit, use lib64 instead
-      if get_machine_bit == 64
-        libpath += "64"
-      end
-      cxx += " -L #{libpath}"
+      cxx += " -arch=#{get_gpu_sm}"
+      cxx = nvcc_config(cxx)
       return cxx
     end
 
     def use_thrust(cxx)
-      homepath = get_thrust_home() 
+      homepath = get_thrust_home 
       incpath = homepath
       cxx += " -I #{incpath}"
       return cxx
@@ -185,9 +168,9 @@ module Thrusting
     
     def use_thrusting(cxx)
       thisdir = File.expand_path File.dirname __FILE__ 
-      libpath = [thisdir, "..", ".."].join "/"
-      libpath = File.expand_path libpath
-      cxx += " -I #{libpath}"
+      incpath = [thisdir, "..", ".."].join "/"
+      incpath = File.expand_path incpath
+      cxx += " -I #{incpath}"
       return cxx
     end
     
@@ -231,76 +214,25 @@ module Thrusting
       return cxx
     end
 
-    def get_os_name
-      if /linux/ =~ RUBY_PLATFORM
-        return "linux"
-      end
-      if /darwin/ =~ RUBY_PLATFORM 
-        return "darwin"
-      end
-      raise "@#{__FILE__} except linux or darwin will not be supported"
-    end
-
-    # USER SETUP BELOW
-
-    def guess_cuda_home
-      compiler_path = `which nvcc`.rstrip.split(File::SEPARATOR)
-      idx = compiler_path.index("cuda") + 1
-      return compiler_path.slice(0, idx).join File::SEPARATOR
-    end
-
-    def get_cuda_home
-      return guess_cuda_home
-      # return "/usr/local/cuda" # USER SPECIFIC
-    end
-    
-    # not needed?
-    # using gtest-config?
-    def get_gtest_home
-      return "#{ENV["HOME"]}/local" # USER SPECIFIC
-    end
-    
+    THRUST_HOME = "#{ENV["HOME"]}/local/thrust" # USER SPECIFIC
     def get_thrust_home
-      return "#{ENV["HOME"]}/local/thrust" # USER SPECIFIC
+      return THRUST_HOME
     end
     
-    # machine information
-    def get_machine_name 
-      return "akiramacpro" # USER SPECIFIC
-    end
-    
-    # 32 or 64
-    def get_machine_bit
-      # if on mac, always use 32 bit mode.
-      # 64 bit on mac is error prone.
-      if get_os_name == "darwin"
-        return 32
-      end
-      return 32 # USER SPECIFIC
-    end
-    
-    def get_gpu_arch
-      return "sm_10" # USER SPECIFIC
-    end
-    
-    def pre_fermi?
-      # this array is from build/build-env.py from Thrust library
-      devices = ["sm_10", "sm_11", "sm_12", "sm_13", "sm_20", "sm_21"]
-      return devices.index(get_gpu_arch()) < devices.index("sm_20")
-    end
-    
+    DEBUG_ON_DEVICE = false
     def debug_on_device?
       if pre_fermi?
         return false
       end
-      return false # USER SPECIFIC
+      return DEBUG_ON_DEVICE # USER SPECIFIC
     end
     
+    FLOAT_TYPE = "float"
     def get_floating_type
       if pre_fermi?
         return "float"
       end
-      return "float" # USER SPECIFIC
+      return FLOAT_TYPE # USER SPECIFIC
     end
   end 
 
@@ -310,7 +242,11 @@ module Thrusting
   end
 
   def get_runnable_devices
-    return make_default_compiler.get_runnable_devices
+    # if pre-Fermi, not worth run on devices except host risking runtime error
+    if Detail::pre_fermi?
+      return ["host"]
+    end
+    return ["host", "omp", "device"] # USER SPECIFIC
   end
 end
 

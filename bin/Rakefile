@@ -2,10 +2,11 @@ require "rake/clean"
 
 require "thrusting"
 
-task :build => ["nvcc_sm_version"]
+task :build => ["gpu_sm.bin"]
   
-file "nvcc_sm_version" => "nvcc_sm_version.cu" do |t|
-  cxx = Thrusting.nvcc_config("nvcc")
-  sh "#{cxx} -o nvcc_sm_version nvcc_sm_version.c"
-  CLOBBER.include(t.name)
+file "gpu_sm.bin" => "gpu_sm.cu" do |t|
+  cxx = Thrusting::Detail.nvcc_config("nvcc")
+  sh "#{cxx} -o #{t.name} #{t.prerequisites[0]}"
 end
+
+CLOBBER.include("gpu_sm.bin")

@@ -1,3 +1,8 @@
+/*
+  Copied From Thrust Library v-1.3.0
+  and refactored a little bit. 
+*/
+
 #include <cstdio>
 #include <cstdlib>
 
