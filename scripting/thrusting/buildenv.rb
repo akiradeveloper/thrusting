@@ -1,4 +1,5 @@
 thisdir = File.expand_path File.dirname __FILE__
+
 ["nvcc_config"].each do |f|
   require "#{thisdir}/#{f}"
 end
@@ -8,7 +9,8 @@ module Thrusting
   DEFAULT_OPTIMIZE_FLAG = "-O2"
 
   class Compiler
-    include Thrusting::Detail
+
+    include Thrusting
 
     def initialize(cmd)
       @cmd = cmd
@@ -18,12 +20,11 @@ module Thrusting
       @float_type = "float"
       @append = []
     end
-
     def make_compile_task(dir)
       files = FileList["#{dir}/*.h"]
       files.each do |f|
         name = File.basename(f, ".h")
-        get_runnable_devices().each do |dev|
+        get_runnable_devices.each do |dev|
           binname = "#{name}_on_#{dev}.bin"
           file "#{dir}/#{binname}" => f do |t|
             cuname = "#{name}.cu"
@@ -60,7 +61,6 @@ module Thrusting
         end
       end
     end
-
     def make_gtest_task(dir)
       hs = FileList["#{dir}/*.h"].exclude("#{dir}/all.h")
       file "#{dir}/all.h" => hs do |t|
@@ -78,7 +78,7 @@ module Thrusting
       outputdir = "#{dir}/regression/#{get_machine_name()}"
       FileUtils.mkdir_p(outputdir)
       namespace :regress do
-        get_runnable_devices().each do |dev|
+        get_runnable_devices.each do |dev|
           task "on_#{dev}" => ["#{dir}/all.h", "#{dir}/all_on_#{dev}.bin"] do |t|
             sh "#{dir}/all_on_#{dev}.bin 1> #{outputdir}/#{dev}"
           end
@@ -86,38 +86,31 @@ module Thrusting
         end
       end
     end
-
     def deepcopy
       return Marshal.load Marshal.dump(self)
     end
-
     def enable_gtest
       @enable_gtest = true
       self
     end
-
     def enable_debug
       @enable_debug = true
       self
     end
-
     def enable_backend(backend)
       @backend = backend
       self
     end
-
     def use_float_type(type)
       @float_type = type
       self
     end
-
     def append(option)
       unless @append.include? option 
         @append << option
       end
       self
     end
-
     def to_s
       cxx = @cmd
 

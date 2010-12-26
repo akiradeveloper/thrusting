@@ -1,7 +1,7 @@
 require "rake/clean"
 
 require "thrusting"
-include Thrusting::Detail
+include Thrusting
 
 def equality(n)
   bool = (0...n).map { |i| "(#{get_tuple(i, "x")} == #{get_tuple(i, "y")})" }.join(" && ")

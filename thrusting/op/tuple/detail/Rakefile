@@ -1,5 +1,6 @@
 require "thrusting"
 
 ["equality", "n_operator", "operator", "ostream"].each do |dir|
-  Thrusting::Detail.make_autogen_task(dir)
+  include Thrusting
+  make_autogen_task(dir)
 end

@@ -1,6 +1,4 @@
 module Thrusting
-module Detail
-  module_function
   def operator_tuple(code="")
   """
   namespace thrusting {
@@ -8,5 +6,4 @@ module Detail
   }
   """
   end
-end
 end

@@ -5,7 +5,8 @@ require "thrusting"
 task :build => ["gpu_sm.bin"]
   
 file "gpu_sm.bin" => "gpu_sm.cu" do |t|
-  cxx = Thrusting::Detail.nvcc_config("nvcc")
+  include Thrusting
+  cxx = nvcc_config("nvcc")
   sh "#{cxx} -o #{t.name} #{t.prerequisites[0]}"
 end
 

@@ -1,7 +1,7 @@
 require "rake/clean"
 
 require "thrusting"
-include Thrusting::Detail
+include Thrusting
 
 def operator(n, op)
   input = (0...n).map { |i| "#{get_tuple(i, "x")}#{op}#{get_tuple(i, "y")}" }

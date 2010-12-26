@@ -1,3 +1,4 @@
 require "thrusting"
 
-Thrusting::Detail.make_autogen_task("detail")
+include Thrusting
+make_autogen_task("detail")

@@ -1,7 +1,7 @@
 require "rake/clean"
 
 require "thrusting"
-include Thrusting::Detail
+include Thrusting
 
 types = ["real"] 
 tuple_types = ["real"]
