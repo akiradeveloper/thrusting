@@ -13,16 +13,16 @@ namespace {
   using namespace thrusting;
 }
 
-//TEST(Iterator, IteratorValueAt){
-//  int _xs[] = {1,2}; vector<int>::type xs(_xs, _xs+2);
-//  EXPECT_EQ(1, thrusting::iterator_value_at(0, xs.begin()));
-//  EXPECT_EQ(2, thrusting::iterator_value_at(1, xs.begin()));
-//}
-//
-//TEST(Iterator, IteratorValueOf){
-//  int _xs[] = {1,2}; vector<int>::type xs(_xs, _xs+2);
-//  EXPECT_EQ(1, thrusting::detail::iterator_value_of(xs.begin()));
-//}
+TEST(Iterator, IteratorValueAt){
+  int _xs[] = {1,2}; vector<int>::type xs(_xs, _xs+2);
+  EXPECT_EQ(1, thrusting::iterator_value_at(0, xs.begin()));
+  EXPECT_EQ(2, thrusting::iterator_value_at(1, xs.begin()));
+}
+
+TEST(Iterator, IteratorValueOf){
+  int _xs[] = {1,2}; vector<int>::type xs(_xs, _xs+2);
+  EXPECT_EQ(1, thrusting::detail::iterator_value_of(xs.begin()));
+}
 
 TEST(Iterator, Advance){
   int _xs[] = {1,2}; vector<int>::type xs(_xs, _xs+2);

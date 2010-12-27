@@ -1,0 +1,5 @@
+require "thrusting"
+
+include Thrusting
+
+make_default_compiler.enable_debug_mode.make_compile_task("meaningless_return_type")

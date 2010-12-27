@@ -6,6 +6,7 @@
 
 #include <thrust/iterator/iterator_traits.h>
 #include <thrust/advance.h>
+#include <thrust/fill.h>
 
 namespace thrusting {
 
@@ -30,9 +31,11 @@ typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Itera
 }
 
 template<typename Index, typename Iterator>
-void alloc_at(Index idx, Iterator it, typename thrust::iterator_value<Iterator>::type x){
-  thrust::advance(it, idx);
-  *it = x;
+void alloc_at(Index idx, Iterator it, const typename thrust::iterator_value<Iterator>::type &x){
+  thrust::fill_n(
+    thrusting::advance(idx, it),
+    1,
+    x);
 }
 
 } // END thrusting
