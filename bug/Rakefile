@@ -2,4 +2,8 @@ require "thrusting"
 
 include Thrusting
 
-make_default_compiler.enable_debug_mode.make_compile_task("meaningless_return_type")
+cc = make_default_compiler.enable_debug_mode
+
+["meaningless_return_type", "host_vector_push_back"].each do |dir|
+  cc.make_compile_task(dir)
+end

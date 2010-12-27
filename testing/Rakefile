@@ -3,5 +3,5 @@ require "rake/clean"
 require "thrusting"
 
 include Thrusting
-cc = make_default_compiler()
+cc = make_default_compiler
 cc.enable_debug_mode.make_gtest_task("gtest")

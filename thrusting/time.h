@@ -7,6 +7,7 @@
 #include <thrusting/list.h>
 
 #include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
 
 namespace thrusting {
 
@@ -19,10 +20,8 @@ class stopwatch {
 public:
 
   stopwatch(std::string title)
-  :_title(title)
+  :_title(title), _times(0)
   {
-    _times = thrust::host_vector<float>(0);
-
     cudaEventCreate(&_start);
     cudaEventCreate(&_end);
   }

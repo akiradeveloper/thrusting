@@ -2,7 +2,8 @@ require "rake/clean"
 
 require "thrusting/build"
 
-cc = Thrusting.make_default_compiler("nvcc")
+include Thrusting
+cc = make_default_compiler.append(DEFAULT_OPTIMIZE_FLAG)
 
 figdir = Thrusting.get_figure_dir(File.dirname __FILE__)
 FileUtils.mkdir_p(figdir)
@@ -11,13 +12,13 @@ NS = Thrusting.make_xs([1,2,5], [100, 1000])
 MS = Thrusting.make_xs([1,2,5], [100, 1000])
 
 ["thrust_scatter", "thrusting_scatter", "thrust_gather", "thrusting_gather"].each do |dir|
-  Thrusting.make_compile_task(cc, "release", dir)
-  Thrusting.make_run_task_1(NS, dir)
+  cc.make_compile_task(dir)
+  make_run_task_1(NS, dir)
 end
 
 ["reduce_by_bucket"].each do |dir|
-  Thrusting.make_compile_task(cc, "release", dir)
-  Thrusting.make_run_task_2(NS, MS, dir)
+  make_compile_task(dir)
+  make_run_task_2(NS, MS, dir)
 end
 
 namespace :plot do
