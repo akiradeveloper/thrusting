@@ -1,3 +1,4 @@
-KEFIR_DIR=$HOME/sandbox/kefir
+source ./configure.sh
+
 export RUBYLIB=$PWD/scripting:$KEFIR_DIR:$RUBYLIB
 export PATH=$PWD/bin:$PATH

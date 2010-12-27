@@ -160,6 +160,10 @@ module Thrusting
       return cxx
     end
     
+    def get_thrust_home
+      return THRUST_DIR
+    end
+
     def use_thrusting(cxx)
       thisdir = File.expand_path File.dirname __FILE__ 
       incpath = [thisdir, "..", ".."].join "/"
@@ -209,26 +213,19 @@ module Thrusting
       end
       return cxx
     end
-
-    THRUST_HOME = "#{ENV["HOME"]}/local/thrust" # USER SPECIFIC
-    def get_thrust_home
-      return THRUST_HOME
-    end
     
-    DEBUG_ON_DEVICE = false
     def debug_on_device?
       if pre_fermi?
         return false
       end
-      return DEBUG_ON_DEVICE # USER SPECIFIC
+      return DEBUG_ON_DEVICE
     end
     
-    FLOAT_TYPE = "float"
     def get_floating_type
       if pre_fermi?
         return "float"
       end
-      return FLOAT_TYPE # USER SPECIFIC
+      return FLOAT_TYPE 
     end
   end 
 
@@ -239,21 +236,22 @@ module Thrusting
 
   def get_runnable_devices
     # if pre-Fermi, not worth run on devices except host risking runtime error
-    if Detail::pre_fermi?
+    if pre_fermi?
       return ["host"]
     end
-    return ["host", "omp", "device"] # USER SPECIFIC
+    return RUNNABLE_DEVICES
   end
 end
 
 if __FILE__ == $0
   # TEST
-  p Thrusting.make_default_compiler()
+  include Thrusting
+  make_default_compiler()
   .enable_backend("omp").enable_backend("device").use_float_type("double").enable_gtest
-  .append(Thrusting::DEFAULT_OPTIMIZE_FLAG)
+  .append(DEFAULT_OPTIMIZE_FLAG)
   .append("-O3")
   .append("-O3")
   .to_s
 
-  p Thrusting.get_runnable_devices
+  get_runnable_devices
 end

@@ -4,12 +4,11 @@ require "thrusting"
 
 module Thrusting
   
-  class << self
-    private
-  end
+class << self
+  private
+end
 
   module_function
-   
   def get_figure_dir(currdir)
     return "#{currdir}/figure/#{get_machine_name()}"
   end

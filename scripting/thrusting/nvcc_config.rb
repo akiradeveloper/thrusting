@@ -18,7 +18,7 @@ module Thrusting
 class << self
   private
   def guess_cuda_home
-    compiler_path = `which nvcc`.rstrip.split(File::SEPARATOR)
+    compiler_path = `which nvcc`.rstrip.split File::SEPARATOR
     idx = compiler_path.index("cuda") + 1
     return compiler_path.slice(0, idx).join File::SEPARATOR
   end
