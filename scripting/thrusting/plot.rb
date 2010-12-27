@@ -4,9 +4,9 @@ require "thrusting"
 
 module Thrusting
   
-class << self
-  private
-end
+  class << self
+    include Thrusting
+  end
 
   module_function
   def get_figure_dir(currdir)

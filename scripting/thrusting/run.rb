@@ -3,17 +3,7 @@ require "thrusting"
 module Thrusting
 
   class << self
-    private
-    def make_data_dir(dir)
-      get_runnable_devices().each do |backend|
-        FileUtils.mkdir_p(get_data_dir(dir, backend))
-      end
-    end
-  end
-
-  module_function
-  def get_data_dir(dir, backend)
-    return "#{dir}/data/#{get_machine_name}/#{backend}"
+    include Thrusting 
   end
 
   def make_xs(as, bs)
@@ -70,6 +60,17 @@ module Thrusting
         end
       end
       task :all => dir
+    end
+  end
+
+  def get_data_dir(dir, machine_name = get_machine_name, backend)
+    return "#{dir}/data/#{machine_name}/#{backend}"
+  end
+
+  private
+  def make_data_dir(dir)
+    get_runnable_devices.each do |backend|
+      FileUtils.mkdir_p(get_data_dir(dir, backend))
     end
   end
 end 

@@ -1,8 +1,19 @@
 module Thrusting
+  
+  class << self
+    include Thrusting
+  end
 
-class << self
+  # machine information
+  def get_machine_name 
+    return MACHINE_NAME # USER SPECIFIC
+  end
+
   private
   ALLOWED_DEVICES = ["sm_10", "sm_11", "sm_12", "sm_13", "sm_20", "sm_21"]
+
+  # always use device of id 0
+  DEVICE_ID = 0
   def get_gpu_sm
     return `gpu_sm.bin #{DEVICE_ID}`.strip
   end
@@ -58,21 +69,14 @@ class << self
       raise "Number of Core should be integer and leq than #{REALISTIC_NUM_CORE}"
     end 
   end
+
   def get_num_cores_mac
-#    s = `/usr/sbin/system_profiler`
-#    return s.split("\n").select { |x| x.include?("Total Number Of Cores") }[0].split(":")[1].to_i
     return `sysctl -n hw.ncpu`.to_i
   end
+
   def get_num_cores_linux
     s = `cat /proc/cpuinfo`
     return s.split("\n").find { |x| x.include? "cpu cores" }.split(":")[1].to_i
-  end
-end
-
-  module_function
-  # machine information
-  def get_machine_name 
-    return MACHINE_NAME # USER SPECIFIC
   end
 end
 

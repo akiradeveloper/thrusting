@@ -1,7 +1,13 @@
 thisdir = File.expand_path File.dirname __FILE__
+
 require "#{thisdir}/system"
 
 module Thrusting
+
+  class << self
+    include Thrusting
+  end
+  
   def nvcc_config(cxx)
     homepath = get_cuda_home
     libpath = [homepath, "lib"].join "/"
@@ -15,7 +21,7 @@ module Thrusting
     cxx += " -I #{incpath}"
     return cxx
   end
-class << self
+
   private
   def guess_cuda_home
     compiler_path = `which nvcc`.rstrip.split File::SEPARATOR
@@ -25,7 +31,6 @@ class << self
   def get_cuda_home
     return guess_cuda_home
   end
-end
 end
 
 if __FILE__ == $0

@@ -5,8 +5,25 @@ thisdir = File.expand_path File.dirname __FILE__
 end
 
 module Thrusting
+
+  class << self
+    include Thrusting
+  end
    
   DEFAULT_OPTIMIZE_FLAG = "-O2"
+
+  def make_default_compiler
+    return Compiler.new("nvcc")
+  end
+
+  RUNNABLE_DEVICES = ["host", "omp", "device"]
+  def get_runnable_devices
+    # if pre-Fermi, not worth run on devices except host risking runtime error
+    if pre_fermi?
+      return ["host"]
+    end
+    return RUNNABLE_DEVICES
+  end
 
   class Compiler
 
@@ -15,11 +32,11 @@ module Thrusting
     def initialize(cmd)
       @cmd = cmd
       @backend = "host"
-      @enable_gtest = false
       @enable_debug = false
-      @float_type = "float"
+      @realtype = "float"
       @append = []
     end
+
     def make_compile_task(dir)
       files = FileList["#{dir}/*.h"]
       files.each do |f|
@@ -38,7 +55,7 @@ module Thrusting
             tmp.close
 
             cc = self.deepcopy
-            cc = cc.enable_backend(dev)
+            cc = cc.use_backend(dev)
 
             print "COMPILE_CMD: #{cc.to_s}"
             sh "#{cc.to_s} -o #{dir}/#{binname} #{dir}/#{cuname}"
@@ -61,6 +78,7 @@ module Thrusting
         end
       end
     end
+
     def make_gtest_task(dir)
       hs = FileList["#{dir}/*.h"].exclude("#{dir}/all.h")
       file "#{dir}/all.h" => hs do |t|
@@ -73,6 +91,7 @@ module Thrusting
       CLOBBER.include("#{dir}/all.h")
     
       cc = self.deepcopy
+      cc = using_gtest(cc)
       cc.make_compile_task(dir)
     
       outputdir = "#{dir}/regression/#{get_machine_name()}"
@@ -86,59 +105,69 @@ module Thrusting
         end
       end
     end
+
     def deepcopy
       return Marshal.load Marshal.dump(self)
     end
-    def enable_gtest
-      @enable_gtest = true
-      self
-    end
-    def enable_debug
+
+    def enable_debug_mode
       @enable_debug = true
       self
     end
-    def enable_backend(backend)
+
+    def use_backend(backend)
       @backend = backend
       self
     end
-    def use_float_type(type)
-      @float_type = type
+
+    # use type as real
+    # if not possible in your environment, exception thrown.
+    def use_real_precision(type)
+      if type == "double"
+        unless enable_double_precision?
+          msg =
+          """
+          your environment does not support double precision.
+          """
+          raise msg
+        end
+      end
+      @realtype = type
       self
     end
+
     def append(option)
       unless @append.include? option 
         @append << option
       end
       self
     end
+
     def to_s
       cxx = @cmd
 
-      cxx = use_cuda(cxx)
-      cxx = use_thrust(cxx)
-      cxx = use_thrusting(cxx)
+      cxx = using_cuda(cxx)
+      cxx = using_thrust(cxx)
+      cxx = using_thrusting(cxx)
   
-      cxx = use_backend(cxx, @backend)
+      cxx = using_backend(cxx, @backend)
 
       if @enable_debug
-        cxx = use_debug(cxx, @backend)
+        cxx = using_debug_mode(cxx, @backend)
       end
 
-      cxx = use_floating(cxx, @float_type)
+      cxx = using_real_precision(cxx, @realtype)
     
       @append.each do |a|
         cxx += " #{a}"
       end
 
-      if @enable_gtest
-        cxx = use_gtest(cxx)
-      end
-
       return cxx
     end
 
+    ### private ###
     private
-    def use_gtest(cxx)
+    def using_gtest(cxx)
       thisdir = File.expand_path File.dirname __FILE__
       conf = `gtest-config --cxxflags --cppflags --ldflags --libs`
       cxx += " #{conf.rstrip}"
@@ -147,13 +176,13 @@ module Thrusting
       return cxx
     end
 
-    def use_cuda(cxx)
+    def using_cuda(cxx)
       cxx += " -arch=#{get_gpu_sm}"
       cxx = nvcc_config(cxx)
       return cxx
     end
 
-    def use_thrust(cxx)
+    def using_thrust(cxx)
       homepath = get_thrust_home 
       incpath = homepath
       cxx += " -I #{incpath}"
@@ -164,7 +193,7 @@ module Thrusting
       return THRUST_DIR
     end
 
-    def use_thrusting(cxx)
+    def using_thrusting(cxx)
       thisdir = File.expand_path File.dirname __FILE__ 
       incpath = [thisdir, "..", ".."].join "/"
       incpath = File.expand_path incpath
@@ -172,7 +201,7 @@ module Thrusting
       return cxx
     end
     
-    def use_floating(cxx, type)
+    def using_real_precision(cxx, type)
       case type
       when "double"
         cxx += " -D THRUSTING_USING_DOUBLE_FOR_REAL"
@@ -184,7 +213,11 @@ module Thrusting
       end
     end
 
-    def use_backend(cxx, backend)
+    def enable_double_precision?
+      return (not pre_fermi?)
+    end
+
+    def using_backend(cxx, backend)
       case backend 
       when "host"
         return cxx
@@ -204,7 +237,7 @@ module Thrusting
       end
     end
 
-    def use_debug(cxx, backend)
+    def using_debug_mode(cxx, backend)
       cxx += " -g"
       cxx += " -D THRUST_DEBUG"
       cxx += " -D THRUSTING_DEBUG"
@@ -220,27 +253,7 @@ module Thrusting
       end
       return DEBUG_ON_DEVICE
     end
-    
-    def get_floating_type
-      if pre_fermi?
-        return "float"
-      end
-      return FLOAT_TYPE 
-    end
   end 
-
-  module_function 
-  def make_default_compiler
-    return Compiler.new("nvcc")
-  end
-
-  def get_runnable_devices
-    # if pre-Fermi, not worth run on devices except host risking runtime error
-    if pre_fermi?
-      return ["host"]
-    end
-    return RUNNABLE_DEVICES
-  end
 end
 
 if __FILE__ == $0

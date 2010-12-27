@@ -1,4 +1,5 @@
 module Thrusting 
+  private
   def typename(range)
     range.map { |i| "typename X#{i}" }.join ", "
   end

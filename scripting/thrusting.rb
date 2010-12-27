@@ -7,9 +7,16 @@ require "#{thisdir}/../configure"
 end
 
 module Thrusting
-  module_function
-  def private_module_function(name)
-    module_function name
-    private_class_method name
+  class << self
+    include Thrusting
   end
+
+  module_function
+  def private_module_function(*names)
+    names.each do |name|
+      module_function name
+      private_class_method name
+    end
+  end
+
 end

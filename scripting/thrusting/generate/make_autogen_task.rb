@@ -1,4 +1,5 @@
 module Thrusting
+  private
   def chain_task(taskname, dir)
     task taskname do
       Dir.chdir(dir) do 

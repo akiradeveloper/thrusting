@@ -5,6 +5,7 @@ end
 # Macro to hide how to get item from value
 
 module Thrusting
+  private 
   def get_tuple(i, tuple)
   """
   thrust::get<#{i}>(#{tuple})

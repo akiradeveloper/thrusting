@@ -1,6 +1,7 @@
 require "rake/clean"
 
-require "thrusting/build"
+require "thrusting"
 
-cc = Thrusting.make_default_compiler()
-cc.enable_gtest.enable_debug.make_gtest_task("gtest")
+include Thrusting
+cc = make_default_compiler()
+cc.enable_debug_mode.make_gtest_task("gtest")
