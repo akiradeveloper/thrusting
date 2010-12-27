@@ -33,6 +33,7 @@ module Thrusting
       @cmd = cmd
       @backend = "host"
       @enable_debug = false
+      @use_gtest = false
       @realtype = "float"
       @append = []
     end
@@ -57,9 +58,7 @@ module Thrusting
             cc = self.deepcopy
             cc = cc.use_backend(dev)
 
-            print "COMPILE_CMD: #{cc.to_s}"
             sh "#{cc.to_s} -o #{dir}/#{binname} #{dir}/#{cuname}"
-
             FileUtils.rm("#{dir}/#{cuname}")
           end
 
@@ -91,14 +90,15 @@ module Thrusting
       CLOBBER.include("#{dir}/all.h")
     
       cc = self.deepcopy
-      cc = using_gtest(cc)
-      cc.make_compile_task(dir)
-    
+      cc.use_gtest.make_compile_task(dir)
+   
       outputdir = "#{dir}/regression/#{get_machine_name()}"
       FileUtils.mkdir_p(outputdir)
       namespace :regress do
         get_runnable_devices.each do |dev|
           task "on_#{dev}" => ["#{dir}/all.h", "#{dir}/all_on_#{dev}.bin"] do |t|
+            # better to out to std and file at the same time
+            sh "#{dir}/all_on_#{dev}.bin"
             sh "#{dir}/all_on_#{dev}.bin 1> #{outputdir}/#{dev}"
           end
           task :on_all => "on_#{dev}" 
@@ -162,14 +162,27 @@ module Thrusting
         cxx += " #{a}"
       end
 
+      if @use_gtest
+        cxx = using_gtest(cxx)
+      end
+
       return cxx
     end
 
     ### private ###
+    protected
+    def use_gtest
+      @use_gtest = true
+      self
+    end
+
     private
     def using_gtest(cxx)
       thisdir = File.expand_path File.dirname __FILE__
       conf = `gtest-config --cxxflags --cppflags --ldflags --libs`
+      # hopefully if -(not l)xxx -> -Xcompiler -xxx
+      # but briefly now
+      conf = conf.gsub("-pthread") { |x| "-Xcompiler -pthread" }
       cxx += " #{conf.rstrip}"
       cxx += " -Xcompiler -trigraphs"
       cxx += " #{thisdir}/gtest_main.cu"
