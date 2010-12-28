@@ -4,23 +4,16 @@ require "rake/clean"
 
 CLOBBER.include ["doc/html", "doc/latex"]
 
-namespace :download do
-  task :thrust do
-  end
-  task :gnuplotrb do
-  end
-  task :all => [:thrust] do
-  end
-end
+task :install => :build
 
 task :build do
-  Dir.chdir("bin") do
+  cd("bin") do
     sh "rake build"
   end
 end
 
 task :clobber do
-  Dir.chdir("bin") do
+  cd("bin") do
     sh "rake clobber"
   end
 end
