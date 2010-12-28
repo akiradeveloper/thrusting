@@ -1,4 +1,4 @@
-require "gnuplot"
+require "kefir"
 
 require "thrusting"
 

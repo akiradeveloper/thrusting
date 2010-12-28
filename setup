@@ -1,4 +1,6 @@
 source ./configure.sh
 
-export RUBYLIB=$PWD/scripting:$KEFIR_DIR:$RUBYLIB
+export RUBYLIB=$PWD/scripting:$KEFIR_DIR/lib:$RUBYLIB
 export PATH=$PWD/bin:$PATH
+
+export OMP_NUM_THREADS=`ruby bin/get_num_cores.rb`

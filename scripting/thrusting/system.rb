@@ -9,6 +9,21 @@ module Thrusting
     return MACHINE_NAME # USER SPECIFIC
   end
 
+  def get_num_cores
+    case get_os_name
+    when "darwin"
+      n = get_num_cores_mac
+      assert_num_cores(n)
+      return n
+    when "linux"
+      n = get_num_cores_linux
+      assert_num_cores(n)
+      return n
+    else
+      raise "@#{__FILE__} either mac or linux supported"
+    end      
+  end
+
   private
   ALLOWED_DEVICES = ["sm_10", "sm_11", "sm_12", "sm_13", "sm_20", "sm_21"]
 
@@ -48,20 +63,6 @@ module Thrusting
     return 32
   end
 
-  def get_num_cores
-    case get_os_name
-    when "darwin"
-      n = get_num_cores_mac
-      assert_num_cores(n)
-      return n
-    when "linux"
-      n = get_num_cores_linux
-      assert_num_cores(n)
-      return n
-    else
-      raise "@#{__FILE__} either mac or linux supported"
-    end      
-  end
 
   REALISTIC_NUM_CORES = 8
   def assert_num_cores(n)

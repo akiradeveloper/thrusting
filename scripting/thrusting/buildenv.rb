@@ -25,6 +25,18 @@ module Thrusting
     return RUNNABLE_DEVICES
   end
 
+  # not implemented yet
+  def make_cat_task(dir)
+    namespace :cat do
+      get_runnable_devices.each do |dev|
+        task "on_all" => "on_#{dev}" do |t|
+        end
+        task "on_#{dev}" => "#{dir}/on_#{dev}" do |t|
+        end
+      end
+    end
+  end
+
   class Compiler
 
     include Thrusting
@@ -38,11 +50,12 @@ module Thrusting
       @append = []
     end
 
-    def make_compile_task(dir)
+    def make_compile_task(dir, devices=get_runnable_devices)
       files = FileList["#{dir}/*.h"]
       files.each do |f|
         name = File.basename(f, ".h")
-        get_runnable_devices.each do |dev|
+        runnable_devices = [devices].flatten
+        runnable_devices.each do |dev|
           binname = "#{name}_on_#{dev}.bin"
           file "#{dir}/#{binname}" => f do |t|
             cuname = "#{name}.cu"
@@ -78,7 +91,9 @@ module Thrusting
       end
     end
 
-    def make_gtest_task(dir)
+    def make_gtest_task(dir, devices=get_runnable_devices)
+      make_cat_task(dir)
+
       hs = FileList["#{dir}/*.h"].exclude("#{dir}/all.h")
       file "#{dir}/all.h" => hs do |t|
         f = File.open(t.name, "w")
@@ -87,19 +102,21 @@ module Thrusting
         f.write(txt)
         f.close
       end
-      CLOBBER.include("#{dir}/all.h")
+      # CLOBBER.include("#{dir}/all.h")
     
       cc = self.deepcopy
-      cc.use_gtest.make_compile_task(dir)
+      runnable_devices = [devices].flatten
+      cc.use_gtest.make_compile_task(dir, runnable_devices)
    
       outputdir = "#{dir}/regression/#{get_machine_name()}"
       FileUtils.mkdir_p(outputdir)
+
       namespace :regress do
-        get_runnable_devices.each do |dev|
-          task "on_#{dev}" => ["#{dir}/all.h", "#{dir}/all_on_#{dev}.bin"] do |t|
-            # better to out to std and file at the same time
-            sh "#{dir}/all_on_#{dev}.bin"
-            sh "#{dir}/all_on_#{dev}.bin 1> #{outputdir}/#{dev}"
+        runnable_devices.each do |dev|
+          binname = "#{dir}/all_on_#{dev}.bin"
+          file binname => "#{dir}/all.h"
+          task "on_#{dev}" => binname do |t|
+            sh "#{binname} | tee #{outputdir}/#{dev}"
           end
           task :on_all => "on_#{dev}" 
         end
@@ -180,8 +197,6 @@ module Thrusting
     def using_gtest(cxx)
       thisdir = File.expand_path File.dirname __FILE__
       conf = `gtest-config --cxxflags --cppflags --ldflags --libs`
-      # hopefully if -(not l)xxx -> -Xcompiler -xxx
-      # but briefly now
       conf = conf.gsub("-pthread") { |x| "-Xcompiler -pthread" }
       cxx += " #{conf.rstrip}"
       cxx += " -Xcompiler -trigraphs"
@@ -239,8 +254,12 @@ module Thrusting
         cxx += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_CUDA"
         return cxx
       when "omp" 
+        # I do not know whether OMP_NUM_THREADS is referred in
+        # compile time or runtime and whether it depends on implementation.
+        # Therefore this line will be removed and usrs setup the var by hand.
         ENV["OMP_NUM_THREADS"] = get_num_cores.to_s # not tested
         p ENV["OMP_NUM_THREADS"]
+
         cxx += " -D THRUSTING_USING_DEVICE_VECTOR"
         cxx += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_OMP"
         cxx += " -Xcompiler -fopenmp"

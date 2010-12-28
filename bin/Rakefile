@@ -2,12 +2,12 @@ require "rake/clean"
 
 require "thrusting"
 
-task :build => ["gpu_sm.bin"]
+task :build => ["get_gpu_sm.bin"]
   
-file "gpu_sm.bin" => "gpu_sm.cu" do |t|
+file "get_gpu_sm.bin" => "get_gpu_sm.cu" do |t|
   include Thrusting
   cxx = nvcc_config("nvcc")
   sh "#{cxx} -o #{t.name} #{t.prerequisites[0]}"
 end
 
-CLOBBER.include("gpu_sm.bin")
+CLOBBER.include("get_gpu_sm.bin")

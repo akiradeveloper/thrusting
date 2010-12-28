@@ -1,0 +1,14 @@
+[==========] Running 1 test from 1 test case.
+[----------] Global test environment set-up.
+[----------] 1 test from StopWatch
+[ RUN      ] StopWatch.TestByLooping
+--- stopwatch test ---
+Average: 2.70996 [ms]
+Times:
+[1.89667, 5.96115, 1.89635, 1.89933, 1.89629]
+[       OK ] StopWatch.TestByLooping (73 ms)
+[----------] 1 test from StopWatch (73 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test case ran. (73 ms total)
+[  PASSED  ] 1 test.

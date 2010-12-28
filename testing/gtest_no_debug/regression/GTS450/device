@@ -1,0 +1,17 @@
+[==========] Running 3 tests from 2 test cases.
+[----------] Global test environment set-up.
+[----------] 2 tests from PermutationIterator
+[ RUN      ] PermutationIterator.Gather
+[       OK ] PermutationIterator.Gather (65 ms)
+[ RUN      ] PermutationIterator.Scatter
+[       OK ] PermutationIterator.Scatter (1 ms)
+[----------] 2 tests from PermutationIterator (66 ms total)
+
+[----------] 1 test from Thrust
+[ RUN      ] Thrust.SortByKey
+[       OK ] Thrust.SortByKey (0 ms)
+[----------] 1 test from Thrust (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 2 test cases ran. (66 ms total)
+[  PASSED  ] 3 tests.

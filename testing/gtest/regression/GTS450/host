@@ -1,4 +1,4 @@
-[==========] Running 63 tests from 24 test cases.
+[==========] Running 59 tests from 22 test cases.
 [----------] Global test environment set-up.
 [----------] 14 tests from Functional
 [ RUN      ] Functional.Flip
@@ -43,8 +43,8 @@
 
 [----------] 1 test from Equal
 [ RUN      ] Equal.Test
-[       OK ] Equal.Test (59 ms)
-[----------] 1 test from Equal (59 ms total)
+[       OK ] Equal.Test (56 ms)
+[----------] 1 test from Equal (56 ms total)
 
 [----------] 2 tests from Engine
 [ RUN      ] Engine.Fast
@@ -92,15 +92,6 @@
 [       OK ] StrideIterator.Test (0 ms)
 [----------] 1 test from StrideIterator (0 ms total)
 
-[----------] 1 test from StopWatch
-[ RUN      ] StopWatch.TestByLooping
---- stopwatch test ---
-Average: 1.90047 [ms]
-Times:
-[1.89891, 1.90771, 1.89629, 1.90093, 1.8985]
-[       OK ] StopWatch.TestByLooping (9 ms)
-[----------] 1 test from StopWatch (9 ms total)
-
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
 [       OK ] Random.RandomGenerator (1 ms)
@@ -123,8 +114,8 @@ Times:
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
-[       OK ] ReduceByKey.Test (0 ms)
-[----------] 1 test from ReduceByKey (0 ms total)
+[       OK ] ReduceByKey.Test (1 ms)
+[----------] 1 test from ReduceByKey (1 ms total)
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
@@ -144,19 +135,10 @@ Times:
 [       OK ] Iterator.AllocAt (0 ms)
 [----------] 4 tests from Iterator (0 ms total)
 
-[----------] 2 tests from PermutationIterator
-[ RUN      ] PermutationIterator.Gather
-[       OK ] PermutationIterator.Gather (0 ms)
-[ RUN      ] PermutationIterator.Scatter
-[       OK ] PermutationIterator.Scatter (1 ms)
-[----------] 2 tests from PermutationIterator (1 ms total)
-
-[----------] 2 tests from Thrust
+[----------] 1 test from Thrust
 [ RUN      ] Thrust.TransformIf
 [       OK ] Thrust.TransformIf (0 ms)
-[ RUN      ] Thrust.SortByKey
-[       OK ] Thrust.SortByKey (0 ms)
-[----------] 2 tests from Thrust (0 ms total)
+[----------] 1 test from Thrust (0 ms total)
 
 [----------] 3 tests from Scatter
 [ RUN      ] Scatter.InPlaceForZipIterator
@@ -208,5 +190,5 @@ Times:
 [----------] 1 test from Transform (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 63 tests from 24 test cases ran. (71 ms total)
-[  PASSED  ] 63 tests.
+[==========] 59 tests from 22 test cases ran. (58 ms total)
+[  PASSED  ] 59 tests.
