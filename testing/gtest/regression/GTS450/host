@@ -43,8 +43,8 @@
 
 [----------] 1 test from Equal
 [ RUN      ] Equal.Test
-[       OK ] Equal.Test (56 ms)
-[----------] 1 test from Equal (56 ms total)
+[       OK ] Equal.Test (58 ms)
+[----------] 1 test from Equal (58 ms total)
 
 [----------] 2 tests from Engine
 [ RUN      ] Engine.Fast
@@ -114,8 +114,8 @@
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
-[       OK ] ReduceByKey.Test (1 ms)
-[----------] 1 test from ReduceByKey (1 ms total)
+[       OK ] ReduceByKey.Test (0 ms)
+[----------] 1 test from ReduceByKey (0 ms total)
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
@@ -190,5 +190,5 @@
 [----------] 1 test from Transform (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 59 tests from 22 test cases ran. (58 ms total)
+[==========] 59 tests from 22 test cases ran. (59 ms total)
 [  PASSED  ] 59 tests.

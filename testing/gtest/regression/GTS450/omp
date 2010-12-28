@@ -28,8 +28,8 @@
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
 [ RUN      ] Functional.Constant
-[       OK ] Functional.Constant (260 ms)
-[----------] 14 tests from Functional (260 ms total)
+[       OK ] Functional.Constant (190 ms)
+[----------] 14 tests from Functional (190 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -38,13 +38,13 @@
 
 [----------] 1 test from Copy
 [ RUN      ] Copy.Test
-[       OK ] Copy.Test (32 ms)
-[----------] 1 test from Copy (32 ms total)
+[       OK ] Copy.Test (188 ms)
+[----------] 1 test from Copy (188 ms total)
 
 [----------] 1 test from Equal
 [ RUN      ] Equal.Test
-[       OK ] Equal.Test (0 ms)
-[----------] 1 test from Equal (0 ms total)
+[       OK ] Equal.Test (72 ms)
+[----------] 1 test from Equal (72 ms total)
 
 [----------] 2 tests from Engine
 [ RUN      ] Engine.Fast
@@ -55,12 +55,12 @@
 
 [----------] 3 tests from ReduceByBucket
 [ RUN      ] ReduceByBucket.Test
-[       OK ] ReduceByBucket.Test (0 ms)
+[       OK ] ReduceByBucket.Test (72 ms)
 [ RUN      ] ReduceByBucket.Test2
 [       OK ] ReduceByBucket.Test2 (0 ms)
 [ RUN      ] ReduceByBucket.Test3
 [       OK ] ReduceByBucket.Test3 (0 ms)
-[----------] 3 tests from ReduceByBucket (0 ms total)
+[----------] 3 tests from ReduceByBucket (72 ms total)
 
 [----------] 2 tests from Distribution
 [ RUN      ] Distribution.UniformReal
@@ -137,8 +137,8 @@
 
 [----------] 1 test from Thrust
 [ RUN      ] Thrust.TransformIf
-[       OK ] Thrust.TransformIf (1 ms)
-[----------] 1 test from Thrust (1 ms total)
+[       OK ] Thrust.TransformIf (0 ms)
+[----------] 1 test from Thrust (0 ms total)
 
 [----------] 3 tests from Scatter
 [ RUN      ] Scatter.InPlaceForZipIterator
@@ -146,8 +146,8 @@
 [ RUN      ] Scatter.InPlace
 [       OK ] Scatter.InPlace (0 ms)
 [ RUN      ] Scatter.Test
-[       OK ] Scatter.Test (0 ms)
-[----------] 3 tests from Scatter (0 ms total)
+[       OK ] Scatter.Test (1 ms)
+[----------] 3 tests from Scatter (1 ms total)
 
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
@@ -190,5 +190,5 @@
 [----------] 1 test from Transform (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 59 tests from 22 test cases ran. (294 ms total)
+[==========] 59 tests from 22 test cases ran. (524 ms total)
 [  PASSED  ] 59 tests.

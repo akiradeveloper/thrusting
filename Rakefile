@@ -5,6 +5,7 @@ require "rake/clean"
 CLOBBER.include ["doc/html", "doc/latex"]
 
 task :install => :build
+task :uninstall => :clobber
 
 task :build do
   cd("bin") do

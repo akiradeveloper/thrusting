@@ -3,12 +3,12 @@
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.70996 [ms]
+Average: 1.90156 [ms]
 Times:
-[1.89667, 5.96115, 1.89635, 1.89933, 1.89629]
-[       OK ] StopWatch.TestByLooping (73 ms)
-[----------] 1 test from StopWatch (73 ms total)
+[1.91667, 1.8968, 1.90061, 1.89635, 1.89738]
+[       OK ] StopWatch.TestByLooping (66 ms)
+[----------] 1 test from StopWatch (66 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test case ran. (73 ms total)
+[==========] 1 test from 1 test case ran. (66 ms total)
 [  PASSED  ] 1 test.

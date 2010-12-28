@@ -7,7 +7,6 @@
 #include <thrusting/list.h>
 
 #include <thrust/host_vector.h>
-#include <thrust/device_vector.h>
 
 namespace thrusting {
 

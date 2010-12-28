@@ -6,6 +6,12 @@
   Akira Hayakawa, 2010.
 */
 
+/*
+  DO NOT USE!!!
+  often causes
+  unspecified launch failure.
+*/
+
 #include <thrusting/iterator.h>
 
 #include <thrust/iterator/iterator_traits.h>
@@ -18,6 +24,9 @@
 
 namespace thrusting {
 
+/*
+  deprecated
+*/
 template<
 typename InputIterator1,
 typename InputIterator2,

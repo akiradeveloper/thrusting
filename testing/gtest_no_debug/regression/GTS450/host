@@ -2,7 +2,7 @@
 [----------] Global test environment set-up.
 [----------] 2 tests from PermutationIterator
 [ RUN      ] PermutationIterator.Gather
-[       OK ] PermutationIterator.Gather (0 ms)
+[       OK ] PermutationIterator.Gather (1 ms)
 [ RUN      ] PermutationIterator.Scatter
 [       OK ] PermutationIterator.Scatter (0 ms)
 [----------] 2 tests from PermutationIterator (1 ms total)

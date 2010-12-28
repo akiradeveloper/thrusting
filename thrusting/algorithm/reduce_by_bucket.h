@@ -6,6 +6,12 @@
   invented by Akira Hayakawa, 2010.
 */
 
+/*
+  THIS algorithm is error-prone.
+  because it uses thrusting::scatter.
+  DO NOT USE!!!
+*/
+
 #include <thrust/reduce.h>
 #include <thrust/transform.h>
 #include <thrust/iterator/iterator_traits.h>
@@ -48,6 +54,7 @@ void reduce_by_bucket(
   OutputIterator1 prefix_bucket,
   OutputIterator2 cnt_bucket,
   OutputIterator3 value_sum_bucket,	
+  OutputIterator3 tmp,
   const T &null_value
 ){
   thrust::pair<OutputIterator2, OutputIterator3> end;
@@ -57,13 +64,18 @@ void reduce_by_bucket(
     thrusting::advance(n_value, idx),
     value,
     cnt_bucket, 
-    value_sum_bucket);   
+    tmp);   
 
   Size2 n_non_empty = end.first - cnt_bucket;
 
-  thrusting::scatter(
+  thrust::fill(
     value_sum_bucket,
-    thrusting::advance(n_non_empty, value_sum_bucket),
+    thrusting::advance(n_bucket, value_sum_bucket),
+    null_value);   
+
+  thrust::scatter(
+    tmp,
+    thrusting::advance(n_non_empty, tmp),
     cnt_bucket,
     value_sum_bucket);
 
@@ -73,16 +85,43 @@ void reduce_by_bucket(
     n_bucket,
     prefix_bucket,
     cnt_bucket);
+}
 
-  typedef typename thrust::iterator_value<OutputIterator2>::type Count2;
-  typedef typename thrust::iterator_value<OutputIterator3>::type Count3;
-  thrust::transform_if(
+/*
+  deprecated
+  preserved only for testing
+*/
+template<
+typename Size1,
+typename Size2,
+typename InputIterator1,
+typename InputIterator2,
+typename OutputIterator1,
+typename OutputIterator2,
+typename OutputIterator3,
+typename T>
+void reduce_by_bucket(
+  Size1 n_value,
+  InputIterator1 idx,
+  InputIterator2 value,
+  Size2 n_bucket,
+  OutputIterator1 prefix_bucket,
+  OutputIterator2 cnt_bucket,
+  OutputIterator3 value_sum_bucket,	
+  const T &null_value
+){
+  typename vector_of<OutputIterator3>::type tmp(n_bucket);
+  
+  reduce_by_bucket(
+    n_value,
+    idx,
+    value,
+    n_bucket,
+    prefix_bucket,
+    cnt_bucket,
     value_sum_bucket,
-    thrusting::advance(n_bucket, value_sum_bucket),
-    cnt_bucket, // stencil
-    value_sum_bucket, // result
-    thrusting::make_constant_functor<Count3>(null_value), // op return null_value if stencil elem is 0
-    thrusting::bind2nd(thrust::equal_to<Count2>(), Count2(0)));
+    tmp.begin(),
+    null_value);
 }
 
 } // END thrusting

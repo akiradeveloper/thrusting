@@ -33,8 +33,9 @@ struct vector {
 
 #include <thrust/detail/type_traits.h>
 
-
 /*
+  deprecated. 
+
   Generate either thrust::host_vector or thrust::device_vector in compilation
   according to the space of given Iterator.
 */

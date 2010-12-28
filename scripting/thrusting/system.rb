@@ -30,7 +30,7 @@ module Thrusting
   # always use device of id 0
   DEVICE_ID = 0
   def get_gpu_sm
-    return `gpu_sm.bin #{DEVICE_ID}`.strip
+    return `get_gpu_sm.bin #{DEVICE_ID}`.strip
   end
 
   def pre_fermi?
@@ -62,7 +62,6 @@ module Thrusting
     end
     return 32
   end
-
 
   REALISTIC_NUM_CORES = 8
   def assert_num_cores(n)

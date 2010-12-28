@@ -254,12 +254,6 @@ module Thrusting
         cxx += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_CUDA"
         return cxx
       when "omp" 
-        # I do not know whether OMP_NUM_THREADS is referred in
-        # compile time or runtime and whether it depends on implementation.
-        # Therefore this line will be removed and usrs setup the var by hand.
-        ENV["OMP_NUM_THREADS"] = get_num_cores.to_s # not tested
-        p ENV["OMP_NUM_THREADS"]
-
         cxx += " -D THRUSTING_USING_DEVICE_VECTOR"
         cxx += " -D THRUST_DEVICE_BACKEND=THRUST_DEVICE_BACKEND_OMP"
         cxx += " -Xcompiler -fopenmp"
