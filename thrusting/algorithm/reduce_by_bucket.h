@@ -23,6 +23,7 @@
 
 #include <iostream>
 #include <thrust/distance.h>
+#include <thrusting/list.h>
 
 namespace thrusting {
   
@@ -63,6 +64,8 @@ void reduce_by_bucket(
   thrust::pair<OutputIterator2, OutputIterator3> end;
 
   std::cout << "@reduce_by_bucket reduce_by_key" << std::endl;
+  // std::cout << make_list(n_value, idx) << std::endl;
+  // std::cout << make_list(n_bucket, cnt_bucket) << std::endl;
   end = thrust::reduce_by_key(
     idx,
     thrusting::advance(n_value, idx),
@@ -81,6 +84,7 @@ void reduce_by_bucket(
     null_value);   
 
   std::cout << "@reduce_by_bucket scatter" << std::endl;
+  // std::cout << make_list(n_bucket, cnt_bucket) << std::endl;
   thrust::scatter(
     tmp,
     thrusting::advance(n_non_empty, tmp),
