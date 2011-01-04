@@ -2,7 +2,10 @@ require "thrusting"
 
 include Thrusting
 
-cc = make_default_compiler.enable_debug_mode
+cc = make_default_compiler
+cc.append("--keep")
+cc.append("--ptxas-options=-v")
+cc.append("-lcudart")
 
 ["constant_memory", "meaningless_return_type", "host_vector_push_back"].each do |dir|
   cc.make_compile_task(dir)
