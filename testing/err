@@ -1,0 +1,8 @@
+nvcc -arch=sm_21 -L /usr/local/cuda/lib -I /usr/local/cuda/include -I /home/akiradeveloper/local/thrust -I /home/akiradeveloper/sandbox/thrusting -g -D THRUST_DEBUG -D THRUSTING_DEBUG -I/home/akiradeveloper/local/include -Xcompiler -pthread -L/home/akiradeveloper/local/lib -lgtest -Xcompiler -pthread -Xcompiler -trigraphs /home/akiradeveloper/sandbox/thrusting/scripting/thrusting/gtest_main.cu -o gtest/constant_memory_on_host.bin gtest/constant_memory.cu
+gtest/constant_memory.h(23): error: calling a host function from a __device__/__global__ function is not allowed
+
+1 error detected in the compilation of "/tmp/tmpxft_00004562_00000000-17_constant_memory.cpp1.ii".
+rake aborted!
+Command failed with status (2): [nvcc -arch=sm_21 -L /usr/local/cuda/lib -I...]
+
+(See full trace by running task with --trace)
