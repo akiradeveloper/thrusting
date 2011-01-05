@@ -25,6 +25,33 @@
 namespace thrusting {
 
 /*
+  simple wrapper. not tested
+*/
+template<
+typename Size,
+typename InputIterator1,
+typename InputIterator2,
+typename RandomAccessIterator,
+typename OutputIterator,
+typename Predicate>
+OutputIterator gather_if(
+  Size n,
+  InputIterator1 idx,
+  InputIterator2 stencil,
+  RandomAccessIterator input,
+  OutputIterator result,
+  Predicate pred
+){
+  return thrust::gather_if(
+    idx,
+    thrusting::advance(n, idx),
+    stencil,
+    input,
+    result,
+    pred);
+}
+  
+/*
   deprecated
 */
 template<

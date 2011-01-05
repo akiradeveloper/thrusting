@@ -3,11 +3,10 @@
 /*
   Helper functions for iterator objects.
 */
+#include <thrusting/algorithm/advance.h>
 
 #include <thrust/iterator/iterator_traits.h>
 #include <thrust/fill.h>
-
-#include <thrusting/algorithm/advance.h>
 
 namespace thrusting {
 

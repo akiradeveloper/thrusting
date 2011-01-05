@@ -6,7 +6,10 @@
 
 namespace thrusting {
 
-
+/*
+  simple wrapper
+  not tested
+*/
 template<
 typename Size,
 typename InputIterator1,
@@ -31,7 +34,10 @@ ForwardIterator transform_if(
     pred);
 }
 
-// not tested
+/*
+  simple wrapper
+  not tested
+*/
 template<
 typename Size,
 typename InputIterator,
@@ -48,19 +54,6 @@ OutputIterator transform(
     thrusting::advance(n, first),
     result,
     op);
-}
-
-transform_if_by_map(
-  Size n,
-  InputIterator1 first,
-  InputIterator2 stencil,
-  OutputIterator output,
-  InputIterator3 map,
-  Predicate pred
-){
-  return thrusting::transform_if(
-    n,
-    first,   
 }
 
 } // END thrusting

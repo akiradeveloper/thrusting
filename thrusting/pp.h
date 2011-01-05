@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 
@@ -16,27 +18,3 @@ void pp(Object obj, std::string filename, size_t lineno){
 
 } // END thrusting
 
-#ifndef THRUSTING_ASSERTION_UNABLED
-  #ifndef THRUSTING_DEBUG
-    #define THRUSTING_DEBUG 
-  #endif
-#endif
-
-#define THRUSTING_CHECK(BOOL) thrusting::check((BOOL))
-
-#include <cassert>
-
-namespace thrusting {
-
-/*
-  temporarily using assert but,
-  this should be able to be used in device code
-*/
-void check(bool b){
-#ifdef THRUSTING_DEBUG
-  assert(b);
-#endif
-}
-
-}
-  
