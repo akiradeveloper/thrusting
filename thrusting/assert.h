@@ -8,11 +8,16 @@
   #endif
 #endif
 
+/*
+  TODO
+  named check although the filename is assert right?
+*/
 #define THRUSTING_CHECK(BOOL) thrusting::check((BOOL))
 
 namespace thrusting {
 
 /*
+  TODO
   temporarily using assert but,
   this should be able to be used in device code
 */

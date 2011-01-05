@@ -15,6 +15,7 @@
 #include "reduce_by_key.h"
 #include "iterator_equal.h"
 #include "vector.h"
+#include "assert.h"
 #include "iterator.h"
 #include "partition.h"
 #include "transform_if.h"
