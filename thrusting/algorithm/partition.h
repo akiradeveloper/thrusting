@@ -25,7 +25,7 @@ Size partition(
     thrusting::advance(n, first),
     pred);
   
-  return end - first;
+  return thrust::distance(first, end);
 }
 
 } // END thrusting
