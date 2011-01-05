@@ -5,8 +5,9 @@
 */
 
 #include <thrust/iterator/iterator_traits.h>
-#include <thrust/advance.h>
 #include <thrust/fill.h>
+
+#include <thrusting/algorithm/advance.h>
 
 namespace thrusting {
 
@@ -18,12 +19,6 @@ typename thrust::iterator_value<Iterator>::type iterator_value_of(Iterator it){
 }
 
 } // END detail
-
-template<typename Distance, typename Iterator>
-Iterator advance(Distance distance, Iterator it){
-  thrust::advance(it, distance);
-  return it;
-}
 
 template<typename Index, typename Iterator>
 typename thrust::iterator_value<Iterator>::type iterator_value_at(Index n, Iterator it){

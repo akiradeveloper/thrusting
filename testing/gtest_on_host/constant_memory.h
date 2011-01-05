@@ -33,6 +33,9 @@ struct constant_filler :public thrust::unary_function<int, int> {
 TEST(CONSTMEMORY, TEST){
   int _xs[3] = {0,1,0};
   vector<int>::type xs(_xs, _xs+3);
+
+  unsigned int a, b;
+  a = clock();
   
   thrusting::transform(
     3,
@@ -46,4 +49,8 @@ TEST(CONSTMEMORY, TEST){
   EXPECT_EQ(
     make_list(xs),
     make_list(ans));
+
+  b = clock();
+  std::cout << a << std::endl;
+  std::cout << (b-a) << std::endl;
 }
