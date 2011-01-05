@@ -20,6 +20,7 @@
 #include <thrusting/iterator.h>
 #include <thrusting/functional.h>
 #include <thrusting/algorithm/scatter.h>
+#include <thrusting/pp.h>
 
 #include <iostream>
 #include <thrust/distance.h>
@@ -63,9 +64,6 @@ void reduce_by_bucket(
 ){
   thrust::pair<OutputIterator2, OutputIterator3> end;
 
-  std::cout << "@reduce_by_bucket reduce_by_key" << std::endl;
-  // std::cout << make_list(n_value, idx) << std::endl;
-  // std::cout << make_list(n_bucket, cnt_bucket) << std::endl;
   end = thrust::reduce_by_key(
     idx,
     thrusting::advance(n_value, idx),
@@ -74,24 +72,21 @@ void reduce_by_bucket(
     tmp);   
 
   Size2 n_non_empty = thrust::distance(cnt_bucket, end.first);
-  std::cout << "@reduce_by_bucket aaaaa n_bucket: " << n_bucket << std::endl;
-  std::cout << "@reduce_by_bucket n_non_empty: " << n_non_empty << std::endl;
 
-  std::cout << "@reduce_by_bucket fill" << std::endl;
+  THRUSTING_PP("n_bucket", n_bucket);
+  THRUSTING_PP("n_non_empty", n_non_empty);
+
   thrust::fill(
     value_sum_bucket,
     thrusting::advance(n_bucket, value_sum_bucket),
     null_value);   
 
-  std::cout << "@reduce_by_bucket scatter" << std::endl;
-  // std::cout << make_list(n_bucket, cnt_bucket) << std::endl;
   thrust::scatter(
     tmp,
     thrusting::advance(n_non_empty, tmp),
     cnt_bucket,
     value_sum_bucket);
 
-  std::cout << "@reduce_by_bucket bucket_indexing" << std::endl;
   thrusting::bucket_indexing(
     n_value,
     idx,

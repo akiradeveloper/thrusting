@@ -20,12 +20,12 @@ Size remove_if(
   InputIterator first,
   Predicate pred
 ){
-  InputIterator tail = remove_if(
+  InputIterator end = remove_if(
     first,
     thrusting::advance(n, first),
     pred);
 
-  return thrusting::distance(input, tail);
+  return thrusting::distance(first, end);
 }
 
 /*
@@ -42,13 +42,13 @@ Size remove_if(
   InputIterator2 stencil,
   Predicate pred
 ){
-  InputIterator1 tail = remove_if(
+  InputIterator1 end = remove_if(
     first,
     thrusting::advance(n, first),
     stencil,
     pred);
 
-  return thrusting::distance(input, tail);
+  return thrusting::distance(first, end);
 }
 
 template<

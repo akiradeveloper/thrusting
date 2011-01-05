@@ -1,8 +1,8 @@
 #pragma once
 
-#include <thrust/copy.h>
-
 #include <thrusting/iterator.h>
+
+#include <thrust/copy.h>
 
 namespace thrusting {
 

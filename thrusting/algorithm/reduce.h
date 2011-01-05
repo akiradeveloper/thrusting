@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <thrusting/algorithm/advance.h>
+
 #include <thrust/reduce.h>
 
 namespace thrusting {

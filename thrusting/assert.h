@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-#ifndef THRUSTING_ASSERTION_UNABLED
+#ifndef THRUSTING_ASSERTION_DISABLED
   #ifndef THRUSTING_DEBUG
     #define THRUSTING_DEBUG 
   #endif

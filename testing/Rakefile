@@ -4,6 +4,7 @@ require "thrusting"
 
 include Thrusting
 cc = make_default_compiler
+cc.append("-D THRUSTING_PRETTY_PRINT_UNABLED")
 
 cc.deepcopy.enable_debug_mode.make_gtest_task("gtest")
 cc.deepcopy.make_gtest_task("gtest_no_debug")
