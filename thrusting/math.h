@@ -1,5 +1,7 @@
 #pragma once
 
+#include <thrusting/real.h>
+
 namespace thrusting {
 
 real sinr(real rad){

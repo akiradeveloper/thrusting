@@ -1,8 +1,8 @@
-[==========] Running 59 tests from 22 test cases.
+[==========] Running 61 tests from 24 test cases.
 [----------] Global test environment set-up.
 [----------] 14 tests from Functional
 [ RUN      ] Functional.Flip
-[       OK ] Functional.Flip (0 ms)
+[       OK ] Functional.Flip (1 ms)
 [ RUN      ] Functional.Multiplies
 [       OK ] Functional.Multiplies (0 ms)
 [ RUN      ] Functional.Divides
@@ -29,7 +29,7 @@
 [       OK ] Functional.Compose2 (0 ms)
 [ RUN      ] Functional.Constant
 [       OK ] Functional.Constant (0 ms)
-[----------] 14 tests from Functional (0 ms total)
+[----------] 14 tests from Functional (1 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -43,8 +43,8 @@
 
 [----------] 1 test from Equal
 [ RUN      ] Equal.Test
-[       OK ] Equal.Test (58 ms)
-[----------] 1 test from Equal (58 ms total)
+[       OK ] Equal.Test (65 ms)
+[----------] 1 test from Equal (65 ms total)
 
 [----------] 2 tests from Engine
 [ RUN      ] Engine.Fast
@@ -55,10 +55,22 @@
 
 [----------] 3 tests from ReduceByBucket
 [ RUN      ] ReduceByBucket.Test
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L76
+n_bucket : 4
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L77
+n_non_empty : 2
 [       OK ] ReduceByBucket.Test (0 ms)
 [ RUN      ] ReduceByBucket.Test2
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L76
+n_bucket : 6
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L77
+n_non_empty : 4
 [       OK ] ReduceByBucket.Test2 (0 ms)
 [ RUN      ] ReduceByBucket.Test3
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L76
+n_bucket : 4
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L77
+n_non_empty : 2
 [       OK ] ReduceByBucket.Test3 (0 ms)
 [----------] 3 tests from ReduceByBucket (0 ms total)
 
@@ -92,6 +104,15 @@
 [       OK ] StrideIterator.Test (0 ms)
 [----------] 1 test from StrideIterator (0 ms total)
 
+[----------] 1 test from StopWatch
+[ RUN      ] StopWatch.TestByLooping
+--- stopwatch test ---
+Average: 2.33693 [ms]
+Times:
+[1.95414, 2.03645, 1.95341, 1.95386, 3.78678]
+[       OK ] StopWatch.TestByLooping (12 ms)
+[----------] 1 test from StopWatch (12 ms total)
+
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
 [       OK ] Random.RandomGenerator (1 ms)
@@ -116,6 +137,11 @@
 [ RUN      ] ReduceByKey.Test
 [       OK ] ReduceByKey.Test (0 ms)
 [----------] 1 test from ReduceByKey (0 ms total)
+
+[----------] 1 test from IteratorEqual
+[ RUN      ] IteratorEqual.Test
+[       OK ] IteratorEqual.Test (0 ms)
+[----------] 1 test from IteratorEqual (0 ms total)
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
@@ -162,12 +188,12 @@
 [       OK ] List.Ostream (0 ms)
 [ RUN      ] List.Ostream2
 [1.2, 2.9]
-[       OK ] List.Ostream2 (0 ms)
+[       OK ] List.Ostream2 (1 ms)
 [ RUN      ] List.Equality
 [       OK ] List.Equality (0 ms)
 [ RUN      ] List.Equality2
 [       OK ] List.Equality2 (0 ms)
-[----------] 5 tests from List (0 ms total)
+[----------] 5 tests from List (1 ms total)
 
 [----------] 1 test from Generate
 [ RUN      ] Generate.Test
@@ -190,5 +216,5 @@
 [----------] 1 test from Transform (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 59 tests from 22 test cases ran. (59 ms total)
-[  PASSED  ] 59 tests.
+[==========] 61 tests from 24 test cases ran. (80 ms total)
+[  PASSED  ] 61 tests.

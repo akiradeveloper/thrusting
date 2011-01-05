@@ -1,4 +1,4 @@
-[==========] Running 59 tests from 22 test cases.
+[==========] Running 61 tests from 24 test cases.
 [----------] Global test environment set-up.
 [----------] 14 tests from Functional
 [ RUN      ] Functional.Flip
@@ -28,8 +28,8 @@
 [ RUN      ] Functional.Compose2
 [       OK ] Functional.Compose2 (0 ms)
 [ RUN      ] Functional.Constant
-[       OK ] Functional.Constant (115 ms)
-[----------] 14 tests from Functional (115 ms total)
+[       OK ] Functional.Constant (117 ms)
+[----------] 14 tests from Functional (117 ms total)
 
 [----------] 1 test from FunctionalTest
 [ RUN      ] FunctionalTest.SumF
@@ -55,12 +55,24 @@
 
 [----------] 3 tests from ReduceByBucket
 [ RUN      ] ReduceByBucket.Test
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L76
+n_bucket : 4
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L77
+n_non_empty : 2
 [       OK ] ReduceByBucket.Test (2 ms)
 [ RUN      ] ReduceByBucket.Test2
-[       OK ] ReduceByBucket.Test2 (3 ms)
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L76
+n_bucket : 6
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L77
+n_non_empty : 4
+[       OK ] ReduceByBucket.Test2 (2 ms)
 [ RUN      ] ReduceByBucket.Test3
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L76
+n_bucket : 4
+/home/akiradeveloper/sandbox/thrusting/thrusting/algorithm/reduce_by_bucket.h L77
+n_non_empty : 2
 [       OK ] ReduceByBucket.Test3 (3 ms)
-[----------] 3 tests from ReduceByBucket (8 ms total)
+[----------] 3 tests from ReduceByBucket (7 ms total)
 
 [----------] 2 tests from Distribution
 [ RUN      ] Distribution.UniformReal
@@ -92,6 +104,15 @@
 [       OK ] StrideIterator.Test (0 ms)
 [----------] 1 test from StrideIterator (0 ms total)
 
+[----------] 1 test from StopWatch
+[ RUN      ] StopWatch.TestByLooping
+--- stopwatch test ---
+Average: 1.92523 [ms]
+Times:
+[1.85581, 2.00986, 2.1489, 1.71482, 1.89677]
+[       OK ] StopWatch.TestByLooping (10 ms)
+[----------] 1 test from StopWatch (10 ms total)
+
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
 [       OK ] Random.RandomGenerator (1 ms)
@@ -114,8 +135,13 @@
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
-[       OK ] ReduceByKey.Test (3 ms)
-[----------] 1 test from ReduceByKey (3 ms total)
+[       OK ] ReduceByKey.Test (2 ms)
+[----------] 1 test from ReduceByKey (2 ms total)
+
+[----------] 1 test from IteratorEqual
+[ RUN      ] IteratorEqual.Test
+[       OK ] IteratorEqual.Test (0 ms)
+[----------] 1 test from IteratorEqual (0 ms total)
 
 [----------] 2 tests from Vector
 [ RUN      ] Vector.Device
@@ -137,17 +163,17 @@
 
 [----------] 1 test from Thrust
 [ RUN      ] Thrust.TransformIf
-[       OK ] Thrust.TransformIf (0 ms)
-[----------] 1 test from Thrust (0 ms total)
+[       OK ] Thrust.TransformIf (1 ms)
+[----------] 1 test from Thrust (1 ms total)
 
 [----------] 3 tests from Scatter
 [ RUN      ] Scatter.InPlaceForZipIterator
-[       OK ] Scatter.InPlaceForZipIterator (1 ms)
+[       OK ] Scatter.InPlaceForZipIterator (0 ms)
 [ RUN      ] Scatter.InPlace
-[       OK ] Scatter.InPlace (0 ms)
+[       OK ] Scatter.InPlace (1 ms)
 [ RUN      ] Scatter.Test
-[       OK ] Scatter.Test (1 ms)
-[----------] 3 tests from Scatter (2 ms total)
+[       OK ] Scatter.Test (0 ms)
+[----------] 3 tests from Scatter (1 ms total)
 
 [----------] 1 test from BucketIndexing
 [ RUN      ] BucketIndexing.Test
@@ -156,18 +182,18 @@
 
 [----------] 5 tests from List
 [ RUN      ] List.MakeString
-[       OK ] List.MakeString (1 ms)
+[       OK ] List.MakeString (0 ms)
 [ RUN      ] List.Ostream
 [1, 2]
-[       OK ] List.Ostream (0 ms)
+[       OK ] List.Ostream (1 ms)
 [ RUN      ] List.Ostream2
 [1.2, 2.9]
 [       OK ] List.Ostream2 (0 ms)
 [ RUN      ] List.Equality
 [       OK ] List.Equality (0 ms)
 [ RUN      ] List.Equality2
-[       OK ] List.Equality2 (1 ms)
-[----------] 5 tests from List (2 ms total)
+[       OK ] List.Equality2 (0 ms)
+[----------] 5 tests from List (1 ms total)
 
 [----------] 1 test from Generate
 [ RUN      ] Generate.Test
@@ -177,18 +203,18 @@
 
 [----------] 3 tests from Gather
 [ RUN      ] Gather.Test
-[       OK ] Gather.Test (0 ms)
+[       OK ] Gather.Test (1 ms)
 [ RUN      ] Gather.InPlace
-[       OK ] Gather.InPlace (1 ms)
+[       OK ] Gather.InPlace (0 ms)
 [ RUN      ] Gather.InPlaceForZipIterator
-[       OK ] Gather.InPlaceForZipIterator (1 ms)
-[----------] 3 tests from Gather (2 ms total)
+[       OK ] Gather.InPlaceForZipIterator (0 ms)
+[----------] 3 tests from Gather (1 ms total)
 
 [----------] 1 test from Transform
 [ RUN      ] Transform.TransformIf
-[       OK ] Transform.TransformIf (0 ms)
-[----------] 1 test from Transform (0 ms total)
+[       OK ] Transform.TransformIf (1 ms)
+[----------] 1 test from Transform (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 59 tests from 22 test cases ran. (135 ms total)
-[  PASSED  ] 59 tests.
+[==========] 61 tests from 24 test cases ran. (145 ms total)
+[  PASSED  ] 61 tests.

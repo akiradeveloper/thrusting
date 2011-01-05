@@ -9,7 +9,6 @@
 #endif
 
 #define THRUSTING_CHECK(BOOL) thrusting::check((BOOL))
-#define THRUSTING_CHEKC_EQ(X, Y) thrusting::check_eq((X), (Y))
 
 namespace thrusting {
 
@@ -21,13 +20,6 @@ void check(bool b){
 #ifdef THRUSTING_DEBUG
   assert(b);
 #endif
-}
-
-template<
-typename X,
-typename Y>
-void check_eq(X x, Y y){
-  check(x == y);
 }
 
 } // END thrusting

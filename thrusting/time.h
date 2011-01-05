@@ -1,12 +1,11 @@
 #pragma once
 
-#include <ctime>
 #include <iostream>
 #include <string>
 
 #include <thrusting/list.h>
 
-#include <thrust/host_vector.h>
+#include <vector>
 
 namespace thrusting {
 
@@ -14,7 +13,7 @@ class stopwatch {
 
   std::string _title;
   cudaEvent_t _start, _end;
-  thrust::host_vector<float> _times; 
+  std::vector<float> _times; 
 
 public:
 
@@ -40,12 +39,19 @@ public:
     cudaEventSynchronize(_end);
 
     float elapsed_time;
+    /*
+      unit is ms
+    */
     cudaEventElapsedTime(&elapsed_time, _start, _end);
     _times.push_back(elapsed_time);
   }
 
   float average(){
-    return thrust::reduce(_times.begin(), _times.end()) / _times.size();
+    float t = 0;
+    for(size_t i=0; i<_times.size(); ++i){
+      t += ( _times[i] / _times.size() );
+    }    
+    return t;
   }
    
   void show(){

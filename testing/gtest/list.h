@@ -17,7 +17,7 @@ namespace {
 
 TEST(List, MakeString){
   int _xs[] = {1,2}; vector<int>::type xs(_xs, _xs+2); 
-  EXPECT_EQ("[1, 2]", thrusting::make_string(thrusting::make_list(xs)));
+  EXPECT_EQ("[1, 2]", thrusting::detail::make_string(thrusting::make_list(xs)));
 }
 
 TEST(List, Ostream){

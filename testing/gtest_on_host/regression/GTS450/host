@@ -1,14 +1,12 @@
 [==========] Running 1 test from 1 test case.
 [----------] Global test environment set-up.
-[----------] 1 test from StopWatch
-[ RUN      ] StopWatch.TestByLooping
---- stopwatch test ---
-Average: 1.90156 [ms]
-Times:
-[1.91667, 1.8968, 1.90061, 1.89635, 1.89738]
-[       OK ] StopWatch.TestByLooping (66 ms)
-[----------] 1 test from StopWatch (66 ms total)
+[----------] 1 test from CONSTMEMORY
+[ RUN      ] CONSTMEMORY.TEST
+0
+40000
+[       OK ] CONSTMEMORY.TEST (56 ms)
+[----------] 1 test from CONSTMEMORY (56 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test case ran. (66 ms total)
+[==========] 1 test from 1 test case ran. (56 ms total)
 [  PASSED  ] 1 test.
