@@ -12,45 +12,45 @@ namespace thrusting {
 /*
   simple wrapper, will not tested
 */
-//template<
-//typename Size,
-//typename InputIterator,
-//typename Predicate>
-//Size remove_if(
-//  Size n,
-//  InputIterator first,
-//  Predicate pred
-//){
-//  InputIterator end = remove_if(
-//    first,
-//    thrusting::advance(n, first),
-//    pred);
-//
-//  return thrust::distance(first, end);
-//}
-//
-///*
-//  simple wrapper
-//*/
-//template<
-//typename Size,
-//typename InputIterator1,
-//typename InputIterator2,
-//typename Predicate>
-//Size remove_if(
-//  Size n,
-//  InputIterator1 first,
-//  InputIterator2 stencil,
-//  Predicate pred
-//){
-//  InputIterator1 end = remove_if(
-//    first,
-//    thrusting::advance(n, first),
-//    stencil,
-//    pred);
-//
-//  return thrust::distance(first, end);
-//}
+template<
+typename Size,
+typename InputIterator,
+typename Predicate>
+Size remove_if(
+  Size n,
+  InputIterator first,
+  Predicate pred
+){
+  InputIterator end = remove_if(
+    first,
+    thrusting::advance(n, first),
+    pred);
+
+  return thrust::distance(first, end);
+}
+
+/*
+  simple wrapper
+*/
+template<
+typename Size,
+typename InputIterator1,
+typename InputIterator2,
+typename Predicate>
+Size remove_if(
+  Size n,
+  InputIterator1 first,
+  InputIterator2 stencil,
+  Predicate pred
+){
+  InputIterator1 end = remove_if(
+    first,
+    thrusting::advance(n, first),
+    stencil,
+    pred);
+
+  return thrust::distance(first, end);
+}
 
 template<
 typename Size,

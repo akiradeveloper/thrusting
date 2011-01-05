@@ -34,7 +34,7 @@ TEST(Tuple, Divides){
 }
 
 TEST(Tuple, MakeString){
-  EXPECT_EQ("(1, 2)", thrusting::make_string(thrusting::make_tuple2(1,2)));
+  EXPECT_EQ("(1, 2)", thrusting::detail::make_string(thrusting::make_tuple2(1,2)));
 }
   
 TEST(Tuple, Ostream){

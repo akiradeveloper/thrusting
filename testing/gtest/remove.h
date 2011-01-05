@@ -10,9 +10,10 @@
 
 namespace {
   using namespace thrusting;
+
 }
 
-struct IS_ODD :public thrust::unary_function<int, bool> {
+struct REMOVE_IS_ODD :public thrust::unary_function<int, bool> {
   __host__ __device__
   bool operator()(int x) const {
     return (x % 2) == 1;
@@ -32,7 +33,7 @@ TEST(SortOutIf, Test){
     3,
     xs.begin(),
     out.begin(),
-    IS_ODD());
+    REMOVE_IS_ODD());
 
   EXPECT_EQ(1, n);
   

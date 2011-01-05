@@ -23,7 +23,9 @@ def all()
 #include <sstream>
 #include <string>
 namespace thrusting {
+namespace detail {
 #{code}
+} 
 }
 """
 end

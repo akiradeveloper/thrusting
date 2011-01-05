@@ -21,7 +21,7 @@ Size reduce_by_key(
   InputIterator1 key,
   InputIterator2 value,
   OutputIterator1 key_out,
-  OUtputIterator2 value_out
+  OutputIterator2 value_out
 ){
   thrust::pair<OutputIterator1, OutputIterator2> end;
   end = thrust::reduce_by_key(

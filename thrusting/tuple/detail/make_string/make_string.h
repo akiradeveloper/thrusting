@@ -4,6 +4,7 @@
 #include <sstream>
 #include <string>
 namespace thrusting {
+namespace detail {
 
 template<typename X0, typename X1>
 std::string make_string(const thrust::tuple<X0, X1> &t){
@@ -156,4 +157,5 @@ std::string make_string(const thrust::tuple<X0, X1, X2, X3, X4, X5, X6, X7, X8> 
   return ss.str();
 }
 
+} 
 }

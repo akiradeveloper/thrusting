@@ -34,7 +34,7 @@ typename InputIterator2,
 typename RandomAccessIterator,
 typename OutputIterator,
 typename Predicate>
-OutputIterator gather_if(
+void gather_if(
   Size n,
   InputIterator1 idx,
   InputIterator2 stencil,
@@ -42,7 +42,7 @@ OutputIterator gather_if(
   OutputIterator result,
   Predicate pred
 ){
-  return thrust::gather_if(
+  thrust::gather_if(
     idx,
     thrusting::advance(n, idx),
     stencil,

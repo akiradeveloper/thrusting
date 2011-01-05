@@ -8,7 +8,7 @@
 
 #include <gtest/gtest.h>
 
-struct IS_ODD :public thrust::unary_function<int, bool> {
+struct PARTITION_IS_ODD :public thrust::unary_function<int, bool> {
   __host__ __device__
   bool operator()(int x) const {
     return (x % 2) == 1;
@@ -22,5 +22,5 @@ TEST(Partition, Test){
   thrusting::partition(
     3,
     xs.begin(),
-    IS_ODD());
+    PARTITION_IS_ODD());
 }

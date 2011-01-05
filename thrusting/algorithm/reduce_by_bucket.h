@@ -12,10 +12,10 @@
   DO NOT USE!!!
 */
 
-#include <thrust/reduce.h>
 #include <thrust/transform.h>
 #include <thrust/iterator/iterator_traits.h>
 
+#include <thrusting/algorithm/reduce.h>
 #include <thrusting/algorithm/bucket_indexing.h>
 #include <thrusting/iterator.h>
 #include <thrusting/functional.h>
@@ -62,16 +62,12 @@ void reduce_by_bucket(
   OutputIterator3 tmp,
   const T &null_value
 ){
-  thrust::pair<OutputIterator2, OutputIterator3> end;
-
-  end = thrust::reduce_by_key(
+  Size2 n_non_empty = thrusting::reduce_by_key(
+    n_value,
     idx,
-    thrusting::advance(n_value, idx),
     value,
-    cnt_bucket, 
-    tmp);   
-
-  Size2 n_non_empty = thrust::distance(cnt_bucket, end.first);
+    cnt_bucket,
+    tmp);
 
   THRUSTING_PP("n_bucket", n_bucket);
   THRUSTING_PP("n_non_empty", n_non_empty);
