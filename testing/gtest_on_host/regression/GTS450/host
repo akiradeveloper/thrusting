@@ -3,10 +3,10 @@
 [----------] 1 test from CONSTMEMORY
 [ RUN      ] CONSTMEMORY.TEST
 0
-40000
-[       OK ] CONSTMEMORY.TEST (56 ms)
-[----------] 1 test from CONSTMEMORY (56 ms total)
+50000
+[       OK ] CONSTMEMORY.TEST (54 ms)
+[----------] 1 test from CONSTMEMORY (54 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test case ran. (56 ms total)
+[==========] 1 test from 1 test case ran. (54 ms total)
 [  PASSED  ] 1 test.

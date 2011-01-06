@@ -10,10 +10,8 @@ module Thrusting
     include Thrusting
   end
    
-  DEFAULT_OPTIMIZE_FLAG = "-O2"
-
   def make_default_compiler
-    return Compiler.new("nvcc")
+    return Compiler.new
   end
 
   RUNNABLE_DEVICES = ["host", "omp", "device"]
@@ -41,13 +39,31 @@ module Thrusting
 
     include Thrusting
 
-    def initialize(cmd)
-      @cmd = cmd
+    def initialize
+      @cmd = "nvcc"
       @backend = "host"
-      @enable_debug = false
-      @use_gtest = false
       @realtype = "float"
+      @enable_debug = false
+      @debug_on_device = false
+      # -1 is no optimization
+      @optimize_level = -1
+      @use_gtest = false
       @append = []
+    end
+
+    def optimize(level)
+      unless [0,1,2,3].include? level
+        raise
+      end
+      @optimize_level = level
+    end
+
+    def disable_pretty_print
+      append("-D THRUSTING_PRETTY_PRINT_DISABLED")
+    end
+   
+    def disable_assertion
+      append("-D THRUSTING_ASSERTION_DISABLED")
     end
 
     def make_compile_task(dir, devices=get_runnable_devices)
@@ -69,7 +85,7 @@ module Thrusting
             tmp.close
 
             cc = self.deepcopy
-            cc = cc.use_backend(dev)
+            cc.use_backend(dev)
 
             sh "#{cc.to_s} -o #{dir}/#{binname} #{dir}/#{cuname}"
             FileUtils.rm("#{dir}/#{cuname}")
@@ -106,7 +122,8 @@ module Thrusting
     
       cc = self.deepcopy
       runnable_devices = [devices].flatten
-      cc.use_gtest.make_compile_task(dir, runnable_devices)
+      cc.use_gtest
+      cc.make_compile_task(dir, runnable_devices)
    
       outputdir = "#{dir}/regression/#{get_machine_name()}"
       FileUtils.mkdir_p(outputdir)
@@ -127,14 +144,15 @@ module Thrusting
       return Marshal.load Marshal.dump(self)
     end
 
-    def enable_debug_mode
+    def enable_debug_mode(debug_on_device=false)
       @enable_debug = true
-      self
+      @debug_on_device = debug_on_device
+      nil
     end
 
     def use_backend(backend)
       @backend = backend
-      self
+      nil
     end
 
     # use type as real
@@ -150,14 +168,18 @@ module Thrusting
         end
       end
       @realtype = type
-      self
+      nil
     end
 
     def append(option)
       unless @append.include? option 
         @append << option
       end
-      self
+      nil
+    end
+
+    def <<(option)
+      append(option)
     end
 
     def to_s
@@ -175,6 +197,10 @@ module Thrusting
 
       cxx = using_real_precision(cxx, @realtype)
     
+      unless @optimize_level == -1
+        append("-O#{@optimize_level}")
+      end
+    
       @append.each do |a|
         cxx += " #{a}"
       end
@@ -186,13 +212,13 @@ module Thrusting
       return cxx
     end
 
-    ### private ###
     protected
     def use_gtest
       @use_gtest = true
       self
     end
 
+    ### private ###
     private
     def using_gtest(cxx)
       thisdir = File.expand_path File.dirname __FILE__
@@ -265,8 +291,6 @@ module Thrusting
 
     def using_debug_mode(cxx, backend)
       cxx += " -g"
-      cxx += " -D THRUST_DEBUG"
-      cxx += " -D THRUSTING_DEBUG"
       if backend == "device" and debug_on_device?
         cxx += " -G"
       end
@@ -277,7 +301,7 @@ module Thrusting
       if pre_fermi?
         return false
       end
-      return DEBUG_ON_DEVICE
+      return @debug_on_device
     end
   end 
 end
