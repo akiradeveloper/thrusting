@@ -43,8 +43,8 @@
 
 [----------] 1 test from Equal
 [ RUN      ] Equal.Test
-[       OK ] Equal.Test (62 ms)
-[----------] 1 test from Equal (62 ms total)
+[       OK ] Equal.Test (59 ms)
+[----------] 1 test from Equal (59 ms total)
 
 [----------] 2 tests from Engine
 [ RUN      ] Engine.Fast
@@ -107,16 +107,16 @@ n_non_empty : 2
 [----------] 1 test from StopWatch
 [ RUN      ] StopWatch.TestByLooping
 --- stopwatch test ---
-Average: 2.23073 [ms]
+Average: 1.95522 [ms]
 Times:
-[1.95674, 1.95792, 1.95571, 3.32544, 1.95782]
-[       OK ] StopWatch.TestByLooping (12 ms)
-[----------] 1 test from StopWatch (12 ms total)
+[1.95408, 1.95632, 1.95293, 1.96064, 1.95213]
+[       OK ] StopWatch.TestByLooping (10 ms)
+[----------] 1 test from StopWatch (10 ms total)
 
 [----------] 1 test from Random
 [ RUN      ] Random.RandomGenerator
-[       OK ] Random.RandomGenerator (0 ms)
-[----------] 1 test from Random (0 ms total)
+[       OK ] Random.RandomGenerator (1 ms)
+[----------] 1 test from Random (1 ms total)
 
 [----------] 3 tests from Real
 [ RUN      ] Real.Create
@@ -135,8 +135,8 @@ Times:
 
 [----------] 1 test from ReduceByKey
 [ RUN      ] ReduceByKey.Test
-[       OK ] ReduceByKey.Test (1 ms)
-[----------] 1 test from ReduceByKey (1 ms total)
+[       OK ] ReduceByKey.Test (0 ms)
+[----------] 1 test from ReduceByKey (0 ms total)
 
 [----------] 1 test from IteratorEqual
 [ RUN      ] IteratorEqual.Test
@@ -231,5 +231,5 @@ Times:
 [----------] 1 test from Transform (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 64 tests from 27 test cases ran. (75 ms total)
+[==========] 64 tests from 27 test cases ran. (71 ms total)
 [  PASSED  ] 64 tests.

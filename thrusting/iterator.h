@@ -2,7 +2,10 @@
 
 /*
   Helper functions for iterator objects.
+ 
+  Akira Hayakawa 2010
 */
+
 #include <thrusting/algorithm/advance.h>
 
 #include <thrust/iterator/iterator_traits.h>

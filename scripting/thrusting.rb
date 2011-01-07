@@ -1,9 +1,8 @@
 thisdir = File.expand_path File.dirname __FILE__
 
 require "rake/clean"
-require "#{thisdir}/../configure"
 
-["math", "generate", "buildenv", "plot", "run"].each do |f|
+["generate", "buildenv", "plot", "run"].each do |f|
   require "thrusting/#{f}"
 end
 

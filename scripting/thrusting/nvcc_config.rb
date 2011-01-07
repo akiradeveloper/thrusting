@@ -19,6 +19,7 @@ module Thrusting
 
     incpath = [homepath, "include"].join "/"
     cxx += " -I #{incpath}"
+    cxx += " -m#{get_machine_bit}"
     return cxx
   end
 

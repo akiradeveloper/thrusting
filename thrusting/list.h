@@ -5,7 +5,7 @@
   
   You can create the instance in several ways includes,
   thrusting::make_list(len, begin)
-  thrusting::make_list(host_vector or device_vector)
+  thrusting::make_list(std::vector or host_vector or device_vector)
   
   With List instance, you can use googletest to check your module.
 */

@@ -4,6 +4,8 @@ thisdir = File.expand_path File.dirname __FILE__
   require "#{thisdir}/#{f}"
 end
 
+require "#{thisdir}/../../configure"
+
 module Thrusting
 
   class << self
@@ -23,18 +25,32 @@ module Thrusting
     return RUNNABLE_DEVICES
   end
 
-  # not implemented yet
-  def make_cat_task(dir)
+  def make_cat_task(dirs)
+    _dirs = [dirs].flatten
     namespace :cat do
       get_runnable_devices.each do |dev|
-        task "on_all" => "on_#{dev}" do |t|
-        end
-        task "on_#{dev}" => "#{dir}/on_#{dev}" do |t|
+        task "on_#{dev}" do |t|
+          catfiles = ""
+          _dirs.each do |d|
+            catfiles += " #{get_outputfile(d, dev)}" 
+          end
+          sh "cat #{catfiles}"
         end
       end
     end
   end
 
+  private 
+  # directory for regression
+  def get_outputdir(dir)
+    "#{dir}/regression/#{get_machine_name()}"
+  end
+
+  def get_outputfile(dir, backend)
+    get_outputdir(dir) + "/" + backend
+  end
+
+  public
   class Compiler
 
     include Thrusting
@@ -51,9 +67,13 @@ module Thrusting
       @append = []
     end
 
+    def <<(option)
+      append(option)
+    end
+
     def optimize(level)
       unless [0,1,2,3].include? level
-        raise
+        raise "optimize level is 0,1,2,3"
       end
       @optimize_level = level
     end
@@ -125,7 +145,8 @@ module Thrusting
       cc.use_gtest
       cc.make_compile_task(dir, runnable_devices)
    
-      outputdir = "#{dir}/regression/#{get_machine_name()}"
+      #outputdir = "#{dir}/regression/#{get_machine_name()}"
+      outputdir = get_outputdir(dir)
       FileUtils.mkdir_p(outputdir)
 
       namespace :regress do
@@ -133,7 +154,8 @@ module Thrusting
           binname = "#{dir}/all_on_#{dev}.bin"
           file binname => "#{dir}/all.h"
           task "on_#{dev}" => binname do |t|
-            sh "#{binname} | tee #{outputdir}/#{dev}"
+            #sh "#{binname} | tee #{outputdir}/#{dev}"
+            sh "#{binname} | tee #{get_outputfile(dir, dev)}"
           end
           task :on_all => "on_#{dev}" 
         end
@@ -171,17 +193,6 @@ module Thrusting
       nil
     end
 
-    def append(option)
-      unless @append.include? option 
-        @append << option
-      end
-      nil
-    end
-
-    def <<(option)
-      append(option)
-    end
-
     def to_s
       cxx = @cmd
 
@@ -215,11 +226,19 @@ module Thrusting
     protected
     def use_gtest
       @use_gtest = true
-      self
+      nil
     end
 
     ### private ###
     private
+
+    def append(option)
+      unless @append.include? option 
+        @append << option
+      end
+      nil
+    end
+
     def using_gtest(cxx)
       thisdir = File.expand_path File.dirname __FILE__
       conf = `gtest-config --cxxflags --cppflags --ldflags --libs`
@@ -236,6 +255,10 @@ module Thrusting
       return cxx
     end
 
+    def get_thrust_home
+      return THRUST_DIR
+    end
+
     def using_thrust(cxx)
       homepath = get_thrust_home 
       incpath = homepath
@@ -243,10 +266,6 @@ module Thrusting
       return cxx
     end
     
-    def get_thrust_home
-      return THRUST_DIR
-    end
-
     def using_thrusting(cxx)
       thisdir = File.expand_path File.dirname __FILE__ 
       incpath = [thisdir, "..", ".."].join "/"
@@ -309,12 +328,15 @@ end
 if __FILE__ == $0
   # TEST
   include Thrusting
-  make_default_compiler()
-  .enable_backend("omp").enable_backend("device").use_float_type("double").enable_gtest
-  .append(DEFAULT_OPTIMIZE_FLAG)
-  .append("-O3")
-  .append("-O3")
-  .to_s
 
-  get_runnable_devices
+  cxx = make_default_compiler
+  cxx.use_backend("omp")
+  cxx.use_backend("device")
+  cxx.use_real_precision("double")
+  cxx.disable_pretty_print
+  cxx.disable_assertion
+  cxx << "-use_fast_math"
+
+  p cxx
+  p get_runnable_devices
 end

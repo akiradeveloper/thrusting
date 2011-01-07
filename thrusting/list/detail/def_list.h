@@ -11,6 +11,17 @@
 #include <thrust/equal.h>
 #include <thrust/advance.h>
 
+/*
+  Explanation,  
+
+  List in Thrusting is an abstraction
+  that is like vector type but
+  the actual vector hidden is inquestionable.
+  The equality is only asserted by the values on the vector. 
+
+  Akira Hayakawa 2010
+*/
+
 namespace thrusting {
 namespace detail {
 

@@ -14,3 +14,5 @@ cxx.make_gtest_task("gtest_no_debug")
 
 cxx = cc.deepcopy
 cxx.make_gtest_task("gtest_on_host", "host")
+
+make_cat_task("gtest")
