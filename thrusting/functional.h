@@ -148,7 +148,8 @@ public:
   __host__ __device__
   typename F::result_type operator()(const typename G::argument_type &x) const {
     typename G::result_type y = _g(x);
-    return _f(y);
+    typename F::result_type z = _f(y);
+    return z;
   }
 };
 } // END detail
