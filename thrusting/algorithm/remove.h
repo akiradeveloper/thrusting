@@ -21,7 +21,7 @@ Size remove_if(
   InputIterator first,
   Predicate pred
 ){
-  InputIterator end = remove_if(
+  InputIterator end = thrust::remove_if(
     first,
     thrusting::advance(n, first),
     pred);
@@ -43,7 +43,7 @@ Size remove_if(
   InputIterator2 stencil,
   Predicate pred
 ){
-  InputIterator1 end = remove_if(
+  InputIterator1 end = thrust::remove_if(
     first,
     thrusting::advance(n, first),
     stencil,

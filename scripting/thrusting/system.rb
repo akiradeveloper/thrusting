@@ -49,6 +49,10 @@ module Thrusting
     raise "@#{__FILE__} except linux or darwin will not be supported"
   end
 
+  def get_machine_arch
+    `uname -m`
+  end
+
   # 32 or 64
   def get_machine_bit
     # if on mac, always use 32 bit mode.
@@ -57,7 +61,7 @@ module Thrusting
       return 32
     end
     # hoping this will work
-    if `uname -m` == 'x86_64'
+    if get_machine_arch == 'x86_64'
       return 64
     end
     return 32

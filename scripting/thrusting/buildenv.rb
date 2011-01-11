@@ -64,7 +64,12 @@ module Thrusting
       # -1 is no optimization
       @optimize_level = -1
       @use_gtest = false
+      @prepend = []
       @append = []
+    end
+
+    def prepend(ss)
+      @prepend.insert(0, ss)
     end
 
     def <<(option)
@@ -106,8 +111,8 @@ module Thrusting
 
             cc = self.deepcopy
             cc.use_backend(dev)
-
-            sh "#{cc.to_s} -o #{dir}/#{binname} #{dir}/#{cuname}"
+            cc.prepend("-o #{dir}/#{binname} #{dir}/#{cuname}")
+            sh cc.to_s
             FileUtils.rm("#{dir}/#{cuname}")
           end
 
@@ -195,6 +200,10 @@ module Thrusting
 
     def to_s
       cxx = @cmd
+
+      @prepend.each do |a|
+         cxx += " #{a}"
+      end
 
       cxx = using_cuda(cxx)
       cxx = using_thrust(cxx)

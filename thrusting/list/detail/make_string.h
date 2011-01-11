@@ -10,7 +10,8 @@ namespace detail {
 */
 template<typename Iterator>
 std::string make_string(const thrusting::detail::list<Iterator> &xs){
-  size_t n = xs.length();
+  // unused
+//  size_t n = xs.length();
   return xs.to_s();
 }
   
