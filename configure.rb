@@ -3,7 +3,6 @@ module Thrusting
     include Thrusting
   end
   
-  # user configuration
   private
   home = ENV["HOME"]
 

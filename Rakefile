@@ -4,7 +4,9 @@ require "rake/clean"
 
 CLOBBER.include ["doc/html", "doc/latex"]
 
+desc "install this library. compilation of a utility program etc"
 task :install => :build
+
 task :uninstall => :clobber
 
 task :build do
@@ -19,7 +21,6 @@ task :clobber do
   end
 end
 
-desc "generate zip file"
 task :zip do
   version = "0.0.1"
   sh "hg archive -t zip #{ENV["HOME"]}/thrusting-v#{version}.zip"

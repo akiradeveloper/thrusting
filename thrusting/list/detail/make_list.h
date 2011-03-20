@@ -10,7 +10,7 @@
 namespace thrusting {
 
 template<typename Iterator>
-detail::list<typename thrust::iterator_value<Iterator>::type> make_list(Iterator first, Iterator last){
+detail::list<typename ::thrust::iterator_value<Iterator>::type> make_list(Iterator first, Iterator last){
   return make_list(thrust::distance(first, last), first);
 }
 

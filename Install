@@ -15,25 +15,25 @@ Dependencies
 # Google Test
 Make sure that PATH variable are set to gtest/bin.
 gtest-config is used internally.
+
 # Kefir ( name of Russian yogurt )
 Kefir is a new Ruby/Gnuplot implementation developed by me.
+# Gnuplot ( on 4.2 is tested )
+
 # Ruby ( on 1.9.2 is tested )
 Ruby is a great language for scripting.
 To use Ruby, I recommand you to use RVM.
 # Rake ( on 0.8.7 is tested )
 Rake is the most powerful automation tool ever.
+
 # CUDA ( on 3.2 is tested )
 # Thrust ( on changeset a4f5854e59 is tested )
-# Gnuplot ( on 4.2 is tested )
-# Vim
-Using Vim as a text editor is recommanded.
-No support for Emacs users.
 
 =============
 Configuration
 =============
 Before using Thrusting.
-You first setup configure.sh and configure.rb script.
+You first rewrite configure.sh and configure.rb script.
 
 $ source setup
 $ rake install

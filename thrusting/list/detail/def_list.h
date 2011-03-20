@@ -63,7 +63,7 @@ public:
     return !( *(this) == ys );
   }
 
-  std::string to_s() const {
+  ::std::string to_s() const {
     std::stringstream ss;
     ss << "[";
     Iterator end = this->end(); thrust::advance(end, -1);

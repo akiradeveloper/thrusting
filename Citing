@@ -1,8 +1,0 @@
-For citing this library,
-please using following BibTEX.
-
-@MISC { THRUSTING,
-  author = "Akira Hayakawa",
-  title = "Thrusting : An extension for Thrust library",
-  year = "2010",
-}

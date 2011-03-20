@@ -117,11 +117,14 @@ module Thrusting
           end
 
           namespace :compile do
+            desc "compile for #{dir}"
             task dir => "#{dir}/#{binname}"
+            desc "compile for all"
             task :all => dir
           end
 
           namespace :clobber do
+            desc "purge binary files under #{dir}"
             task dir do
               sh "rm -rf #{dir}/#{binname}"
             end
@@ -158,10 +161,12 @@ module Thrusting
         runnable_devices.each do |dev|
           binname = "#{dir}/all_on_#{dev}.bin"
           file binname => "#{dir}/all.h"
+          desc "run test on #{dev}"
           task "on_#{dev}" => binname do |t|
             #sh "#{binname} | tee #{outputdir}/#{dev}"
             sh "#{binname} | tee #{get_outputfile(dir, dev)}"
           end
+          desc "run test on all"
           task :on_all => "on_#{dev}" 
         end
       end

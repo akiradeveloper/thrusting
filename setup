@@ -1,3 +1,4 @@
+# source setup
 source ./configure.sh
 
 export RUBYLIB=$PWD/scripting:$KEFIR_DIR/lib:$RUBYLIB
