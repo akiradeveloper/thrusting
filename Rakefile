@@ -4,7 +4,7 @@ require "rake/clean"
 
 CLOBBER.include ["doc/html", "doc/latex"]
 
-desc "install this library. compilation of a utility program etc"
+desc "Install This Library. Compilation of a utility program etc"
 task :install => :build
 
 task :uninstall => :clobber
@@ -26,7 +26,7 @@ task :zip do
   sh "hg archive -t zip #{ENV["HOME"]}/thrusting-v#{version}.zip"
 end
 
-desc "generate API doc under doc dir"
+desc "Generate API doc under doc dir"
 task :doxygen do
   sh "doxygen Doxyfile"
 end

@@ -12,12 +12,12 @@ I am using 32 bit of Ubuntu Linux 9.10.
 Dependencies
 ============
 
-# Google Test
+# Google Test ( on 1.5.0 is tested )
 Make sure that PATH variable are set to gtest/bin.
 gtest-config is used internally.
 
-# Kefir ( name of Russian yogurt )
-Kefir is a new Ruby/Gnuplot implementation developed by me.
+# Kefir 
+Kefir is a new Ruby/Gnuplot implementation developed by myself.
 # Gnuplot ( on 4.2 is tested )
 
 # Ruby ( on 1.9.2 is tested )
@@ -34,7 +34,7 @@ Configuration
 =============
 Before using Thrusting.
 You first rewrite configure.sh and configure.rb script.
-
+and then
 $ source setup
 $ rake install
 
@@ -45,5 +45,5 @@ To make sure Thrusting will run correctly on your environment.
 Please first run unit tests on "testing" directory.
 
 $ cd testing
-$ rake -P
+$ rake -T
 $ rake regress:on_all
